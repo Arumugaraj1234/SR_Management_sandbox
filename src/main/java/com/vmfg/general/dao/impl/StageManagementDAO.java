@@ -835,8 +835,8 @@ public class StageManagementDAO implements IStageManagementDAO {
 
 				String insertQ = "INSERT INTO project_hdr (PROJECT_NAME, ENQUIRY_ID, PROJECT_DESCRIPTION, CREATED_DATE, DUE_DATE,\r\n"
 						+ " CUSTOMER_NAME, TRANSACTION_STATUS, TRANSACTION_STAGE, TRANSACTION_STATUS_SEQ, TRANSACTION_STAGE_SEQ,\r\n"
-						+ " CREATED_DATETIME, LAST_UPDATED_DATETIME, TENANT_ID,PRODUCT_DETAILS,PROJECT_CODE,TRANSACTION_NO,FINANCIAL_YEAR_MST_ID,INDUSTRIAL_TYPE,SCOPE_OF_WORK,PLANNED_START_DATE) \r\n"
-						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?, ?,?,?)";
+						+ " CREATED_DATETIME, LAST_UPDATED_DATETIME, TENANT_ID,PRODUCT_DETAILS,PROJECT_CODE,TRANSACTION_NO,FINANCIAL_YEAR_MST_ID,INDUSTRIAL_TYPE,SCOPE_OF_WORK,PLANNED_START_DATE,COST_FLOW_TYPE) \r\n"
+						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?, ?,?,?,?)";
 
 				KeyHolder holder = new GeneratedKeyHolder();
 
@@ -866,6 +866,7 @@ public class StageManagementDAO implements IStageManagementDAO {
 						ps.setString(18, ge.get(0).getKey5());
 						ps.setString(19, ge.get(0).getKey6());
 						ps.setString(20, startDate);
+						ps.setString(21, "NEW");
 						return ps;
 					}
 
