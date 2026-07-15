@@ -1,0 +1,183 @@
+2026-06-03 14:29:58 [background-preinit] INFO  o.h.validator.internal.util.Version -HV000001: Hibernate Validator 6.2.3.Final
+				
+2026-06-03 14:29:59 [restartedMain] INFO  o.s.boot.SpringApplication -
+
+                                ooooooo &&&&&&&&                              
+                              oo     oo &.     &                              
+                    ooooooo  oo      oo &:     &&                             
+                 oo        oooo      oo &&       *&&&&  &&&&&&                
+               oo            oo      oo &&                    &&&             
+              oo                     oo &&&&&                  &o             
+              oo                     oo &&     &&&&&           &              
+              oo           ooo       oo &&           &&&       &&             
+           ooooo           o:        oo &&              &        &&           
+       ooo     *oo       oo          oo &&                        &&&&&&&     
+     oo           ooooooo            oo &&                              &&    
+    o&                                      &&&&*       &&               &&   
+   oo                                            &&       &&              &&  
+   o     ooooo                  @     @@    @@     &&:     &&           &&    
+  oo ooo       ooo          @@@@@@@@@@@@@@@@@@@@@    &&     &&         &&     
+  ooo            oo         @@ @@@ @@@@@@@@@@@  @     &&     &&         &     
+  oo               o      @@@@ @@@ @@@@@@@@@@@  @@@    &&     &         &&    
+  o&               oo       @@ @@@ @@@@@@@@@@@  @       &     &         &&    
+  oo               oo       @@ @@ @ @@@@        @       &&                &&& 
+  oo                      @@@@ @@@@@@@@@@@@@@@  @@@:    &&                  &&
+  oo                        @@ @@@@@@@@@@@ @@@  @       &&        o&        &&
+   o                        @@ @@@@@ @@@  @@@@  @       &         &&        &.
+   oo                     @@@@ @@@ @@@@@@@@@@@  @@@@   &          &    .&&&&  
+    o         oooo          @@                  @     &.         &&    &&     
+    oo    ooo      &oo          @     @@    @@      &&          &&    &&      
+     oo oo            oo        @     @     @@    &&           &&    &&       
+      ooo              oo                      &&&           &&      &&       
+         oooooooo       oo           oo &&&&&&              &&         &      
+              oo        oo           oo &&         &      &&           &&     
+              o        :o            oo &&  .&&&&&     &&.           &&       
+              o       oo             oo &&                    &&&&&&&&        
+              oo    ooo              oo &&                  &&                
+                oo                   oo &&                &&                  
+                  oo        oooo     oo &&                &                   
+                     ooooooo  &o     oo &&      &&&       &                   
+                                oo   oo && :&&&   .&& &&&*                    
+                                   &ooo &&&                                   
+
+==============================================
+SmartRun Product by SmartRun Tech. All rights reserved.
+==============================================
+Application Version : 2.6.7
+Application Title : SmartRun MES
+Contact : support@smartruntech.com
+==============================================
+
+				
+2026-06-03 14:29:59 [restartedMain] INFO  com.vmfg.VMFGApplication -Starting VMFGApplication using Java 1.8.0_482 on Peachs-Mac-mini.local with PID 3794 (/Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management/target/classes started by peach in /Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management)
+				
+2026-06-03 14:29:59 [restartedMain] INFO  com.vmfg.VMFGApplication -The following 1 profile is active: "dev"
+				
+2026-06-03 14:30:00 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+				
+2026-06-03 14:30:00 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+				
+2026-06-03 14:30:02 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+				
+2026-06-03 14:30:02 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Finished Spring Data repository scanning in 81 ms. Found 0 JDBC repository interfaces.
+				
+2026-06-03 14:30:04 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat initialized with port(s): 8495 (http)
+				
+2026-06-03 14:30:04 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Initializing ProtocolHandler ["http-nio-8495"]
+				
+2026-06-03 14:30:04 [restartedMain] INFO  o.a.catalina.core.StandardService -Starting service [Tomcat]
+				
+2026-06-03 14:30:04 [restartedMain] INFO  o.a.catalina.core.StandardEngine -Starting Servlet engine: [Apache Tomcat/9.0.63]
+				
+2026-06-03 14:30:04 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring embedded WebApplicationContext
+				
+2026-06-03 14:30:04 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -Root WebApplicationContext: initialization completed in 3928 ms
+				
+2026-06-03 14:30:07 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping -Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+				
+2026-06-03 14:30:07 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain -Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@75c8bbd8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67464b19, org.springframework.security.web.context.SecurityContextPersistenceFilter@64d7a086, org.springframework.security.web.header.HeaderWriterFilter@74dda658, org.springframework.web.filter.CorsFilter@58b588c0, org.springframework.security.web.authentication.logout.LogoutFilter@5e42a734, com.vmfg.security.config.JwtRequestFilter@669f9df9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b269eb7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@30377238, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2665a6bf, org.springframework.security.web.session.SessionManagementFilter@1206f080, org.springframework.security.web.access.ExceptionTranslationFilter@40031b61, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@367a7765]
+				
+2026-06-03 14:30:07 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer -LiveReload server is running on port 35729
+				
+2026-06-03 14:30:07 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Starting...
+				
+2026-06-03 14:30:08 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Start completed.
+				
+2026-06-03 14:30:08 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Starting ProtocolHandler ["http-nio-8495"]
+				
+2026-06-03 14:30:08 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat started on port(s): 8495 (http) with context path '/smartrun'
+				
+2026-06-03 14:30:08 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Context refreshed
+				
+2026-06-03 14:30:08 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Found 1 custom documentation plugin(s)
+				
+2026-06-03 14:30:09 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner -Scanning for api listing references
+				
+2026-06-03 14:30:10 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: insertOrUpdateSalesBudgetSheetHdrAndDtlUsingPOST_1
+				
+2026-06-03 14:30:10 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: getVendorDetailHdrViewUsingPOST_1
+				
+2026-06-03 14:30:10 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: updateUserRoleMappingUsingPOST_1
+				
+2026-06-03 14:30:10 [restartedMain] INFO  com.vmfg.VMFGApplication -Started VMFGApplication in 13.374 seconds (JVM running for 15.095)
+				
+2026-06-03 14:30:10 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-03 14:30:31 [http-nio-8495-exec-1] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring DispatcherServlet 'dispatcherServlet'
+				
+2026-06-03 14:30:31 [http-nio-8495-exec-1] INFO  o.s.web.servlet.DispatcherServlet -Initializing Servlet 'dispatcherServlet'
+				
+2026-06-03 14:30:31 [http-nio-8495-exec-1] INFO  o.s.web.servlet.DispatcherServlet -Completed initialization in 6 ms
+				
+2026-06-03 14:30:32 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-03 14:30:32 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-03 14:30:32 [http-nio-8495-exec-4] INFO  com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary method Start
+				
+2026-06-03 14:30:32 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-06-03 14:30:32 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-06-03 14:32:38 [http-nio-8495-exec-9] INFO  com.vmfg.authentication.UserLoginDAO - getUserDtlForAuth DAO method Start
+				
+2026-06-03 14:32:38 [http-nio-8495-exec-9] INFO  com.vmfg.authentication.UserLoginDAO -getUserLoginInfo DAO method end
+				
+2026-06-03 14:32:39 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-03 14:32:39 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-03 14:32:39 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-03 14:32:39 [http-nio-8495-exec-1] INFO  c.v.q.controller.QualityController -getQtyDtl Controller  method Start
+				
+2026-06-03 14:32:39 [http-nio-8495-exec-10] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-06-03 14:32:39 [http-nio-8495-exec-10] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-06-03 14:32:39 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-03 14:32:41 [http-nio-8495-exec-2] INFO  c.v.g.c.StageManagementController -getQualityView   method end
+				
+2026-06-03 14:32:41 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-03 14:32:47 [http-nio-8495-exec-1] INFO  c.v.q.controller.QualityController -getQtyDtl Controller  method end
+				
+2026-06-03 14:32:47 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-03 15:57:05 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m56s485ms).
+				
+2026-06-03 16:13:30 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m54s988ms).
+				
+2026-06-03 16:30:24 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m54s307ms).
+				
+2026-06-03 16:41:17 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m22s212ms).
+				
+2026-06-03 16:57:41 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m54s237ms).
+				
+2026-06-03 17:11:43 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=13m32s213ms).
+				
+2026-06-03 17:44:33 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m19s143ms).
+				
+2026-06-03 18:01:47 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m44s885ms).
+				
+2026-06-03 18:08:18 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m517ms).
+				
+2026-06-03 18:26:21 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18m3s312ms).
+				
+2026-06-03 18:42:18 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m26s932ms).
+				
+2026-06-03 18:58:35 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m17s126ms).
+				
+2026-06-03 19:16:03 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m27s162ms).
+				
+2026-06-03 19:29:38 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=13m5s430ms).
+				
+2026-06-03 19:46:45 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m36s460ms).
+				
+2026-06-03 20:00:22 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=13m37s974ms).
+				
+2026-06-03 20:09:16 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown initiated...
+				
+2026-06-03 20:09:16 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown completed.
+				

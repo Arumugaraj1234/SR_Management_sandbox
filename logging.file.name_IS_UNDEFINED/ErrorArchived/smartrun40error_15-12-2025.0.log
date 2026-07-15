@@ -1,0 +1,68 @@
+2025-12-15 09:44:23 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 09:44:23 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 09:44:23 [http-nio-8495-exec-3] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-15 09:44:23 [http-nio-8495-exec-3] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-15 10:29:58 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 10:29:58 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 10:29:58 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-15 10:29:58 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-15 11:13:02 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:04 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:08 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:09 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:09 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:09 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:10 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:10 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:11 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:11 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:11 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:12 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 11:13:12 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:43 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:45 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:49 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:50 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:50 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:50 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:50 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:51 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:52 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:52 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:52 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:53 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-15 16:14:53 [http-nio-8495-exec-9] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatus Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				

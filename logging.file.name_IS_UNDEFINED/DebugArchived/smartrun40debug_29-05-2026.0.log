@@ -1,0 +1,453 @@
+2026-05-29 10:27:23 [background-preinit] INFO  o.h.validator.internal.util.Version -HV000001: Hibernate Validator 6.2.3.Final
+				
+2026-05-29 10:27:25 [restartedMain] INFO  o.s.boot.SpringApplication -
+
+                                ooooooo &&&&&&&&                              
+                              oo     oo &.     &                              
+                    ooooooo  oo      oo &:     &&                             
+                 oo        oooo      oo &&       *&&&&  &&&&&&                
+               oo            oo      oo &&                    &&&             
+              oo                     oo &&&&&                  &o             
+              oo                     oo &&     &&&&&           &              
+              oo           ooo       oo &&           &&&       &&             
+           ooooo           o:        oo &&              &        &&           
+       ooo     *oo       oo          oo &&                        &&&&&&&     
+     oo           ooooooo            oo &&                              &&    
+    o&                                      &&&&*       &&               &&   
+   oo                                            &&       &&              &&  
+   o     ooooo                  @     @@    @@     &&:     &&           &&    
+  oo ooo       ooo          @@@@@@@@@@@@@@@@@@@@@    &&     &&         &&     
+  ooo            oo         @@ @@@ @@@@@@@@@@@  @     &&     &&         &     
+  oo               o      @@@@ @@@ @@@@@@@@@@@  @@@    &&     &         &&    
+  o&               oo       @@ @@@ @@@@@@@@@@@  @       &     &         &&    
+  oo               oo       @@ @@ @ @@@@        @       &&                &&& 
+  oo                      @@@@ @@@@@@@@@@@@@@@  @@@:    &&                  &&
+  oo                        @@ @@@@@@@@@@@ @@@  @       &&        o&        &&
+   o                        @@ @@@@@ @@@  @@@@  @       &         &&        &.
+   oo                     @@@@ @@@ @@@@@@@@@@@  @@@@   &          &    .&&&&  
+    o         oooo          @@                  @     &.         &&    &&     
+    oo    ooo      &oo          @     @@    @@      &&          &&    &&      
+     oo oo            oo        @     @     @@    &&           &&    &&       
+      ooo              oo                      &&&           &&      &&       
+         oooooooo       oo           oo &&&&&&              &&         &      
+              oo        oo           oo &&         &      &&           &&     
+              o        :o            oo &&  .&&&&&     &&.           &&       
+              o       oo             oo &&                    &&&&&&&&        
+              oo    ooo              oo &&                  &&                
+                oo                   oo &&                &&                  
+                  oo        oooo     oo &&                &                   
+                     ooooooo  &o     oo &&      &&&       &                   
+                                oo   oo && :&&&   .&& &&&*                    
+                                   &ooo &&&                                   
+
+==============================================
+SmartRun Product by SmartRun Tech. All rights reserved.
+==============================================
+Application Version : 2.6.7
+Application Title : SmartRun MES
+Contact : support@smartruntech.com
+==============================================
+
+				
+2026-05-29 10:27:25 [restartedMain] INFO  com.vmfg.VMFGApplication -Starting VMFGApplication using Java 1.8.0_482 on Peachs-Mac-mini.local with PID 3795 (/Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management/target/classes started by peach in /Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management)
+				
+2026-05-29 10:27:25 [restartedMain] INFO  com.vmfg.VMFGApplication -The following 1 profile is active: "dev"
+				
+2026-05-29 10:27:26 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+				
+2026-05-29 10:27:26 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+				
+2026-05-29 10:27:28 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+				
+2026-05-29 10:27:28 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Finished Spring Data repository scanning in 82 ms. Found 0 JDBC repository interfaces.
+				
+2026-05-29 10:27:30 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat initialized with port(s): 8495 (http)
+				
+2026-05-29 10:27:30 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Initializing ProtocolHandler ["http-nio-8495"]
+				
+2026-05-29 10:27:30 [restartedMain] INFO  o.a.catalina.core.StandardService -Starting service [Tomcat]
+				
+2026-05-29 10:27:30 [restartedMain] INFO  o.a.catalina.core.StandardEngine -Starting Servlet engine: [Apache Tomcat/9.0.63]
+				
+2026-05-29 10:27:30 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring embedded WebApplicationContext
+				
+2026-05-29 10:27:30 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -Root WebApplicationContext: initialization completed in 4226 ms
+				
+2026-05-29 10:27:33 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping -Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+				
+2026-05-29 10:27:33 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain -Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5570c45f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3cbb2d4b, org.springframework.security.web.context.SecurityContextPersistenceFilter@1f53f5c6, org.springframework.security.web.header.HeaderWriterFilter@22df8ae3, org.springframework.web.filter.CorsFilter@6ae86b93, org.springframework.security.web.authentication.logout.LogoutFilter@36a8ff23, com.vmfg.security.config.JwtRequestFilter@4bcddc19, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@34dbea61, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@33c9c279, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@46670a5f, org.springframework.security.web.session.SessionManagementFilter@5fccead2, org.springframework.security.web.access.ExceptionTranslationFilter@110449bb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@637f9b92]
+				
+2026-05-29 10:27:33 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer -LiveReload server is running on port 35729
+				
+2026-05-29 10:27:34 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Starting...
+				
+2026-05-29 10:27:34 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Start completed.
+				
+2026-05-29 10:27:34 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Starting ProtocolHandler ["http-nio-8495"]
+				
+2026-05-29 10:27:35 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat started on port(s): 8495 (http) with context path '/smartrun'
+				
+2026-05-29 10:27:35 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Context refreshed
+				
+2026-05-29 10:27:35 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Found 1 custom documentation plugin(s)
+				
+2026-05-29 10:27:35 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner -Scanning for api listing references
+				
+2026-05-29 10:27:36 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: insertOrUpdateSalesBudgetSheetHdrAndDtlUsingPOST_1
+				
+2026-05-29 10:27:36 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: getVendorDetailHdrViewUsingPOST_1
+				
+2026-05-29 10:27:36 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: updateUserRoleMappingUsingPOST_1
+				
+2026-05-29 10:27:36 [restartedMain] INFO  com.vmfg.VMFGApplication -Started VMFGApplication in 13.945 seconds (JVM running for 15.616)
+				
+2026-05-29 10:27:36 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-29 10:28:25 [http-nio-8495-exec-4] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring DispatcherServlet 'dispatcherServlet'
+				
+2026-05-29 10:28:25 [http-nio-8495-exec-4] INFO  o.s.web.servlet.DispatcherServlet -Initializing Servlet 'dispatcherServlet'
+				
+2026-05-29 10:28:25 [http-nio-8495-exec-4] INFO  o.s.web.servlet.DispatcherServlet -Completed initialization in 6 ms
+				
+2026-05-29 10:28:26 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-29 10:28:26 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-29 10:28:26 [http-nio-8495-exec-8] INFO  com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary method Start
+				
+2026-05-29 10:28:26 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-05-29 10:28:26 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-05-29 10:29:28 [http-nio-8495-exec-4] INFO  com.vmfg.authentication.UserLoginDAO - getUserDtlForAuth DAO method Start
+				
+2026-05-29 10:29:28 [http-nio-8495-exec-4] INFO  com.vmfg.authentication.UserLoginDAO -getUserLoginInfo DAO method end
+				
+2026-05-29 10:29:28 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 10:29:28 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 10:29:28 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 10:29:28 [http-nio-8495-exec-4] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-05-29 10:29:28 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-05-29 10:29:28 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-05-29 10:29:29 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-05-29 10:29:29 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 10:29:30 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-05-29 10:29:30 [http-nio-8495-exec-4] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-05-29 10:29:30 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 10:29:30 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 10:29:34 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-05-29 10:29:34 [http-nio-8495-exec-9] INFO  c.v.d.c.IndentUploadController -getIndentTypeMstDropDown Controller  method Start
+				
+2026-05-29 10:29:34 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-05-29 10:29:34 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 10:29:34 [http-nio-8495-exec-9] INFO  c.v.d.c.IndentUploadController -getIndentTypeMstDropDown Controller  method end
+				
+2026-05-29 10:29:34 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 10:29:36 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-05-29 10:29:36 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-05-29 10:29:36 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 10:29:45 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-05-29 10:29:45 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-05-29 10:29:45 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 10:53:10 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12m35s922ms).
+				
+2026-05-29 11:11:01 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m20s542ms).
+				
+2026-05-29 11:19:36 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m5s100ms).
+				
+2026-05-29 11:32:41 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:42 [http-nio-8495-exec-8] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-05-29 11:32:42 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-05-29 11:32:42 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-05-29 11:32:42 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-05-29 11:32:42 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:43 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-05-29 11:32:43 [http-nio-8495-exec-8] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-05-29 11:32:43 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:43 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:50 [http-nio-8495-exec-5] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-05-29 11:32:50 [http-nio-8495-exec-10] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-05-29 11:32:50 [http-nio-8495-exec-10] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-05-29 11:32:50 [http-nio-8495-exec-5] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-05-29 11:32:50 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:50 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:50 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:50 [http-nio-8495-exec-10] INFO  c.v.g.c.DepartmentAndEmployeeInfoController -getprocessAssignedTeam   method Start
+				
+2026-05-29 11:32:50 [http-nio-8495-exec-10] INFO  c.v.g.s.i.DepartmentAndEmployeeService -getprocessAssignedTeam  method start
+				
+2026-05-29 11:32:51 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:51 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:51 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:51 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:51 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:54 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:54 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-05-29 11:32:54 [http-nio-8495-exec-3] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-05-29 11:32:54 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-05-29 11:32:54 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:32:54 [http-nio-8495-exec-3] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-05-29 11:32:54 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:33:24 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:33:24 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_284
+				
+2026-05-29 11:33:24 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:24 [http-nio-8495-exec-5] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:33:24 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:33:28 [http-nio-8495-exec-4] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:33:28 [http-nio-8495-exec-4] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_284
+				
+2026-05-29 11:33:28 [http-nio-8495-exec-4] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:28 [http-nio-8495-exec-4] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:33:28 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:33:31 [http-nio-8495-exec-10] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:33:31 [http-nio-8495-exec-10] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_284
+				
+2026-05-29 11:33:31 [http-nio-8495-exec-10] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:31 [http-nio-8495-exec-10] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:33:31 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:33:32 [http-nio-8495-exec-6] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:33:32 [http-nio-8495-exec-6] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_285
+				
+2026-05-29 11:33:32 [http-nio-8495-exec-6] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:32 [http-nio-8495-exec-6] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:33:32 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:33:33 [http-nio-8495-exec-8] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:33:33 [http-nio-8495-exec-8] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_285
+				
+2026-05-29 11:33:33 [http-nio-8495-exec-8] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:33 [http-nio-8495-exec-8] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:33:33 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:33:34 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:33:34 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_285
+				
+2026-05-29 11:33:34 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:34 [http-nio-8495-exec-5] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:33:34 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:33:37 [http-nio-8495-exec-4] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:33:37 [http-nio-8495-exec-4] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_284
+				
+2026-05-29 11:33:37 [http-nio-8495-exec-4] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:37 [http-nio-8495-exec-4] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:33:37 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:33:45 [http-nio-8495-exec-10] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:33:45 [http-nio-8495-exec-10] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_284
+				
+2026-05-29 11:33:45 [http-nio-8495-exec-10] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:45 [http-nio-8495-exec-10] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:33:45 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:33:53 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:33:53 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_285
+				
+2026-05-29 11:33:53 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:53 [http-nio-8495-exec-5] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:33:53 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:34:26 [http-nio-8495-exec-10] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:34:26 [http-nio-8495-exec-10] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_286
+				
+2026-05-29 11:34:26 [http-nio-8495-exec-10] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:34:26 [http-nio-8495-exec-10] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:34:26 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:34:27 [http-nio-8495-exec-6] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:34:27 [http-nio-8495-exec-6] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_286
+				
+2026-05-29 11:34:27 [http-nio-8495-exec-6] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:34:27 [http-nio-8495-exec-6] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:34:27 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:34:37 [http-nio-8495-exec-8] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:34:37 [http-nio-8495-exec-8] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_1
+				
+2026-05-29 11:34:37 [http-nio-8495-exec-8] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:34:37 [http-nio-8495-exec-8] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:34:37 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 11:34:47 [http-nio-8495-exec-1] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-05-29 11:34:47 [http-nio-8495-exec-1] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1096_3
+				
+2026-05-29 11:34:47 [http-nio-8495-exec-1] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:34:47 [http-nio-8495-exec-1] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-05-29 11:34:47 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 13:25:23 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m45s829ms).
+				
+2026-05-29 13:42:07 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m14s481ms).
+				
+2026-05-29 13:58:37 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m29s522ms).
+				
+2026-05-29 14:08:35 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9m28s773ms).
+				
+2026-05-29 14:59:52 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 14:59:52 [http-nio-8495-exec-8] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-05-29 14:59:52 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-05-29 14:59:52 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-05-29 14:59:52 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-05-29 14:59:52 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 14:59:54 [http-nio-8495-exec-8] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-05-29 14:59:54 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 14:59:54 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-05-29 14:59:54 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 14:59:56 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-05-29 14:59:56 [http-nio-8495-exec-3] INFO  c.v.d.c.IndentUploadController -getIndentTypeMstDropDown Controller  method Start
+				
+2026-05-29 14:59:56 [http-nio-8495-exec-3] INFO  c.v.d.c.IndentUploadController -getIndentTypeMstDropDown Controller  method end
+				
+2026-05-29 14:59:56 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-05-29 14:59:56 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 14:59:56 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 14:59:59 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-05-29 14:59:59 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-05-29 14:59:59 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 15:00:08 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-05-29 15:00:08 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-05-29 15:00:08 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-05-29 16:00:16 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m39s308ms).
+				
+2026-05-29 16:16:59 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m42s829ms).
+				
+2026-05-29 16:32:04 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m5s634ms).
+				
+2026-05-29 17:20:57 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m52s679ms).
+				
+2026-05-29 17:37:25 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m27s467ms).
+				
+2026-05-29 19:01:26 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4m59s879ms).
+				
+2026-05-29 19:17:17 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m51s492ms).
+				
+2026-05-29 19:35:27 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m39s411ms).
+				
+2026-05-29 19:38:16 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m48s770ms).
+				
+2026-05-29 19:55:48 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m2s222ms).
+				
+2026-05-29 20:02:14 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m55s834ms).
+				
+2026-05-29 20:19:25 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m41s316ms).
+				
+2026-05-29 20:21:15 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m50s190ms).
+				
+2026-05-29 20:29:08 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown initiated...
+				
+2026-05-29 20:29:08 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown completed.
+				

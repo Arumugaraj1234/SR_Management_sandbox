@@ -1,0 +1,42 @@
+2025-12-22 10:19:44 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 10:19:44 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 10:19:45 [http-nio-8495-exec-9] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-22 10:19:45 [http-nio-8495-exec-9] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-22 10:50:19 [http-nio-8495-exec-7] ERROR c.vmfg.scm.controller.GrnController -grnCancel  method  exceptionjava.lang.RuntimeException: java.lang.RuntimeException: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 10:51:14 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2025-12-22 10:52:39 [http-nio-8495-exec-1] ERROR c.vmfg.scm.controller.GrnController -grnCancel  method  exceptionjava.lang.RuntimeException: java.lang.RuntimeException: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 10:52:58 [http-nio-8495-exec-3] ERROR c.vmfg.scm.controller.GrnController -grnCancel  method  exceptionjava.lang.RuntimeException: java.lang.RuntimeException: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 10:53:12 [http-nio-8495-exec-5] ERROR c.vmfg.scm.controller.GrnController -grnCancel  method  exceptionjava.lang.RuntimeException: java.lang.RuntimeException: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 11:39:16 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.GrnDAO -grnCancel method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 12:13:09 [http-nio-8495-exec-2] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2025-12-22 12:49:47 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.GrnDAO -grnCancel method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 13:01:21 [http-nio-8495-exec-9] ERROR com.vmfg.scm.dao.impl.GrnDAO -grnCancel method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 17:45:14 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 17:45:14 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 17:45:15 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-22 17:45:15 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-22 17:45:20 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 17:45:21 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-22 17:45:21 [http-nio-8495-exec-6] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-22 17:45:21 [http-nio-8495-exec-6] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				

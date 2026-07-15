@@ -1,0 +1,428 @@
+2026-06-24 09:57:40 [background-preinit] INFO  o.h.validator.internal.util.Version -HV000001: Hibernate Validator 6.2.3.Final
+				
+2026-06-24 09:57:41 [restartedMain] INFO  o.s.boot.SpringApplication -
+
+                                ooooooo &&&&&&&&                              
+                              oo     oo &.     &                              
+                    ooooooo  oo      oo &:     &&                             
+                 oo        oooo      oo &&       *&&&&  &&&&&&                
+               oo            oo      oo &&                    &&&             
+              oo                     oo &&&&&                  &o             
+              oo                     oo &&     &&&&&           &              
+              oo           ooo       oo &&           &&&       &&             
+           ooooo           o:        oo &&              &        &&           
+       ooo     *oo       oo          oo &&                        &&&&&&&     
+     oo           ooooooo            oo &&                              &&    
+    o&                                      &&&&*       &&               &&   
+   oo                                            &&       &&              &&  
+   o     ooooo                  @     @@    @@     &&:     &&           &&    
+  oo ooo       ooo          @@@@@@@@@@@@@@@@@@@@@    &&     &&         &&     
+  ooo            oo         @@ @@@ @@@@@@@@@@@  @     &&     &&         &     
+  oo               o      @@@@ @@@ @@@@@@@@@@@  @@@    &&     &         &&    
+  o&               oo       @@ @@@ @@@@@@@@@@@  @       &     &         &&    
+  oo               oo       @@ @@ @ @@@@        @       &&                &&& 
+  oo                      @@@@ @@@@@@@@@@@@@@@  @@@:    &&                  &&
+  oo                        @@ @@@@@@@@@@@ @@@  @       &&        o&        &&
+   o                        @@ @@@@@ @@@  @@@@  @       &         &&        &.
+   oo                     @@@@ @@@ @@@@@@@@@@@  @@@@   &          &    .&&&&  
+    o         oooo          @@                  @     &.         &&    &&     
+    oo    ooo      &oo          @     @@    @@      &&          &&    &&      
+     oo oo            oo        @     @     @@    &&           &&    &&       
+      ooo              oo                      &&&           &&      &&       
+         oooooooo       oo           oo &&&&&&              &&         &      
+              oo        oo           oo &&         &      &&           &&     
+              o        :o            oo &&  .&&&&&     &&.           &&       
+              o       oo             oo &&                    &&&&&&&&        
+              oo    ooo              oo &&                  &&                
+                oo                   oo &&                &&                  
+                  oo        oooo     oo &&                &                   
+                     ooooooo  &o     oo &&      &&&       &                   
+                                oo   oo && :&&&   .&& &&&*                    
+                                   &ooo &&&                                   
+
+==============================================
+SmartRun Product by SmartRun Tech. All rights reserved.
+==============================================
+Application Version : 2.6.7
+Application Title : SmartRun MES
+Contact : support@smartruntech.com
+==============================================
+
+				
+2026-06-24 09:57:41 [restartedMain] INFO  com.vmfg.VMFGApplication -Starting VMFGApplication using Java 1.8.0_482 on Peachs-Mac-mini.local with PID 1631 (/Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management/target/classes started by peach in /Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management)
+				
+2026-06-24 09:57:41 [restartedMain] INFO  com.vmfg.VMFGApplication -The following 1 profile is active: "dev"
+				
+2026-06-24 09:57:42 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+				
+2026-06-24 09:57:42 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+				
+2026-06-24 09:57:44 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+				
+2026-06-24 09:57:44 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Finished Spring Data repository scanning in 107 ms. Found 0 JDBC repository interfaces.
+				
+2026-06-24 09:57:46 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat initialized with port(s): 8495 (http)
+				
+2026-06-24 09:57:46 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Initializing ProtocolHandler ["http-nio-8495"]
+				
+2026-06-24 09:57:46 [restartedMain] INFO  o.a.catalina.core.StandardService -Starting service [Tomcat]
+				
+2026-06-24 09:57:46 [restartedMain] INFO  o.a.catalina.core.StandardEngine -Starting Servlet engine: [Apache Tomcat/9.0.63]
+				
+2026-06-24 09:57:46 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring embedded WebApplicationContext
+				
+2026-06-24 09:57:46 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -Root WebApplicationContext: initialization completed in 3970 ms
+				
+2026-06-24 09:57:49 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping -Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+				
+2026-06-24 09:57:49 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain -Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5e62f98f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@15374c11, org.springframework.security.web.context.SecurityContextPersistenceFilter@29641bd1, org.springframework.security.web.header.HeaderWriterFilter@7ed8b7f, org.springframework.web.filter.CorsFilter@2a20401a, org.springframework.security.web.authentication.logout.LogoutFilter@18d40184, com.vmfg.security.config.JwtRequestFilter@4bcddc19, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7be9b517, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@138e953b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e8dd966, org.springframework.security.web.session.SessionManagementFilter@5d175760, org.springframework.security.web.access.ExceptionTranslationFilter@287bef2c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4dac9f72]
+				
+2026-06-24 09:57:49 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer -LiveReload server is running on port 35729
+				
+2026-06-24 09:57:50 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Starting...
+				
+2026-06-24 09:57:50 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Start completed.
+				
+2026-06-24 09:57:51 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Starting ProtocolHandler ["http-nio-8495"]
+				
+2026-06-24 09:57:51 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat started on port(s): 8495 (http) with context path '/smartrun'
+				
+2026-06-24 09:57:51 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Context refreshed
+				
+2026-06-24 09:57:51 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Found 1 custom documentation plugin(s)
+				
+2026-06-24 09:57:51 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner -Scanning for api listing references
+				
+2026-06-24 09:57:53 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: insertOrUpdateSalesBudgetSheetHdrAndDtlUsingPOST_1
+				
+2026-06-24 09:57:53 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: getVendorDetailHdrViewUsingPOST_1
+				
+2026-06-24 09:57:53 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: updateUserRoleMappingUsingPOST_1
+				
+2026-06-24 09:57:53 [restartedMain] INFO  com.vmfg.VMFGApplication -Started VMFGApplication in 14.054 seconds (JVM running for 14.967)
+				
+2026-06-24 09:57:53 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-24 09:58:05 [http-nio-8495-exec-2] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring DispatcherServlet 'dispatcherServlet'
+				
+2026-06-24 09:58:05 [http-nio-8495-exec-2] INFO  o.s.web.servlet.DispatcherServlet -Initializing Servlet 'dispatcherServlet'
+				
+2026-06-24 09:58:05 [http-nio-8495-exec-2] INFO  o.s.web.servlet.DispatcherServlet -Completed initialization in 5 ms
+				
+2026-06-24 09:58:06 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:06 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:06 [http-nio-8495-exec-8] INFO  com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary method Start
+				
+2026-06-24 09:58:06 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-06-24 09:58:06 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-06-24 09:58:39 [http-nio-8495-exec-10] INFO  com.vmfg.authentication.UserLoginDAO - getUserDtlForAuth DAO method Start
+				
+2026-06-24 09:58:39 [http-nio-8495-exec-10] INFO  com.vmfg.authentication.UserLoginDAO -getUserLoginInfo DAO method end
+				
+2026-06-24 09:58:39 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:39 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:39 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:39 [http-nio-8495-exec-4] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-06-24 09:58:39 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-06-24 09:58:39 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-06-24 09:58:39 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-06-24 09:58:39 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:41 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-06-24 09:58:41 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:41 [http-nio-8495-exec-4] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-06-24 09:58:41 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:47 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDateAndIndent Controller  method Start
+				
+2026-06-24 09:58:47 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-06-24 09:58:47 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDateAndIndent Controller  method end
+				
+2026-06-24 09:58:47 [http-nio-8495-exec-9] ERROR c.v.design.dao.impl.IndentUploadDAO -getPmSeqByPmHdrId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:47 [http-nio-8495-exec-10] ERROR c.v.design.dao.impl.IndentUploadDAO -getPmSeqByPmHdrId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:47 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:47 [http-nio-8495-exec-10] ERROR c.v.design.dao.impl.IndentUploadDAO -getStartIndentReqStatus Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:47 [http-nio-8495-exec-9] ERROR c.v.design.dao.impl.IndentUploadDAO -getStartIndentReqStatus Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:47 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:47 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:47 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:48 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-06-24 09:58:48 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:55 [http-nio-8495-exec-1] INFO  c.v.d.c.IndentUploadController -getIndentHdrDtlsByProjectId Controller  method Start
+				
+2026-06-24 09:58:55 [http-nio-8495-exec-2] INFO  c.v.p.service.impl.ProjectService -Service - getIsInternalOrNot called with tenantId=bgrn, projectCode=114
+				
+2026-06-24 09:58:55 [http-nio-8495-exec-2] INFO  com.vmfg.project.dao.impl.ProjectDAO -DAO - Running query: SELECT se.IS_INTERNAL FROM project_hdr ph, sales_enq_hdr se WHERE ph.ENQUIRY_ID = se.SE_ID AND ph.TENANT_ID = ? AND ph.PM_HDR_ID = ? with tenantId=bgrn and pmHdrId=114
+				
+2026-06-24 09:58:55 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:55 [http-nio-8495-exec-2] INFO  com.vmfg.project.dao.impl.ProjectDAO -DAO - Query result size: 1
+				
+2026-06-24 09:58:55 [http-nio-8495-exec-2] INFO  com.vmfg.project.dao.impl.ProjectDAO -DAO - First result: com.vmfg.project.response.ProjectInternalResponse@37d380a1
+				
+2026-06-24 09:58:55 [http-nio-8495-exec-2] INFO  c.v.p.service.impl.ProjectService -Service - DAO returned: com.vmfg.project.response.ProjectInternalResponse@37d380a1
+				
+2026-06-24 09:58:55 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:55 [ForkJoinPool.commonPool-worker-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:55 [ForkJoinPool.commonPool-worker-6] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:55 [ForkJoinPool.commonPool-worker-2] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:55 [ForkJoinPool.commonPool-worker-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:55 [ForkJoinPool.commonPool-worker-4] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:55 [ForkJoinPool.commonPool-worker-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:55 [ForkJoinPool.commonPool-worker-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:55 [ForkJoinPool.commonPool-worker-5] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:55 [ForkJoinPool.commonPool-worker-2] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:55 [ForkJoinPool.commonPool-worker-3] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:58:55 [http-nio-8495-exec-1] INFO  c.v.d.c.IndentUploadController -getIndentHdrDtlsByProjectId Controller  method end
+				
+2026-06-24 09:58:55 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:57 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-06-24 09:58:57 [http-nio-8495-exec-2] INFO  c.v.d.c.IndentUploadController -getIndentTypeMstDropDown Controller  method Start
+				
+2026-06-24 09:58:57 [http-nio-8495-exec-10] INFO  c.v.s.c.SalesBudgetSheetController -getKeyCategory   method Start
+				
+2026-06-24 09:58:57 [http-nio-8495-exec-2] INFO  c.v.d.c.IndentUploadController -getIndentTypeMstDropDown Controller  method end
+				
+2026-06-24 09:58:57 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:57 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:57 [http-nio-8495-exec-10] INFO  c.v.s.c.SalesBudgetSheetController -getKeyCategory method End
+				
+2026-06-24 09:58:57 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:58:57 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-06-24 09:58:57 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:59:02 [http-nio-8495-exec-7] INFO  c.v.d.c.IndentUploadController -getIndentHdrDtlsByProjectId Controller  method Start
+				
+2026-06-24 09:59:02 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:59:02 [ForkJoinPool.commonPool-worker-4] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:02 [ForkJoinPool.commonPool-worker-0] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:02 [ForkJoinPool.commonPool-worker-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:02 [ForkJoinPool.commonPool-worker-1] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:02 [ForkJoinPool.commonPool-worker-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:02 [ForkJoinPool.commonPool-worker-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:02 [ForkJoinPool.commonPool-worker-4] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:02 [ForkJoinPool.commonPool-worker-3] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:02 [ForkJoinPool.commonPool-worker-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:02 [ForkJoinPool.commonPool-worker-6] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:02 [http-nio-8495-exec-7] INFO  c.v.d.c.IndentUploadController -getIndentHdrDtlsByProjectId Controller  method end
+				
+2026-06-24 09:59:02 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:59:14 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDateAndIndent Controller  method Start
+				
+2026-06-24 09:59:14 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDateAndIndent Controller  method end
+				
+2026-06-24 09:59:14 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:59:20 [http-nio-8495-exec-8] INFO  c.v.d.c.IndentUploadController -getIndentTypeMstDropDown Controller  method Start
+				
+2026-06-24 09:59:20 [http-nio-8495-exec-3] INFO  c.v.s.c.SalesBudgetSheetController -getKeyCategory   method Start
+				
+2026-06-24 09:59:20 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-06-24 09:59:20 [http-nio-8495-exec-3] INFO  c.v.s.c.SalesBudgetSheetController -getKeyCategory method End
+				
+2026-06-24 09:59:20 [http-nio-8495-exec-8] INFO  c.v.d.c.IndentUploadController -getIndentTypeMstDropDown Controller  method end
+				
+2026-06-24 09:59:20 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:59:20 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:59:20 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:59:20 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-06-24 09:59:21 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:59:22 [http-nio-8495-exec-5] INFO  c.v.d.c.IndentUploadController -getIndentHdrDtlsByProjectId Controller  method Start
+				
+2026-06-24 09:59:22 [ForkJoinPool.commonPool-worker-0] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:22 [ForkJoinPool.commonPool-worker-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:22 [ForkJoinPool.commonPool-worker-2] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:22 [ForkJoinPool.commonPool-worker-7] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:22 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 09:59:22 [ForkJoinPool.commonPool-worker-0] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:22 [ForkJoinPool.commonPool-worker-4] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:22 [ForkJoinPool.commonPool-worker-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:22 [ForkJoinPool.commonPool-worker-5] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:22 [ForkJoinPool.commonPool-worker-2] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:22 [ForkJoinPool.commonPool-worker-3] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-24 09:59:22 [http-nio-8495-exec-5] INFO  c.v.d.c.IndentUploadController -getIndentHdrDtlsByProjectId Controller  method end
+				
+2026-06-24 09:59:22 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 10:01:29 [http-nio-8495-exec-2] INFO  c.v.d.c.IndentUploadController -getIndentTypeMstDropDown Controller  method Start
+				
+2026-06-24 10:01:29 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-06-24 10:01:29 [http-nio-8495-exec-10] INFO  c.v.s.c.SalesBudgetSheetController -getKeyCategory   method Start
+				
+2026-06-24 10:01:29 [http-nio-8495-exec-10] INFO  c.v.s.c.SalesBudgetSheetController -getKeyCategory method End
+				
+2026-06-24 10:01:29 [http-nio-8495-exec-2] INFO  c.v.d.c.IndentUploadController -getIndentTypeMstDropDown Controller  method end
+				
+2026-06-24 10:01:29 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 10:01:30 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 10:01:30 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 10:01:30 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-06-24 10:01:30 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-06-24 10:45:31 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m10s204ms).
+				
+2026-06-24 10:51:03 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m32s328ms).
+				
+2026-06-24 10:51:26 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown initiated...
+				
+2026-06-24 10:51:27 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown completed.
+				
+2026-06-24 10:51:43 [background-preinit] INFO  o.h.validator.internal.util.Version -HV000001: Hibernate Validator 6.2.3.Final
+				
+2026-06-24 10:51:44 [restartedMain] INFO  o.s.boot.SpringApplication -
+
+                                ooooooo &&&&&&&&                              
+                              oo     oo &.     &                              
+                    ooooooo  oo      oo &:     &&                             
+                 oo        oooo      oo &&       *&&&&  &&&&&&                
+               oo            oo      oo &&                    &&&             
+              oo                     oo &&&&&                  &o             
+              oo                     oo &&     &&&&&           &              
+              oo           ooo       oo &&           &&&       &&             
+           ooooo           o:        oo &&              &        &&           
+       ooo     *oo       oo          oo &&                        &&&&&&&     
+     oo           ooooooo            oo &&                              &&    
+    o&                                      &&&&*       &&               &&   
+   oo                                            &&       &&              &&  
+   o     ooooo                  @     @@    @@     &&:     &&           &&    
+  oo ooo       ooo          @@@@@@@@@@@@@@@@@@@@@    &&     &&         &&     
+  ooo            oo         @@ @@@ @@@@@@@@@@@  @     &&     &&         &     
+  oo               o      @@@@ @@@ @@@@@@@@@@@  @@@    &&     &         &&    
+  o&               oo       @@ @@@ @@@@@@@@@@@  @       &     &         &&    
+  oo               oo       @@ @@ @ @@@@        @       &&                &&& 
+  oo                      @@@@ @@@@@@@@@@@@@@@  @@@:    &&                  &&
+  oo                        @@ @@@@@@@@@@@ @@@  @       &&        o&        &&
+   o                        @@ @@@@@ @@@  @@@@  @       &         &&        &.
+   oo                     @@@@ @@@ @@@@@@@@@@@  @@@@   &          &    .&&&&  
+    o         oooo          @@                  @     &.         &&    &&     
+    oo    ooo      &oo          @     @@    @@      &&          &&    &&      
+     oo oo            oo        @     @     @@    &&           &&    &&       
+      ooo              oo                      &&&           &&      &&       
+         oooooooo       oo           oo &&&&&&              &&         &      
+              oo        oo           oo &&         &      &&           &&     
+              o        :o            oo &&  .&&&&&     &&.           &&       
+              o       oo             oo &&                    &&&&&&&&        
+              oo    ooo              oo &&                  &&                
+                oo                   oo &&                &&                  
+                  oo        oooo     oo &&                &                   
+                     ooooooo  &o     oo &&      &&&       &                   
+                                oo   oo && :&&&   .&& &&&*                    
+                                   &ooo &&&                                   
+
+==============================================
+SmartRun Product by SmartRun Tech. All rights reserved.
+==============================================
+Application Version : 2.6.7
+Application Title : SmartRun MES
+Contact : support@smartruntech.com
+==============================================
+
+				
+2026-06-24 10:51:44 [restartedMain] INFO  com.vmfg.VMFGApplication -Starting VMFGApplication using Java 1.8.0_482 on Peachs-Mac-mini.local with PID 2475 (/Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management/target/classes started by peach in /Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management)
+				
+2026-06-24 10:51:44 [restartedMain] INFO  com.vmfg.VMFGApplication -The following 1 profile is active: "dev"
+				
+2026-06-24 10:51:44 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+				
+2026-06-24 10:51:44 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+				
+2026-06-24 10:51:46 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+				
+2026-06-24 10:51:47 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Finished Spring Data repository scanning in 99 ms. Found 0 JDBC repository interfaces.
+				
+2026-06-24 10:51:48 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat initialized with port(s): 8495 (http)
+				
+2026-06-24 10:51:48 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Initializing ProtocolHandler ["http-nio-8495"]
+				
+2026-06-24 10:51:48 [restartedMain] INFO  o.a.catalina.core.StandardService -Starting service [Tomcat]
+				
+2026-06-24 10:51:48 [restartedMain] INFO  o.a.catalina.core.StandardEngine -Starting Servlet engine: [Apache Tomcat/9.0.63]
+				
+2026-06-24 10:51:48 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring embedded WebApplicationContext
+				
+2026-06-24 10:51:48 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -Root WebApplicationContext: initialization completed in 3665 ms
+				
+2026-06-24 10:51:51 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping -Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+				
+2026-06-24 10:51:51 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain -Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@443cbebd, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@254d8c34, org.springframework.security.web.context.SecurityContextPersistenceFilter@7432fb0e, org.springframework.security.web.header.HeaderWriterFilter@9b5cb5f, org.springframework.web.filter.CorsFilter@d849a1b, org.springframework.security.web.authentication.logout.LogoutFilter@6b21e6cd, com.vmfg.security.config.JwtRequestFilter@6c772f05, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@28bca399, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7bb7433b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5db87857, org.springframework.security.web.session.SessionManagementFilter@3f61c328, org.springframework.security.web.access.ExceptionTranslationFilter@8ea6baa, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5d7de4dd]
+				
+2026-06-24 10:51:51 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer -LiveReload server is running on port 35729
+				
+2026-06-24 10:51:52 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Starting...
+				

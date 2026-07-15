@@ -1,0 +1,32 @@
+package com.vmfg.task.entity;
+
+import java.io.Serializable;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class TaskEntryDtlEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private String teDtlId;
+	private String teHdrId;
+	private String ttDtlId;
+	private String activityName;
+	private String plannedStartDate;
+	private String dueDate;
+	private String plannedCompletedDate;
+	private String completedDate;
+	private String approvalSeq;
+	private	String approvalStatus;
+	private String approvalStatusDesc;
+	private String isCompleted;
+	private String tenantId;
+	private String isApproval;
+	private String completePtg;
+	private String assignTo;
+	private String assignToDesc;
+	private String actualStartDate;
+}

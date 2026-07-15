@@ -1,0 +1,271 @@
+2026-07-03 09:36:22 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-07-03 09:37:16 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 09:37:16 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 09:37:16 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-03 09:37:16 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-03 11:38:18 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-07-03 11:39:11 [http-nio-8495-exec-1] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:16 [http-nio-8495-exec-3] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-7] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:25 [http-nio-8495-exec-1] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:38 [http-nio-8495-exec-10] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:49 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:57 [http-nio-8495-exec-3] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:40:12 [http-nio-8495-exec-4] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:40:34 [http-nio-8495-exec-8] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:40:57 [http-nio-8495-exec-3] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-2] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-9] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:13 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:14 [http-nio-8495-exec-2] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:14 [http-nio-8495-exec-1] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-8] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-3] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-2] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-8] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-9] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-4] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:20 [http-nio-8495-exec-2] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:54 [http-nio-8495-exec-1] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 15:10:45 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-8] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-8] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:44:05 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter -
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8495 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8495 or configure this application to listen on another port.
+
+				
+2026-07-03 15:44:05 [restartedMain] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8495 is already in use
+				
+2026-07-03 15:44:05 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:42:27 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:42:27 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:42:27 [http-nio-8495-exec-6] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-03 16:42:27 [http-nio-8495-exec-6] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:43:11 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:43:11 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:43:11 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-03 16:43:11 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-03 16:43:55 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:43:55 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:43:55 [http-nio-8495-exec-3] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-03 16:43:55 [http-nio-8495-exec-3] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-03 17:20:36 [http-nio-8495-exec-5] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-07-03 17:33:48 [http-nio-8495-exec-6] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-07-03 17:37:28 [http-nio-8495-exec-9] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				

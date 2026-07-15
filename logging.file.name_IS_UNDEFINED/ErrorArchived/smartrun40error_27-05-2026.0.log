@@ -1,0 +1,82 @@
+2026-05-27 11:41:02 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-27 11:41:24 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:41:24 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:41:24 [http-nio-8495-exec-6] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-05-27 11:41:24 [http-nio-8495-exec-6] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 11:42:44 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 13:43:16 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-27 14:33:37 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-27 14:37:29 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-27 14:39:42 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-27 14:39:47 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 14:39:47 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 2
+				
+2026-05-27 14:39:47 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 14:39:47 [http-nio-8495-exec-2] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-05-27 14:39:47 [http-nio-8495-exec-2] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-05-27 14:39:49 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 14:39:49 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 14:39:49 [http-nio-8495-exec-1] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-05-27 14:39:49 [http-nio-8495-exec-1] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-05-27 14:39:49 [http-nio-8495-exec-5] ERROR com.vmfg.util.GetPropertyValue -getPropValueByTenant Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 14:39:49 [http-nio-8495-exec-5] ERROR c.v.g.d.impl.NotificationGeneralDAO -NotificationGeneralDAO error java.lang.NumberFormatException: For input string: ""
+				
+2026-05-27 16:09:46 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-27 16:10:16 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 16:10:16 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-27 16:10:16 [http-nio-8495-exec-9] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-05-27 16:10:16 [http-nio-8495-exec-9] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				

@@ -1,0 +1,2556 @@
+2026-07-03 09:36:09 [background-preinit] INFO  o.h.validator.internal.util.Version -HV000001: Hibernate Validator 6.2.3.Final
+				
+2026-07-03 09:36:11 [restartedMain] INFO  o.s.boot.SpringApplication -
+
+                                ooooooo &&&&&&&&                              
+                              oo     oo &.     &                              
+                    ooooooo  oo      oo &:     &&                             
+                 oo        oooo      oo &&       *&&&&  &&&&&&                
+               oo            oo      oo &&                    &&&             
+              oo                     oo &&&&&                  &o             
+              oo                     oo &&     &&&&&           &              
+              oo           ooo       oo &&           &&&       &&             
+           ooooo           o:        oo &&              &        &&           
+       ooo     *oo       oo          oo &&                        &&&&&&&     
+     oo           ooooooo            oo &&                              &&    
+    o&                                      &&&&*       &&               &&   
+   oo                                            &&       &&              &&  
+   o     ooooo                  @     @@    @@     &&:     &&           &&    
+  oo ooo       ooo          @@@@@@@@@@@@@@@@@@@@@    &&     &&         &&     
+  ooo            oo         @@ @@@ @@@@@@@@@@@  @     &&     &&         &     
+  oo               o      @@@@ @@@ @@@@@@@@@@@  @@@    &&     &         &&    
+  o&               oo       @@ @@@ @@@@@@@@@@@  @       &     &         &&    
+  oo               oo       @@ @@ @ @@@@        @       &&                &&& 
+  oo                      @@@@ @@@@@@@@@@@@@@@  @@@:    &&                  &&
+  oo                        @@ @@@@@@@@@@@ @@@  @       &&        o&        &&
+   o                        @@ @@@@@ @@@  @@@@  @       &         &&        &.
+   oo                     @@@@ @@@ @@@@@@@@@@@  @@@@   &          &    .&&&&  
+    o         oooo          @@                  @     &.         &&    &&     
+    oo    ooo      &oo          @     @@    @@      &&          &&    &&      
+     oo oo            oo        @     @     @@    &&           &&    &&       
+      ooo              oo                      &&&           &&      &&       
+         oooooooo       oo           oo &&&&&&              &&         &      
+              oo        oo           oo &&         &      &&           &&     
+              o        :o            oo &&  .&&&&&     &&.           &&       
+              o       oo             oo &&                    &&&&&&&&        
+              oo    ooo              oo &&                  &&                
+                oo                   oo &&                &&                  
+                  oo        oooo     oo &&                &                   
+                     ooooooo  &o     oo &&      &&&       &                   
+                                oo   oo && :&&&   .&& &&&*                    
+                                   &ooo &&&                                   
+
+==============================================
+SmartRun Product by SmartRun Tech. All rights reserved.
+==============================================
+Application Version : 2.6.7
+Application Title : SmartRun MES
+Contact : support@smartruntech.com
+==============================================
+
+				
+2026-07-03 09:36:11 [restartedMain] INFO  com.vmfg.VMFGApplication -Starting VMFGApplication using Java 1.8.0_482 on Peachs-Mac-mini.local with PID 1935 (/Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management/target/classes started by peach in /Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management)
+				
+2026-07-03 09:36:11 [restartedMain] INFO  com.vmfg.VMFGApplication -The following 1 profile is active: "dev"
+				
+2026-07-03 09:36:11 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+				
+2026-07-03 09:36:11 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+				
+2026-07-03 09:36:13 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+				
+2026-07-03 09:36:14 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Finished Spring Data repository scanning in 81 ms. Found 0 JDBC repository interfaces.
+				
+2026-07-03 09:36:15 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat initialized with port(s): 8495 (http)
+				
+2026-07-03 09:36:15 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Initializing ProtocolHandler ["http-nio-8495"]
+				
+2026-07-03 09:36:15 [restartedMain] INFO  o.a.catalina.core.StandardService -Starting service [Tomcat]
+				
+2026-07-03 09:36:15 [restartedMain] INFO  o.a.catalina.core.StandardEngine -Starting Servlet engine: [Apache Tomcat/9.0.63]
+				
+2026-07-03 09:36:15 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring embedded WebApplicationContext
+				
+2026-07-03 09:36:15 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -Root WebApplicationContext: initialization completed in 3839 ms
+				
+2026-07-03 09:36:18 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping -Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+				
+2026-07-03 09:36:19 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain -Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@86ac752, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@20e0686d, org.springframework.security.web.context.SecurityContextPersistenceFilter@3e5d5bc2, org.springframework.security.web.header.HeaderWriterFilter@376ab9cb, org.springframework.web.filter.CorsFilter@1a1f495b, org.springframework.security.web.authentication.logout.LogoutFilter@402a447e, com.vmfg.security.config.JwtRequestFilter@79bad7c8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c4142af, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7c7a9aa2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e02a51e, org.springframework.security.web.session.SessionManagementFilter@390ec3de, org.springframework.security.web.access.ExceptionTranslationFilter@71ca551d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@11b073b9]
+				
+2026-07-03 09:36:19 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer -LiveReload server is running on port 35729
+				
+2026-07-03 09:36:19 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Starting...
+				
+2026-07-03 09:36:19 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Start completed.
+				
+2026-07-03 09:36:20 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Starting ProtocolHandler ["http-nio-8495"]
+				
+2026-07-03 09:36:20 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat started on port(s): 8495 (http) with context path '/smartrun'
+				
+2026-07-03 09:36:20 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Context refreshed
+				
+2026-07-03 09:36:20 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Found 1 custom documentation plugin(s)
+				
+2026-07-03 09:36:20 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner -Scanning for api listing references
+				
+2026-07-03 09:36:21 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: insertOrUpdateSalesBudgetSheetHdrAndDtlUsingPOST_1
+				
+2026-07-03 09:36:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: getVendorDetailHdrViewUsingPOST_1
+				
+2026-07-03 09:36:22 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: updateUserRoleMappingUsingPOST_1
+				
+2026-07-03 09:36:22 [restartedMain] INFO  com.vmfg.VMFGApplication -Started VMFGApplication in 13.121 seconds (JVM running for 14.057)
+				
+2026-07-03 09:36:22 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-07-03 09:37:15 [http-nio-8495-exec-3] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring DispatcherServlet 'dispatcherServlet'
+				
+2026-07-03 09:37:15 [http-nio-8495-exec-3] INFO  o.s.web.servlet.DispatcherServlet -Initializing Servlet 'dispatcherServlet'
+				
+2026-07-03 09:37:15 [http-nio-8495-exec-3] INFO  o.s.web.servlet.DispatcherServlet -Completed initialization in 12 ms
+				
+2026-07-03 09:37:16 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 09:37:16 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 09:37:16 [http-nio-8495-exec-7] INFO  com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary method Start
+				
+2026-07-03 09:37:16 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-03 09:37:16 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-03 09:39:56 [http-nio-8495-exec-2] INFO  com.vmfg.authentication.UserLoginDAO - getUserDtlForAuth DAO method Start
+				
+2026-07-03 09:39:56 [http-nio-8495-exec-2] INFO  com.vmfg.authentication.UserLoginDAO -getUserLoginInfo DAO method end
+				
+2026-07-03 09:39:56 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 09:39:56 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 09:39:56 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 09:39:57 [http-nio-8495-exec-3] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 09:39:57 [http-nio-8495-exec-6] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 09:39:57 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 09:39:57 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 09:39:57 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 09:39:59 [http-nio-8495-exec-3] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 09:39:59 [http-nio-8495-exec-6] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 09:39:59 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 09:39:59 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 10:17:40 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m20s477ms).
+				
+2026-07-03 10:28:48 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=10m37s844ms).
+				
+2026-07-03 11:04:51 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m3s69ms).
+				
+2026-07-03 11:07:54 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m32s369ms).
+				
+2026-07-03 11:37:56 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown initiated...
+				
+2026-07-03 11:37:56 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown completed.
+				
+2026-07-03 11:38:06 [background-preinit] INFO  o.h.validator.internal.util.Version -HV000001: Hibernate Validator 6.2.3.Final
+				
+2026-07-03 11:38:07 [restartedMain] INFO  o.s.boot.SpringApplication -
+
+                                ooooooo &&&&&&&&                              
+                              oo     oo &.     &                              
+                    ooooooo  oo      oo &:     &&                             
+                 oo        oooo      oo &&       *&&&&  &&&&&&                
+               oo            oo      oo &&                    &&&             
+              oo                     oo &&&&&                  &o             
+              oo                     oo &&     &&&&&           &              
+              oo           ooo       oo &&           &&&       &&             
+           ooooo           o:        oo &&              &        &&           
+       ooo     *oo       oo          oo &&                        &&&&&&&     
+     oo           ooooooo            oo &&                              &&    
+    o&                                      &&&&*       &&               &&   
+   oo                                            &&       &&              &&  
+   o     ooooo                  @     @@    @@     &&:     &&           &&    
+  oo ooo       ooo          @@@@@@@@@@@@@@@@@@@@@    &&     &&         &&     
+  ooo            oo         @@ @@@ @@@@@@@@@@@  @     &&     &&         &     
+  oo               o      @@@@ @@@ @@@@@@@@@@@  @@@    &&     &         &&    
+  o&               oo       @@ @@@ @@@@@@@@@@@  @       &     &         &&    
+  oo               oo       @@ @@ @ @@@@        @       &&                &&& 
+  oo                      @@@@ @@@@@@@@@@@@@@@  @@@:    &&                  &&
+  oo                        @@ @@@@@@@@@@@ @@@  @       &&        o&        &&
+   o                        @@ @@@@@ @@@  @@@@  @       &         &&        &.
+   oo                     @@@@ @@@ @@@@@@@@@@@  @@@@   &          &    .&&&&  
+    o         oooo          @@                  @     &.         &&    &&     
+    oo    ooo      &oo          @     @@    @@      &&          &&    &&      
+     oo oo            oo        @     @     @@    &&           &&    &&       
+      ooo              oo                      &&&           &&      &&       
+         oooooooo       oo           oo &&&&&&              &&         &      
+              oo        oo           oo &&         &      &&           &&     
+              o        :o            oo &&  .&&&&&     &&.           &&       
+              o       oo             oo &&                    &&&&&&&&        
+              oo    ooo              oo &&                  &&                
+                oo                   oo &&                &&                  
+                  oo        oooo     oo &&                &                   
+                     ooooooo  &o     oo &&      &&&       &                   
+                                oo   oo && :&&&   .&& &&&*                    
+                                   &ooo &&&                                   
+
+==============================================
+SmartRun Product by SmartRun Tech. All rights reserved.
+==============================================
+Application Version : 2.6.7
+Application Title : SmartRun MES
+Contact : support@smartruntech.com
+==============================================
+
+				
+2026-07-03 11:38:07 [restartedMain] INFO  com.vmfg.VMFGApplication -Starting VMFGApplication using Java 1.8.0_482 on Peachs-Mac-mini.local with PID 4008 (/Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management/target/classes started by peach in /Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management)
+				
+2026-07-03 11:38:07 [restartedMain] INFO  com.vmfg.VMFGApplication -The following 1 profile is active: "dev"
+				
+2026-07-03 11:38:07 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+				
+2026-07-03 11:38:07 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+				
+2026-07-03 11:38:09 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+				
+2026-07-03 11:38:10 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Finished Spring Data repository scanning in 99 ms. Found 0 JDBC repository interfaces.
+				
+2026-07-03 11:38:11 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat initialized with port(s): 8495 (http)
+				
+2026-07-03 11:38:11 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Initializing ProtocolHandler ["http-nio-8495"]
+				
+2026-07-03 11:38:11 [restartedMain] INFO  o.a.catalina.core.StandardService -Starting service [Tomcat]
+				
+2026-07-03 11:38:11 [restartedMain] INFO  o.a.catalina.core.StandardEngine -Starting Servlet engine: [Apache Tomcat/9.0.63]
+				
+2026-07-03 11:38:11 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring embedded WebApplicationContext
+				
+2026-07-03 11:38:11 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -Root WebApplicationContext: initialization completed in 3804 ms
+				
+2026-07-03 11:38:14 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping -Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+				
+2026-07-03 11:38:15 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain -Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@15374c11, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a20401a, org.springframework.security.web.context.SecurityContextPersistenceFilter@55368074, org.springframework.security.web.header.HeaderWriterFilter@3bab100d, org.springframework.web.filter.CorsFilter@4e8dd966, org.springframework.security.web.authentication.logout.LogoutFilter@21b10916, com.vmfg.security.config.JwtRequestFilter@7a59feb9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1c224da4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1a3daf3e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@76affb9, org.springframework.security.web.session.SessionManagementFilter@3230e879, org.springframework.security.web.access.ExceptionTranslationFilter@762c5448, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@fa499e7]
+				
+2026-07-03 11:38:15 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer -LiveReload server is running on port 35729
+				
+2026-07-03 11:38:15 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Starting...
+				
+2026-07-03 11:38:15 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Start completed.
+				
+2026-07-03 11:38:16 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Starting ProtocolHandler ["http-nio-8495"]
+				
+2026-07-03 11:38:16 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat started on port(s): 8495 (http) with context path '/smartrun'
+				
+2026-07-03 11:38:16 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Context refreshed
+				
+2026-07-03 11:38:16 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Found 1 custom documentation plugin(s)
+				
+2026-07-03 11:38:16 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner -Scanning for api listing references
+				
+2026-07-03 11:38:18 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: insertOrUpdateSalesBudgetSheetHdrAndDtlUsingPOST_1
+				
+2026-07-03 11:38:18 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: getVendorDetailHdrViewUsingPOST_1
+				
+2026-07-03 11:38:18 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: updateUserRoleMappingUsingPOST_1
+				
+2026-07-03 11:38:18 [restartedMain] INFO  com.vmfg.VMFGApplication -Started VMFGApplication in 12.165 seconds (JVM running for 12.984)
+				
+2026-07-03 11:38:18 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-07-03 11:38:47 [http-nio-8495-exec-1] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring DispatcherServlet 'dispatcherServlet'
+				
+2026-07-03 11:38:47 [http-nio-8495-exec-1] INFO  o.s.web.servlet.DispatcherServlet -Initializing Servlet 'dispatcherServlet'
+				
+2026-07-03 11:38:47 [http-nio-8495-exec-1] INFO  o.s.web.servlet.DispatcherServlet -Completed initialization in 7 ms
+				
+2026-07-03 11:38:47 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 11:38:47 [http-nio-8495-exec-5] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 11:38:47 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 11:38:48 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 11:38:48 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:48 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:48 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:50 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 11:38:50 [http-nio-8495-exec-5] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 11:38:50 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:50 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:56 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 11:38:56 [http-nio-8495-exec-7] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-7] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-10] INFO  c.v.g.c.DepartmentAndEmployeeInfoController -getprocessAssignedTeam   method Start
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-10] INFO  c.v.g.s.i.DepartmentAndEmployeeService -getprocessAssignedTeam  method start
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:38:57 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:02 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 11:39:02 [http-nio-8495-exec-10] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 11:39:02 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:02 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 11:39:02 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:02 [http-nio-8495-exec-10] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 11:39:02 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:11 [http-nio-8495-exec-1] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:39:11 [http-nio-8495-exec-1] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:39:11 [http-nio-8495-exec-1] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:11 [http-nio-8495-exec-1] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:39:11 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:16 [http-nio-8495-exec-3] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:39:16 [http-nio-8495-exec-3] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:39:16 [http-nio-8495-exec-3] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:16 [http-nio-8495-exec-3] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:39:16 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-5] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-7] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-7] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-7] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-7] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:39:17 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:19 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:19 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:22 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:23 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:23 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:23 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:23 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:23 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:23 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:25 [http-nio-8495-exec-1] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:39:25 [http-nio-8495-exec-1] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:39:25 [http-nio-8495-exec-1] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:25 [http-nio-8495-exec-1] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:39:25 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:38 [http-nio-8495-exec-10] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:39:38 [http-nio-8495-exec-10] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:39:38 [http-nio-8495-exec-10] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:38 [http-nio-8495-exec-10] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:39:38 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:49 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:39:49 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:39:49 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:49 [http-nio-8495-exec-5] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:39:49 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:39:57 [http-nio-8495-exec-3] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:39:57 [http-nio-8495-exec-3] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:39:57 [http-nio-8495-exec-3] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:39:57 [http-nio-8495-exec-3] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:39:57 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:40:12 [http-nio-8495-exec-4] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:40:12 [http-nio-8495-exec-4] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:40:12 [http-nio-8495-exec-4] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:40:12 [http-nio-8495-exec-4] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:40:12 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:40:34 [http-nio-8495-exec-8] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:40:34 [http-nio-8495-exec-8] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:40:34 [http-nio-8495-exec-8] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:40:34 [http-nio-8495-exec-8] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:40:34 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:40:36 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 11:40:36 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 11:40:36 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:40:36 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:40:37 [http-nio-8495-exec-7] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 11:40:37 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 11:40:37 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 11:40:37 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:40:37 [http-nio-8495-exec-7] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 11:40:37 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:40:57 [http-nio-8495-exec-3] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:40:57 [http-nio-8495-exec-3] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:40:57 [http-nio-8495-exec-3] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:40:57 [http-nio-8495-exec-3] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:40:57 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-5] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-2] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-2] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-2] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-2] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-9] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-9] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-9] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-9] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:08 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:12 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:12 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:13 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:13 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:13 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:13 [http-nio-8495-exec-5] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:13 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:14 [http-nio-8495-exec-2] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:14 [http-nio-8495-exec-2] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:14 [http-nio-8495-exec-2] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:14 [http-nio-8495-exec-2] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:14 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:14 [http-nio-8495-exec-1] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:14 [http-nio-8495-exec-1] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:14 [http-nio-8495-exec-1] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:14 [http-nio-8495-exec-1] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-8] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-8] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-8] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-8] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-3] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-3] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-3] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-3] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-5] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:15 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:18 [http-nio-8495-exec-2] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:18 [http-nio-8495-exec-2] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-2] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-2] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-8] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-8] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-8] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-8] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-9] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-9] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-9] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-9] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-5] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-5] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-4] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-4] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-4] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-4] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:19 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:20 [http-nio-8495-exec-2] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:20 [http-nio-8495-exec-2] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:20 [http-nio-8495-exec-2] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:20 [http-nio-8495-exec-2] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:20 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 11:41:54 [http-nio-8495-exec-1] INFO  c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Started 
+				
+2026-07-03 11:41:54 [http-nio-8495-exec-1] INFO  c.v.e.s.i.ProjectTrackerReportService -BGRN_2026_1097_13
+				
+2026-07-03 11:41:54 [http-nio-8495-exec-1] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-07-03 11:41:54 [http-nio-8495-exec-1] INFO  c.v.e.c.ProjectTrackerReportController -getPoDtlsByPoIdReportPDF   method end
+				
+2026-07-03 11:41:54 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 12:26:13 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m56s805ms).
+				
+2026-07-03 12:42:48 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m35s520ms).
+				
+2026-07-03 12:57:35 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=14m17s406ms).
+				
+2026-07-03 13:14:08 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m2s56ms).
+				
+2026-07-03 13:30:59 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m21s466ms).
+				
+2026-07-03 13:48:25 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m56s290ms).
+				
+2026-07-03 13:58:01 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9m5s494ms).
+				
+2026-07-03 14:41:05 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m33s479ms).
+				
+2026-07-03 14:46:19 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=5m14s718ms).
+				
+2026-07-03 14:53:32 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 14:53:32 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 14:53:32 [http-nio-8495-exec-10] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 14:53:32 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 14:53:32 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:34 [http-nio-8495-exec-10] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 14:53:34 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 14:53:34 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:34 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:38 [http-nio-8495-exec-5] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 14:53:38 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 14:53:38 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 14:53:38 [http-nio-8495-exec-5] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 14:53:38 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:38 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:39 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:39 [http-nio-8495-exec-3] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 14:53:39 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 14:53:39 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 14:53:39 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:39 [http-nio-8495-exec-3] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 14:53:40 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 14:53:53 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:10:34 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:10:34 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:10:34 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:10:36 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:10:45 [http-nio-8495-exec-10] INFO  c.v.m.controller.VendorController -getApprVendorDtls method Start
+				
+2026-07-03 15:10:45 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:10:45 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:10:45 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:10:45 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:11:01 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:15:13 [http-nio-8495-exec-1] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:15:13 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:15:13 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:15:13 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:15:13 [http-nio-8495-exec-1] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:15:13 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:08 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:09 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:09 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:09 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:09 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:09 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:16:09 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:19 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:19 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:19 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:19 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:19:19 [http-nio-8495-exec-1] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:19:19 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:19:19 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:20 [http-nio-8495-exec-1] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:19:20 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:19:23 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:32 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:32 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:32 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:32 [http-nio-8495-exec-10] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:20:32 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:20:32 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:20:32 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:33 [http-nio-8495-exec-10] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:20:33 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:42 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-8] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:20:43 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:04 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:05 [http-nio-8495-exec-3] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 15:22:05 [http-nio-8495-exec-1] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 15:22:05 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 15:22:05 [http-nio-8495-exec-3] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 15:22:05 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:07 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 15:22:07 [http-nio-8495-exec-1] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 15:22:07 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:07 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:12 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 15:22:12 [http-nio-8495-exec-2] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 15:22:12 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 15:22:12 [http-nio-8495-exec-2] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 15:22:12 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:12 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:13 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:13 [http-nio-8495-exec-4] INFO  c.v.g.c.DepartmentAndEmployeeInfoController -getprocessAssignedTeam   method Start
+				
+2026-07-03 15:22:13 [http-nio-8495-exec-4] INFO  c.v.g.s.i.DepartmentAndEmployeeService -getprocessAssignedTeam  method start
+				
+2026-07-03 15:22:13 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:13 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:13 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:13 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:13 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:14 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:22:14 [http-nio-8495-exec-8] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:22:14 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:22:14 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:14 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:15 [http-nio-8495-exec-8] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:22:15 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-4] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-4] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:40 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:41 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:41 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:41 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:41 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:22:41 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:52 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:52 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:52 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:52 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:25:52 [http-nio-8495-exec-7] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:25:52 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:25:52 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:53 [http-nio-8495-exec-7] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:25:53 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-8] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:25:58 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:36:28 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:36:28 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:36:28 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:36:28 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:36:28 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:36:28 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:36:29 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:36:29 [http-nio-8495-exec-3] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:36:29 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:36:29 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:36:29 [http-nio-8495-exec-3] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:36:29 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:37:54 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:37:54 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:37:54 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:37:54 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:37:54 [http-nio-8495-exec-6] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:37:54 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:37:54 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:37:54 [http-nio-8495-exec-6] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:37:54 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:38:17 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:38:17 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:38:17 [http-nio-8495-exec-1] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:38:17 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:38:17 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:38:17 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:38:17 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:38:17 [http-nio-8495-exec-1] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:38:17 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:41:42 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:41:42 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:41:42 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:41:42 [http-nio-8495-exec-4] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:41:42 [http-nio-8495-exec-8] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:41:42 [http-nio-8495-exec-8] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:41:42 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:41:43 [http-nio-8495-exec-4] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:41:43 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:41:53 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:41:53 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:41:53 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:41:53 [http-nio-8495-exec-5] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:41:53 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:41:53 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:41:53 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:41:53 [http-nio-8495-exec-5] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:41:53 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:42:12 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:42:12 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:42:12 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:42:12 [http-nio-8495-exec-10] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:42:12 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:42:12 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:42:12 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:42:12 [http-nio-8495-exec-10] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:42:12 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:44:00 [background-preinit] INFO  o.h.validator.internal.util.Version -HV000001: Hibernate Validator 6.2.3.Final
+				
+2026-07-03 15:44:01 [restartedMain] INFO  o.s.boot.SpringApplication -
+
+                                ooooooo &&&&&&&&                              
+                              oo     oo &.     &                              
+                    ooooooo  oo      oo &:     &&                             
+                 oo        oooo      oo &&       *&&&&  &&&&&&                
+               oo            oo      oo &&                    &&&             
+              oo                     oo &&&&&                  &o             
+              oo                     oo &&     &&&&&           &              
+              oo           ooo       oo &&           &&&       &&             
+           ooooo           o:        oo &&              &        &&           
+       ooo     *oo       oo          oo &&                        &&&&&&&     
+     oo           ooooooo            oo &&                              &&    
+    o&                                      &&&&*       &&               &&   
+   oo                                            &&       &&              &&  
+   o     ooooo                  @     @@    @@     &&:     &&           &&    
+  oo ooo       ooo          @@@@@@@@@@@@@@@@@@@@@    &&     &&         &&     
+  ooo            oo         @@ @@@ @@@@@@@@@@@  @     &&     &&         &     
+  oo               o      @@@@ @@@ @@@@@@@@@@@  @@@    &&     &         &&    
+  o&               oo       @@ @@@ @@@@@@@@@@@  @       &     &         &&    
+  oo               oo       @@ @@ @ @@@@        @       &&                &&& 
+  oo                      @@@@ @@@@@@@@@@@@@@@  @@@:    &&                  &&
+  oo                        @@ @@@@@@@@@@@ @@@  @       &&        o&        &&
+   o                        @@ @@@@@ @@@  @@@@  @       &         &&        &.
+   oo                     @@@@ @@@ @@@@@@@@@@@  @@@@   &          &    .&&&&  
+    o         oooo          @@                  @     &.         &&    &&     
+    oo    ooo      &oo          @     @@    @@      &&          &&    &&      
+     oo oo            oo        @     @     @@    &&           &&    &&       
+      ooo              oo                      &&&           &&      &&       
+         oooooooo       oo           oo &&&&&&              &&         &      
+              oo        oo           oo &&         &      &&           &&     
+              o        :o            oo &&  .&&&&&     &&.           &&       
+              o       oo             oo &&                    &&&&&&&&        
+              oo    ooo              oo &&                  &&                
+                oo                   oo &&                &&                  
+                  oo        oooo     oo &&                &                   
+                     ooooooo  &o     oo &&      &&&       &                   
+                                oo   oo && :&&&   .&& &&&*                    
+                                   &ooo &&&                                   
+
+==============================================
+SmartRun Product by SmartRun Tech. All rights reserved.
+==============================================
+Application Version : 2.6.7
+Application Title : SmartRun MES
+Contact : support@smartruntech.com
+==============================================
+
+				
+2026-07-03 15:44:01 [restartedMain] INFO  com.vmfg.VMFGApplication -Starting VMFGApplication using Java 1.8.0_482 on Peachs-Mac-mini.local with PID 5544 (/Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management/target/classes started by peach in /Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE/SmartRun_ProjectManagement_Java/SR_Management)
+				
+2026-07-03 15:44:01 [restartedMain] INFO  com.vmfg.VMFGApplication -The following 1 profile is active: "dev"
+				
+2026-07-03 15:44:01 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+				
+2026-07-03 15:44:01 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+				
+2026-07-03 15:44:02 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+				
+2026-07-03 15:44:02 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Finished Spring Data repository scanning in 59 ms. Found 0 JDBC repository interfaces.
+				
+2026-07-03 15:44:03 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat initialized with port(s): 8495 (http)
+				
+2026-07-03 15:44:03 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Initializing ProtocolHandler ["http-nio-8495"]
+				
+2026-07-03 15:44:03 [restartedMain] INFO  o.a.catalina.core.StandardService -Starting service [Tomcat]
+				
+2026-07-03 15:44:03 [restartedMain] INFO  o.a.catalina.core.StandardEngine -Starting Servlet engine: [Apache Tomcat/9.0.63]
+				
+2026-07-03 15:44:03 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring embedded WebApplicationContext
+				
+2026-07-03 15:44:03 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -Root WebApplicationContext: initialization completed in 1829 ms
+				
+2026-07-03 15:44:04 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping -Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+				
+2026-07-03 15:44:04 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain -Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@65170d37, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@68c1c9c6, org.springframework.security.web.context.SecurityContextPersistenceFilter@623e043c, org.springframework.security.web.header.HeaderWriterFilter@26c00122, org.springframework.web.filter.CorsFilter@334b6b6b, org.springframework.security.web.authentication.logout.LogoutFilter@58d48473, com.vmfg.security.config.JwtRequestFilter@6b17cb10, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2856d70e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@73d729ce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@18545a0c, org.springframework.security.web.session.SessionManagementFilter@537d017, org.springframework.security.web.access.ExceptionTranslationFilter@164a4c22, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@78f91ec]
+				
+2026-07-03 15:44:04 [restartedMain] WARN  o.s.b.d.a.OptionalLiveReloadServer -Unable to start LiveReload server
+				
+2026-07-03 15:44:04 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Starting...
+				
+2026-07-03 15:44:04 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Start completed.
+				
+2026-07-03 15:44:05 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Starting ProtocolHandler ["http-nio-8495"]
+				
+2026-07-03 15:44:05 [restartedMain] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext -Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8495 is already in use
+				
+2026-07-03 15:44:05 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown initiated...
+				
+2026-07-03 15:44:05 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown completed.
+				
+2026-07-03 15:44:05 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Pausing ProtocolHandler ["http-nio-8495"]
+				
+2026-07-03 15:44:05 [restartedMain] INFO  o.a.catalina.core.StandardService -Stopping service [Tomcat]
+				
+2026-07-03 15:44:05 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Stopping ProtocolHandler ["http-nio-8495"]
+				
+2026-07-03 15:44:05 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Destroying ProtocolHandler ["http-nio-8495"]
+				
+2026-07-03 15:44:05 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener -
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+				
+2026-07-03 15:44:05 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter -
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8495 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8495 or configure this application to listen on another port.
+
+				
+2026-07-03 15:44:05 [restartedMain] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8495 is already in use
+				
+2026-07-03 15:44:05 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-07-03 15:47:31 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:31 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:31 [http-nio-8495-exec-10] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:47:31 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:31 [http-nio-8495-exec-4] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:47:31 [http-nio-8495-exec-10] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:47:31 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:31 [http-nio-8495-exec-4] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:47:31 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:44 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:45 [http-nio-8495-exec-5] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 15:47:45 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 15:47:45 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 15:47:45 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 15:47:45 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:46 [http-nio-8495-exec-5] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 15:47:46 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:46 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 15:47:46 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-10] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-10] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-2] INFO  c.v.g.c.DepartmentAndEmployeeInfoController -getprocessAssignedTeam   method Start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-2] INFO  c.v.g.s.i.DepartmentAndEmployeeService -getprocessAssignedTeam  method start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:51 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:54 [http-nio-8495-exec-7] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:47:54 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:47:54 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:47:54 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:54 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:47:54 [http-nio-8495-exec-7] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:47:54 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:48:08 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:09 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:09 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:09 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:09 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:09 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:09 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:20 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:21 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:21 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 15:48:21 [http-nio-8495-exec-9] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 15:48:21 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 15:48:21 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 15:48:21 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:23 [http-nio-8495-exec-9] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 15:48:23 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 15:48:23 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:23 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:32 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 15:48:32 [http-nio-8495-exec-2] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-2] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-5] INFO  c.v.g.c.DepartmentAndEmployeeInfoController -getprocessAssignedTeam   method Start
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-5] INFO  c.v.g.s.i.DepartmentAndEmployeeService -getprocessAssignedTeam  method start
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:33 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:38 [http-nio-8495-exec-1] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:48:38 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:48:38 [http-nio-8495-exec-7] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:48:38 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:38 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:48:38 [http-nio-8495-exec-1] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:48:38 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-4] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:49:15 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-6] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:50:25 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:24 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:24 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:24 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:24 [http-nio-8495-exec-3] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:51:24 [http-nio-8495-exec-7] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:51:24 [http-nio-8495-exec-3] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:51:24 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:25 [http-nio-8495-exec-7] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:51:25 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:35 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:35 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:35 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:35 [http-nio-8495-exec-7] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:51:35 [http-nio-8495-exec-3] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:51:35 [http-nio-8495-exec-3] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:51:35 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:35 [http-nio-8495-exec-7] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:51:35 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:42 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:42 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:42 [http-nio-8495-exec-2] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:51:42 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:42 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:51:42 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:51:42 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:51:42 [http-nio-8495-exec-2] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:51:42 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:21 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:21 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:21 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:21 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 15:53:21 [http-nio-8495-exec-10] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 15:53:21 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 15:53:21 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:22 [http-nio-8495-exec-10] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 15:53:22 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-2] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service start 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service start 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service start 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getHsnCodeByPartNo Service start 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getTransitInsuranceDesc Service end 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-5] INFO  com.vmfg.scm.services.impl.PoService -getModeOfDispatchDesc Service end 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getInspectScopeDesc Service end 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-9] INFO  com.vmfg.scm.services.impl.PoService -getdivisionDesc Service end 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service start 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getDCTypeDtl Service end 
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 15:53:40 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:22:03 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m43s104ms).
+				
+2026-07-03 16:37:37 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m3s841ms).
+				
+2026-07-03 16:42:18 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:42:18 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:42:18 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:42:18 [http-nio-8495-exec-10] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method Start
+				
+2026-07-03 16:42:18 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method Start
+				
+2026-07-03 16:42:18 [http-nio-8495-exec-1] INFO  c.v.s.c.IndentManagementController -indentHdrDropDownByProjectCode Controller  method end
+				
+2026-07-03 16:42:18 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:42:18 [http-nio-8495-exec-10] INFO  com.vmfg.scm.controller.PoController -getPoHdrDtlsByIndentId Controller  method end
+				
+2026-07-03 16:42:18 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:42:27 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:42:27 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:42:27 [http-nio-8495-exec-6] INFO  com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary method Start
+				
+2026-07-03 16:42:27 [http-nio-8495-exec-6] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-03 16:42:27 [http-nio-8495-exec-6] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] INFO  com.vmfg.authentication.UserLoginDAO - getUserDtlForAuth DAO method Start
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] INFO  com.vmfg.authentication.UserLoginDAO -getUserLoginInfo DAO method end
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-9] INFO  c.v.d.controller.DesignController -getDesignDtl   method Start
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:44 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-9] INFO  c.v.d.controller.DesignController -getDesignDtl   method end
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-1] INFO  c.v.g.c.StageManagementController -getDesignTitleView   method end
+				
+2026-07-03 16:42:45 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:43:11 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:43:11 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:43:11 [http-nio-8495-exec-7] INFO  com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary method Start
+				
+2026-07-03 16:43:11 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-03 16:43:11 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-03 16:43:38 [http-nio-8495-exec-4] INFO  com.vmfg.authentication.UserLoginDAO - getUserDtlForAuth DAO method Start
+				
+2026-07-03 16:43:38 [http-nio-8495-exec-4] INFO  com.vmfg.authentication.UserLoginDAO -getUserLoginInfo DAO method end
+				
+2026-07-03 16:43:38 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:43:38 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:43:38 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:43:38 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 16:43:38 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 16:43:38 [http-nio-8495-exec-7] INFO  c.v.q.controller.QualityController -getQtyDtl Controller  method Start
+				
+2026-07-03 16:43:38 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:43:39 [http-nio-8495-exec-4] INFO  c.v.g.c.StageManagementController -getQualityView   method end
+				
+2026-07-03 16:43:39 [http-nio-8495-exec-7] INFO  c.v.q.controller.QualityController -getQtyDtl Controller  method end
+				
+2026-07-03 16:43:40 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:43:40 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:43:55 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:43:55 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-03 16:43:55 [http-nio-8495-exec-3] INFO  com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary method Start
+				
+2026-07-03 16:43:55 [http-nio-8495-exec-3] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-03 16:43:55 [http-nio-8495-exec-3] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-03 16:44:13 [http-nio-8495-exec-8] INFO  com.vmfg.authentication.UserLoginDAO - getUserDtlForAuth DAO method Start
+				
+2026-07-03 16:44:13 [http-nio-8495-exec-8] INFO  com.vmfg.authentication.UserLoginDAO -getUserLoginInfo DAO method end
+				
+2026-07-03 16:44:13 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:44:13 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:44:13 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:44:13 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 16:44:13 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-03 16:44:13 [http-nio-8495-exec-4] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-03 16:44:13 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 16:44:13 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:44:14 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-03 16:44:14 [http-nio-8495-exec-4] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-03 16:44:14 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:44:14 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:44:16 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 16:44:16 [http-nio-8495-exec-10] INFO  c.v.m.controller.VendorController -getApprVendorDtls method Start
+				
+2026-07-03 16:44:16 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 16:44:16 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:44:16 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:44:20 [http-nio-8495-exec-3] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 16:44:20 [http-nio-8495-exec-3] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 16:44:20 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:44:22 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service start 
+				
+2026-07-03 16:44:22 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service end 
+				
+2026-07-03 16:44:22 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:44:24 [http-nio-8495-exec-9] INFO  c.v.m.controller.VendorController -getApprVendorDtls method Start
+				
+2026-07-03 16:44:24 [http-nio-8495-exec-10] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardHdrDtls Service start 
+				
+2026-07-03 16:44:24 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 16:45:38 [http-nio-8495-exec-10] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardHdrDtls Service end 
+				
+2026-07-03 16:45:38 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:03:15 [http-nio-8495-exec-1] INFO  c.v.m.controller.VendorController -getApprVendorDtls method Start
+				
+2026-07-03 17:03:15 [http-nio-8495-exec-10] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 17:03:15 [http-nio-8495-exec-10] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 17:03:15 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:03:15 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:03:15 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:03:16 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:03:39 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 17:03:39 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 17:03:39 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:03:47 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 17:03:47 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 17:03:47 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:03:48 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service start 
+				
+2026-07-03 17:03:48 [http-nio-8495-exec-3] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service end 
+				
+2026-07-03 17:03:48 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:03:49 [http-nio-8495-exec-10] INFO  c.v.m.controller.VendorController -getApprVendorDtls method Start
+				
+2026-07-03 17:03:49 [http-nio-8495-exec-8] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardHdrDtls Service start 
+				
+2026-07-03 17:03:49 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:03:55 [http-nio-8495-exec-8] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardHdrDtls Service end 
+				
+2026-07-03 17:03:55 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:04:30 [http-nio-8495-exec-7] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:04:30 [http-nio-8495-exec-7] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:04:30 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:18:23 [http-nio-8495-exec-6] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:18:23 [http-nio-8495-exec-6] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:18:23 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:18:36 [http-nio-8495-exec-8] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:18:36 [http-nio-8495-exec-8] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:18:36 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:19:15 [http-nio-8495-exec-2] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:19:15 [http-nio-8495-exec-2] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:19:15 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:19:18 [http-nio-8495-exec-4] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:19:18 [http-nio-8495-exec-4] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:19:18 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:20:20 [http-nio-8495-exec-5] INFO  c.v.m.controller.VendorController -getApprVendorDtls method Start
+				
+2026-07-03 17:20:20 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 17:20:20 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 17:20:20 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:20:20 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:20:20 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:20:20 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:20:24 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 17:20:24 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 17:20:24 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:20:30 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service start 
+				
+2026-07-03 17:20:30 [http-nio-8495-exec-8] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service end 
+				
+2026-07-03 17:20:30 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:20:36 [http-nio-8495-exec-5] INFO  c.vmfg.scm.controller.GrnController -getGrnHdrDetails Controller  method Start
+				
+2026-07-03 17:20:36 [http-nio-8495-exec-5] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-07-03 17:20:36 [http-nio-8495-exec-5] INFO  c.vmfg.scm.controller.GrnController -getGrnHdrDetails  method end
+				
+2026-07-03 17:20:36 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:20:36 [http-nio-8495-exec-10] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardHdrDtls Service start 
+				
+2026-07-03 17:20:36 [http-nio-8495-exec-7] INFO  c.v.m.controller.VendorController -getApprVendorDtls method Start
+				
+2026-07-03 17:20:36 [http-nio-8495-exec-10] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardHdrDtls Service end 
+				
+2026-07-03 17:20:36 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:20:37 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:20:40 [http-nio-8495-exec-2] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:20:40 [http-nio-8495-exec-2] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:20:40 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:20:56 [http-nio-8495-exec-6] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:20:56 [http-nio-8495-exec-6] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:20:56 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:21:11 [http-nio-8495-exec-5] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:21:11 [http-nio-8495-exec-5] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:21:11 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:21:22 [http-nio-8495-exec-1] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:21:22 [http-nio-8495-exec-1] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:21:22 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:21:26 [http-nio-8495-exec-2] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:21:27 [http-nio-8495-exec-2] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:21:27 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:33:28 [http-nio-8495-exec-1] INFO  c.v.m.controller.VendorController -getApprVendorDtls method Start
+				
+2026-07-03 17:33:28 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 17:33:28 [http-nio-8495-exec-2] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 17:33:28 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:33:28 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:33:28 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:33:28 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:33:34 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 17:33:34 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 17:33:34 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:33:41 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service start 
+				
+2026-07-03 17:33:41 [http-nio-8495-exec-10] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service end 
+				
+2026-07-03 17:33:41 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:33:48 [http-nio-8495-exec-6] INFO  c.vmfg.scm.controller.GrnController -getGrnHdrDetails Controller  method Start
+				
+2026-07-03 17:33:48 [http-nio-8495-exec-6] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-07-03 17:33:48 [http-nio-8495-exec-6] INFO  c.vmfg.scm.controller.GrnController -getGrnHdrDetails  method end
+				
+2026-07-03 17:33:48 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:33:49 [http-nio-8495-exec-4] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardHdrDtls Service start 
+				
+2026-07-03 17:33:49 [http-nio-8495-exec-3] INFO  c.v.m.controller.VendorController -getApprVendorDtls method Start
+				
+2026-07-03 17:33:49 [http-nio-8495-exec-4] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardHdrDtls Service end 
+				
+2026-07-03 17:33:49 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:33:49 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:33:52 [http-nio-8495-exec-9] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:33:52 [http-nio-8495-exec-9] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:33:52 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:37:13 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-03 17:37:13 [http-nio-8495-exec-10] INFO  c.v.m.controller.VendorController -getApprVendorDtls method Start
+				
+2026-07-03 17:37:13 [http-nio-8495-exec-9] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-03 17:37:13 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:37:13 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:37:13 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:37:14 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:37:24 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service start 
+				
+2026-07-03 17:37:24 [http-nio-8495-exec-7] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service end 
+				
+2026-07-03 17:37:24 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:37:28 [http-nio-8495-exec-9] INFO  c.vmfg.scm.controller.GrnController -getGrnHdrDetails Controller  method Start
+				
+2026-07-03 17:37:28 [http-nio-8495-exec-9] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-07-03 17:37:28 [http-nio-8495-exec-9] INFO  c.vmfg.scm.controller.GrnController -getGrnHdrDetails  method end
+				
+2026-07-03 17:37:28 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:37:29 [http-nio-8495-exec-10] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardHdrDtls Service start 
+				
+2026-07-03 17:37:29 [http-nio-8495-exec-5] INFO  c.v.m.controller.VendorController -getApprVendorDtls method Start
+				
+2026-07-03 17:37:29 [http-nio-8495-exec-10] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardHdrDtls Service end 
+				
+2026-07-03 17:37:29 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:37:29 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 17:37:32 [http-nio-8495-exec-3] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service start 
+				
+2026-07-03 17:37:32 [http-nio-8495-exec-3] INFO  c.v.s.s.impl.MaterialInwardService -getMaterialInwardDtlList Service end 
+				
+2026-07-03 17:37:32 [http-nio-8495-exec-4] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-03 18:11:22 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m14s137ms).
+				
+2026-07-03 18:27:33 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=15m41s402ms).
+				
+2026-07-03 18:44:46 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m12s446ms).
+				
+2026-07-03 19:01:40 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m24s606ms).
+				
+2026-07-03 19:19:15 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=17m4s478ms).
+				
+2026-07-03 19:36:06 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=16m51s452ms).
+				
+2026-07-03 19:46:19 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9m43s148ms).
+				
+2026-07-03 19:49:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown initiated...
+				
+2026-07-03 19:49:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown completed.
+				

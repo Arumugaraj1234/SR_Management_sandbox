@@ -1,0 +1,250 @@
+2026-06-01 09:43:26 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-01 09:43:51 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 09:43:51 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 09:43:51 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-06-01 09:43:51 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-06-01 10:58:24 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 10:58:24 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 10:58:24 [http-nio-8495-exec-9] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-06-01 10:58:24 [http-nio-8495-exec-9] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-06-01 10:59:05 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 10:59:05 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 10:59:05 [http-nio-8495-exec-3] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-06-01 10:59:05 [http-nio-8495-exec-3] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-06-01 11:06:45 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 11:06:45 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 11:06:45 [http-nio-8495-exec-6] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-06-01 11:06:45 [http-nio-8495-exec-6] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-06-01 11:07:20 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 11:07:20 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 11:07:20 [http-nio-8495-exec-10] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-06-01 11:07:20 [http-nio-8495-exec-10] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:01 [http-nio-8495-exec-2] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 11:12:23 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+				
+2026-06-01 15:03:37 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 15:03:37 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-01 15:03:37 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-06-01 15:03:37 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-06-01 16:35:04 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-01 17:21:25 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-01 17:28:06 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-04 11:27:06 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-04 12:04:15 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:26:53 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:26:53 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:26:53 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:26:53 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:26:53 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:26:53 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:26:53 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:13 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:13 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:13 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:13 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:13 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:13 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:13 [http-nio-8495-exec-5] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:15 [http-nio-8495-exec-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:15 [http-nio-8495-exec-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:15 [http-nio-8495-exec-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:15 [http-nio-8495-exec-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:15 [http-nio-8495-exec-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:15 [http-nio-8495-exec-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:15 [http-nio-8495-exec-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:31 [http-nio-8495-exec-6] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:31 [http-nio-8495-exec-6] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:31 [http-nio-8495-exec-6] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:31 [http-nio-8495-exec-6] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:31 [http-nio-8495-exec-6] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:31 [http-nio-8495-exec-6] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:30:31 [http-nio-8495-exec-6] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:42:48 [http-nio-8495-exec-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:42:48 [http-nio-8495-exec-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:42:48 [http-nio-8495-exec-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:42:48 [http-nio-8495-exec-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:42:48 [http-nio-8495-exec-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:42:48 [http-nio-8495-exec-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:42:48 [http-nio-8495-exec-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:54:48 [http-nio-8495-exec-8] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:54:48 [http-nio-8495-exec-8] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:54:48 [http-nio-8495-exec-8] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:54:48 [http-nio-8495-exec-8] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:54:48 [http-nio-8495-exec-8] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:54:48 [http-nio-8495-exec-8] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:54:48 [http-nio-8495-exec-8] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:56:29 [http-nio-8495-exec-2] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:56:29 [http-nio-8495-exec-2] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:56:29 [http-nio-8495-exec-2] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:56:29 [http-nio-8495-exec-2] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:56:29 [http-nio-8495-exec-2] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:56:29 [http-nio-8495-exec-2] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-04 16:56:29 [http-nio-8495-exec-2] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				

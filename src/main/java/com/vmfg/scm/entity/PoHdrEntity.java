@@ -1,0 +1,82 @@
+package com.vmfg.scm.entity;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
+public class PoHdrEntity {
+	private String poId;
+	private String igScpId;
+	private String transactionNo;
+	private String financialYearMstId;
+	private String poType;
+	private String billingName;
+	private String billingAddressLine;
+	private String billingCity;
+	private String billingPincode;
+	private String billingState;
+	private String billingCount;
+	private String billingGst;
+	private String vendorName;
+	private String vendorAddressLine;
+	private String vendorCity;
+	private String vendorPincode;
+	private String vendorState;
+	private String vendorCount;
+	private String vendorGst;
+	private String deliveryName;
+	private String deliveryAddressLine;
+	private String deliveryCity;
+	private String deliveryPincode;
+	private String deliveryState;
+	private String deliveryCount;
+	private String deliveryGst;
+	private String deliveryContact;
+	private String division;
+	private String orderNo;
+	private String date;
+	private String revision;
+	private String revisionDate;
+	private String refDate;
+	private String deliveryTerms;
+	private String liqDamages;
+	private String guarantee;
+	private String warrenty;
+	private String dispatchMode;
+	private String transitInsurance;
+	private String inspectionScope;
+	private String misc;
+	private String portOfDest;
+	private String remarks;
+	private String discount;
+	private String pF;
+	private String frieght;
+	private String others;
+	private String basicTotal;
+	private String gst;
+	private String cess;
+	private String totalValue;
+	private String frieghtRemarks;
+	private String pFRemarks;
+	private String poTC;
+	private String dwgs;
+	private String qap;
+	private String gtc;
+	private String docCharges;
+	private String inspectionCharges;
+	private String insuranceValue;
+	private String testingCharges;
+	private String ctc;
+	private String tdc;
+	private String tds;
+	private String tenantId;
+	private String sequenceNo;
+	private String sequenceStatus;
+	private String vendorCode;
+	private String poCode;
+	private String isApproved;
+	private String lastUpdatedDate;
+	private String lastUpdatedBy;
+	 
+}

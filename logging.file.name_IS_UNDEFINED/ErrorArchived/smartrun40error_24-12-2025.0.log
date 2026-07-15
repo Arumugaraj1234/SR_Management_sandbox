@@ -1,0 +1,104 @@
+2025-12-24 10:23:00 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2025-12-24 10:27:10 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 10:27:10 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 10:27:10 [http-nio-8495-exec-2] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-24 10:27:10 [http-nio-8495-exec-2] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-24 15:11:15 [http-nio-8495-exec-5] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:11:15 [http-nio-8495-exec-5] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:11:15 [http-nio-8495-exec-5] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-24 15:11:15 [http-nio-8495-exec-5] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-24 15:20:08 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:20:08 [http-nio-8495-exec-4] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:20:08 [http-nio-8495-exec-4] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:21:22 [http-nio-8495-exec-8] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:21:22 [http-nio-8495-exec-8] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:21:22 [http-nio-8495-exec-8] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:21:48 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:21:49 [http-nio-8495-exec-4] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:21:49 [http-nio-8495-exec-4] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:25:20 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:25:20 [http-nio-8495-exec-3] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:25:20 [http-nio-8495-exec-3] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:28:45 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:28:46 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:28:46 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:34:59 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:35:00 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:35:00 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:54:37 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2025-12-24 15:55:43 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2025-12-24 15:56:19 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:56:19 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 15:56:19 [http-nio-8495-exec-2] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-24 15:56:19 [http-nio-8495-exec-2] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-24 16:12:38 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 16:12:38 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 2
+				
+2025-12-24 16:12:38 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 16:12:38 [http-nio-8495-exec-10] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-24 16:12:38 [http-nio-8495-exec-10] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-24 16:12:39 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getPropValueByTenant Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 16:12:39 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getPropValueByTenant Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 16:12:39 [http-nio-8495-exec-3] ERROR c.v.g.d.impl.NotificationGeneralDAO -NotificationGeneralDAO error java.lang.NumberFormatException: For input string: ""
+				
+2025-12-24 16:12:39 [http-nio-8495-exec-2] ERROR c.v.g.d.impl.NotificationGeneralDAO -NotificationGeneralDAO error java.lang.NumberFormatException: For input string: ""
+				
+2025-12-24 16:13:03 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 16:13:03 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 16:13:03 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-24 16:13:03 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-24 16:13:03 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getPropValueByTenant Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-24 16:13:03 [http-nio-8495-exec-7] ERROR c.v.g.d.impl.NotificationGeneralDAO -NotificationGeneralDAO error java.lang.NumberFormatException: For input string: ""
+				
+2025-12-24 16:37:06 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -insertInScp method Errororg.springframework.dao.DuplicateKeyException: PreparedStatementCallback; Duplicate entry '3891' for key 'IG_HDR_ID_UNIQUE'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '3891' for key 'IG_HDR_ID_UNIQUE'
+				
+2025-12-24 16:37:07 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -insertInScpStatus method Errororg.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO indent_grp_scs_status (IG_SCS_ID, SEQUENCE_NO, SEQUENCE_STATUS, REMARKS, UPDATED_BY, UPDATED_ON, TENANT_ID) VALUES (?, ?, ?, ?, ?, ?, ?)]; Cannot add or update a child row: a foreign key constraint fails (`smartrun_bgr`.`indent_grp_scs_status`, CONSTRAINT `IG_SCS_ID_KEY_4` FOREIGN KEY (`IG_SCS_ID`) REFERENCES `indent_grp_scs` (`IG_SCS_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`smartrun_bgr`.`indent_grp_scs_status`, CONSTRAINT `IG_SCS_ID_KEY_4` FOREIGN KEY (`IG_SCS_ID`) REFERENCES `indent_grp_scs` (`IG_SCS_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+				
+2025-12-24 16:41:44 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -insertInScp method Errororg.springframework.dao.DuplicateKeyException: PreparedStatementCallback; Duplicate entry '3891' for key 'IG_HDR_ID_UNIQUE'; nested exception is java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '3891' for key 'IG_HDR_ID_UNIQUE'
+				
+2025-12-24 16:41:44 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -insertInScpStatus method Errororg.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; SQL [INSERT INTO indent_grp_scs_status (IG_SCS_ID, SEQUENCE_NO, SEQUENCE_STATUS, REMARKS, UPDATED_BY, UPDATED_ON, TENANT_ID) VALUES (?, ?, ?, ?, ?, ?, ?)]; Cannot add or update a child row: a foreign key constraint fails (`smartrun_bgr`.`indent_grp_scs_status`, CONSTRAINT `IG_SCS_ID_KEY_4` FOREIGN KEY (`IG_SCS_ID`) REFERENCES `indent_grp_scs` (`IG_SCS_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION); nested exception is java.sql.SQLIntegrityConstraintViolationException: Cannot add or update a child row: a foreign key constraint fails (`smartrun_bgr`.`indent_grp_scs_status`, CONSTRAINT `IG_SCS_ID_KEY_4` FOREIGN KEY (`IG_SCS_ID`) REFERENCES `indent_grp_scs` (`IG_SCS_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+				

@@ -1,0 +1,202 @@
+2026-05-18 11:09:43 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-18 11:10:45 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:10:45 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:10:45 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-05-18 11:10:45 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-05-18 11:15:11 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:11 [http-nio-8495-exec-9] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:15 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:19 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:20 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:20 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:21 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:32 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:39 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:40 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:41 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:44 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:44 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:45 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:45 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:46 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:47 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:15:47 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:16:04 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:16:04 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:16:06 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:16:06 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:16:47 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:16:47 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:17:03 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:17:31 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:17:31 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:17:50 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:17:50 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:20:30 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:20:30 [http-nio-8495-exec-8] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:24:00 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:24:00 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:24:00 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-05-18 11:24:00 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-05-18 11:28:07 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:28:07 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:28:09 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 11:28:25 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 12:54:29 [http-nio-8495-exec-6] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 12:54:29 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 12:54:29 [http-nio-8495-exec-6] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 12:56:14 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-18 12:56:30 [http-nio-8495-exec-1] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 12:56:30 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 12:56:30 [http-nio-8495-exec-1] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 12:56:37 [http-nio-8495-exec-3] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 12:56:37 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 12:56:37 [http-nio-8495-exec-3] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 12:56:45 [http-nio-8495-exec-5] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 12:56:45 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 12:56:45 [http-nio-8495-exec-5] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 12:57:02 [http-nio-8495-exec-7] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 12:57:02 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 12:57:02 [http-nio-8495-exec-7] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 12:57:22 [http-nio-8495-exec-9] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 12:57:22 [http-nio-8495-exec-9] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 12:57:22 [http-nio-8495-exec-9] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 13:05:51 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:05:51 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:06:57 [http-nio-8495-exec-3] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 13:06:57 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 13:06:57 [http-nio-8495-exec-3] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 13:08:41 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:08:41 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:09:22 [http-nio-8495-exec-5] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 13:09:22 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 13:09:22 [http-nio-8495-exec-5] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 13:11:29 [http-nio-8495-exec-2] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 13:11:29 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 13:11:29 [http-nio-8495-exec-2] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 13:19:17 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:19:17 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:19:19 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:19:57 [http-nio-8495-exec-1] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 13:19:57 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 13:19:57 [http-nio-8495-exec-1] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 13:23:13 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-18 13:23:36 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:23:42 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:23:42 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:24:16 [http-nio-8495-exec-3] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 13:24:16 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 13:24:16 [http-nio-8495-exec-3] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 13:30:40 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-18 13:31:33 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:31:33 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-18 13:32:06 [http-nio-8495-exec-5] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 13:32:06 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 13:32:06 [http-nio-8495-exec-5] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 13:36:11 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-18 13:36:18 [http-nio-8495-exec-2] ERROR com.vmfg.finance.dao.impl.PraDAO -InsertPraHdr Method Exception org.springframework.dao.DataIntegrityViolationException: PreparedStatementCallback; Data truncation: Data too long for column 'REMARKS' at row 1; nested exception is com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: Data too long for column 'REMARKS' at row 1
+				
+2026-05-18 13:36:18 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -indentPoDtlDateTime Method Exception --->java.lang.NullPointerException
+				
+2026-05-18 13:36:18 [http-nio-8495-exec-2] ERROR c.v.finance.services.impl.PraService -PraService Service Method Error java.lang.NullPointerException
+				
+2026-05-18 16:01:57 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-18 17:26:02 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				

@@ -1,0 +1,28 @@
+package com.vmfg.general.entity;
+
+import java.io.Serializable;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class ProcessConfigEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private String pcId;
+	private String processCode;
+	private String stgCode;
+	private int seq;
+	private String previousStgEdit;
+	private String alwaysVisible;
+	private String masterDocStatus;
+	private String StgComDesc;
+	private String component;
+	private String tenantId;
+	private String processDesc;
+	private String isdefault;
+	private String stgDesc;
+	private String mstDocstsDesc;
+}

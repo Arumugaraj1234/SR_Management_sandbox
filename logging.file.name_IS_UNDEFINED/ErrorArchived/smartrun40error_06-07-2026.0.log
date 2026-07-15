@@ -1,0 +1,177 @@
+2026-07-06 14:04:19 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-07-06 14:04:42 [http-nio-8495-exec-5] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-06 14:04:42 [http-nio-8495-exec-5] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-06 14:04:42 [http-nio-8495-exec-5] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-06 14:04:42 [http-nio-8495-exec-5] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-06 16:13:21 [http-nio-8495-exec-4] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-07-06 16:24:20 [http-nio-8495-exec-8] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-07-06 16:39:28 [http-nio-8495-exec-2] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-07-06 16:47:32 [http-nio-8495-exec-1] ERROR c.v.i.d.i.InventoryMaterialTransferDao -getPmInv Errororg.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [SELECT  pm.PM_HDR_ID,   pm.PRODUCT_CODE,pm.PRODUCT_ID,pj.CUSTOMER_NAME,     pm.PRODUCT_DESCRIPTION,
+					    pj.PROJECT_CODE,     WEIGHT,     ilm.INVENTORY_LOCATION_DESCRIPTION,
+					    pdtl.PRODUCT_QUANTITY_ON_HAND,     um.UOM_SHORT_DESCRIPTION,pm.PRODUCT_ID AS PRODUCT_ID,pm.PRODUCT_COST_PER_UNIT,pm.SPECIFICATION,pm.MAKE,
+                       CASE 
+                          WHEN ilm.INVENTORY_LOCATION_CODE in('ILC0002','ILC0004') THEN pm.BIN 
+                                ELSE '' END AS BIN,
+                  (SELECT 
+					    pohdr.PO_CODE AS PO_CODE
+					FROM
+					 indent_hdr hdr inner join   indent_dtl dtl ON hdr.INDENT_ID = dtl.INDENT_ID
+					        left JOIN
+					    po_dtl podtl ON dtl.INDENT_DTL_ID = podtl.INDENT_DTL_ID
+							left JOIN 
+						po_hdr pohdr ON pohdr.PO_ID = podtl.PO_ID
+                           LEFT JOIN 
+	                    grn_hdr ghdr ON ghdr.PO_ID = pohdr.PO_ID
+					WHERE
+					    dtl.PRODUCT_CODE = pm.PRODUCT_CODE AND hdr.PROJECT_ID = pm.PM_HDR_ID group by ghdr.PO_ID desc limit 1) as PO_CODE
+                        FROM product_mst pm,     inventory_product_dtl pdtl,
+					    inventory_location_mst ilm,     uom_mst um,     project_hdr pj
+WHERE
+    pm.PRODUCT_ID = pdtl.PRODUCT_ID
+        AND ilm.INVENTORY_LOCATION_CODE = pdtl.INVENTORY_LOCATION_CODE
+        and pm.PRODUCT_UOM_CODE = um.UOM_CODE
+        and pm.PM_HDR_ID = pj.PM_HDR_ID
+        AND PRODUCT_QUANTITY_ON_HAND > 0 and pm.TENANT_ID ='bgrn' and pj.PROJECT_CODE like '%1096%' and ilm.INVENTORY_LOCATION_CODE like '%%' order by pj.PM_HDR_ID]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc limit 1) as PO_CODE
+                        FROM product_mst pm,     inven' at line 18
+				
+2026-07-06 16:47:32 [http-nio-8495-exec-1] ERROR c.v.i.s.i.InventoryMaterialTransferService -retrieveinventoryMaterial service error java.lang.NullPointerException
+				
+2026-07-06 16:48:02 [http-nio-8495-exec-6] ERROR c.v.i.d.i.InventoryMaterialTransferDao -getPmInv Errororg.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [SELECT  pm.PM_HDR_ID,   pm.PRODUCT_CODE,pm.PRODUCT_ID,pj.CUSTOMER_NAME,     pm.PRODUCT_DESCRIPTION,
+					    pj.PROJECT_CODE,     WEIGHT,     ilm.INVENTORY_LOCATION_DESCRIPTION,
+					    pdtl.PRODUCT_QUANTITY_ON_HAND,     um.UOM_SHORT_DESCRIPTION,pm.PRODUCT_ID AS PRODUCT_ID,pm.PRODUCT_COST_PER_UNIT,pm.SPECIFICATION,pm.MAKE,
+                       CASE 
+                          WHEN ilm.INVENTORY_LOCATION_CODE in('ILC0002','ILC0004') THEN pm.BIN 
+                                ELSE '' END AS BIN,
+                  (SELECT 
+					    pohdr.PO_CODE AS PO_CODE
+					FROM
+					 indent_hdr hdr inner join   indent_dtl dtl ON hdr.INDENT_ID = dtl.INDENT_ID
+					        left JOIN
+					    po_dtl podtl ON dtl.INDENT_DTL_ID = podtl.INDENT_DTL_ID
+							left JOIN 
+						po_hdr pohdr ON pohdr.PO_ID = podtl.PO_ID
+                           LEFT JOIN 
+	                    grn_hdr ghdr ON ghdr.PO_ID = pohdr.PO_ID
+					WHERE
+					    dtl.PRODUCT_CODE = pm.PRODUCT_CODE AND hdr.PROJECT_ID = pm.PM_HDR_ID group by ghdr.PO_ID desc limit 1) as PO_CODE
+                        FROM product_mst pm,     inventory_product_dtl pdtl,
+					    inventory_location_mst ilm,     uom_mst um,     project_hdr pj
+WHERE
+    pm.PRODUCT_ID = pdtl.PRODUCT_ID
+        AND ilm.INVENTORY_LOCATION_CODE = pdtl.INVENTORY_LOCATION_CODE
+        and pm.PRODUCT_UOM_CODE = um.UOM_CODE
+        and pm.PM_HDR_ID = pj.PM_HDR_ID
+        AND PRODUCT_QUANTITY_ON_HAND > 0 and pm.TENANT_ID ='bgrn' and pj.PROJECT_CODE like '%1096%' and ilm.INVENTORY_LOCATION_CODE like '%%' order by pj.PM_HDR_ID]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc limit 1) as PO_CODE
+                        FROM product_mst pm,     inven' at line 18
+				
+2026-07-06 16:48:02 [http-nio-8495-exec-6] ERROR c.v.i.s.i.InventoryMaterialTransferService -retrieveinventoryMaterial service error java.lang.NullPointerException
+				
+2026-07-06 16:48:06 [http-nio-8495-exec-4] ERROR c.v.i.d.i.InventoryMaterialTransferDao -getPmInv Errororg.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [SELECT  pm.PM_HDR_ID,   pm.PRODUCT_CODE,pm.PRODUCT_ID,pj.CUSTOMER_NAME,     pm.PRODUCT_DESCRIPTION,
+					    pj.PROJECT_CODE,     WEIGHT,     ilm.INVENTORY_LOCATION_DESCRIPTION,
+					    pdtl.PRODUCT_QUANTITY_ON_HAND,     um.UOM_SHORT_DESCRIPTION,pm.PRODUCT_ID AS PRODUCT_ID,pm.PRODUCT_COST_PER_UNIT,pm.SPECIFICATION,pm.MAKE,
+                       CASE 
+                          WHEN ilm.INVENTORY_LOCATION_CODE in('ILC0002','ILC0004') THEN pm.BIN 
+                                ELSE '' END AS BIN,
+                  (SELECT 
+					    pohdr.PO_CODE AS PO_CODE
+					FROM
+					 indent_hdr hdr inner join   indent_dtl dtl ON hdr.INDENT_ID = dtl.INDENT_ID
+					        left JOIN
+					    po_dtl podtl ON dtl.INDENT_DTL_ID = podtl.INDENT_DTL_ID
+							left JOIN 
+						po_hdr pohdr ON pohdr.PO_ID = podtl.PO_ID
+                           LEFT JOIN 
+	                    grn_hdr ghdr ON ghdr.PO_ID = pohdr.PO_ID
+					WHERE
+					    dtl.PRODUCT_CODE = pm.PRODUCT_CODE AND hdr.PROJECT_ID = pm.PM_HDR_ID group by ghdr.PO_ID desc limit 1) as PO_CODE
+                        FROM product_mst pm,     inventory_product_dtl pdtl,
+					    inventory_location_mst ilm,     uom_mst um,     project_hdr pj
+WHERE
+    pm.PRODUCT_ID = pdtl.PRODUCT_ID
+        AND ilm.INVENTORY_LOCATION_CODE = pdtl.INVENTORY_LOCATION_CODE
+        and pm.PRODUCT_UOM_CODE = um.UOM_CODE
+        and pm.PM_HDR_ID = pj.PM_HDR_ID
+        AND PRODUCT_QUANTITY_ON_HAND > 0 and pm.TENANT_ID ='bgrn' and pj.PROJECT_CODE like '%%' and ilm.INVENTORY_LOCATION_CODE like '%%' order by pj.PM_HDR_ID]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc limit 1) as PO_CODE
+                        FROM product_mst pm,     inven' at line 18
+				
+2026-07-06 16:48:06 [http-nio-8495-exec-4] ERROR c.v.i.s.i.InventoryMaterialTransferService -retrieveinventoryMaterial service error java.lang.NullPointerException
+				
+2026-07-06 16:48:47 [http-nio-8495-exec-3] ERROR c.v.i.d.i.InventoryMaterialTransferDao -getPmInv Errororg.springframework.jdbc.BadSqlGrammarException: StatementCallback; bad SQL grammar [SELECT  pm.PM_HDR_ID,   pm.PRODUCT_CODE,pm.PRODUCT_ID,pj.CUSTOMER_NAME,     pm.PRODUCT_DESCRIPTION,
+					    pj.PROJECT_CODE,     WEIGHT,     ilm.INVENTORY_LOCATION_DESCRIPTION,
+					    pdtl.PRODUCT_QUANTITY_ON_HAND,     um.UOM_SHORT_DESCRIPTION,pm.PRODUCT_ID AS PRODUCT_ID,pm.PRODUCT_COST_PER_UNIT,pm.SPECIFICATION,pm.MAKE,
+                       CASE 
+                          WHEN ilm.INVENTORY_LOCATION_CODE in('ILC0002','ILC0004') THEN pm.BIN 
+                                ELSE '' END AS BIN,
+                  (SELECT 
+					    pohdr.PO_CODE AS PO_CODE
+					FROM
+					 indent_hdr hdr inner join   indent_dtl dtl ON hdr.INDENT_ID = dtl.INDENT_ID
+					        left JOIN
+					    po_dtl podtl ON dtl.INDENT_DTL_ID = podtl.INDENT_DTL_ID
+							left JOIN 
+						po_hdr pohdr ON pohdr.PO_ID = podtl.PO_ID
+                           LEFT JOIN 
+	                    grn_hdr ghdr ON ghdr.PO_ID = pohdr.PO_ID
+					WHERE
+					    dtl.PRODUCT_CODE = pm.PRODUCT_CODE AND hdr.PROJECT_ID = pm.PM_HDR_ID group by ghdr.PO_ID desc limit 1) as PO_CODE
+                        FROM product_mst pm,     inventory_product_dtl pdtl,
+					    inventory_location_mst ilm,     uom_mst um,     project_hdr pj
+WHERE
+    pm.PRODUCT_ID = pdtl.PRODUCT_ID
+        AND ilm.INVENTORY_LOCATION_CODE = pdtl.INVENTORY_LOCATION_CODE
+        and pm.PRODUCT_UOM_CODE = um.UOM_CODE
+        and pm.PM_HDR_ID = pj.PM_HDR_ID
+        AND PRODUCT_QUANTITY_ON_HAND > 0 and pm.TENANT_ID ='bgrn' and pj.PROJECT_CODE like '%1096%' and ilm.INVENTORY_LOCATION_CODE like '%%' order by pj.PM_HDR_ID]; nested exception is java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc limit 1) as PO_CODE
+                        FROM product_mst pm,     inven' at line 18
+				
+2026-07-06 16:48:47 [http-nio-8495-exec-3] ERROR c.v.i.s.i.InventoryMaterialTransferService -retrieveinventoryMaterial service error java.lang.NullPointerException
+				
+2026-07-06 16:52:40 [http-nio-8495-exec-8] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-07-06 16:53:45 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-06 16:53:45 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-06 16:53:45 [http-nio-8495-exec-10] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-06 16:53:45 [http-nio-8495-exec-10] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-06 16:55:37 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-06 16:55:37 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-06 16:55:37 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-06 16:55:37 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-06 16:56:14 [http-nio-8495-exec-6] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-07-06 17:50:24 [restartedMain] ERROR o.s.b.d.LoggingFailureAnalysisReporter -
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field iAssemblyIssueService in com.vmfg.assembly.controller.AssemblyIssueController required a bean of type 'com.vmfg.assembly.services.interfaces.IAssemblyIssueService' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.vmfg.assembly.services.interfaces.IAssemblyIssueService' in your configuration.
+
+				
+2026-07-06 17:50:24 [restartedMain] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'assemblyIssueController': Unsatisfied dependency expressed through field 'iAssemblyIssueService'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.vmfg.assembly.services.interfaces.IAssemblyIssueService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+				

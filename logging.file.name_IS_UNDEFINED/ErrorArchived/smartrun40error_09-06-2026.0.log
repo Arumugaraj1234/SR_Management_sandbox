@@ -1,0 +1,180 @@
+2026-06-09 10:13:59 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 10:15:08 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-09 10:15:08 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-09 10:15:08 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-06-09 10:15:08 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-06-09 10:34:19 [http-nio-8495-exec-4] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-06-09 10:51:16 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 10:51:35 [http-nio-8495-exec-7] ERROR c.vmfg.mis.dao.impl.ManagementMisDAO -getVendorDetailDrillDown DAO Errororg.springframework.dao.DataIntegrityViolationException: StatementCallback; SQL [SELECT 
+    PROJECT_CODE, hdr.PM_HDR_ID,
+    PROJECT_NAME,
+    vmst.VENDOR_NAME,
+    PO_CODE,
+    PO_DATE, pra.PRA_CODE, pra.PRA_DATE,
+    pra.AMOUNT_PAYABLE, pra.AMOUNT_DUE, mi.DC_NO AS INVOICE_NO, mi.DC_DATE AS INVOICE_DATE,
+    pra.DUE_DATE, (SELECT DOCUMENT_STATUS_TYPE_DESCRIPTION FROM pra_hdr hdr inner join document_status_type_code mst
+    on hdr.STATUS_CODE = mst.DOCUMENT_STATUS_TYPE_CODE where hdr.PRA_ID = pra.PRA_ID and hdr.TENANT_ID='bgrn') as STATUS,
+    CASE WHEN pra.COMPLETED_DATETIME is not null THEN  DATEDIFF(DATE(pra.COMPLETED_DATETIME),DATE(pra.DUE_DATE))
+	    ELSE (CASE WHEN CURDATE() < DATE(pra.DUE_DATE) THEN 0 ELSE DATEDIFF(CURDATE(), DATE(pra.DUE_DATE)) END)
+	 END AS OVER_DUE 
+FROM
+    project_hdr hdr
+        INNER JOIN
+    customer_mst mst ON mst.CUST_NAME = hdr.CUSTOMER_NAME
+        INNER JOIN
+    indent_hdr ih ON ih.PROJECT_ID = hdr.PM_HDR_ID
+        INNER JOIN
+    po_hdr phdr ON ih.INDENT_ID = phdr.INDENT_ID
+        INNER JOIN
+    pra_hdr pra ON pra.PO_ID = phdr.PO_ID and pra.TENANT_ID = 'bgrn'
+        INNER JOIN
+    vendor_mst vmst ON vmst.VENDOR_CODE = phdr.VENDOR_CODE
+        LEFT JOIN
+    grn_hdr gh ON gh.GRN_HDR_ID = pra.GRN_HDR_ID
+        LEFT JOIN
+    material_inward_hdr mi ON mi.MI_ID = gh.MI_ID
+        LEFT JOIN
+	document_status_type_code dsc ON dsc.DOCUMENT_STATUS_TYPE_CODE = hdr.TRANSACTION_STATUS
+WHERE hdr.TENANT_ID = 'bgrn' 
+		AND hdr.PM_HDR_ID like '%%'
+       AND hdr.TRANSACTION_STATUS like '%%'
+       AND mst.CUST_CODE like '%%'
+       AND vmst.VENDOR_CODE like '%%'
+       AND hdr.CREATED_DATE BETWEEN '2026-06-01' and '2026-06-30' 
+]; Column 'PO_CODE' in field list is ambiguous; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'PO_CODE' in field list is ambiguous
+				
+2026-06-09 10:51:41 [http-nio-8495-exec-4] ERROR c.vmfg.mis.dao.impl.ManagementMisDAO -getVendorDetailDrillDown DAO Errororg.springframework.dao.DataIntegrityViolationException: StatementCallback; SQL [SELECT 
+    PROJECT_CODE, hdr.PM_HDR_ID,
+    PROJECT_NAME,
+    vmst.VENDOR_NAME,
+    PO_CODE,
+    PO_DATE, pra.PRA_CODE, pra.PRA_DATE,
+    pra.AMOUNT_PAYABLE, pra.AMOUNT_DUE, mi.DC_NO AS INVOICE_NO, mi.DC_DATE AS INVOICE_DATE,
+    pra.DUE_DATE, (SELECT DOCUMENT_STATUS_TYPE_DESCRIPTION FROM pra_hdr hdr inner join document_status_type_code mst
+    on hdr.STATUS_CODE = mst.DOCUMENT_STATUS_TYPE_CODE where hdr.PRA_ID = pra.PRA_ID and hdr.TENANT_ID='bgrn') as STATUS,
+    CASE WHEN pra.COMPLETED_DATETIME is not null THEN  DATEDIFF(DATE(pra.COMPLETED_DATETIME),DATE(pra.DUE_DATE))
+	    ELSE (CASE WHEN CURDATE() < DATE(pra.DUE_DATE) THEN 0 ELSE DATEDIFF(CURDATE(), DATE(pra.DUE_DATE)) END)
+	 END AS OVER_DUE 
+FROM
+    project_hdr hdr
+        INNER JOIN
+    customer_mst mst ON mst.CUST_NAME = hdr.CUSTOMER_NAME
+        INNER JOIN
+    indent_hdr ih ON ih.PROJECT_ID = hdr.PM_HDR_ID
+        INNER JOIN
+    po_hdr phdr ON ih.INDENT_ID = phdr.INDENT_ID
+        INNER JOIN
+    pra_hdr pra ON pra.PO_ID = phdr.PO_ID and pra.TENANT_ID = 'bgrn'
+        INNER JOIN
+    vendor_mst vmst ON vmst.VENDOR_CODE = phdr.VENDOR_CODE
+        LEFT JOIN
+    grn_hdr gh ON gh.GRN_HDR_ID = pra.GRN_HDR_ID
+        LEFT JOIN
+    material_inward_hdr mi ON mi.MI_ID = gh.MI_ID
+        LEFT JOIN
+	document_status_type_code dsc ON dsc.DOCUMENT_STATUS_TYPE_CODE = hdr.TRANSACTION_STATUS
+WHERE hdr.TENANT_ID = 'bgrn' 
+		AND hdr.PM_HDR_ID like '%%'
+       AND hdr.TRANSACTION_STATUS like '%%'
+       AND mst.CUST_CODE like '%%'
+       AND vmst.VENDOR_CODE like '%%'
+       
+]; Column 'PO_CODE' in field list is ambiguous; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'PO_CODE' in field list is ambiguous
+				
+2026-06-09 10:51:57 [http-nio-8495-exec-6] ERROR c.vmfg.mis.dao.impl.ManagementMisDAO -getVendorDetailDrillDown DAO Errororg.springframework.dao.DataIntegrityViolationException: StatementCallback; SQL [SELECT 
+    PROJECT_CODE, hdr.PM_HDR_ID,
+    PROJECT_NAME,
+    vmst.VENDOR_NAME,
+    PO_CODE,
+    PO_DATE, pra.PRA_CODE, pra.PRA_DATE,
+    pra.AMOUNT_PAYABLE, pra.AMOUNT_DUE, mi.DC_NO AS INVOICE_NO, mi.DC_DATE AS INVOICE_DATE,
+    pra.DUE_DATE, (SELECT DOCUMENT_STATUS_TYPE_DESCRIPTION FROM pra_hdr hdr inner join document_status_type_code mst
+    on hdr.STATUS_CODE = mst.DOCUMENT_STATUS_TYPE_CODE where hdr.PRA_ID = pra.PRA_ID and hdr.TENANT_ID='bgrn') as STATUS,
+    CASE WHEN pra.COMPLETED_DATETIME is not null THEN  DATEDIFF(DATE(pra.COMPLETED_DATETIME),DATE(pra.DUE_DATE))
+	    ELSE (CASE WHEN CURDATE() < DATE(pra.DUE_DATE) THEN 0 ELSE DATEDIFF(CURDATE(), DATE(pra.DUE_DATE)) END)
+	 END AS OVER_DUE 
+FROM
+    project_hdr hdr
+        INNER JOIN
+    customer_mst mst ON mst.CUST_NAME = hdr.CUSTOMER_NAME
+        INNER JOIN
+    indent_hdr ih ON ih.PROJECT_ID = hdr.PM_HDR_ID
+        INNER JOIN
+    po_hdr phdr ON ih.INDENT_ID = phdr.INDENT_ID
+        INNER JOIN
+    pra_hdr pra ON pra.PO_ID = phdr.PO_ID and pra.TENANT_ID = 'bgrn'
+        INNER JOIN
+    vendor_mst vmst ON vmst.VENDOR_CODE = phdr.VENDOR_CODE
+        LEFT JOIN
+    grn_hdr gh ON gh.GRN_HDR_ID = pra.GRN_HDR_ID
+        LEFT JOIN
+    material_inward_hdr mi ON mi.MI_ID = gh.MI_ID
+        LEFT JOIN
+	document_status_type_code dsc ON dsc.DOCUMENT_STATUS_TYPE_CODE = hdr.TRANSACTION_STATUS
+WHERE hdr.TENANT_ID = 'bgrn' 
+		AND hdr.PM_HDR_ID like '%%'
+       AND hdr.TRANSACTION_STATUS like '%%'
+       AND mst.CUST_CODE like '%%'
+       AND vmst.VENDOR_CODE like '%%'
+       
+]; Column 'PO_CODE' in field list is ambiguous; nested exception is java.sql.SQLIntegrityConstraintViolationException: Column 'PO_CODE' in field list is ambiguous
+				
+2026-06-09 11:06:05 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 11:51:52 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 11:56:42 [http-nio-8495-exec-2] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-06-09 11:56:45 [http-nio-8495-exec-9] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-06-09 11:56:47 [http-nio-8495-exec-7] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-06-09 11:57:37 [http-nio-8495-exec-4] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-06-09 11:57:42 [http-nio-8495-exec-2] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-06-09 11:58:20 [http-nio-8495-exec-10] ERROR c.vmfg.scm.services.impl.GrnService -getGrnHdrDetails service error java.lang.NullPointerException
+				
+2026-06-09 12:26:44 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 12:34:41 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 14:36:05 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 14:54:21 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 15:00:24 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 15:09:27 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-09 15:09:58 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-09 15:28:39 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 15:29:57 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-09 15:31:01 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-09 15:36:30 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 15:37:52 [http-nio-8495-exec-9] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-09 15:39:01 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-09 15:39:35 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-06-09 16:57:33 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 17:12:38 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 17:21:26 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-06-09 17:27:02 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				

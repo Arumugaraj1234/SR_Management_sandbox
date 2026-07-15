@@ -1,0 +1,378 @@
+2025-12-12 09:54:37 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:17 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:23 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:27 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:28 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:28 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:28 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:28 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:28 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:30 [http-nio-8495-exec-5] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:37 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:46 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:52 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:53 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:53 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:53 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:53 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:53 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 09:58:55 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 10:00:36 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-12 10:00:36 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-12 10:00:37 [http-nio-8495-exec-3] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-12 10:00:37 [http-nio-8495-exec-3] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-12 10:51:15 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-12 10:51:15 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-12 10:51:15 [http-nio-8495-exec-9] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-12 10:51:15 [http-nio-8495-exec-9] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-12 11:03:05 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-12 11:03:05 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-12 11:03:05 [http-nio-8495-exec-1] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-12 11:03:05 [http-nio-8495-exec-1] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:11 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:15 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:18 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:18 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:18 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:18 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:18 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:18 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:19 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:22 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:28 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:31 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:32 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:32 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:32 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:32 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:32 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 11:03:34 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-12 14:45:54 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-12 14:45:54 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-12 14:45:54 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-12 14:45:54 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				

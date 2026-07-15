@@ -1,0 +1,2194 @@
+2025-12-17 10:07:46 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:07:46 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:07:46 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 10:07:46 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 10:14:13 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:14:13 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:28:19 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:28:19 [http-nio-8495-exec-8] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:33:42 [http-nio-8495-exec-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:33:43 [http-nio-8495-exec-7] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:42:41 [http-nio-8495-exec-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:42:53 [http-nio-8495-exec-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:43:15 [http-nio-8495-exec-3] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:49:21 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:49:22 [http-nio-8495-exec-1] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:49:22 [http-nio-8495-exec-1] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:49:51 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:49:52 [http-nio-8495-exec-2] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:49:52 [http-nio-8495-exec-2] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:53:25 [http-nio-8495-exec-9] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:53:26 [http-nio-8495-exec-9] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 10:53:26 [http-nio-8495-exec-9] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 11:05:49 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 11:06:20 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 11:06:53 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 11:06:53 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 11:06:53 [http-nio-8495-exec-2] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 11:06:53 [http-nio-8495-exec-2] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:09 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:11 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:11 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:11 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:11 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:11 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:11 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:11 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:11 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:11 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:11 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:11 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:15 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:54 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:56 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:56 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:56 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:56 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:56 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:56 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:56 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:56 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:56 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:56 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:56 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:57 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:58 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:58 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:58 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:58 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:58 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:58 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:58 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:07:58 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 11:09:38 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 11:11:17 [http-nio-8495-exec-8] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 11:11:26 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:33:08 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:33:08 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 2
+				
+2025-12-17 14:33:08 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:33:08 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:33:09 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 2
+				
+2025-12-17 14:33:09 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:33:09 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 14:33:09 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 14:33:09 [http-nio-8495-exec-2] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 14:33:09 [http-nio-8495-exec-2] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 14:34:00 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:34:00 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 2
+				
+2025-12-17 14:34:00 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:34:00 [http-nio-8495-exec-3] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 14:34:00 [http-nio-8495-exec-3] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 14:34:01 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getPropValueByTenant Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:34:01 [http-nio-8495-exec-7] ERROR c.v.g.d.impl.NotificationGeneralDAO -NotificationGeneralDAO error java.lang.NumberFormatException: For input string: ""
+				
+2025-12-17 14:34:02 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:34:02 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:34:02 [http-nio-8495-exec-9] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 14:34:02 [http-nio-8495-exec-9] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 14:34:15 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:34:15 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:34:15 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 14:34:15 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:21 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:24 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:24 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:24 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:24 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:24 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:24 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:24 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:24 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:24 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:24 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:24 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:26 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:27 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:27 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:27 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:27 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:27 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:27 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:27 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:28 [http-nio-8495-exec-4] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:37 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:40 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:40 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:40 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:40 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:40 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:40 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:40 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:40 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:40 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:40 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:40 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:41 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:43 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:43 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:43 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:43 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:43 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:43 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:43 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:34:43 [http-nio-8495-exec-6] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:42:34 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:42:34 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:42:34 [http-nio-8495-exec-2] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 14:42:34 [http-nio-8495-exec-2] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 14:43:15 [http-nio-8495-exec-5] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:43:16 [http-nio-8495-exec-5] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:43:16 [http-nio-8495-exec-5] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 14:43:16 [http-nio-8495-exec-5] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 14:51:35 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:51:36 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:51:37 [http-nio-8495-exec-10] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 14:51:37 [http-nio-8495-exec-10] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 14:52:04 [http-nio-8495-exec-1] ERROR o.s.j.support.JdbcTransactionManager -Commit exception overridden by rollback exception
+				
+org.springframework.dao.RecoverableDataAccessException: JDBC commit; Communications link failure
+
+The last packet successfully received from the server was 19,387 milliseconds ago. The last packet sent successfully to the server was 20,434 milliseconds ago.; nested exception is com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 19,387 milliseconds ago. The last packet sent successfully to the server was 20,434 milliseconds ago.
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:100)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.springframework.jdbc.support.JdbcTransactionManager.translateException(JdbcTransactionManager.java:184)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doCommit(DataSourceTransactionManager.java:336)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at com.vmfg.authentication.UserLoginDAO$$EnhancerBySpringCGLIB$$cd7a3334.loadUserByUsername(<generated>)
+	at com.vmfg.security.config.JwtAuthenticationController.createAuthenticationToken(JwtAuthenticationController.java:40)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at com.vmfg.security.config.JwtRequestFilter.doFilterInternal(JwtRequestFilter.java:67)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 19,387 milliseconds ago. The last packet sent successfully to the server was 20,434 milliseconds ago.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at com.mysql.cj.jdbc.ConnectionImpl.commit(ConnectionImpl.java:806)
+	at com.zaxxer.hikari.pool.ProxyConnection.commit(ProxyConnection.java:387)
+	at com.zaxxer.hikari.pool.HikariProxyConnection.commit(HikariProxyConnection.java)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doCommit(DataSourceTransactionManager.java:333)
+	... 107 common frames omitted
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 19,387 milliseconds ago. The last packet sent successfully to the server was 20,434 milliseconds ago.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
+	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:520)
+	at com.mysql.cj.protocol.a.NativeProtocol.checkErrorMessage(NativeProtocol.java:700)
+	at com.mysql.cj.protocol.a.NativeProtocol.sendCommand(NativeProtocol.java:639)
+	at com.mysql.cj.protocol.a.NativeProtocol.sendQueryPacket(NativeProtocol.java:987)
+	at com.mysql.cj.protocol.a.NativeProtocol.sendQueryString(NativeProtocol.java:933)
+	at com.mysql.cj.NativeSession.execSQL(NativeSession.java:664)
+	at com.mysql.cj.jdbc.ConnectionImpl.commit(ConnectionImpl.java:794)
+	... 110 common frames omitted
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.socketRead(SocketInputStream.java:116)
+	at java.net.SocketInputStream.read(SocketInputStream.java:171)
+	at java.net.SocketInputStream.read(SocketInputStream.java:141)
+	at com.mysql.cj.protocol.ReadAheadInputStream.fill(ReadAheadInputStream.java:107)
+	at com.mysql.cj.protocol.ReadAheadInputStream.readFromUnderlyingStreamIfNecessary(ReadAheadInputStream.java:150)
+	at com.mysql.cj.protocol.ReadAheadInputStream.read(ReadAheadInputStream.java:180)
+	at java.io.FilterInputStream.read(FilterInputStream.java:133)
+	at com.mysql.cj.protocol.FullReadInputStream.readFully(FullReadInputStream.java:64)
+	at com.mysql.cj.protocol.a.SimplePacketReader.readHeaderLocal(SimplePacketReader.java:81)
+	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:63)
+	at com.mysql.cj.protocol.a.SimplePacketReader.readHeader(SimplePacketReader.java:45)
+	at com.mysql.cj.protocol.a.TimeTrackingPacketReader.readHeader(TimeTrackingPacketReader.java:52)
+	at com.mysql.cj.protocol.a.TimeTrackingPacketReader.readHeader(TimeTrackingPacketReader.java:41)
+	at com.mysql.cj.protocol.a.MultiPacketReader.readHeader(MultiPacketReader.java:54)
+	at com.mysql.cj.protocol.a.MultiPacketReader.readHeader(MultiPacketReader.java:44)
+	at com.mysql.cj.protocol.a.NativeProtocol.readMessage(NativeProtocol.java:514)
+	... 116 common frames omitted
+2025-12-17 14:52:06 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:52:06 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:52:06 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 14:52:06 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:12 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:14 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:16 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:18 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:18 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:18 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:18 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:18 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:18 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:18 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:19 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:34 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:36 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:36 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:36 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:36 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:36 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:36 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:36 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:36 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:36 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:36 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:36 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:52:37 [http-nio-8495-exec-5] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:53:17 [http-nio-8495-exec-9] ERROR c.v.g.d.impl.NotificationGeneralDAO -NotificationGeneralDAO error org.springframework.dao.TransientDataAccessResourceException: StatementCallback; SQL [SELECT 
+    *
+FROM
+    notification_req
+WHERE
+     TENANT_ID='bgrn' and FIND_IN_SET('E0127', EMPLOYEE_ID) and DATE(NOTIFY_DATETIME) BETWEEN DATE_SUB(CURDATE(), INTERVAL 7 DAY) AND CURDATE() 
+GROUP BY NOTIFICATION_TYPE , NOT_REQ_ID;]; Connection reset; nested exception is java.sql.SQLException: Connection reset
+				
+2025-12-17 14:53:17 [http-nio-8495-exec-9] ERROR o.s.j.support.JdbcTransactionManager -Commit exception overridden by rollback exception
+				
+org.springframework.dao.RecoverableDataAccessException: JDBC commit; Communications link failure
+
+The last packet successfully received from the server was 17,540 milliseconds ago. The last packet sent successfully to the server was 20,120 milliseconds ago.; nested exception is com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 17,540 milliseconds ago. The last packet sent successfully to the server was 20,120 milliseconds ago.
+	at org.springframework.jdbc.support.SQLExceptionSubclassTranslator.doTranslate(SQLExceptionSubclassTranslator.java:100)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:70)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:79)
+	at org.springframework.jdbc.support.JdbcTransactionManager.translateException(JdbcTransactionManager.java:184)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doCommit(DataSourceTransactionManager.java:336)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:654)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:407)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
+	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
+	at com.vmfg.general.dao.impl.NotificationGeneralDAO$$EnhancerBySpringCGLIB$$4f7fef9.getNotifyDtlList(<generated>)
+	at com.vmfg.general.services.impl.NotificationGeneralService.getNotificationDetails(NotificationGeneralService.java:99)
+	at com.vmfg.general.controller.NotificationGeneralController.getNotificationDetails(NotificationGeneralController.java:35)
+	at sun.reflect.GeneratedMethodAccessor160.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1067)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:681)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:111)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:327)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:115)
+	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:122)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:126)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:81)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:109)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:149)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at com.vmfg.security.config.JwtRequestFilter.doFilterInternal(JwtRequestFilter.java:67)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:103)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:89)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:112)
+	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:82)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:55)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:336)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:211)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:183)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:354)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:267)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1743)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:750)
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 17,540 milliseconds ago. The last packet sent successfully to the server was 20,120 milliseconds ago.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:174)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:64)
+	at com.mysql.cj.jdbc.ConnectionImpl.commit(ConnectionImpl.java:806)
+	at com.zaxxer.hikari.pool.ProxyConnection.commit(ProxyConnection.java:387)
+	at com.zaxxer.hikari.pool.HikariProxyConnection.commit(HikariProxyConnection.java)
+	at org.springframework.jdbc.datasource.DataSourceTransactionManager.doCommit(DataSourceTransactionManager.java:333)
+	... 107 common frames omitted
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 17,540 milliseconds ago. The last packet sent successfully to the server was 20,120 milliseconds ago.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:61)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:105)
+	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:151)
+	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:167)
+	at com.mysql.cj.protocol.a.NativeProtocol.clearInputStream(NativeProtocol.java:808)
+	at com.mysql.cj.protocol.a.NativeProtocol.sendCommand(NativeProtocol.java:620)
+	at com.mysql.cj.protocol.a.NativeProtocol.sendQueryPacket(NativeProtocol.java:987)
+	at com.mysql.cj.protocol.a.NativeProtocol.sendQueryString(NativeProtocol.java:933)
+	at com.mysql.cj.NativeSession.execSQL(NativeSession.java:664)
+	at com.mysql.cj.jdbc.ConnectionImpl.commit(ConnectionImpl.java:794)
+	... 110 common frames omitted
+Caused by: java.io.IOException: Socket is closed
+	at com.mysql.cj.protocol.AbstractSocketConnection.getMysqlInput(AbstractSocketConnection.java:72)
+	at com.mysql.cj.protocol.a.NativeProtocol.clearInputStream(NativeProtocol.java:804)
+	... 115 common frames omitted
+2025-12-17 14:53:17 [http-nio-8495-exec-9] ERROR c.v.g.s.i.NotificationGeneralService -getNotificationDetails error org.springframework.transaction.TransactionSystemException: JDBC rollback failed; nested exception is java.sql.SQLException: Connection is closed
+				
+2025-12-17 14:55:08 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:55:08 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 14:55:08 [http-nio-8495-exec-1] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 14:55:08 [http-nio-8495-exec-1] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:15 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:17 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:17 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:17 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:17 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:17 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:17 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:17 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:17 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:17 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:17 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:17 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:19 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:21 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:21 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:21 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:21 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:21 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:21 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:21 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:23 [http-nio-8495-exec-1] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:27 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:29 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:29 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:29 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:29 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:29 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:29 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:29 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:29 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:29 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:29 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:29 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:31 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:33 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:33 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:33 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:33 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:33 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:33 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:33 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 14:55:33 [http-nio-8495-exec-3] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:10:38 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 15:10:38 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 15:10:38 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 15:10:38 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 15:10:38 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getPropValueByTenant Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 15:10:38 [http-nio-8495-exec-1] ERROR c.v.g.d.impl.NotificationGeneralDAO -NotificationGeneralDAO error java.lang.NumberFormatException: For input string: ""
+				
+2025-12-17 15:27:13 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 15:27:13 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 15:29:31 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 15:29:31 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getPaymentTermStatus error---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 15:44:36 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 15:44:36 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 15:44:36 [http-nio-8495-exec-9] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 15:44:36 [http-nio-8495-exec-9] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:43 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:46 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:50 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:51 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:51 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:51 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:51 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:51 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:57 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:44:59 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:02 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:06 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:06 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:06 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:06 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:06 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:06 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:45:07 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:54:16 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 15:54:16 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 15:54:16 [http-nio-8495-exec-6] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 15:54:16 [http-nio-8495-exec-6] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:56 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:57 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:57 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:57 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:57 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:57 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:57 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:57 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:57 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:57 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:57 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:57 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:58 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:59 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:59 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:59 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:59 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:59 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:59 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:59 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:54:59 [http-nio-8495-exec-9] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 15:55:20 [http-nio-8495-exec-3] ERROR c.v.i.dao.impl.InventoryJournalDao -retriveJournalDao Errororg.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT 
+    @a:=@a+1 SERIAL_NUMBER,
+    ij.INVENTORY_TRANSACTION_DATE,
+    ij.INVENTORY_TRANSACTION_REFERENCE_ID, 
+    ij.INVENTORY_TRANSACTION_QUANTITY,
+    itt.INVENTORY_TRANSACTION_TYPE_DESCRIPTION,
+    pm.PRODUCT_CODE,
+    pm.PRODUCT_DESCRIPTION, pm.SPECIFICATION,
+    ij.PROJECT_ID,
+    ij.INVENTORY_LOCATION_CODE,
+    ilm. INVENTORY_LOCATION_DESCRIPTION,
+    ij.OPENING_BALANCE,
+    ij.CLOSING_BALANCE,
+    phdr.PROJECT_NAME,
+    um.UOM_LONG_DESCRIPTION,
+    um.UOM_SHORT_DESCRIPTION,phdr.PROJECT_CODE, 
+ ( select CASE WHEN COUNT(phdr.PO_ID) > 0  THEN PO_CODE ELSE (select mhdr.PO_CODE from material_inward_hdr mhdr inner join material_inward_dtl mdtl
+       on mdtl.MI_ID = mhdr.MI_ID inner join product_mst mst 
+	   on mst.PRODUCT_ID = mdtl.PRODUCT_ID where mst.PRODUCT_CODE =pm.PRODUCT_CODE and mst.PM_HDR_ID='52' ) END  
+       from indent_hdr ihdr inner join   indent_dtl dtl on dtl.INDENT_ID=ihdr.INDENT_ID inner join po_dtl pdtl
+       on pdtl.INDENT_DTL_ID = dtl.INDENT_DTL_ID
+       inner join po_hdr phdr on phdr.PO_ID = pdtl.PO_ID
+       where product_code=pm.PRODUCT_CODE and PROJECT_ID='52') AS PO_CODE 
+FROM
+   (SELECT @a:= 0) AS a, inventory_journal AS ij
+        INNER JOIN
+    inventory_transaction_type itt ON ij.INVENTORY_TRANSACTION_TYPE_CODE = itt.INVENTORY_TRANSACTION_TYPE_CODE 
+        INNER JOIN
+    product_mst pm ON ij.PRODUCT_ID = pm.PRODUCT_ID
+		INNER JOIN
+        project_hdr phdr ON ij.PROJECT_ID = phdr.PM_HDR_ID
+        INNER JOIN 
+        inventory_location_mst ilm ON ij.INVENTORY_LOCATION_CODE = ilm.INVENTORY_LOCATION_CODE
+		 INNER JOIN 
+        uom_mst um ON um.UOM_CODE = pm.PRODUCT_UOM_CODE
+WHERE
+    DATE(ij.INVENTORY_TRANSACTION_DATE) BETWEEN ? AND ? 
+    AND ij.TENANT_ID = ? 
+    AND ij.PROJECT_ID LIKE ? order by ij.INVENTORY_RECORD_CREATED_DATE desc]; nested exception is java.sql.SQLException: Subquery returns more than 1 row
+				
+2025-12-17 15:55:29 [http-nio-8495-exec-4] ERROR c.v.i.dao.impl.InventoryJournalDao -retriveJournalDao Errororg.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT 
+    @a:=@a+1 SERIAL_NUMBER,
+    ij.INVENTORY_TRANSACTION_DATE,
+    ij.INVENTORY_TRANSACTION_REFERENCE_ID, 
+    ij.INVENTORY_TRANSACTION_QUANTITY,
+    itt.INVENTORY_TRANSACTION_TYPE_DESCRIPTION,
+    pm.PRODUCT_CODE,
+    pm.PRODUCT_DESCRIPTION, pm.SPECIFICATION,
+    ij.PROJECT_ID,
+    ij.INVENTORY_LOCATION_CODE,
+    ilm. INVENTORY_LOCATION_DESCRIPTION,
+    ij.OPENING_BALANCE,
+    ij.CLOSING_BALANCE,
+    phdr.PROJECT_NAME,
+    um.UOM_LONG_DESCRIPTION,
+    um.UOM_SHORT_DESCRIPTION,phdr.PROJECT_CODE, 
+ ( select CASE WHEN COUNT(phdr.PO_ID) > 0  THEN PO_CODE ELSE (select mhdr.PO_CODE from material_inward_hdr mhdr inner join material_inward_dtl mdtl
+       on mdtl.MI_ID = mhdr.MI_ID inner join product_mst mst 
+	   on mst.PRODUCT_ID = mdtl.PRODUCT_ID where mst.PRODUCT_CODE =pm.PRODUCT_CODE and mst.PM_HDR_ID='52' ) END  
+       from indent_hdr ihdr inner join   indent_dtl dtl on dtl.INDENT_ID=ihdr.INDENT_ID inner join po_dtl pdtl
+       on pdtl.INDENT_DTL_ID = dtl.INDENT_DTL_ID
+       inner join po_hdr phdr on phdr.PO_ID = pdtl.PO_ID
+       where product_code=pm.PRODUCT_CODE and PROJECT_ID='52') AS PO_CODE 
+FROM
+   (SELECT @a:= 0) AS a, inventory_journal AS ij
+        INNER JOIN
+    inventory_transaction_type itt ON ij.INVENTORY_TRANSACTION_TYPE_CODE = itt.INVENTORY_TRANSACTION_TYPE_CODE 
+        INNER JOIN
+    product_mst pm ON ij.PRODUCT_ID = pm.PRODUCT_ID
+		INNER JOIN
+        project_hdr phdr ON ij.PROJECT_ID = phdr.PM_HDR_ID
+        INNER JOIN 
+        inventory_location_mst ilm ON ij.INVENTORY_LOCATION_CODE = ilm.INVENTORY_LOCATION_CODE
+		 INNER JOIN 
+        uom_mst um ON um.UOM_CODE = pm.PRODUCT_UOM_CODE
+WHERE
+    DATE(ij.INVENTORY_TRANSACTION_DATE) BETWEEN ? AND ? 
+    AND ij.TENANT_ID = ? 
+    AND ij.PROJECT_ID LIKE ? order by ij.INVENTORY_RECORD_CREATED_DATE desc]; nested exception is java.sql.SQLException: Subquery returns more than 1 row
+				
+2025-12-17 15:55:40 [http-nio-8495-exec-10] ERROR c.v.i.dao.impl.InventoryJournalDao -retriveJournalDao Errororg.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT 
+    @a:=@a+1 SERIAL_NUMBER,
+    ij.INVENTORY_TRANSACTION_DATE,
+    ij.INVENTORY_TRANSACTION_REFERENCE_ID, 
+    ij.INVENTORY_TRANSACTION_QUANTITY,
+    itt.INVENTORY_TRANSACTION_TYPE_DESCRIPTION,
+    pm.PRODUCT_CODE,
+    pm.PRODUCT_DESCRIPTION, pm.SPECIFICATION,
+    ij.PROJECT_ID,
+    ij.INVENTORY_LOCATION_CODE,
+    ilm. INVENTORY_LOCATION_DESCRIPTION,
+    ij.OPENING_BALANCE,
+    ij.CLOSING_BALANCE,
+    phdr.PROJECT_NAME,
+    um.UOM_LONG_DESCRIPTION,
+    um.UOM_SHORT_DESCRIPTION,phdr.PROJECT_CODE, 
+ ( select CASE WHEN COUNT(phdr.PO_ID) > 0  THEN PO_CODE ELSE (select mhdr.PO_CODE from material_inward_hdr mhdr inner join material_inward_dtl mdtl
+       on mdtl.MI_ID = mhdr.MI_ID inner join product_mst mst 
+	   on mst.PRODUCT_ID = mdtl.PRODUCT_ID where mst.PRODUCT_CODE =pm.PRODUCT_CODE and mst.PM_HDR_ID='32' ) END  
+       from indent_hdr ihdr inner join   indent_dtl dtl on dtl.INDENT_ID=ihdr.INDENT_ID inner join po_dtl pdtl
+       on pdtl.INDENT_DTL_ID = dtl.INDENT_DTL_ID
+       inner join po_hdr phdr on phdr.PO_ID = pdtl.PO_ID
+       where product_code=pm.PRODUCT_CODE and PROJECT_ID='32') AS PO_CODE 
+FROM
+   (SELECT @a:= 0) AS a, inventory_journal AS ij
+        INNER JOIN
+    inventory_transaction_type itt ON ij.INVENTORY_TRANSACTION_TYPE_CODE = itt.INVENTORY_TRANSACTION_TYPE_CODE 
+        INNER JOIN
+    product_mst pm ON ij.PRODUCT_ID = pm.PRODUCT_ID
+		INNER JOIN
+        project_hdr phdr ON ij.PROJECT_ID = phdr.PM_HDR_ID
+        INNER JOIN 
+        inventory_location_mst ilm ON ij.INVENTORY_LOCATION_CODE = ilm.INVENTORY_LOCATION_CODE
+		 INNER JOIN 
+        uom_mst um ON um.UOM_CODE = pm.PRODUCT_UOM_CODE
+WHERE
+    DATE(ij.INVENTORY_TRANSACTION_DATE) BETWEEN ? AND ? 
+    AND ij.TENANT_ID = ? 
+    AND ij.PROJECT_ID LIKE ? order by ij.INVENTORY_RECORD_CREATED_DATE desc]; nested exception is java.sql.SQLException: Subquery returns more than 1 row
+				
+2025-12-17 15:56:53 [http-nio-8495-exec-2] ERROR c.v.i.dao.impl.InventoryJournalDao -retriveJournalDao Errororg.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT 
+    @a:=@a+1 SERIAL_NUMBER,
+    ij.INVENTORY_TRANSACTION_DATE,
+    ij.INVENTORY_TRANSACTION_REFERENCE_ID, 
+    ij.INVENTORY_TRANSACTION_QUANTITY,
+    itt.INVENTORY_TRANSACTION_TYPE_DESCRIPTION,
+    pm.PRODUCT_CODE,
+    pm.PRODUCT_DESCRIPTION, pm.SPECIFICATION,
+    ij.PROJECT_ID,
+    ij.INVENTORY_LOCATION_CODE,
+    ilm. INVENTORY_LOCATION_DESCRIPTION,
+    ij.OPENING_BALANCE,
+    ij.CLOSING_BALANCE,
+    phdr.PROJECT_NAME,
+    um.UOM_LONG_DESCRIPTION,
+    um.UOM_SHORT_DESCRIPTION,phdr.PROJECT_CODE, 
+ ( select CASE WHEN COUNT(phdr.PO_ID) > 0  THEN PO_CODE ELSE (select mhdr.PO_CODE from material_inward_hdr mhdr inner join material_inward_dtl mdtl
+       on mdtl.MI_ID = mhdr.MI_ID inner join product_mst mst 
+	   on mst.PRODUCT_ID = mdtl.PRODUCT_ID where mst.PRODUCT_CODE =pm.PRODUCT_CODE and mst.PM_HDR_ID='32' ) END  
+       from indent_hdr ihdr inner join   indent_dtl dtl on dtl.INDENT_ID=ihdr.INDENT_ID inner join po_dtl pdtl
+       on pdtl.INDENT_DTL_ID = dtl.INDENT_DTL_ID
+       inner join po_hdr phdr on phdr.PO_ID = pdtl.PO_ID
+       where product_code=pm.PRODUCT_CODE and PROJECT_ID='32') AS PO_CODE 
+FROM
+   (SELECT @a:= 0) AS a, inventory_journal AS ij
+        INNER JOIN
+    inventory_transaction_type itt ON ij.INVENTORY_TRANSACTION_TYPE_CODE = itt.INVENTORY_TRANSACTION_TYPE_CODE 
+        INNER JOIN
+    product_mst pm ON ij.PRODUCT_ID = pm.PRODUCT_ID
+		INNER JOIN
+        project_hdr phdr ON ij.PROJECT_ID = phdr.PM_HDR_ID
+        INNER JOIN 
+        inventory_location_mst ilm ON ij.INVENTORY_LOCATION_CODE = ilm.INVENTORY_LOCATION_CODE
+		 INNER JOIN 
+        uom_mst um ON um.UOM_CODE = pm.PRODUCT_UOM_CODE
+WHERE
+    DATE(ij.INVENTORY_TRANSACTION_DATE) BETWEEN ? AND ? 
+    AND ij.TENANT_ID = ? 
+    AND ij.PROJECT_ID LIKE ? order by ij.INVENTORY_RECORD_CREATED_DATE desc]; nested exception is java.sql.SQLException: Subquery returns more than 1 row
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:47 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:50 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:54 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:54 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:54 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:54 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:54 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:54 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:58:55 [http-nio-8495-exec-3] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:02 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:06 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:11 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:11 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:11 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:11 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:11 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:11 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 15:59:12 [http-nio-8495-exec-10] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:00:48 [ForkJoinPool.commonPool-worker-5] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:00:55 [ForkJoinPool.commonPool-worker-1] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:04:27 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:04:27 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:04:27 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 16:04:27 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:34 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:36 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:36 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:36 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:36 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:36 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:36 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:36 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:36 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:36 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:36 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:36 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:37 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:38 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:38 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:38 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:38 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:38 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:38 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:38 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:38 [http-nio-8495-exec-7] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:45 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:46 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:46 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:46 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:46 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:46 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:46 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:46 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:46 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:46 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:46 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:46 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:47 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:48 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:48 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:48 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:48 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:48 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:48 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:48 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:04:48 [http-nio-8495-exec-2] ERROR c.v.p.rowmapper.ProjectHdrRowMapper -ProjectHdrRowMapper Exception--->java.sql.SQLException: Column 'SB_HDR_ID' not found.
+				
+2025-12-17 16:05:54 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:05:54 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:05:54 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 16:05:54 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 16:06:02 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:06:02 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:06:02 [http-nio-8495-exec-9] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 16:06:02 [http-nio-8495-exec-9] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 16:06:10 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:06:10 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:06:10 [http-nio-8495-exec-3] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 16:06:10 [http-nio-8495-exec-3] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 16:08:08 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:08:08 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:08:08 [http-nio-8495-exec-3] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 16:08:08 [http-nio-8495-exec-3] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 16:08:15 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:08:15 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:08:15 [http-nio-8495-exec-2] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException: 
+				
+2025-12-17 16:08:15 [http-nio-8495-exec-2] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:20 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:24 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:27 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:27 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:27 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:27 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:27 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:27 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:28 [http-nio-8495-exec-7] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:38 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:41 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:48 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:08:48 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:49 [http-nio-8495-exec-1] ERROR com.vmfg.task.dao.impl.DesignTaskDAO -getNextSeqandStatusByDoc Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:08:49 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:49 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:49 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:49 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:49 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:08:50 [http-nio-8495-exec-8] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLException: Column 'IS_INTERNAL' not found.
+				
+2025-12-17 16:09:57 [ForkJoinPool.commonPool-worker-0] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:10:17 [ForkJoinPool.commonPool-worker-3] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2025-12-17 16:53:56 [http-nio-8495-exec-5] ERROR c.v.g.services.impl.TileViewService -getProjectTitleView  method exception-->org.springframework.transaction.CannotCreateTransactionException: Could not open JDBC Connection for transaction; nested exception is com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+
+The last packet successfully received from the server was 7,241,413 milliseconds ago. The last packet sent successfully to the server was 7,241,413 milliseconds ago.
+				

@@ -1,0 +1,36 @@
+2026-05-29 10:27:36 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-05-29 10:28:26 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-29 10:28:26 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-05-29 10:28:26 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-05-29 10:28:26 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-05-29 11:33:24 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:28 [http-nio-8495-exec-4] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:31 [http-nio-8495-exec-10] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:32 [http-nio-8495-exec-6] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:33 [http-nio-8495-exec-8] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:34 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:37 [http-nio-8495-exec-4] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:45 [http-nio-8495-exec-10] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:33:53 [http-nio-8495-exec-5] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:34:26 [http-nio-8495-exec-10] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:34:27 [http-nio-8495-exec-6] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:34:37 [http-nio-8495-exec-8] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				
+2026-05-29 11:34:47 [http-nio-8495-exec-1] ERROR c.v.e.s.i.ProjectTrackerReportService -getPoDtlsByPoIdReportPDF Exception net.sf.jasperreports.engine.JRException: java.net.MalformedURLException
+				

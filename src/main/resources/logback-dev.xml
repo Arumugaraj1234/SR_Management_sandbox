@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+	<property resource="application.properties" />
+	<statusListener
+		class="ch.qos.logback.core.status.NopStatusListener" />
+
+	<springProperty scope="context" name="LOG_PATH" source="${logging.file.name}"/>
+
+	<appender name="PRINT-TO-CONSOLE"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -%msg
+				%n</Pattern>
+		</layout>
+	</appender>
+
+
+	<appender name="SAVE-TO-FILE-DEBUG"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logging.file.name}/smartrun40debug.log</file>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -%msg
+				%n</Pattern>
+		</encoder>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>
+				${logging.file.name}/DebugArchived/smartrun40debug_%d{dd-MM-yyyy}.%i.log
+			</fileNamePattern>
+			<maxFileSize>20MB</maxFileSize>
+			<maxHistory>90</maxHistory>
+		</rollingPolicy>
+
+	</appender>
+
+
+
+	<appender name="SAVE-TO-FILE-ERROR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${logging.file.name}/smartrun40error.log</file>
+		<encoder
+			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -%msg
+				%n</Pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>ERROR</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>
+				${logging.file.name}/ErrorArchived/smartrun40error_%d{dd-MM-yyyy}.%i.log
+			</fileNamePattern>
+			<maxFileSize>20MB</maxFileSize>
+			<maxHistory>90</maxHistory>
+		</rollingPolicy>
+	</appender>
+
+
+
+
+	<root level="info">
+		<appender-ref ref="SAVE-TO-FILE-DEBUG" />
+		<appender-ref ref="SAVE-TO-FILE-ERROR" />
+	 <appender-ref ref="PRINT-TO-CONSOLE" />
+	</root>
+
+</configuration>
+
+
