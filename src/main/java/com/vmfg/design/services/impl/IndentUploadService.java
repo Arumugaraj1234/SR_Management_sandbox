@@ -310,6 +310,7 @@ public class IndentUploadService implements IIndentUploadService {
 			list = iIndentUploadDAO.getIndentDtlsByIndentId(indentDtlReq.getProjectId(), indentDtlReq.getIndentId(), indentDtlReq.getTenantId());
 			String availableValue = iIndentUploadDAO.getAvailableValue(indentDtlReq.getIndentId());
 			String targetValue = iIndentUploadDAO.getTargetValue(indentDtlReq.getIndentId());
+			String costFlowType = iIndentUploadDAO.getCostFlowTypeByIndentId(indentDtlReq.getIndentId());
 			if (list.size() > 0) {
 //				for (int i = 0; i < list.size(); i++) {
 				String getPmId = "";
@@ -438,6 +439,7 @@ public class IndentUploadService implements IIndentUploadService {
 				getList.setAllocatedValue(allocatedValue.toString());
 				getList.setAvilablevalue(availableValue);
 				getList.setTargetValue(targetValue);
+				getList.setCostFlowType(costFlowType);
 				getList.setSeq(iIndentUploadDAO.getCurIndentSeq(indentDtlReq.getIndentId()));
 				mainList.add(getList);
 				returnList.setResponseData(mainList);

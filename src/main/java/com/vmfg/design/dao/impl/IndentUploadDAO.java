@@ -1452,6 +1452,23 @@ public class IndentUploadDAO implements IIndentUploadDAO {
 	}
 
 	@Override
+	public String getCostFlowTypeByIndentId(String indentId) {
+		String costFlowType = "LEGACY";
+		try {
+			String qry = "SELECT ph.COST_FLOW_TYPE FROM indent_hdr ih "
+					+ "INNER JOIN project_hdr ph ON ih.PROJECT_ID = ph.PM_HDR_ID "
+					+ "WHERE ih.INDENT_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, indentId);
+			if (resultMap.get("COST_FLOW_TYPE") != null) {
+				costFlowType = resultMap.get("COST_FLOW_TYPE").toString();
+			}
+		} catch (Exception ex) {
+			logger.error("getCostFlowTypeByIndentId method Error" + ex);
+		}
+		return costFlowType;
+	}
+
+	@Override
 	public String getBudgetValues(String indentId,String pkaId) {
 		String budgetValue = "";
 		try {
