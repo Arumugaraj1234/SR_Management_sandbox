@@ -28,7 +28,7 @@ public interface IPraDAO {
 
 	List<GetPraDtlEntity> getPraDtlList(String praId,String tenantId);
 
-	int praCancel(String praId, String tenantId);
+	int praCancel(String praId, String tenantId, String empId);
 
 	List<String> getPraIdsByPoId(String poId, String tenantId);
 

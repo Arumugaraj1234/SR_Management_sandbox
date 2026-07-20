@@ -10,4 +10,5 @@ public class PraCancelRequest {
     String poId;
     String potId;
     String tenantId;
+    String empId;
 }

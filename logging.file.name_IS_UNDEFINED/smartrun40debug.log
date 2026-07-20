@@ -1577,3 +1577,222 @@ Caused by: com.mysql.cj.exceptions.CJException: Access denied for user 'root'@'l
 				
 2026-07-20 12:34:08 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
+2026-07-20 14:45:16 [background-preinit] INFO  o.h.validator.internal.util.Version -HV000001: Hibernate Validator 6.2.3.Final
+				
+2026-07-20 14:45:17 [restartedMain] INFO  o.s.boot.SpringApplication -
+
+                                ooooooo &&&&&&&&                              
+                              oo     oo &.     &                              
+                    ooooooo  oo      oo &:     &&                             
+                 oo        oooo      oo &&       *&&&&  &&&&&&                
+               oo            oo      oo &&                    &&&             
+              oo                     oo &&&&&                  &o             
+              oo                     oo &&     &&&&&           &              
+              oo           ooo       oo &&           &&&       &&             
+           ooooo           o:        oo &&              &        &&           
+       ooo     *oo       oo          oo &&                        &&&&&&&     
+     oo           ooooooo            oo &&                              &&    
+    o&                                      &&&&*       &&               &&   
+   oo                                            &&       &&              &&  
+   o     ooooo                  @     @@    @@     &&:     &&           &&    
+  oo ooo       ooo          @@@@@@@@@@@@@@@@@@@@@    &&     &&         &&     
+  ooo            oo         @@ @@@ @@@@@@@@@@@  @     &&     &&         &     
+  oo               o      @@@@ @@@ @@@@@@@@@@@  @@@    &&     &         &&    
+  o&               oo       @@ @@@ @@@@@@@@@@@  @       &     &         &&    
+  oo               oo       @@ @@ @ @@@@        @       &&                &&& 
+  oo                      @@@@ @@@@@@@@@@@@@@@  @@@:    &&                  &&
+  oo                        @@ @@@@@@@@@@@ @@@  @       &&        o&        &&
+   o                        @@ @@@@@ @@@  @@@@  @       &         &&        &.
+   oo                     @@@@ @@@ @@@@@@@@@@@  @@@@   &          &    .&&&&  
+    o         oooo          @@                  @     &.         &&    &&     
+    oo    ooo      &oo          @     @@    @@      &&          &&    &&      
+     oo oo            oo        @     @     @@    &&           &&    &&       
+      ooo              oo                      &&&           &&      &&       
+         oooooooo       oo           oo &&&&&&              &&         &      
+              oo        oo           oo &&         &      &&           &&     
+              o        :o            oo &&  .&&&&&     &&.           &&       
+              o       oo             oo &&                    &&&&&&&&        
+              oo    ooo              oo &&                  &&                
+                oo                   oo &&                &&                  
+                  oo        oooo     oo &&                &                   
+                     ooooooo  &o     oo &&      &&&       &                   
+                                oo   oo && :&&&   .&& &&&*                    
+                                   &ooo &&&                                   
+
+==============================================
+SmartRun Product by SmartRun Tech. All rights reserved.
+==============================================
+Application Version : 2.6.7
+Application Title : SmartRun MES
+Contact : support@smartruntech.com
+==============================================
+
+				
+2026-07-20 14:45:17 [restartedMain] INFO  com.vmfg.VMFGApplication -Starting VMFGApplication using Java 1.8.0_482 on Peachs-Mac-mini.local with PID 4182 (/Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE-sandbox/SmartRun_ProjectManagement_Java/SR_Management/target/classes started by peach in /Users/peach/Spring_Boot_Projects/bgr/OneDrive_1_4-15-2026/BGR-SOURCE_CODE-sandbox/SmartRun_ProjectManagement_Java/SR_Management)
+				
+2026-07-20 14:45:17 [restartedMain] INFO  com.vmfg.VMFGApplication -The following 1 profile is active: "dev"
+				
+2026-07-20 14:45:18 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+				
+2026-07-20 14:45:18 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor -For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+				
+2026-07-20 14:45:20 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+				
+2026-07-20 14:45:20 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate -Finished Spring Data repository scanning in 83 ms. Found 0 JDBC repository interfaces.
+				
+2026-07-20 14:45:21 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat initialized with port(s): 8495 (http)
+				
+2026-07-20 14:45:21 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Initializing ProtocolHandler ["http-nio-8495"]
+				
+2026-07-20 14:45:21 [restartedMain] INFO  o.a.catalina.core.StandardService -Starting service [Tomcat]
+				
+2026-07-20 14:45:21 [restartedMain] INFO  o.a.catalina.core.StandardEngine -Starting Servlet engine: [Apache Tomcat/9.0.63]
+				
+2026-07-20 14:45:21 [restartedMain] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring embedded WebApplicationContext
+				
+2026-07-20 14:45:21 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext -Root WebApplicationContext: initialization completed in 3689 ms
+				
+2026-07-20 14:45:25 [restartedMain] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping -Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+				
+2026-07-20 14:45:25 [restartedMain] INFO  o.s.s.web.DefaultSecurityFilterChain -Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2eae83f8, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@35e5111, org.springframework.security.web.context.SecurityContextPersistenceFilter@1209fa46, org.springframework.security.web.header.HeaderWriterFilter@2689d9ce, org.springframework.web.filter.CorsFilter@5080f908, org.springframework.security.web.authentication.logout.LogoutFilter@25a6b176, com.vmfg.security.config.JwtRequestFilter@f5e5a46, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@65f0a782, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@19adf49d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@14000c9b, org.springframework.security.web.session.SessionManagementFilter@7d50dadb, org.springframework.security.web.access.ExceptionTranslationFilter@14f48e2c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4b156172]
+				
+2026-07-20 14:45:25 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer -LiveReload server is running on port 35729
+				
+2026-07-20 14:45:25 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Starting...
+				
+2026-07-20 14:45:25 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Start completed.
+				
+2026-07-20 14:45:26 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol -Starting ProtocolHandler ["http-nio-8495"]
+				
+2026-07-20 14:45:26 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer -Tomcat started on port(s): 8495 (http) with context path '/smartrun'
+				
+2026-07-20 14:45:26 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Context refreshed
+				
+2026-07-20 14:45:26 [restartedMain] INFO  s.d.s.w.p.DocumentationPluginsBootstrapper -Found 1 custom documentation plugin(s)
+				
+2026-07-20 14:45:26 [restartedMain] INFO  s.d.s.w.s.ApiListingReferenceScanner -Scanning for api listing references
+				
+2026-07-20 14:45:28 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: insertOrUpdateSalesBudgetSheetHdrAndDtlUsingPOST_1
+				
+2026-07-20 14:45:28 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: getVendorDetailHdrViewUsingPOST_1
+				
+2026-07-20 14:45:28 [restartedMain] INFO  s.d.s.w.r.o.CachingOperationNameGenerator -Generating unique operation named: updateUserRoleMappingUsingPOST_1
+				
+2026-07-20 14:45:28 [restartedMain] INFO  com.vmfg.VMFGApplication -Started VMFGApplication in 12.82 seconds (JVM running for 13.693)
+				
+2026-07-20 14:45:28 [restartedMain] INFO  c.v.config.DevFlywayMigrationRunner -Running Flyway migrations against sandbox datasource
+				
+2026-07-20 14:45:28 [restartedMain] INFO  o.f.c.i.license.VersionPrinter -Flyway Community Edition 9.22.3 by Redgate
+				
+2026-07-20 14:45:28 [restartedMain] INFO  o.f.c.i.license.VersionPrinter -See release notes here: https://rd.gt/416ObMi
+				
+2026-07-20 14:45:28 [restartedMain] INFO  o.f.c.i.license.VersionPrinter -
+				
+2026-07-20 14:45:28 [restartedMain] INFO  org.flywaydb.core.FlywayExecutor -Database: jdbc:mysql://localhost:3306/smartrun_bgr_sandbox (MySQL 9.6)
+				
+2026-07-20 14:45:28 [restartedMain] WARN  o.f.c.i.database.base.Database -Flyway upgrade recommended: MySQL 9.6 is newer than this version of Flyway and support has not been tested. The latest supported version of MySQL is 8.0.
+				
+2026-07-20 14:45:28 [restartedMain] INFO  o.f.core.internal.command.DbValidate -Successfully validated 2 migrations (execution time 00:00.030s)
+				
+2026-07-20 14:45:28 [restartedMain] INFO  o.f.core.internal.command.DbMigrate -Current version of schema `smartrun_bgr_sandbox`: 1
+				
+2026-07-20 14:45:28 [restartedMain] INFO  o.f.core.internal.command.DbMigrate -Schema `smartrun_bgr_sandbox` is up to date. No migration necessary.
+				
+2026-07-20 14:45:28 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-07-20 14:45:50 [http-nio-8495-exec-3] INFO  o.a.c.c.C.[.[localhost].[/smartrun] -Initializing Spring DispatcherServlet 'dispatcherServlet'
+				
+2026-07-20 14:45:50 [http-nio-8495-exec-3] INFO  o.s.web.servlet.DispatcherServlet -Initializing Servlet 'dispatcherServlet'
+				
+2026-07-20 14:45:50 [http-nio-8495-exec-3] INFO  o.s.web.servlet.DispatcherServlet -Completed initialization in 7 ms
+				
+2026-07-20 14:45:50 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-20 14:45:50 [http-nio-8495-exec-3] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-20 14:45:50 [http-nio-8495-exec-3] INFO  com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary method Start
+				
+2026-07-20 14:45:50 [http-nio-8495-exec-3] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-20 14:45:50 [http-nio-8495-exec-3] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-20 14:46:22 [http-nio-8495-exec-1] INFO  com.vmfg.authentication.UserLoginDAO - getUserDtlForAuth DAO method Start
+				
+2026-07-20 14:46:22 [http-nio-8495-exec-1] INFO  com.vmfg.authentication.UserLoginDAO -getUserLoginInfo DAO method end
+				
+2026-07-20 14:46:23 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:23 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:23 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:23 [http-nio-8495-exec-7] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-20 14:46:23 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method Start
+				
+2026-07-20 14:46:23 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-20 14:46:23 [http-nio-8495-exec-4] INFO  c.v.s.c.IndentManagementController -getIndentProjectDtlsByDate Controller  method end
+				
+2026-07-20 14:46:23 [http-nio-8495-exec-8] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:25 [http-nio-8495-exec-5] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-20 14:46:26 [http-nio-8495-exec-7] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-20 14:46:26 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:26 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:30 [http-nio-8495-exec-4] INFO  c.v.g.services.impl.TileViewService -getSaleTileView  method start
+				
+2026-07-20 14:46:30 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl   method Start
+				
+2026-07-20 14:46:30 [http-nio-8495-exec-6] INFO  c.v.s.c.IndentManagementController -getScmHdrBasedDtl  method end
+				
+2026-07-20 14:46:30 [http-nio-8495-exec-4] INFO  c.v.g.c.StageManagementController -getSCMTitleView   method end
+				
+2026-07-20 14:46:30 [http-nio-8495-exec-1] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:30 [http-nio-8495-exec-2] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:31 [http-nio-8495-exec-5] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:31 [http-nio-8495-exec-1] INFO  c.v.g.c.DepartmentAndEmployeeInfoController -getprocessAssignedTeam   method Start
+				
+2026-07-20 14:46:31 [http-nio-8495-exec-1] INFO  c.v.g.s.i.DepartmentAndEmployeeService -getprocessAssignedTeam  method start
+				
+2026-07-20 14:46:31 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:31 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:31 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:31 [http-nio-8495-exec-3] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:31 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:33 [http-nio-8495-exec-7] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:33 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service start 
+				
+2026-07-20 14:46:33 [http-nio-8495-exec-5] INFO  c.v.finance.controller.PraController -retrievePRA   method Start
+				
+2026-07-20 14:46:33 [http-nio-8495-exec-1] INFO  com.vmfg.scm.services.impl.PoService -getPoDtlsByDateAndPoId Service end 
+				
+2026-07-20 14:46:33 [http-nio-8495-exec-9] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:34 [http-nio-8495-exec-5] INFO  c.v.finance.controller.PraController -retrievePRA   method end
+				
+2026-07-20 14:46:34 [http-nio-8495-exec-10] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:40 [http-nio-8495-exec-3] INFO  c.v.finance.controller.PraController -getPraDtl   method Start
+				
+2026-07-20 14:46:40 [http-nio-8495-exec-3] INFO  c.v.finance.controller.PraController -getPraDtl   method end
+				
+2026-07-20 14:46:40 [http-nio-8495-exec-6] INFO  c.v.g.c.NotificationGeneralController -getNotificationDetails   method Start
+				
+2026-07-20 14:46:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown initiated...
+				
+2026-07-20 14:46:55 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource -HikariPool-1 - Shutdown completed.
+				

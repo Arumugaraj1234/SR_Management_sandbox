@@ -198,8 +198,8 @@ public class PraDAO implements IPraDAO {
 	public int updatePraHdr(String invoiceNo, String invoiceDate, String transportValue, String pfValue, String insuranceValue, String otherValue, String reamarks,String tds,String amountPayable,String retention, String ld, String others ,String praId) {
 		int res=0;
 		try {
-			String qry="update pra_hdr set INVOICE_DATE = ?, REMARKS = ? , TDS = ? ,AMOUNT_PAYABLE  = ? , AMOUNT_DUE  = ?, RETENTION = ? ,LD = ?  where PRA_ID = ?";
-			res = this.jdbcTemplate.update(qry,invoiceDate,reamarks,tds,amountPayable,amountPayable, retention, ld, praId);
+			String qry="update pra_hdr set INVOICE_DATE = ?, REMARKS = ? , TDS = ? ,AMOUNT_PAYABLE  = ? , AMOUNT_DUE  = ?, RETENTION = ? ,LD = ?, TRANSPORT_CHARGE = ?, P_F_CHARGE = ?, INSURANCE_CHARGE = ?, OTHER_CHARGE = ?, OTHERS = ?  where PRA_ID = ?";
+			res = this.jdbcTemplate.update(qry,invoiceDate,reamarks,tds,amountPayable,amountPayable, retention, ld, transportValue, pfValue, insuranceValue, otherValue, others, praId);
 		}catch(Exception ex) {
 			logger.error("updatePraHdr Method Exception "+ex);
 		}
@@ -283,7 +283,7 @@ public class PraDAO implements IPraDAO {
 	}
 
 	@Override
-	public int praCancel(String praId, String tenantId) {
+	public int praCancel(String praId, String tenantId, String empId) {
 		int update = 0;
 		try {
 			String qry1 = "UPDATE pra_hdr SET IS_LATEST = 0 WHERE PRA_ID = ? AND TENANT_ID = ?;";
@@ -294,6 +294,13 @@ public class PraDAO implements IPraDAO {
 					+ "SET ppt.PENDING_AMOUNT = ppt.PENDING_AMOUNT + ph.AMOUNT_PAYABLE "
 					+ "WHERE ph.PRA_ID = ? AND ph.TENANT_ID = ?;";
 			jdbcTemplate.update(qry2, praId, tenantId);
+
+			// DC077 lifecycle's cancel step (DSM_ID 3104: DOC_STATUS=DS168 "PRA Cancel", CURR_SEQUENCE=3)
+			// Only log history when a real pra_hdr row was actually cancelled (guards against
+			// praId values that don't correspond to any PRA, e.g. a caller passing a foreign ID)
+			if (update > 0) {
+				insertPraStatusDtl(praId, "3", "DS168", tenantId, "Cancelled", empId);
+			}
 
 		} catch (Exception e) {
 			throw new RuntimeException(e);
@@ -368,9 +375,9 @@ public class PraDAO implements IPraDAO {
 							"    inner join\r\n" + 
 							"    po_dtl pod on pod.PO_ID=poh.PO_ID\r\n" + 
 							" WHERE\r\n" + 
-							"    hdr.PO_ID LIKE '"+poId+"'\r\n" + 
-							"        AND hdr.PM_HDR_ID LIKE '"+pmHdrId+"'\r\n" + 
-							"        AND hdr.TENANT_ID = ? AND hdr.IS_LATEST=1";
+							"    hdr.PO_ID LIKE '"+poId+"'\r\n" +
+							"        AND hdr.PM_HDR_ID LIKE '"+pmHdrId+"'\r\n" +
+							"        AND hdr.TENANT_ID = ?";
 					list = this.jdbcTemplate.query(query, new GetPraDtlRowMapper(), tenantId);
 				} catch (Exception e) {
 					// TODO: handle exception
