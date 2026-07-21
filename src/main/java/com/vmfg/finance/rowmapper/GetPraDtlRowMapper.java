@@ -58,6 +58,7 @@ public class GetPraDtlRowMapper implements RowMapper<GetPraDtlEntity> {
 			row.setProjectName(rs.getString("PROJECT_NAME"));
 			row.setPoType(rs.getString("PO_TYPE"));
 			row.setPoValue(rs.getString("TOTAL_VALUE"));
+			row.setIsLatest(rs.getString("IS_LATEST"));
 			row.setBasicTotal(rs.getString("BASIC_TOTAL"));
 			row.setGst(rs.getString("GST"));
 			if (columnExists(rs, "GST_VALUE")) {

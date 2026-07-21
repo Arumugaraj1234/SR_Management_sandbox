@@ -237,7 +237,7 @@ public class PraService implements IPraService {
 			String praId = praCancelRequest.getPraId();
 //			List<String> praIds = iPraDAO.getPraIdsByPoId(praCancelRequest.getPoId(), tenantid);
 //			for(String praId : praIds){
-			iPraDAO.praCancel(praId, tenantid);
+			iPraDAO.praCancel(praId, tenantid, praCancelRequest.getEmpId());
 //			}
 			returnList.setResponseMessage("PRA cancellation completed successfully.");
 			returnList.setResponseCode("200");

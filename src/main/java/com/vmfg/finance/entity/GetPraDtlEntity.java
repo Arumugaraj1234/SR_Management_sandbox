@@ -58,6 +58,7 @@ public class GetPraDtlEntity implements Serializable{
 	private String basicTotal;
 	private String isEditable;
 	private String poCostType;
+	private String isLatest;
 	private String verCheck;
 	private String insuranceValue;
 	private String transportValue;
