@@ -115,6 +115,8 @@ public interface IIndentUploadDAO {
 
 	String getTargetValue(String indentId);
 
+	String getCostFlowTypeByIndentId(String indentId);
+
 	String getBudgetValues(String indentId,String pkaId);
 
 	int updateBudgetValInPKA(String budgetValue, String pkaId, String operation);

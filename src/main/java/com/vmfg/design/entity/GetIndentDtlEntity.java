@@ -13,6 +13,7 @@ public class GetIndentDtlEntity {
 	private String targetValue;
 	private String allocatedValue;
 	private String avilablevalue;
+	private String costFlowType;
 	private String seq;
 	private String poId;
 	private int isFlag;
