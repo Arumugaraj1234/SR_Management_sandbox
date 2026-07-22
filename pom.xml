@@ -197,7 +197,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>smartrun-mes</finalName>
+		<finalName>smartrun-mes-nf</finalName>
 		<plugins>
 			<plugin>
 				<configuration>

@@ -172,4 +172,6 @@ public interface IIndentGroupDAO {
 	void updateInvStockYesOrNo(String type, String igHdrId);
 
 	int getPendingUngroupedItemCount(String indentId, String tenantId);
+
+	String getOtherCommittedScsTotalByPkaId(String pkaId, String excludeIndentId, String minSeqNo);
 }

@@ -209,4 +209,6 @@ public interface IPoDAO {
 
 	String getPendingAmtForPraStatus(String poId);
 
+	String getApprovedPoTotalByPkaId(String pkaId);
+
 }

@@ -1322,7 +1322,7 @@ public class IndentUploadDAO implements IIndentUploadDAO {
 		List<IndentProjectEntity> list = new ArrayList<IndentProjectEntity>();
 		try {
 			String qry = "SELECT \r\n" + "    pm.PROJECT_CODE,\r\n" + "    pm.PROJECT_NAME,\r\n"
-					+ "    hdr.INDENT_CODE,\r\n" + "    hdr.CREATED_DATE,\r\n"
+					+ "    pm.COST_FLOW_TYPE,\r\n" + "    hdr.INDENT_CODE,\r\n" + "    hdr.CREATED_DATE,\r\n"
 					+ "    hdr.EXPECTED_DELIVERY_DATE,hdr.SCM_BUDGET_ALLOCATED\r\n" + "FROM\r\n"
 					+ "    indent_hdr hdr,\r\n" + "    project_hdr pm\r\n" + "WHERE\r\n"
 					+ "    hdr.PROJECT_ID = pm.PM_HDR_ID\r\n" + "        AND hdr.INDENT_ID = ?\r\n"
