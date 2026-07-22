@@ -2563,5 +2563,20 @@ String poDate= CommonMethod.getCurrentDate();
 	    return praPendingVal;
 	}
 
+	@Override
+	public String getApprovedPoTotalByPkaId(String pkaId) {
+	    String totalVal = "0";
+	    try {
+	        String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ph.BASIC_TOTAL) ELSE 0 END AS VAL " +
+	                     "FROM po_hdr ph " +
+	                     "INNER JOIN indent_hdr ih ON ih.INDENT_ID = ph.INDENT_ID " +
+	                     "WHERE ih.PKA_ID = ? AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1";
+	        Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, pkaId);
+	        totalVal = resultMap.get("VAL").toString();
+	    } catch (Exception e) {
+	        logger.error("getApprovedPoTotalByPkaId error: " + e);
+	    }
+	    return totalVal;
+	}
 
 }

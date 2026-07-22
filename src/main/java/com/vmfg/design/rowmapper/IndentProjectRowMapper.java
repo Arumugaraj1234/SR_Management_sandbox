@@ -22,6 +22,7 @@ public class IndentProjectRowMapper implements RowMapper<IndentProjectEntity> {
 			res.setProjectCode(rs.getString("PROJECT_CODE"));
 			res.setProjectName(rs.getString("PROJECT_NAME"));
 			res.setTotalBudgetConsumed(rs.getString("SCM_BUDGET_ALLOCATED"));
+			res.setCostFlowType(rs.getString("COST_FLOW_TYPE"));
 		} catch (Exception ex) {
 			logger.error("IndentProjectRowMapper  Method Exception" + ex);
 		}

@@ -820,13 +820,32 @@ public class IndentGroupService implements IIndentGroupService {
 //					budgetCol="L3_EXTN_FINAL_BASIC_TOTAL";
 //				}
 				scmBudgetValue = new BigDecimal(indentGroupDAO.getindentScmVal(indentId));
-				indentTargetValue = new BigDecimal(iIndentGroupDAO.getIndentTargetValue(indentId));
-				budgetExcessValue = new BigDecimal(iIndentGroupDAO.getBudgetExcessValue(indentId));
-				indentTargetValue = indentTargetValue.add(budgetExcessValue);
 				// update scmBudget Value in indent_hdr
 				//	indentUploadDAO.updateScmBudget(String.valueOf(scmBudgetValue), indentId);
 
-				if (indentTargetValue.compareTo(scmBudgetValue) < 0) {
+				String costFlowType = indentUploadDAO.getCostFlowTypeByIndentId(indentId);
+				boolean isBudgetExceeded;
+				if ("NEW".equalsIgnoreCase(costFlowType)) {
+					// NEW-flow: TARGET_VALUE is always 0 (see project_budget_target_cost_removal),
+					// so check the real remaining budget at the station instead: what's allocated
+					// to the station minus what's already committed there (approved POs, plus other
+					// SCS's that already crossed this same "Project Approved" step but have no PO yet).
+					String pkaId = indentUploadDAO.getPkaIdByIndentId(indentId);
+					BigDecimal stationAllocated = new BigDecimal(projectDAO.getAllocatedValSum(pkaId));
+					BigDecimal approvedPoTotal = new BigDecimal(poDAO.getApprovedPoTotalByPkaId(pkaId));
+					BigDecimal otherCommittedPjs = new BigDecimal(
+							indentGroupDAO.getOtherCommittedScsTotalByPkaId(pkaId, indentId, scsBudgetExcessSeq));
+					BigDecimal remainingStationBudget = stationAllocated.subtract(approvedPoTotal)
+							.subtract(otherCommittedPjs);
+					isBudgetExceeded = remainingStationBudget.compareTo(scmBudgetValue) < 0;
+				} else {
+					indentTargetValue = new BigDecimal(iIndentGroupDAO.getIndentTargetValue(indentId));
+					budgetExcessValue = new BigDecimal(iIndentGroupDAO.getBudgetExcessValue(indentId));
+					indentTargetValue = indentTargetValue.add(budgetExcessValue);
+					isBudgetExceeded = indentTargetValue.compareTo(scmBudgetValue) < 0;
+				}
+
+				if (isBudgetExceeded) {
 					int budgetExcessEntry=iIndentGroupDAO.getBudgetExcessDtlCount(scsId);
 					if(budgetExcessEntry==0) {
 						BudgetExcessSheetRequest budgetExcessSheetReq = new BudgetExcessSheetRequest();
