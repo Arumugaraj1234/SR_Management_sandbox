@@ -2,7 +2,9 @@ package com.vmfg.scm.services.impl;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -110,6 +112,13 @@ public class IndentGroupService implements IIndentGroupService {
 			String partCount="";
 			list = iIndentGroupDAO.getIndentGroupRetrieve(tenantId, fromDate, toDate, indentId,indentGrpDtlReq.getProjectId(),indentGrpDtlReq.getEmpId());
 			if(list.size()>0) {
+				// docGroupList only depends on tenantId/processDoc (constant for this whole request) - fetch once
+				// instead of once per row. The doc-lifecycle/status lookups below repeat the same (currSeq, docGroup)
+				// / docStatus combinations across many rows too - cache them per-request (read-only lookups,
+				// never mutated after being fetched, so sharing the same cached instance across rows is safe).
+				List<String> docGroupList = iIndentGroupDAO.getDistinctScsDocGroup("DC038", tenantId, processDoc);
+				Map<String, List<DocumentStatusMstEntity>> nextSeqDocCache = new HashMap<>();
+				Map<String, String> statusDescCache = new HashMap<>();
 				for(int i=0;i<list.size();i++) {
 					String vendorQualified=iIndentGroupDAO.getVenQualifiedByIgHdrId(list.get(i).getIgHdrId());
 					String basicTotalCol="";
@@ -130,7 +139,7 @@ public class IndentGroupService implements IIndentGroupService {
 					}
 					int verFlag = iIndentGroupDAO.pjsversioncheck(list.get(i).getIgHdrId());
 					list.get(i).setVersionCheck(Integer.toString(verFlag));
-					String	docGroup = getScsDocGroup(list.get(i).getFinalCost(),tenantId, processDoc);
+					String	docGroup = resolveScsDocGroup(list.get(i).getFinalCost(), docGroupList);
 
 					List<ScpDtlsEntity>	mainList=iIndentGroupDAO.getScpDtlsByIgHdrId(list.get(i).getIgHdrId(),tenantId);
 					String currSeq = "1";
@@ -139,10 +148,21 @@ public class IndentGroupService implements IIndentGroupService {
 					}
 					String indentGroupSCSType = iIndentGroupDAO.indentGroupSCSType(list.get(i).getIgHdrId());
 					list.get(i).setType(indentGroupSCSType);
-					List<DocumentStatusMstEntity>	docLifeCycleMstList = designTaskDAO.getNextSeqandStatusByDoc(Integer.parseInt(currSeq), "DC038",
-							tenantId, docGroup, processDoc);
+					String seqGroupKey = currSeq + "|" + docGroup;
+					List<DocumentStatusMstEntity> docLifeCycleMstList = nextSeqDocCache.get(seqGroupKey);
+					if (docLifeCycleMstList == null) {
+						docLifeCycleMstList = designTaskDAO.getNextSeqandStatusByDoc(Integer.parseInt(currSeq), "DC038",
+								tenantId, docGroup, processDoc);
+						nextSeqDocCache.put(seqGroupKey, docLifeCycleMstList);
+					}
 					if(docLifeCycleMstList.size()>0 && (list.get(i).getType()!=null && !list.get(i).getType().equalsIgnoreCase("Cash Voucher"))) {
-						list.get(i).setNextStatus(designTaskDAO.getStatusByDesc(docLifeCycleMstList.get(0).getDocStatus(), tenantId));
+						String docStatus = docLifeCycleMstList.get(0).getDocStatus();
+						String nextStatusDesc = statusDescCache.get(docStatus);
+						if (nextStatusDesc == null) {
+							nextStatusDesc = designTaskDAO.getStatusByDesc(docStatus, tenantId);
+							statusDescCache.put(docStatus, nextStatusDesc);
+						}
+						list.get(i).setNextStatus(nextStatusDesc);
 					}
 					if(list.get(i).getIsInventory().equalsIgnoreCase("1")) {
 						list.get(i).setIsInventory("True");
@@ -562,6 +582,26 @@ public class IndentGroupService implements IIndentGroupService {
 			logger.error("getScpDtlsByIgHdrId error---> " + ex);
 		}
 		return returnList;
+	}
+
+	// Same lookup as getScsDocGroup below, but reuses a docGroupList already fetched once for the whole
+	// request instead of re-querying the DB - used by the per-row loop in getIndentGroupDetails.
+	private String resolveScsDocGroup(String val, List<String> docGroupList) {
+		String docGroup = "";
+		try {
+			BigDecimal value = new BigDecimal(val);
+			if (docGroupList.size() > 0) {
+				for (String docGrpVal : docGroupList) {
+					if (value.compareTo(new BigDecimal(docGrpVal)) <= 0) {
+						docGroup = docGrpVal;
+						break;
+					}
+				}
+			}
+		} catch (Exception ex) {
+			logger.error("resolveScsDocGroup Error" + ex);
+		}
+		return docGroup;
 	}
 
 	public String getScsDocGroup(String val,String tenantId, String processDoc) {
@@ -1239,6 +1279,13 @@ public class IndentGroupService implements IIndentGroupService {
 			String partCount="";
 			list = iIndentGroupDAO.getIndentGroupDtlsForSCS(pmHdrId,tenantId);
 			if(list.size()>0) {
+				// Same fix as getIndentGroupDetails above: docGroupList only depends on tenantId/processDoc
+				// (constant for this request) - fetch once. The doc-lifecycle/status lookups repeat the same
+				// (currSeq, docGroup) / docStatus combinations across many rows too - cache them per-request
+				// (read-only lookups, never mutated after being fetched).
+				List<String> docGroupList = iIndentGroupDAO.getDistinctScsDocGroup("DC038", tenantId, processDoc);
+				Map<String, List<DocumentStatusMstEntity>> nextSeqDocCache = new HashMap<>();
+				Map<String, String> statusDescCache = new HashMap<>();
 				for(int i=0;i<list.size();i++) {
 					list.get(i).setSNumber(String.valueOf(i+1));
 					int verFlag = iIndentGroupDAO.pjsversioncheck(list.get(i).getIgHdrId());
@@ -1258,17 +1305,28 @@ public class IndentGroupService implements IIndentGroupService {
 					String venDtlBasicCostFx = indentGroupDAO.venDtlBasicCostFx(list.get(i).getIgHdrId(),basicTotalCol);
 					list.get(i).setFinalCostFx(venDtlBasicCostFx);
 
-					String	docGroup = getScsDocGroup(list.get(i).getFinalCost(),tenantId,processDoc);
+					String	docGroup = resolveScsDocGroup(list.get(i).getFinalCost(), docGroupList);
 
 					List<ScpDtlsEntity>	mainList=iIndentGroupDAO.getScpDtlsByIgHdrId(list.get(i).getIgHdrId(),tenantId);
 					String currSeq = "1";
 					if(mainList.size()>0) {
 						currSeq=mainList.get(0).getSeqNo();
 					}
-					List<DocumentStatusMstEntity>	docLifeCycleMstList = designTaskDAO.getNextSeqandStatusByDoc(Integer.parseInt(currSeq), "DC038",
-							tenantId, docGroup,processDoc);
+					String seqGroupKey = currSeq + "|" + docGroup;
+					List<DocumentStatusMstEntity> docLifeCycleMstList = nextSeqDocCache.get(seqGroupKey);
+					if (docLifeCycleMstList == null) {
+						docLifeCycleMstList = designTaskDAO.getNextSeqandStatusByDoc(Integer.parseInt(currSeq), "DC038",
+								tenantId, docGroup,processDoc);
+						nextSeqDocCache.put(seqGroupKey, docLifeCycleMstList);
+					}
 					if(docLifeCycleMstList.size()>0) {
-						list.get(i).setNextStatus(designTaskDAO.getStatusByDesc(docLifeCycleMstList.get(0).getDocStatus(), tenantId));
+						String docStatus = docLifeCycleMstList.get(0).getDocStatus();
+						String nextStatusDesc = statusDescCache.get(docStatus);
+						if (nextStatusDesc == null) {
+							nextStatusDesc = designTaskDAO.getStatusByDesc(docStatus, tenantId);
+							statusDescCache.put(docStatus, nextStatusDesc);
+						}
+						list.get(i).setNextStatus(nextStatusDesc);
 					}
 					if(list.get(i).getIsInventory().equalsIgnoreCase("1")) {
 						list.get(i).setIsInventory("True");

@@ -2,7 +2,9 @@ package com.vmfg.project.service.impl;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -148,83 +150,140 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 			String docGroup = "";
 			list = iBudgetExcessSheetDAO.retriveBudgetExcessSheetDtl(statusDtlReq);
 			int serialNumber = 1;
+
+			// The lookups below repeat the same (indentId) / (currSeq, docGroup) / (statusCode) combinations
+			// across many rows of the same request - cache them per-request (read-only lookups, see getDocGroup
+			// helpers below) instead of re-querying the DB for every row. Cache maps are local to this method call,
+			// so there is no cross-request/thread state.
+			Map<String, String> assemblyDesCache = new HashMap<>();
+			Map<String, String> subAssemblyDesCache = new HashMap<>();
+			Map<String, String> budgetCodeCache = new HashMap<>();
+			Map<String, List<DocumentStatusMstEntity>> currSeqDocCache = new HashMap<>();
+			Map<String, List<DocumentStatusMstEntity>> nextSeqDocCache = new HashMap<>();
+			Map<String, String> statusCodeCache = new HashMap<>();
+			Map<String, String> statusDescCache = new HashMap<>();
+			Map<String, Integer> approveBtnCache = new HashMap<>();
+			Map<String, String> docTypeDescCache = new HashMap<>();
+
+			// docGroupList and designCode are the same for every row in this request (they only depend on
+			// tenantId/processCode/empId from statusDtlReq), so fetch them once instead of once per row.
+			List<String> docGroupList = iBudgetExcessSheetDAO.getDistinctDocGroup("DC039", statusDtlReq.getTenantId(),
+					statusDtlReq.getProcessCode());
+			String designCode = uploadManagementDAO.getDesigCodeByEmpId(statusDtlReq.getEmpId(),
+					statusDtlReq.getTenantId());
+
 			for (BudgetExcessSheetEntity listObj : list) {
 				listObj.setSerialNumber(String.valueOf(serialNumber++));
-				listObj.setAssemblyValue(iBudgetExcessSheetDAO.getAssemblyDes(statusDtlReq.getTenantId(),listObj.getIndentId()));
-				listObj.setSubAssemblyValue(iBudgetExcessSheetDAO.getSubAssemblyDes(statusDtlReq.getTenantId(),listObj.getIndentId()));
-				listObj.setBudgetCostlat(iBudgetExcessSheetDAO.getBudgetCodeByIndentId(listObj.getIndentId()));
+
+				String indentId = listObj.getIndentId();
+
+				String assemblyValue = assemblyDesCache.get(indentId);
+				if (assemblyValue == null) {
+					assemblyValue = iBudgetExcessSheetDAO.getAssemblyDes(statusDtlReq.getTenantId(), indentId);
+					assemblyDesCache.put(indentId, assemblyValue);
+				}
+				listObj.setAssemblyValue(assemblyValue);
+
+				String subAssemblyValue = subAssemblyDesCache.get(indentId);
+				if (subAssemblyValue == null) {
+					subAssemblyValue = iBudgetExcessSheetDAO.getSubAssemblyDes(statusDtlReq.getTenantId(), indentId);
+					subAssemblyDesCache.put(indentId, subAssemblyValue);
+				}
+				listObj.setSubAssemblyValue(subAssemblyValue);
+
+				String budgetCostlat = budgetCodeCache.get(indentId);
+				if (budgetCostlat == null) {
+					budgetCostlat = iBudgetExcessSheetDAO.getBudgetCodeByIndentId(indentId);
+					budgetCodeCache.put(indentId, budgetCostlat);
+				}
+				listObj.setBudgetCostlat(budgetCostlat);
+
+				// beHdrId-specific, genuinely different per row - not cacheable
 				listObj.setVerCheck(iBudgetExcessSheetDAO.getVerChechForBudgetExcessByBeHdrId(listObj.getBeHdrId(),listObj.getTenantId()));
-				// get docGroup based on excess value
-				docGroup = getDocGroup(listObj.getExcess(),statusDtlReq.getTenantId(),statusDtlReq.getProcessCode());
+				// get docGroup based on excess value (docGroupList fetched once, above)
+				docGroup = resolveDocGroup(listObj.getExcess(), docGroupList);
 
 				int approveBtnEnable = 0;
 				// DocList Start
 				String currSeq = listObj.getSequenceNo();
-				currSeqDocLifeCycleMstList = stageManagementDAO.getDocDtlcurrentSeqByDocGrp("DC039", currSeq,
-						statusDtlReq.getTenantId(), docGroup, statusDtlReq.getProcessCode());
-				docLifeCycleMstList = designTaskDAO.getNextSeqandStatusByDoc(Integer.parseInt(currSeq), "DC039",
-						statusDtlReq.getTenantId(), docGroup, statusDtlReq.getProcessCode());
+				String seqGroupKey = currSeq + "|" + docGroup;
+
+				currSeqDocLifeCycleMstList = currSeqDocCache.get(seqGroupKey);
+				if (currSeqDocLifeCycleMstList == null) {
+					currSeqDocLifeCycleMstList = stageManagementDAO.getDocDtlcurrentSeqByDocGrp("DC039", currSeq,
+							statusDtlReq.getTenantId(), docGroup, statusDtlReq.getProcessCode());
+					currSeqDocCache.put(seqGroupKey, currSeqDocLifeCycleMstList);
+				}
+
+				List<DocumentStatusMstEntity> cachedNextSeqList = nextSeqDocCache.get(seqGroupKey);
+				if (cachedNextSeqList == null) {
+					cachedNextSeqList = designTaskDAO.getNextSeqandStatusByDoc(Integer.parseInt(currSeq), "DC039",
+							statusDtlReq.getTenantId(), docGroup, statusDtlReq.getProcessCode());
+					nextSeqDocCache.put(seqGroupKey, cachedNextSeqList);
+				}
+				// Each row mutates its own doc-status entry below (setDocStatusDesc/setPreviousSeq/etc) -
+				// use an independent copy per row rather than the shared cached instance.
+				docLifeCycleMstList = cloneStatusList(cachedNextSeqList);
+
 				String nextSeqTypeCode = "NA";
 				if(docLifeCycleMstList.size() > 0) {
-					nextSeqTypeCode = designTaskDAO.getStatusByDesc(
-							indentUploadDAO.getStatusCodebySeqAndDocTypeByDocGrp(
-									docLifeCycleMstList.get(0).getCurrSequence(),
-									statusDtlReq.getTenantId(), "DC039", docGroup,statusDtlReq.getProcessCode()),
-							statusDtlReq.getTenantId());
+					String currSequence = docLifeCycleMstList.get(0).getCurrSequence();
+					String currSequenceStatusCode = getCachedStatusCode(statusCodeCache, currSequence, docGroup, statusDtlReq, indentUploadDAO);
+					nextSeqTypeCode = getCachedStatusDesc(statusDescCache, currSequenceStatusCode, statusDtlReq, designTaskDAO);
 				}
-				
-				if (nextSeqTypeCode.isEmpty()) {
+
+				if (nextSeqTypeCode == null || nextSeqTypeCode.isEmpty()) {
 				    nextSeqTypeCode = "NA";
 				}
-				
+
 				String nextSeq= docLifeCycleMstList.size() > 0 ? docLifeCycleMstList.get(0).getNextSeq() : "NA";
-				
+
 				listObj.setNextSeq(nextSeq);
 				listObj.setNextSeqDesc(nextSeqTypeCode);
-				
+
 				if (docLifeCycleMstList.size() > 0) {
 
-					String designCode = uploadManagementDAO.getDesigCodeByEmpId(statusDtlReq.getEmpId(),
-							statusDtlReq.getTenantId());
+					String currSequence = docLifeCycleMstList.get(0).getCurrSequence();
+					String approveBtnKey = docGroup + "|" + currSequence;
+					Integer cachedApproveBtn = approveBtnCache.get(approveBtnKey);
+					if (cachedApproveBtn == null) {
+						cachedApproveBtn = indentUploadDAO.getApprovebtnEnable(designCode, docGroup,statusDtlReq.getProcessCode(),
+								statusDtlReq.getTenantId(), "DC039", currSequence);
+						approveBtnCache.put(approveBtnKey, cachedApproveBtn);
+					}
+					approveBtnEnable = cachedApproveBtn;
 
-					approveBtnEnable = indentUploadDAO.getApprovebtnEnable(designCode, docGroup,statusDtlReq.getProcessCode(),
-							statusDtlReq.getTenantId(), "DC039", docLifeCycleMstList.get(0).getCurrSequence());
 					if (approveBtnEnable == 1) {
 						// curr seq
-						docLifeCycleMstList.get(0).setDocTypeDesc(indentUploadDAO.getDocTypeDescByDocType(
-								docLifeCycleMstList.get(0).getDocType(), statusDtlReq.getTenantId()));
-						docLifeCycleMstList.get(0)
-								.setDocStatusDesc(designTaskDAO.getStatusByDesc(
-										indentUploadDAO.getStatusCodebySeqAndDocTypeByDocGrp(
-												docLifeCycleMstList.get(0).getCurrSequence(),
-												statusDtlReq.getTenantId(), "DC039", docGroup,statusDtlReq.getProcessCode()),
-										statusDtlReq.getTenantId()));// Current seq docStatus
+						String docType = docLifeCycleMstList.get(0).getDocType();
+						String docTypeDesc = docTypeDescCache.get(docType);
+						if (docTypeDesc == null) {
+							docTypeDesc = indentUploadDAO.getDocTypeDescByDocType(docType, statusDtlReq.getTenantId());
+							docTypeDescCache.put(docType, docTypeDesc);
+						}
+						docLifeCycleMstList.get(0).setDocTypeDesc(docTypeDesc);
+
+						String currSeqStatusCode = getCachedStatusCode(statusCodeCache, currSequence, docGroup, statusDtlReq, indentUploadDAO);
+						docLifeCycleMstList.get(0).setDocStatusDesc(
+								getCachedStatusDesc(statusDescCache, currSeqStatusCode, statusDtlReq, designTaskDAO));// Current seq docStatus
 
 						// Previous Seq
 						docLifeCycleMstList.get(0).setPreviousSeq(currSeq);
-						docLifeCycleMstList.get(0)
-								.setPreviousSeqStatusCode(indentUploadDAO.getStatusCodebySeqAndDocTypeByDocGrp(currSeq,
-										statusDtlReq.getTenantId(), "DC039", docGroup,statusDtlReq.getProcessCode()));
+						String prevSeqStatusCode = getCachedStatusCode(statusCodeCache, currSeq, docGroup, statusDtlReq, indentUploadDAO);
+						docLifeCycleMstList.get(0).setPreviousSeqStatusCode(prevSeqStatusCode);
 
-						docLifeCycleMstList.get(0)
-								.setPreviousSeqStatusDesc(designTaskDAO.getStatusByDesc(
-										indentUploadDAO.getStatusCodebySeqAndDocTypeByDocGrp(currSeq,
-												statusDtlReq.getTenantId(), "DC039", docGroup,statusDtlReq.getProcessCode()),
-										statusDtlReq.getTenantId()));
+						docLifeCycleMstList.get(0).setPreviousSeqStatusDesc(
+								getCachedStatusDesc(statusDescCache, prevSeqStatusCode, statusDtlReq, designTaskDAO));
 						// cancel seq
 						if (currSeqDocLifeCycleMstList.get(0).getCancelSeq() != null) {
-							docLifeCycleMstList.get(0).setCancelSeq(currSeqDocLifeCycleMstList.get(0).getCancelSeq());
-							docLifeCycleMstList.get(0)
-									.setCancelStatusCode(indentUploadDAO.getStatusCodebySeqAndDocTypeByDocGrp(
-											currSeqDocLifeCycleMstList.get(0).getCancelSeq(),
-											statusDtlReq.getTenantId(), "DC039", docGroup,statusDtlReq.getProcessCode()));
+							String cancelSeq = currSeqDocLifeCycleMstList.get(0).getCancelSeq();
+							docLifeCycleMstList.get(0).setCancelSeq(cancelSeq);
 
-							docLifeCycleMstList.get(0)
-									.setCancelStatusDesc(designTaskDAO.getStatusByDesc(
-											indentUploadDAO.getStatusCodebySeqAndDocTypeByDocGrp(
-													currSeqDocLifeCycleMstList.get(0).getCancelSeq(),
-													statusDtlReq.getTenantId(), "DC039", docGroup,statusDtlReq.getProcessCode()),
-											statusDtlReq.getTenantId()));
+							String cancelStatusCode = getCachedStatusCode(statusCodeCache, cancelSeq, docGroup, statusDtlReq, indentUploadDAO);
+							docLifeCycleMstList.get(0).setCancelStatusCode(cancelStatusCode);
+
+							docLifeCycleMstList.get(0).setCancelStatusDesc(
+									getCachedStatusDesc(statusDescCache, cancelStatusCode, statusDtlReq, designTaskDAO));
 						}
 						listObj.setDocumentStatusMstList(docLifeCycleMstList);
 					}
@@ -339,6 +398,88 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 		}
 		logger.debug("updateBudgetSheetExcessSeqAndStatus method end");
 		return returnMessage;
+	}
+
+	// Same lookup as getDocGroup below, but reuses a docGroupList already fetched once for the whole
+	// request instead of re-querying the DB - used by the per-row loop in retriveBudgetExcessSheetDtl.
+	private String resolveDocGroup(String excessValue, List<String> docGroupList) {
+		String docGroup = "";
+		try {
+			BigDecimal excess = new BigDecimal(excessValue);
+			if (docGroupList.size() > 0) {
+				for (String docGrpVal : docGroupList) {
+					if (excess.compareTo(new BigDecimal(docGrpVal)) <= 0) {
+						docGroup = docGrpVal;
+						break;
+					}
+				}
+			}
+		} catch (Exception ex) {
+			logger.error("resolveDocGroup Error" + ex);
+		}
+		return docGroup;
+	}
+
+	private String getCachedStatusCode(Map<String, String> statusCodeCache, String seq, String docGroup,
+			BudgetExcessStatusDtlReq statusDtlReq, IndentUploadDAO indentUploadDAO) {
+		String key = seq + "|" + docGroup;
+		String statusCode = statusCodeCache.get(key);
+		if (statusCode == null) {
+			statusCode = indentUploadDAO.getStatusCodebySeqAndDocTypeByDocGrp(seq, statusDtlReq.getTenantId(), "DC039",
+					docGroup, statusDtlReq.getProcessCode());
+			statusCodeCache.put(key, statusCode);
+		}
+		return statusCode;
+	}
+
+	private String getCachedStatusDesc(Map<String, String> statusDescCache, String statusCode,
+			BudgetExcessStatusDtlReq statusDtlReq, DesignTaskDAO designTaskDAO) {
+		String statusDesc = statusDescCache.get(statusCode);
+		if (statusDesc == null) {
+			statusDesc = designTaskDAO.getStatusByDesc(statusCode, statusDtlReq.getTenantId());
+			statusDescCache.put(statusCode, statusDesc);
+		}
+		return statusDesc;
+	}
+
+	// Rows share the same cached DocumentStatusMstEntity list (see nextSeqDocCache in retriveBudgetExcessSheetDtl),
+	// but each row mutates its own copy (setDocStatusDesc/setPreviousSeq/etc) - clone before handing one out so
+	// mutating one row's copy can never leak into another row that happened to share the same cache key.
+	private List<DocumentStatusMstEntity> cloneStatusList(List<DocumentStatusMstEntity> source) {
+		List<DocumentStatusMstEntity> copy = new ArrayList<>();
+		if (source == null) {
+			return copy;
+		}
+		for (DocumentStatusMstEntity e : source) {
+			DocumentStatusMstEntity c = new DocumentStatusMstEntity();
+			c.setDsmId(e.getDsmId());
+			c.setDocType(e.getDocType());
+			c.setDocTypeDesc(e.getDocTypeDesc());
+			c.setCurrSequence(e.getCurrSequence());
+			c.setDocStatus(e.getDocStatus());
+			c.setDocStatusDesc(e.getDocStatusDesc());
+			c.setApprDesi(e.getApprDesi());
+			c.setApprDept(e.getApprDept());
+			c.setIsNotify(e.getIsNotify());
+			c.setLastSeq(e.getLastSeq());
+			c.setNextSeq(e.getNextSeq());
+			c.setSeqBatch(e.getSeqBatch());
+			c.setTenantId(e.getTenantId());
+			c.setIsActive(e.getIsActive());
+			c.setDocGroup(e.getDocGroup());
+			c.setProcessCode(e.getProcessCode());
+			c.setIsEditable(e.getIsEditable());
+			c.setNextSeqStatusCode(e.getNextSeqStatusCode());
+			c.setNextSeqStatusDesc(e.getNextSeqStatusDesc());
+			c.setPreviousSeq(e.getPreviousSeq());
+			c.setPreviousSeqStatusCode(e.getPreviousSeqStatusCode());
+			c.setPreviousSeqStatusDesc(e.getPreviousSeqStatusDesc());
+			c.setCancelSeq(e.getCancelSeq());
+			c.setCancelStatusCode(e.getCancelStatusCode());
+			c.setCancelStatusDesc(e.getCancelStatusDesc());
+			copy.add(c);
+		}
+		return copy;
 	}
 
 	public String getDocGroup(String excessValue, String tenantId, String processCode) {
