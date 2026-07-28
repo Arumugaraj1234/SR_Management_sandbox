@@ -326,7 +326,8 @@ public class DesignTaskServices implements IDesignTaskServices {
 					updateTaskEntryDtlReq.getTenantId());
 			String teHdrid = iDesignTaskDAO.getTeHdrId(empDept, updateTaskEntryDtlReq.getTaskTypeCode(),
 					updateTaskEntryDtlReq.getTaskCategoryCode(), updateTaskEntryDtlReq.getTtHdrId(),
-					updateTaskEntryDtlReq.getTenantId(), updateTaskEntryDtlReq.getMasterId());
+					updateTaskEntryDtlReq.getTenantId(), updateTaskEntryDtlReq.getMasterId(),
+					updateTaskEntryDtlReq.getDependentTeHdrId());
 			if (teHdrid.equalsIgnoreCase("")) {
 				String dependentId = updateTaskEntryDtlReq.getDependentTeHdrId();
 

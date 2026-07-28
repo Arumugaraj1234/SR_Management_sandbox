@@ -184,13 +184,27 @@ public class QualityInspectionDAO implements IQualityInspectionDAO{
 	}
 
 	@Override
-	public void resetQiHdrIsLatest(String qiId, String tenantId) {
+	public int resetAndInsertQiHdr(QualityInspectionHdrEntity qiHdrDtlReq) {
+		int qiHdrId = 0;
 		try {
-			String qry = "UPDATE quality_inspection_hdr SET IS_LATEST = 0 WHERE QI_ID = ? AND TENANT_ID = ?";
-			this.jdbcTemplate.update(qry, qiId, tenantId);
+			// lock the parent request row for this QI_ID so a concurrent submission for the
+			// same QI_ID can't interleave with the reset+insert below and leave two rows both
+			// flagged IS_LATEST=1 (this class is @Transactional, so the lock is held for the
+			// duration of this method and released on commit)
+			jdbcTemplate.queryForObject(
+					"SELECT QI_ID FROM quality_inspection_request WHERE QI_ID = ? FOR UPDATE",
+					Integer.class, qiHdrDtlReq.getQiId());
+
+			// no TENANT_ID filter here - a row inserted with a bad/blank TENANT_ID must still
+			// be resettable, otherwise it stays IS_LATEST=1 forever
+			jdbcTemplate.update("UPDATE quality_inspection_hdr SET IS_LATEST = 0 WHERE QI_ID = ?",
+					qiHdrDtlReq.getQiId());
+
+			qiHdrId = insertInQiHdr(qiHdrDtlReq);
 		} catch (Exception ex) {
-			logger.error("resetQiHdrIsLatest error: " + ex);
+			logger.error("resetAndInsertQiHdr error: " + ex);
 		}
+		return qiHdrId;
 	}
 
 	@Override

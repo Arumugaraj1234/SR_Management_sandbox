@@ -156,7 +156,7 @@ public class PraService implements IPraService {
 
 //					Add PRA status entry after 'PRA' created
 					iPraDAO.insertPraStatusDtl(String.valueOf(praHdrId), seq, praInsertRequest.getStatusCode(), praInsertRequest.getTenantId(), "Created", praInsertRequest.getEmpId());
-				commonNotifyMethod.InvokeNotificationMethod(1, 55, null,praInsertRequest.getTenantId() , messageList,new ArrayList<>() , "1", praInsertRequest.getProcessCode(), String.valueOf(praHdrId), nextApprDesig);
+				commonNotifyMethod.InvokeNotificationMethod(1, 55, null,praInsertRequest.getTenantId() , messageList,new ArrayList<>() , "1", praInsertRequest.getProcessCode(), String.valueOf(mstId), nextApprDesig);
 				commonNotifyMethod.InvokeApprovalDesigMethod(praInsertRequest.getProcessCode(),
 						"DC077",  String.valueOf(praHdrId) , praInsertRequest.getPmHdrId(), praInsertRequest.getTenantId(),
 						"", nextApprDesig ,praInsertRequest.getEnquiryId(),praCode);

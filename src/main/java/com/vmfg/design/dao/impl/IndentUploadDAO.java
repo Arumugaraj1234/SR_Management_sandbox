@@ -2713,7 +2713,8 @@ public class IndentUploadDAO implements IIndentUploadDAO {
 					+ "    inventory_location_mst frilm ON frilm.INVENTORY_LOCATION_CODE = imt.FROM_INVENTORY_LOCATION_CODE\r\n"
 					+ "        INNER JOIN\r\n"
 					+ "    inventory_location_mst toilm ON toilm.INVENTORY_LOCATION_CODE = imt.TO_INVENTORY_LOCATION_CODE\r\n"
-					+ "WHERE\r\n" + "imt.TO_PM_HDR_ID = '"+matDtls.getPmHdrId()+"' and  imt.TENANT_ID ='"+matDtls.getTenantId()+"'";
+					+ "WHERE\r\n" + "imt.TO_PM_HDR_ID = '"+matDtls.getPmHdrId()+"' and  imt.TENANT_ID ='"+matDtls.getTenantId()+"'"
+						+ " AND NOT (imt.FROM_PM_HDR_ID = imt.TO_PM_HDR_ID AND imt.FROM_INVENTORY_LOCATION_CODE = imt.TO_INVENTORY_LOCATION_CODE)";
 
 			list = this.jdbcTemplate.query(query, new InventoryMaterialTransferRowMapper());
 		} catch (Exception e) {

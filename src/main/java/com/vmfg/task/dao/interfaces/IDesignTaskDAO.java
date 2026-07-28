@@ -95,7 +95,7 @@ public interface IDesignTaskDAO {
 
 	String TaskPercentageFlag(GetTaskPercentFlagRequest taskPercentFlag);
 
-	String getTeHdrId(String dept, String typeCode, String typeCat, String ttHdrId, String tenantId, String masterId);
+	String getTeHdrId(String dept, String typeCode, String typeCat, String ttHdrId, String tenantId, String masterId, String dependentTeHdrId);
 
 	int insertTaskEntryDtl(String teHdrId, String ttDtlId, String activityName, String plannedStartDate, String dueDate,
 			String plannedCompletedDAte, String completedDate, String approvalSeq, String ApprovalStatus,

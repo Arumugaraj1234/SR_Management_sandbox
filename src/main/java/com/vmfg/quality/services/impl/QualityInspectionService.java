@@ -249,8 +249,7 @@ public class QualityInspectionService implements IQualityInspectionService {
 					if(qiHdrDtlReq.getCancelFlag() == null ) {
 						qiHdrDtlReq.setCancelFlag("0");
 					}
-						iQualityInspectionDAO.resetQiHdrIsLatest(qiHdrDtlReq.getQiId(), qiHdrDtlReq.getTenantId());
-						newQiHdrId = iQualityInspectionDAO.insertInQiHdr(qiHdrDtlReq);
+						newQiHdrId = iQualityInspectionDAO.resetAndInsertQiHdr(qiHdrDtlReq);
 						qiHdrDtlReq.setQiHdrId(String.valueOf(newQiHdrId));
 					if(qiHdrDtlReq.getNrFlag().equalsIgnoreCase("1")) {
 						iQualityInspectionDAO.insertQiStatus(qiHdrDtlReq.getQiHdrId(),"INSPECTION","2",seqStatus,"Approved",qiHdrDtlReq.getEmpId(),qiHdrDtlReq.getTenantId());
