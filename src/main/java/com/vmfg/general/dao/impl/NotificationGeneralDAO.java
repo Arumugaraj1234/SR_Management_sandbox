@@ -148,10 +148,9 @@ public class NotificationGeneralDAO implements INotificationGeneralDAO {
 					"        AND dtl.DESIGNATION = '"+empDesc+"'\r\n" +
 					"        AND (hdr.DOC_TYPE_CODE != 'DC077' OR NOT EXISTS (\r\n" +
 					"            SELECT 1 FROM pra_hdr p\r\n" +
-					"            INNER JOIN po_hdr po ON po.PO_ID = p.PO_ID\r\n" +
 					"            WHERE p.PRA_ID = hdr.REFERENCE_ID\r\n" +
 					"              AND p.TENANT_ID = hdr.TENANT_ID\r\n" +
-					"              AND po.IS_APPROVED = '1'))\r\n" +
+					"              AND p.IS_COMPLETED = '1'))\r\n" +
 					"        AND (hdr.DOC_TYPE_CODE != 'DC038' OR NOT EXISTS (\r\n" +
 					"            SELECT 1 FROM indent_grp_scs igs\r\n" +
 					"            WHERE igs.IG_SCS_ID = hdr.REFERENCE_ID\r\n" +

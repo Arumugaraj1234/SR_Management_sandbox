@@ -605,15 +605,15 @@ public class DesignTaskDAO implements IDesignTaskDAO {
 
 	@Override
 	public String getTeHdrId(String dept, String typeCode, String typeCat, String ttHdrId, String tenantId,
-			String masterId) {
+			String masterId, String dependentTeHdrId) {
 		String prjEnqId = "";
 		try {
 			String prjEnqIdStr = "SELECT \r\n" + "    CASE\r\n" + "        WHEN COUNT(*) > 0 THEN TE_HDR_ID\r\n"
 					+ "        ELSE ''\r\n" + "    END AS TE_HDR_ID\r\n" + "FROM\r\n" + "    task_entry_hdr\r\n"
 					+ "WHERE\r\n" + "    TT_HDR_ID =? AND DEPARTMENT_CODE =?\r\n"
-					+ "        AND TASK_TYPE_CODE =?   AND TASK_CATEGORY_CODE = ?  AND TENANT_ID = ? and MASTER_ID=?";
-			
-			Map<String, Object> resultMap = jdbcTemplate.queryForMap(prjEnqIdStr,ttHdrId,dept,typeCode,typeCat,tenantId,masterId);
+					+ "        AND TASK_TYPE_CODE =?   AND TASK_CATEGORY_CODE = ?  AND TENANT_ID = ? and MASTER_ID=? and DEPENDENT_TE_HDR_ID=?";
+
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(prjEnqIdStr,ttHdrId,dept,typeCode,typeCat,tenantId,masterId,dependentTeHdrId);
 			prjEnqId = resultMap.get("TE_HDR_ID").toString();
 		} catch (Exception ex) {
 			logger.error("updateTaskDtlStatus Error " + ex);

@@ -22,7 +22,7 @@ public interface IQualityInspectionDAO {
 
 	List<QualityInspectionDtlEntity> getQIDtlList(String qiHdrId);
 
-	void resetQiHdrIsLatest(String qiId, String tenantId);
+	int resetAndInsertQiHdr(QualityInspectionHdrEntity qiHdrDtlReq);
 
 	int insertInQiHdr(QualityInspectionHdrEntity qiHdrDtlReq);
 
