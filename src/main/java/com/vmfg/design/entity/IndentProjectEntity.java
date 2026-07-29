@@ -18,5 +18,7 @@ public class IndentProjectEntity implements Serializable {
 	private String expDeliveryDate;
 	private	String totalBudgetConsumed;
 	private String costFlowType;
+	private String allocatedValue;
+	private String actualConsumedValue;
 
 }

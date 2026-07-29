@@ -9,4 +9,5 @@ public class IndentRequestEntity {
 
 	private String indentId;
 	private String tenantId;
+	private String processCode;
 }
