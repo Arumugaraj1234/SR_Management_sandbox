@@ -886,6 +886,24 @@ public class IndentGroupService implements IIndentGroupService {
 				}
 
 				if (isBudgetExceeded) {
+					if ("NEW".equalsIgnoreCase(costFlowType)) {
+						// NEW-flow: before escalating to a Budget Excess Sheet, check whether the
+						// project still has unallocated Sales Budget the PM can pull from. If so,
+						// block this click with a plain error (no Budget Excess Sheet created yet)
+						// so the PM can use the "Allocate to Station" button and retry - only fall
+						// through to the existing Budget Excess Sheet flow below when there's truly
+						// nothing left to self-serve with. Legacy flow is untouched (costFlowType
+						// is never "NEW" there), so it always falls straight into the existing logic.
+						String projectId = indentUploadDAO.getProjectIdByIndentId(indentId);
+						String mstId = projectDAO.getmstIdByPmHdrId(projectId, updateHdrReq.getTenantId());
+						BigDecimal unallocatedProjectBudget = new BigDecimal(
+								projectDAO.getUnallocatedSalesBudgetTotalByMstId(mstId, updateHdrReq.getTenantId()));
+						if (unallocatedProjectBudget.compareTo(BigDecimal.ZERO) > 0) {
+							returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+							returnMessage.setResponseMessage(ResponseMessageMap.allocateBudgetFromSalesValue);
+							return returnMessage;
+						}
+					}
 					int budgetExcessEntry=iIndentGroupDAO.getBudgetExcessDtlCount(scsId);
 					if(budgetExcessEntry==0) {
 						BudgetExcessSheetRequest budgetExcessSheetReq = new BudgetExcessSheetRequest();

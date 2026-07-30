@@ -50,6 +50,7 @@ public class ResponseMessageMap {
 	public static String reassignNP = "Reassign not possible for completed task";
 	public static String grpTemplatDup = "Duplicate Template Name";
 	public static String approveBudgetExcess = "Budget Excess isn't Approved Yet";
+	public static String allocateBudgetFromSalesValue = "Insufficient budget at this station. Please use 'Allocate to Station' to add budget from available Sales Value.";
 	public static String subTaskNotCompleted = "Sub task for the current task not completed";
 
 	public static String atleastOneTeam = "At least one team member must be assigned";

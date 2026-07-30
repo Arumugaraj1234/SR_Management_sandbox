@@ -1087,7 +1087,7 @@ public class ProjectDAO implements IProjectDAO {
 	public String getAllocatedValSum(String pkaId) {
 		String allocatedVal = "";
 		try {
-			String qry = "select case when count(*)>0 then SUM(ALLOCATED_VALUE) else 0 end as count from project_key_area_extn where PKA_ID= ?";			
+			String qry = "select case when count(*)>0 then SUM(ALLOCATED_VALUE) else 0 end as count from project_key_area_extn where PKA_ID= ?";
 			Map<String,Object> resultData = jdbcTemplate.queryForMap(qry, pkaId);
 			allocatedVal = resultData.get("count").toString();
 		} catch (Exception ex) {
@@ -1095,6 +1095,23 @@ public class ProjectDAO implements IProjectDAO {
 		}
 		return allocatedVal;
 
+	}
+
+	@Override
+	public String getUnallocatedSalesBudgetTotalByMstId(String mstId, String tenantId) {
+		String unallocatedVal = "0";
+		try {
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(extn.TOTAL_VALUE - extn.ALLOCATED_VALUE) ELSE 0 END AS VAL " +
+					"FROM sales_budget_sheet_extn extn " +
+					"INNER JOIN sales_budget_sheet_dtl dtl ON dtl.SB_DTL_ID = extn.SB_DTL_ID " +
+					"INNER JOIN sales_budget_sheet_hdr hdr ON hdr.SB_HDR_ID = dtl.SB_HDR_ID " +
+					"WHERE hdr.MASTER_ID = ? AND hdr.TENANT_ID = ? AND extn.TOTAL_VALUE - extn.ALLOCATED_VALUE > 0";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, mstId, tenantId);
+			unallocatedVal = resultMap.get("VAL").toString();
+		} catch (Exception ex) {
+			logger.error("getUnallocatedSalesBudgetTotalByMstId error " + ex.getMessage());
+		}
+		return unallocatedVal;
 	}
 
 	@Override

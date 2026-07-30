@@ -129,6 +129,8 @@ public interface IProjectDAO {
 
 	String getAllocatedValSum(String pkaId);
 
+	String getUnallocatedSalesBudgetTotalByMstId(String mstId, String tenantId);
+
 	String getBudgetValSum(String pkaId);
 
 	List<GetProjTimePlanDropDownEntity> getProjTimePlanDropDown(String tenantId);

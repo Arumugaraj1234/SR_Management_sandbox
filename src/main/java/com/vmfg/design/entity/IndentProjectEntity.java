@@ -20,5 +20,7 @@ public class IndentProjectEntity implements Serializable {
 	private String costFlowType;
 	private String allocatedValue;
 	private String actualConsumedValue;
+	private String canAllocateFromSalesBudget;
+	private String pkaId;
 
 }
