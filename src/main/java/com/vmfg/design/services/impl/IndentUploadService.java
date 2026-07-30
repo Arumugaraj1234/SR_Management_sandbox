@@ -63,7 +63,10 @@ import com.vmfg.project.request.ProjectInitiationMstRequest;
 import com.vmfg.sales.dao.impl.EnquiryDAO;
 import com.vmfg.sales.dao.impl.UploadManagementDAO;
 import com.vmfg.sales.entity.BudgetKeyCategory;
+import com.vmfg.scm.dao.impl.IndentGroupDAO;
 import com.vmfg.scm.dao.impl.IndentManagementDAO;
+import com.vmfg.scm.dao.interfaces.IIndentGroupDAO;
+import com.vmfg.scm.dao.interfaces.IPoDAO;
 import com.vmfg.scm.request.HdrIdandTenantIdRequest;
 import com.vmfg.scm.request.IndentDtlDeleteRequest;
 import com.vmfg.scm.request.PodtlsForProductEntity;
@@ -107,9 +110,18 @@ public class IndentUploadService implements IIndentUploadService {
 	
 	@Autowired
 	ProjectDAO projectDAO;
-	
+
 	@Autowired
 	ChangeRequestDAO changeRequestDAO;
+
+	@Autowired
+	IPoDAO iPoDAO;
+
+	@Autowired
+	IIndentGroupDAO iIndentGroupDAO;
+
+	@Autowired
+	IndentGroupDAO indentGroupDAO;
 
 	@Override
 	public ResponseAsList uploadIndentTemplate(JSONArray getArray, MultipartFile file) {
@@ -880,6 +892,40 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 
 			if (proj.size() > 0) {
 			//	proj.get(0).setTotalBudgetConsumed(iIndentUploadDAO.totalbudgetConsumed(indentReq.getIndentId()));
+				if ("NEW".equalsIgnoreCase(proj.get(0).getCostFlowType())) {
+					// NEW-flow: Budget Cost/Budget Consumed are hidden on this screen (see
+					// project_budget_target_cost_removal), replaced with real station numbers -
+					// same formula pieces as the Budget Excess Sheet gate in IndentGroupService.
+					String pkaId = iIndentUploadDAO.getPkaIdByIndentId(indentReq.getIndentId());
+					proj.get(0).setPkaId(pkaId);
+					String scsBudgetExcessSeq = "8".equalsIgnoreCase(indentReq.getProcessCode())
+							? iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", indentReq.getTenantId())
+							: iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", indentReq.getTenantId());
+					BigDecimal allocatedValue = new BigDecimal(projectDAO.getAllocatedValSum(pkaId));
+					BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByPkaId(pkaId));
+					BigDecimal otherCommittedPjs = new BigDecimal(iIndentGroupDAO
+							.getOtherCommittedScsTotalByPkaId(pkaId, indentReq.getIndentId(), scsBudgetExcessSeq));
+					BigDecimal actualConsumedValue = approvedPoTotal.add(otherCommittedPjs);
+					proj.get(0).setAllocatedValue(allocatedValue.toString());
+					proj.get(0).setActualConsumedValue(actualConsumedValue.toString());
+
+					// Is this station short on this SCS's own quote, and if so, is there any
+					// unallocated Sales Budget left anywhere in the project for the PM to pull
+					// from? Drives the "Allocate to Station" button on the PM's PJS screen.
+					BigDecimal remainingStationBudget = allocatedValue.subtract(actualConsumedValue);
+					BigDecimal currentQuoteValue = new BigDecimal(
+							indentGroupDAO.getindentScmVal(indentReq.getIndentId()));
+					boolean isShortfall = remainingStationBudget.compareTo(currentQuoteValue) < 0;
+					boolean canAllocate = false;
+					if (isShortfall) {
+						String projectId = iIndentUploadDAO.getProjectIdByIndentId(indentReq.getIndentId());
+						String mstId = projectDAO.getmstIdByPmHdrId(projectId, indentReq.getTenantId());
+						BigDecimal unallocatedProjectBudget = new BigDecimal(
+								projectDAO.getUnallocatedSalesBudgetTotalByMstId(mstId, indentReq.getTenantId()));
+						canAllocate = unallocatedProjectBudget.compareTo(BigDecimal.ZERO) > 0;
+					}
+					proj.get(0).setCanAllocateFromSalesBudget(String.valueOf(canAllocate));
+				}
 				returnList.setResponseData(proj);
 				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
 				returnList.setResponseMessage(ResponseMessageMap.success);
