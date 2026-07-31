@@ -1612,6 +1612,23 @@ public class ProjectDAO implements IProjectDAO {
 	}
 
 	@Override
+	public String getCostFlowTypeByPkaId(String pkaId) {
+		String costFlowType = "LEGACY";
+		try {
+			String qry = "SELECT ph.COST_FLOW_TYPE FROM project_key_area pka "
+					+ "INNER JOIN project_hdr ph ON pka.PM_HDR_ID = ph.PM_HDR_ID "
+					+ "WHERE pka.PKA_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, pkaId);
+			if (resultMap.get("COST_FLOW_TYPE") != null) {
+				costFlowType = resultMap.get("COST_FLOW_TYPE").toString();
+			}
+		} catch (Exception ex) {
+			logger.error("getCostFlowTypeByPkaId error " + ex.getMessage());
+		}
+		return costFlowType;
+	}
+
+	@Override
 	public String getpmHdrIdByPkaId(String pkaId) {
 		String resp = "";
 		try {
