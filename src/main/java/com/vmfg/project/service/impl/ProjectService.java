@@ -49,6 +49,8 @@ import com.vmfg.project.response.GetbugetextnListbyDSkIdResponse;
 import com.vmfg.project.response.getelementHdrDistinctResponse;
 import com.vmfg.project.service.interfaces.IProjectService;
 import com.vmfg.sales.dao.impl.UploadManagementDAO;
+import com.vmfg.scm.dao.interfaces.IIndentGroupDAO;
+import com.vmfg.scm.dao.interfaces.IPoDAO;
 import com.vmfg.task.entity.GetTaskEntryDtlEntity;
 import com.vmfg.util.CommonMethod;
 import com.vmfg.util.CommonNotifyMethod;
@@ -70,9 +72,15 @@ public class ProjectService implements IProjectService {
 
 	@Autowired
 	IndentUploadDAO indentUploadDao;
-	
+
 	@Autowired
 	CommonNotifyMethod commonNotifyMethod;
+
+	@Autowired
+	IPoDAO iPoDAO;
+
+	@Autowired
+	IIndentGroupDAO iIndentGroupDAO;
 
 	@Override
 	public ResponseAsList getProjectDtl(ProjectHdrRequest tenReq) {
@@ -428,8 +436,25 @@ public class ProjectService implements IProjectService {
 					.getProjectSubAreaExtnRowMapper(deleteSubAreaExtReq.getPkseId());
 			if (subArea.size() > 0) {
 				//BigDecimal getTotalallocatedVal = iProjectDAO.getTotalallocatedVal(subArea.get(0).getPkaId());
-				int indentcreatCheck= iProjectDAO.getIndentBudgetCheck(subArea.get(0).getPkaId(), subArea.get(0).getSbExtnId());
-				if (indentcreatCheck ==0) {
+				String costFlowType = iProjectDAO.getCostFlowTypeByPkaId(subArea.get(0).getPkaId());
+				boolean blockDelete;
+				if ("NEW".equalsIgnoreCase(costFlowType)) {
+					String pkaId = subArea.get(0).getPkaId();
+					BigDecimal stationAllocated = new BigDecimal(iProjectDAO.getAllocatedValSum(pkaId));
+					BigDecimal thisRowValue = new BigDecimal(subArea.get(0).getAllocateVal());
+					BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByPkaId(pkaId));
+					String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", deleteSubAreaExtReq.getTenantId());
+					String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", deleteSubAreaExtReq.getTenantId());
+					String minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
+					BigDecimal otherCommittedPjs = new BigDecimal(
+							iIndentGroupDAO.getOtherCommittedScsTotalByPkaId(pkaId, "-1", minSeqNo));
+					BigDecimal remainingAfterRemoval = stationAllocated.subtract(thisRowValue)
+							.subtract(approvedPoTotal).subtract(otherCommittedPjs);
+					blockDelete = remainingAfterRemoval.compareTo(BigDecimal.ZERO) < 0;
+				} else {
+					blockDelete = iProjectDAO.getIndentBudgetCheck(subArea.get(0).getPkaId(), subArea.get(0).getSbExtnId()) != 0;
+				}
+				if (!blockDelete) {
 					iProjectDAO.updateBudgetExtn(subArea.get(0).getSbExtnId(), subArea.get(0).getAllocatedQty(),
 							subArea.get(0).getAllocateVal());
 

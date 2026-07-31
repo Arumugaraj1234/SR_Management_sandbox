@@ -164,7 +164,9 @@ public interface IProjectDAO {
 			String tenantId, String dependentId, String departmentCode);
 	
 	int getIndentBudgetCheck(String pkaId,String sbExtnId);
-	
+
+	String getCostFlowTypeByPkaId(String pkaId);
+
 	String getpmHdrIdByPkaId(String pkaId);
 	
 	String getProjCodeByProjId(String projectId, String tenantId);
