@@ -1559,6 +1559,19 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	}
 
 	@Override
+	public String getScsIdByIndentId(String indentId) {
+		String scsId = "";
+		try {
+			String qry = "select IG_SCS_ID from indent_grp_scs where INDENT_ID = ? order by IG_SCS_ID desc limit 1";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, indentId);
+			scsId = resultMap.get("IG_SCS_ID").toString();
+		} catch (Exception e) {
+			logger.error("getScsIdByIndentId Method Exception --->" + e);
+		}
+		return scsId;
+	}
+
+	@Override
 	public int getScsPtCount(String scpID) {
 		int count=0;
 		try {

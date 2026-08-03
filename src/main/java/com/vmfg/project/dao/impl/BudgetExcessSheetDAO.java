@@ -348,9 +348,19 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 		int insertRes = 0;
 		try {
 
+			// Guarded as a single atomic INSERT...SELECT...WHERE NOT EXISTS instead of a
+			// separate check-then-insert, to close the race window where two near-simultaneous
+			// "Raise Budget Excess" clicks (or the legacy auto-create path) could both pass a
+			// prior getBudgetExcessDtlCount() check before either commits, creating duplicate
+			// entries for the same IG_SCS_ID. Mirrors getBudgetExcessDtlCount's exact condition
+			// (SEQUENCE_NO != 6 doesn't count as "already raised") so existing behavior for
+			// re-raising after a resolved/superseded entry is unchanged. If the NOT EXISTS check
+			// fails, zero rows are inserted and holder.getKey() throws, which the existing
+			// catch-and-return-0 below already handles as a no-op failure.
 			String insertBudgetQ = "INSERT INTO budget_excess_dtl (INDENT_ID, PM_HDR_ID, BUDGET_COST, ACTUAL_COST,EXCESS,  VENDOR_CODE,REASON,"
 					+ " ROOT_CAUSE, ACTION, RESPONSIBLE, SEQUENCE_NO,SEQUENCE_STATUS, UPDATED_BY, UPDATED_ON, TENANT_ID,PKSA_ID,IG_SCS_ID, ACTUAL_EXCESS) "
-					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,?,?,?)";
+					+ "SELECT ?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,?,?,? FROM DUAL "
+					+ "WHERE NOT EXISTS (SELECT 1 FROM budget_excess_dtl WHERE IG_SCS_ID = ? AND SEQUENCE_NO != 6)";
 
 			KeyHolder holder = new GeneratedKeyHolder();
 
@@ -376,6 +386,7 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 					ps.setString(15, dskId);
 					ps.setString(16,igScsId );
 					ps.setString(17,scsActualCost );
+					ps.setString(18, igScsId);
 
 					return ps;
 				}

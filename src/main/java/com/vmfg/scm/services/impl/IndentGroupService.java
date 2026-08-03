@@ -870,13 +870,7 @@ public class IndentGroupService implements IIndentGroupService {
 					// so check the real remaining budget at the station instead: what's allocated
 					// to the station minus what's already committed there (approved POs, plus other
 					// SCS's that already crossed this same "Project Approved" step but have no PO yet).
-					String pkaId = indentUploadDAO.getPkaIdByIndentId(indentId);
-					BigDecimal stationAllocated = new BigDecimal(projectDAO.getAllocatedValSum(pkaId));
-					BigDecimal approvedPoTotal = new BigDecimal(poDAO.getApprovedPoTotalByPkaId(pkaId));
-					BigDecimal otherCommittedPjs = new BigDecimal(
-							indentGroupDAO.getOtherCommittedScsTotalByPkaId(pkaId, indentId, scsBudgetExcessSeq));
-					BigDecimal remainingStationBudget = stationAllocated.subtract(approvedPoTotal)
-							.subtract(otherCommittedPjs);
+					BigDecimal remainingStationBudget = computeRemainingStationBudget(indentId, scsBudgetExcessSeq);
 					isBudgetExceeded = remainingStationBudget.compareTo(scmBudgetValue) < 0;
 				} else {
 					indentTargetValue = new BigDecimal(iIndentGroupDAO.getIndentTargetValue(indentId));
@@ -887,22 +881,22 @@ public class IndentGroupService implements IIndentGroupService {
 
 				if (isBudgetExceeded) {
 					if ("NEW".equalsIgnoreCase(costFlowType)) {
-						// NEW-flow: before escalating to a Budget Excess Sheet, check whether the
-						// project still has unallocated Sales Budget the PM can pull from. If so,
-						// block this click with a plain error (no Budget Excess Sheet created yet)
-						// so the PM can use the "Allocate to Station" button and retry - only fall
-						// through to the existing Budget Excess Sheet flow below when there's truly
-						// nothing left to self-serve with. Legacy flow is untouched (costFlowType
-						// is never "NEW" there), so it always falls straight into the existing logic.
+						// NEW-flow: never auto-create a Budget Excess Sheet entry from this click.
+						// Block and tell the PM which explicit action to take instead - either
+						// "Allocate to Station" (if Sales Budget is available elsewhere in the
+						// project) or "Raise Budget Excess" (new PM-triggered action, see
+						// raiseBudgetExcess() below) - both are now deliberate PM choices rather
+						// than one of them happening automatically. Legacy flow (costFlowType is
+						// never "NEW" there) is untouched and still auto-creates below.
 						String projectId = indentUploadDAO.getProjectIdByIndentId(indentId);
 						String mstId = projectDAO.getmstIdByPmHdrId(projectId, updateHdrReq.getTenantId());
 						BigDecimal unallocatedProjectBudget = new BigDecimal(
 								projectDAO.getUnallocatedSalesBudgetTotalByMstId(mstId, updateHdrReq.getTenantId()));
-						if (unallocatedProjectBudget.compareTo(BigDecimal.ZERO) > 0) {
-							returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
-							returnMessage.setResponseMessage(ResponseMessageMap.allocateBudgetFromSalesValue);
-							return returnMessage;
-						}
+						returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+						returnMessage.setResponseMessage(unallocatedProjectBudget.compareTo(BigDecimal.ZERO) > 0
+								? ResponseMessageMap.allocateBudgetFromSalesValue
+								: ResponseMessageMap.raiseBudgetExcessRequired);
+						return returnMessage;
 					}
 					int budgetExcessEntry=iIndentGroupDAO.getBudgetExcessDtlCount(scsId);
 					if(budgetExcessEntry==0) {
@@ -963,6 +957,81 @@ public class IndentGroupService implements IIndentGroupService {
 		return returnMessage;
 	}
 
+	private BigDecimal computeRemainingStationBudget(String indentId, String scsBudgetExcessSeq) {
+		String pkaId = indentUploadDAO.getPkaIdByIndentId(indentId);
+		BigDecimal stationAllocated = new BigDecimal(projectDAO.getAllocatedValSum(pkaId));
+		BigDecimal approvedPoTotal = new BigDecimal(poDAO.getApprovedPoTotalByPkaId(pkaId));
+		BigDecimal otherCommittedPjs = new BigDecimal(
+				indentGroupDAO.getOtherCommittedScsTotalByPkaId(pkaId, indentId, scsBudgetExcessSeq));
+		return stationAllocated.subtract(approvedPoTotal).subtract(otherCommittedPjs);
+	}
+
+	@Override
+	public ResponseAsMessage raiseBudgetExcess(UpdateSeqAndStatusRequest updateHdrReq) {
+		ResponseAsMessage returnMessage = new ResponseAsMessage();
+		List<IndentGrpScpVenDtlEntity> scpVendorDtlList = new ArrayList<IndentGrpScpVenDtlEntity>();
+		try {
+			String scsId = updateHdrReq.getHdrId();
+			String processDoc = updateHdrReq.getProcessCode();
+			String indentId = poDAO.getIndentId(scsId);
+			String costFlowType = indentUploadDAO.getCostFlowTypeByIndentId(indentId);
+
+			if (!"NEW".equalsIgnoreCase(costFlowType)) {
+				returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+				returnMessage.setResponseMessage(ResponseMessageMap.actionNotAllowed);
+				return returnMessage;
+			}
+
+			BigDecimal scmBudgetValue = new BigDecimal(indentGroupDAO.getindentScmVal(indentId));
+			String scsBudgetExcessSeq = processDoc.equalsIgnoreCase("5")
+					? iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", updateHdrReq.getTenantId())
+					: iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", updateHdrReq.getTenantId());
+			BigDecimal remainingStationBudget = computeRemainingStationBudget(indentId, scsBudgetExcessSeq);
+			boolean isBudgetExceeded = remainingStationBudget.compareTo(scmBudgetValue) < 0;
+			if (!isBudgetExceeded) {
+				returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+				returnMessage.setResponseMessage(ResponseMessageMap.actionNotAllowed);
+				return returnMessage;
+			}
+
+			int budgetExcessEntry = iIndentGroupDAO.getBudgetExcessDtlCount(scsId);
+			if (budgetExcessEntry != 0) {
+				returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+				returnMessage.setResponseMessage(ResponseMessageMap.budgetExcessAlreadyRaised);
+				return returnMessage;
+			}
+
+			String vendorQualified = iIndentGroupDAO.getVendorQualified(scsId);
+			scpVendorDtlList = iIndentGroupDAO.getScpVendorDtlList(scsId);
+			String vendorCode = "";
+			if (vendorQualified.equalsIgnoreCase("L1")) {
+				vendorCode = "L1_VENDOR_CODE";
+			} else if (vendorQualified.equalsIgnoreCase("L2")) {
+				vendorCode = "L2_VENDOR_CODE";
+			} else {
+				vendorCode = "L3_VENDOR_CODE";
+			}
+
+			BudgetExcessSheetRequest budgetExcessSheetReq = new BudgetExcessSheetRequest();
+			budgetExcessSheetReq.setIndentId(indentId);
+			budgetExcessSheetReq.setTenantID(updateHdrReq.getTenantId());
+			budgetExcessSheetReq.setUpdatedBy(updateHdrReq.getEmpId());
+			budgetExcessSheetReq.setVendor(iIndentGroupDAO.getVendorCodeByScsId(scsId, vendorCode));
+			budgetExcessSheetReq.setIgScsId(updateHdrReq.getHdrId());
+			budgetExcessSheetReq.setMasterId(updateHdrReq.getMstId());
+			budgetExcessSheetReq.setPmId(updateHdrReq.getPmId());
+			budgetExcessSheetReq.setProjectId(updateHdrReq.getPmHdrId());
+			budgetExcessSheetReq.setScsFinalCost(updateHdrReq.getScsFinalCost());
+			budgetExcessSheetReq.setProcessDoc(processDoc.equalsIgnoreCase("5") ? "3" : "8");
+			iBudgetExcessSheetService.insertBudgetExcessSheetDtl(budgetExcessSheetReq);
+
+			returnMessage.setResponseCode(ResponseMessageMap.responseCodeOk);
+			returnMessage.setResponseMessage(ResponseMessageMap.successCreated);
+		} catch (Exception ex) {
+			logger.error("raiseBudgetExcess error " + ex);
+		}
+		return returnMessage;
+	}
 
 	private ResponseAsMessage updateScsDtls(String scsId, String currentseq, String docStatus,
 											String remarks,String empId, String tenantId,String lastSeq,String pmId,

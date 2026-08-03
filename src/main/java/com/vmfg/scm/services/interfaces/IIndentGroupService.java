@@ -34,6 +34,8 @@ public interface IIndentGroupService {
 	ResponseAsMessage insertScpDtlsByIgHdrId(List<ScpDtlsEntity> scpDtlsEntity);
 
 	ResponseAsMessage updateScpSeqAndStatus(UpdateSeqAndStatusRequest updateHdrReq);
+
+	ResponseAsMessage raiseBudgetExcess(UpdateSeqAndStatusRequest updateHdrReq);
 	
 	ResponseAsMessage deleteIndScpDtlId(DeleteIndScpDtlIdRequest deleteIndScpDtlIdreq);
 

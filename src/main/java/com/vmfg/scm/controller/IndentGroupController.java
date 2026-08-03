@@ -179,6 +179,19 @@ public class IndentGroupController {
 	}
 
 	@CrossOrigin(maxAge = 3600)
+	@PostMapping("raiseBudgetExcess")
+	public ResponseEntity<ResponseAsMessage> raiseBudgetExcess(@RequestBody UpdateSeqAndStatusRequest UpdateHdrReq) {
+		logger.debug("raiseBudgetExcess  method Start");
+		ResponseAsMessage list = null;
+		try {
+			list = iIndentGroupService.raiseBudgetExcess(UpdateHdrReq);
+		} catch (Exception e) {
+			logger.debug("raiseBudgetExcess methode exception " + e);
+		}
+		return new ResponseEntity<ResponseAsMessage>(list, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
 	@PostMapping("deleteIndScpDtlId")
 	public ResponseEntity<ResponseAsMessage> deleteIndScpDtlId(@RequestBody DeleteIndScpDtlIdRequest deleteIndScpDtlIdReq) {
 		logger.debug("deleteIndScpDtlId   method Start");
