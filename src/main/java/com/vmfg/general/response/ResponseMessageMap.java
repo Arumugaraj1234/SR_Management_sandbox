@@ -51,6 +51,9 @@ public class ResponseMessageMap {
 	public static String grpTemplatDup = "Duplicate Template Name";
 	public static String approveBudgetExcess = "Budget Excess isn't Approved Yet";
 	public static String allocateBudgetFromSalesValue = "Insufficient budget at this station. Please use 'Allocate to Station' to add budget from available Sales Value.";
+	public static String raiseBudgetExcessRequired = "Insufficient budget at this station and no Sales Value available to allocate. Please use 'Raise Budget Excess' to proceed.";
+	public static String budgetExcessAlreadyRaised = "Budget Excess has already been raised for this indent";
+	public static String actionNotAllowed = "This action is not applicable for this indent";
 	public static String subTaskNotCompleted = "Sub task for the current task not completed";
 
 	public static String atleastOneTeam = "At least one team member must be assigned";

@@ -1,0 +1,16 @@
+2026-07-31 11:36:11 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-07-31 11:37:21 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-31 11:37:21 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-31 11:37:21 [http-nio-8495-exec-1] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-07-31 11:37:21 [http-nio-8495-exec-1] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-07-31 12:00:46 [http-nio-8495-exec-10] ERROR com.vmfg.project.dao.impl.ProjectDAO -getpmHdrIdByPkaId error Incorrect result size: expected 1, actual 0
+				
+2026-07-31 12:00:46 [http-nio-8495-exec-10] ERROR com.vmfg.project.dao.impl.ProjectDAO -getProjectCodeByProjId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-07-31 13:56:28 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				

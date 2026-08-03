@@ -100,6 +100,8 @@ public interface IIndentGroupDAO {
 
 	int getBudgetExcessDtlCount(String scpId);
 
+	String getScsIdByIndentId(String indentId);
+
 	int getScsPtCount(String scpID);
 
 	void deleteScsPt(String scpID);

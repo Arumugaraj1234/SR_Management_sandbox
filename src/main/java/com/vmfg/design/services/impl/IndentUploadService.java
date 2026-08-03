@@ -925,6 +925,11 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 						canAllocate = unallocatedProjectBudget.compareTo(BigDecimal.ZERO) > 0;
 					}
 					proj.get(0).setCanAllocateFromSalesBudget(String.valueOf(canAllocate));
+					proj.get(0).setIsShortfall(String.valueOf(isShortfall));
+
+					String scsId = iIndentGroupDAO.getScsIdByIndentId(indentReq.getIndentId());
+					boolean hasBudgetExcess = !scsId.isEmpty() && iIndentGroupDAO.getBudgetExcessDtlCount(scsId) > 0;
+					proj.get(0).setHasBudgetExcess(String.valueOf(hasBudgetExcess));
 				}
 				returnList.setResponseData(proj);
 				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
