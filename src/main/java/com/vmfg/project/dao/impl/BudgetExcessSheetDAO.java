@@ -219,7 +219,8 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 			}
 
 			String totalListQ = "SELECT \r\n" + "    bed.*,\r\n" + "    em.EMPLOYEE_FIRSTNAME,\r\n"
-					+ "    ih.INDENT_CODE,\r\n" + "    ph.PROJECT_CODE,\r\n" + "    ph.PROJECT_NAME,\r\n" +" bed.IS_COMPLETED,\r\n"
+					+ "    ih.INDENT_CODE,\r\n" + "    ih.PKA_ID,\r\n" + "    ph.PROJECT_CODE,\r\n" + "    ph.PROJECT_NAME,\r\n" +" bed.IS_COMPLETED,\r\n"
+					+ "    ph.COST_FLOW_TYPE,\r\n"
 					+ "    vm.VENDOR_NAME,\r\n" + "    dstc.DOCUMENT_STATUS_TYPE_DESCRIPTION,dp.DEPARTMENT_NAME\r\n" + "FROM\r\n"
 					+ "    budget_excess_dtl AS bed\r\n" + "        INNER JOIN\r\n"
 					+ "    employee_mst AS em ON bed.UPDATED_BY = em.EMPLOYEE_ID\r\n" + "        INNER JOIN\r\n"
@@ -309,7 +310,7 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 		BudgetExcessBasedIndentHdrDtl hdrDtl = new BudgetExcessBasedIndentHdrDtl();
 		try {
 
-			String query = "SELECT \r\n" + " INDENT_ID,PROJECT_ID,TARGET_VALUE,SCM_BUDGET_ALLOCATED,PKSA_ID\r\n"
+			String query = "SELECT \r\n" + " INDENT_ID,PROJECT_ID,TARGET_VALUE,SCM_BUDGET_ALLOCATED,PKSA_ID,SBC_CODE\r\n"
 					+ "FROM\r\n" + "  indent_hdr\r\n" + "WHERE\r\n" + "INDENT_ID = ?";
 
 			Map<String, Object> resultMap = this.jdbcTemplate.queryForMap(query, indentId);
@@ -318,6 +319,7 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 			hdrDtl.setScmBudAllocatedValue(resultMap.get("SCM_BUDGET_ALLOCATED").toString());
 			hdrDtl.setDskId(resultMap.get("PKSA_ID").toString());
 			hdrDtl.setTargetValue(resultMap.get("TARGET_VALUE").toString());
+			hdrDtl.setSbcCode(resultMap.get("SBC_CODE") != null ? resultMap.get("SBC_CODE").toString() : null);
 			
 		} catch (Exception ex) {
 			logger.error("BudgetExcessBasedIndentHdrDtl  method  exception" + ex);
@@ -343,7 +345,8 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 	@Override
 	public int insertBudgetExcessSheetDtl(String indentId, String pmHdrId, String budgetValue,
 			String scmBudAllocatedValue, String excess, String vendor, String reason, String rootCase, String action,
-			String responsible, String seqNo, String docStatus, String updatedBy, String tenantID, String dskId,String igScsId , String scsActualCost) {
+			String responsible, String seqNo, String docStatus, String updatedBy, String tenantID, String dskId,String igScsId , String scsActualCost,
+			String allocatedValue, String actualSpentSoFar, String pjsRefNo) {
 		logger.debug("insertBudgetExcessSheetDtl   method Start");
 		int insertRes = 0;
 		try {
@@ -357,9 +360,11 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 			// re-raising after a resolved/superseded entry is unchanged. If the NOT EXISTS check
 			// fails, zero rows are inserted and holder.getKey() throws, which the existing
 			// catch-and-return-0 below already handles as a no-op failure.
+			// allocatedValue/actualSpentSoFar are the NEW-flow station-budget snapshot (null for
+			// legacy callers, which the nullable DECIMAL columns accept as-is).
 			String insertBudgetQ = "INSERT INTO budget_excess_dtl (INDENT_ID, PM_HDR_ID, BUDGET_COST, ACTUAL_COST,EXCESS,  VENDOR_CODE,REASON,"
-					+ " ROOT_CAUSE, ACTION, RESPONSIBLE, SEQUENCE_NO,SEQUENCE_STATUS, UPDATED_BY, UPDATED_ON, TENANT_ID,PKSA_ID,IG_SCS_ID, ACTUAL_EXCESS) "
-					+ "SELECT ?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,?,?,? FROM DUAL "
+					+ " ROOT_CAUSE, ACTION, RESPONSIBLE, SEQUENCE_NO,SEQUENCE_STATUS, UPDATED_BY, UPDATED_ON, TENANT_ID,PKSA_ID,IG_SCS_ID, ACTUAL_EXCESS, ALLOCATED_VALUE, ACTUAL_SPENT_SO_FAR, PJS_REF_NO) "
+					+ "SELECT ?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,?,?,?,?,?,? FROM DUAL "
 					+ "WHERE NOT EXISTS (SELECT 1 FROM budget_excess_dtl WHERE IG_SCS_ID = ? AND SEQUENCE_NO != 6)";
 
 			KeyHolder holder = new GeneratedKeyHolder();
@@ -386,7 +391,10 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 					ps.setString(15, dskId);
 					ps.setString(16,igScsId );
 					ps.setString(17,scsActualCost );
-					ps.setString(18, igScsId);
+					ps.setString(18, allocatedValue);
+					ps.setString(19, actualSpentSoFar);
+					ps.setString(20, pjsRefNo);
+					ps.setString(21, igScsId);
 
 					return ps;
 				}
@@ -754,7 +762,38 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 			check = resultMap.get("ACTUAL_EXCESS").toString();
 			}catch (Exception ex) {
 			logger.error("checkIndentExcessCount method Error" + ex);
-		}	
+		}
 		return check;
+	}
+
+	@Override
+	public String getOverallExcessCostByPkaId(String pkaId, String tenantId) {
+		String overallExcess = "0";
+		try {
+			String query = "SELECT COALESCE(SUM(bed.ACTUAL_EXCESS),0) AS OVERALL_EXCESS "
+					+ "FROM budget_excess_dtl bed "
+					+ "JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID "
+					+ "WHERE ih.PKA_ID = ? AND bed.TENANT_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(query, pkaId, tenantId);
+			overallExcess = resultMap.get("OVERALL_EXCESS").toString();
+		} catch (Exception ex) {
+			logger.error("getOverallExcessCostByPkaId method Error" + ex);
+		}
+		return overallExcess;
+	}
+
+	@Override
+	public int getNextPjsRefSeqByProjectId(String projectId, String tenantId) {
+		int nextSeq = 1;
+		try {
+			String query = "SELECT COUNT(*) AS CNT FROM budget_excess_dtl bed "
+					+ "JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID "
+					+ "WHERE ih.PROJECT_ID = ? AND bed.TENANT_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(query, projectId, tenantId);
+			nextSeq = Integer.parseInt(resultMap.get("CNT").toString()) + 1;
+		} catch (Exception ex) {
+			logger.error("getNextPjsRefSeqByProjectId method Error" + ex);
+		}
+		return nextSeq;
 	}
 }

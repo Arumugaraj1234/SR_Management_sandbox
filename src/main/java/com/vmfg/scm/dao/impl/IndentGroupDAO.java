@@ -1443,7 +1443,25 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 		}
 		return excessVal;
 	}
-	
+
+	@Override
+	public String getApprovedActualExcessByIndentId(String indentId) {
+		String excessVal = "0";
+		try {
+			String chk = "select count(*) > 0 as cnt from budget_excess_dtl where INDENT_ID = ? and IS_COMPLETED=1";
+			Map<String, Object> resultMap1 = jdbcTemplate.queryForMap(chk, indentId);
+			int cnt = Integer.valueOf(resultMap1.get("cnt").toString());
+			if (cnt > 0) {
+				String qry = "select case when ACTUAL_EXCESS > 0 then ACTUAL_EXCESS ELSE 0 END AS ACTUAL_EXCESS from budget_excess_dtl where INDENT_ID = ? and IS_COMPLETED=1 ORDER BY BE_HDR_ID DESC LIMIT 1";
+				Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, indentId);
+				excessVal = resultMap.get("ACTUAL_EXCESS").toString();
+			}
+		} catch (Exception ex) {
+			logger.error("getApprovedActualExcessByIndentId error " + ex.getMessage());
+		}
+		return excessVal;
+	}
+
 	@Override
 	public String getVendorNameByVendorCode(String vendorCode) {
 		String vendorName="";

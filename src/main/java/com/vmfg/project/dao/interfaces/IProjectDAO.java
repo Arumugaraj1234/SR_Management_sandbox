@@ -167,6 +167,8 @@ public interface IProjectDAO {
 
 	String getCostFlowTypeByPkaId(String pkaId);
 
+	String getCostFlowTypeByPmHdrId(String pmHdrId);
+
 	String getpmHdrIdByPkaId(String pkaId);
 	
 	String getProjCodeByProjId(String projectId, String tenantId);

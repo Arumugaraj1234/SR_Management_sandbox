@@ -46,6 +46,12 @@ public class BudgetExcessSheetEntity implements Serializable{
 	private String nextSeqDesc;
 	private String budgetCostlat;
 	private String verCheck;
+	private String allocatedValue;
+	private String actualSpentSoFar;
+	private String pjsRefNo;
+	private String costFlowType;
+	private String pkaId;
+	private String overallExcessCost;
 	List<RetriveBudgetExcessStatusDtlEntity> BudgetExcessStatusDtlList;
 	List<DocumentStatusMstEntity> DocumentStatusMstList;
 }

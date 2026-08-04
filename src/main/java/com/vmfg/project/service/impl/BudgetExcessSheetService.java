@@ -75,18 +75,43 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 			String action = null;
 			String responsible = null;
 			BigDecimal scsActualCost= BigDecimal.ZERO;
-			// insertBudgetSheetDtl
-			String bugtExCheck = iBudgetExcessSheetDAO.checkIndentExcessCount(hdrDtl.getIndentId(), budgetExcessSheetRequest.getTenantID());
-			if(!bugtExCheck.equalsIgnoreCase("0") ){
-				scsActualCost = new BigDecimal(budgetExcessSheetRequest.getScsFinalCost()); 
-			}else {
-				scsActualCost = new BigDecimal (hdrDtl.getScmBudAllocatedValue()).subtract(targetCost);
+			String allocatedValue = budgetExcessSheetRequest.getAllocatedValue();
+			String actualSpentSoFar = budgetExcessSheetRequest.getActualSpentSoFar();
+			String pjsRefNo = null;
+			if (allocatedValue != null) {
+				// NEW-flow (only reachable via IndentGroupService.raiseBudgetExcess, which always
+				// supplies the station snapshot): TARGET_VALUE is always 0 under this cost-flow model,
+				// so the legacy checkIndentExcessCount/scsActualCost formula below is meaningless here.
+				// Compute Actual Excess Cost against the real remaining station budget instead - see
+				// project_budget_target_cost_removal memory for the worked-example formula this mirrors.
+				BigDecimal allocated = new BigDecimal(allocatedValue);
+				BigDecimal spentSoFar = new BigDecimal(actualSpentSoFar);
+				BigDecimal remaining = allocated.subtract(spentSoFar);
+				scsActualCost = actualCost.subtract(remaining.max(BigDecimal.ZERO));
+
+				// PJS Ref No., e.g. "1096/E/PJS/1" - {PROJECT_CODE}/{discipline}/PJS/{seq}. Minted once
+				// here and persisted, never recomputed, same as INDENT_CODE/PO_CODE. Seq is project-wide
+				// (not per-discipline), matching INDENT_CODE's own RUNNING_NO convention - confirmed with
+				// user rather than assumed.
+				String projectCode = indentUploadDAO.getProjectCodeByProjId(hdrDtl.getPmHdrId(), budgetExcessSheetRequest.getTenantID());
+				String sbcShortDesc = indentUploadDAO.getSbcShortDescBySbcCode(hdrDtl.getSbcCode(), budgetExcessSheetRequest.getTenantID());
+				int nextSeq = iBudgetExcessSheetDAO.getNextPjsRefSeqByProjectId(hdrDtl.getPmHdrId(), budgetExcessSheetRequest.getTenantID());
+				pjsRefNo = projectCode + "/" + sbcShortDesc + "/PJS/" + nextSeq;
+			} else {
+				// insertBudgetSheetDtl
+				String bugtExCheck = iBudgetExcessSheetDAO.checkIndentExcessCount(hdrDtl.getIndentId(), budgetExcessSheetRequest.getTenantID());
+				if(!bugtExCheck.equalsIgnoreCase("0") ){
+					scsActualCost = new BigDecimal(budgetExcessSheetRequest.getScsFinalCost());
+				}else {
+					scsActualCost = new BigDecimal (hdrDtl.getScmBudAllocatedValue()).subtract(targetCost);
+				}
 			}
 			int beHdrId = iBudgetExcessSheetDAO.insertBudgetExcessSheetDtl(hdrDtl.getIndentId(), hdrDtl.getPmHdrId(),
 					hdrDtl.getTargetValue(), hdrDtl.getScmBudAllocatedValue(), excess,
 					budgetExcessSheetRequest.getVendor(), reason, rootCase, action, responsible, seqNo,
 					listObj.getDocStatus(), budgetExcessSheetRequest.getUpdatedBy(),
-					budgetExcessSheetRequest.getTenantID(), hdrDtl.getDskId(), budgetExcessSheetRequest.getIgScsId(),String.valueOf(scsActualCost));
+					budgetExcessSheetRequest.getTenantID(), hdrDtl.getDskId(), budgetExcessSheetRequest.getIgScsId(),String.valueOf(scsActualCost),
+					allocatedValue, actualSpentSoFar, pjsRefNo);
 			// insertBudgetSheetStatus
 			String remarks = "New Budget Excess";
 			if (beHdrId > 0) {
@@ -164,6 +189,10 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 			Map<String, String> statusDescCache = new HashMap<>();
 			Map<String, Integer> approveBtnCache = new HashMap<>();
 			Map<String, String> docTypeDescCache = new HashMap<>();
+			// Overall Excess Cost (Station) is only meaningful for NEW-flow rows (see
+			// project_budget_target_cost_removal memory) - cached per PKA_ID so a station with
+			// several rows in the same request only fires the live SUM query once.
+			Map<String, String> overallExcessCache = new HashMap<>();
 
 			// docGroupList and designCode are the same for every row in this request (they only depend on
 			// tenantId/processCode/empId from statusDtlReq), so fetch them once instead of once per row.
@@ -197,6 +226,16 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 					budgetCodeCache.put(indentId, budgetCostlat);
 				}
 				listObj.setBudgetCostlat(budgetCostlat);
+
+				if ("NEW".equalsIgnoreCase(listObj.getCostFlowType())) {
+					String pkaId = listObj.getPkaId();
+					String overallExcess = overallExcessCache.get(pkaId);
+					if (overallExcess == null) {
+						overallExcess = iBudgetExcessSheetDAO.getOverallExcessCostByPkaId(pkaId, statusDtlReq.getTenantId());
+						overallExcessCache.put(pkaId, overallExcess);
+					}
+					listObj.setOverallExcessCost(overallExcess);
+				}
 
 				// beHdrId-specific, genuinely different per row - not cacheable
 				listObj.setVerCheck(iBudgetExcessSheetDAO.getVerChechForBudgetExcessByBeHdrId(listObj.getBeHdrId(),listObj.getTenantId()));

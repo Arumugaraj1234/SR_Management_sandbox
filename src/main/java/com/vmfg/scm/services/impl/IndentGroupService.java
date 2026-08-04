@@ -870,8 +870,17 @@ public class IndentGroupService implements IIndentGroupService {
 					// so check the real remaining budget at the station instead: what's allocated
 					// to the station minus what's already committed there (approved POs, plus other
 					// SCS's that already crossed this same "Project Approved" step but have no PO yet).
-					BigDecimal remainingStationBudget = computeRemainingStationBudget(indentId, scsBudgetExcessSeq);
-					isBudgetExceeded = remainingStationBudget.compareTo(scmBudgetValue) < 0;
+					BigDecimal remainingStationBudget = computeStationBudgetSnapshot(indentId, scsBudgetExcessSeq).remaining;
+					// Mirror the legacy formula's own resolution mechanism (indentTargetValue =
+					// TARGET_VALUE + getBudgetExcessValue, below) but scoped per-indent, not into the
+					// station's shared Allocated Value pool - once a Budget Excess is approved for
+					// THIS indent, its real shortfall amount (ACTUAL_EXCESS, not the legacy EXCESS
+					// column which is always the full quote here) is added to this one comparison
+					// only, so it doesn't inflate budget for other indents sharing the same station.
+					BigDecimal approvedExcessForThisIndent = new BigDecimal(
+							iIndentGroupDAO.getApprovedActualExcessByIndentId(indentId));
+					BigDecimal effectiveRemaining = remainingStationBudget.add(approvedExcessForThisIndent);
+					isBudgetExceeded = effectiveRemaining.compareTo(scmBudgetValue) < 0;
 				} else {
 					indentTargetValue = new BigDecimal(iIndentGroupDAO.getIndentTargetValue(indentId));
 					budgetExcessValue = new BigDecimal(iIndentGroupDAO.getBudgetExcessValue(indentId));
@@ -882,10 +891,20 @@ public class IndentGroupService implements IIndentGroupService {
 				if (isBudgetExceeded) {
 					if ("NEW".equalsIgnoreCase(costFlowType)) {
 						// NEW-flow: never auto-create a Budget Excess Sheet entry from this click.
-						// Block and tell the PM which explicit action to take instead - either
-						// "Allocate to Station" (if Sales Budget is available elsewhere in the
-						// project) or "Raise Budget Excess" (new PM-triggered action, see
-						// raiseBudgetExcess() below) - both are now deliberate PM choices rather
+						// If a Budget Excess was already raised for this SCS, it's still short even
+						// counting any approved amount (effectiveRemaining above already accounts for
+						// that) - so it's pending approval, not something the PM needs to act on again.
+						// Tell them that instead of re-prompting "Allocate to Station"/"Raise Budget
+						// Excess", which would be misleading once they've already raised one.
+						if (iIndentGroupDAO.getBudgetExcessDtlCount(scsId) > 0) {
+							returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+							returnMessage.setResponseMessage(ResponseMessageMap.approveBudgetExcess);
+							return returnMessage;
+						}
+						// No Budget Excess raised yet - block and tell the PM which explicit action to
+						// take instead - either "Allocate to Station" (if Sales Budget is available
+						// elsewhere in the project) or "Raise Budget Excess" (new PM-triggered action,
+						// see raiseBudgetExcess() below) - both are now deliberate PM choices rather
 						// than one of them happening automatically. Legacy flow (costFlowType is
 						// never "NEW" there) is untouched and still auto-creates below.
 						String projectId = indentUploadDAO.getProjectIdByIndentId(indentId);
@@ -957,13 +976,30 @@ public class IndentGroupService implements IIndentGroupService {
 		return returnMessage;
 	}
 
-	private BigDecimal computeRemainingStationBudget(String indentId, String scsBudgetExcessSeq) {
+	// Holds the pieces of the station-budget check together so callers that only need the
+	// remaining-budget gate (updateScpSeqAndStatus) and callers that also need to snapshot
+	// stationAllocated/actualSpentSoFar onto a new Budget Excess row (raiseBudgetExcess) can
+	// share one set of DAO calls instead of computing the same sums twice.
+	private static class StationBudgetSnapshot {
+		final BigDecimal stationAllocated;
+		final BigDecimal actualSpentSoFar;
+		final BigDecimal remaining;
+
+		StationBudgetSnapshot(BigDecimal stationAllocated, BigDecimal actualSpentSoFar) {
+			this.stationAllocated = stationAllocated;
+			this.actualSpentSoFar = actualSpentSoFar;
+			this.remaining = stationAllocated.subtract(actualSpentSoFar);
+		}
+	}
+
+	private StationBudgetSnapshot computeStationBudgetSnapshot(String indentId, String scsBudgetExcessSeq) {
 		String pkaId = indentUploadDAO.getPkaIdByIndentId(indentId);
 		BigDecimal stationAllocated = new BigDecimal(projectDAO.getAllocatedValSum(pkaId));
 		BigDecimal approvedPoTotal = new BigDecimal(poDAO.getApprovedPoTotalByPkaId(pkaId));
 		BigDecimal otherCommittedPjs = new BigDecimal(
 				indentGroupDAO.getOtherCommittedScsTotalByPkaId(pkaId, indentId, scsBudgetExcessSeq));
-		return stationAllocated.subtract(approvedPoTotal).subtract(otherCommittedPjs);
+		BigDecimal actualSpentSoFar = approvedPoTotal.add(otherCommittedPjs);
+		return new StationBudgetSnapshot(stationAllocated, actualSpentSoFar);
 	}
 
 	@Override
@@ -986,8 +1022,8 @@ public class IndentGroupService implements IIndentGroupService {
 			String scsBudgetExcessSeq = processDoc.equalsIgnoreCase("5")
 					? iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", updateHdrReq.getTenantId())
 					: iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", updateHdrReq.getTenantId());
-			BigDecimal remainingStationBudget = computeRemainingStationBudget(indentId, scsBudgetExcessSeq);
-			boolean isBudgetExceeded = remainingStationBudget.compareTo(scmBudgetValue) < 0;
+			StationBudgetSnapshot stationBudgetSnapshot = computeStationBudgetSnapshot(indentId, scsBudgetExcessSeq);
+			boolean isBudgetExceeded = stationBudgetSnapshot.remaining.compareTo(scmBudgetValue) < 0;
 			if (!isBudgetExceeded) {
 				returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
 				returnMessage.setResponseMessage(ResponseMessageMap.actionNotAllowed);
@@ -1023,6 +1059,8 @@ public class IndentGroupService implements IIndentGroupService {
 			budgetExcessSheetReq.setProjectId(updateHdrReq.getPmHdrId());
 			budgetExcessSheetReq.setScsFinalCost(updateHdrReq.getScsFinalCost());
 			budgetExcessSheetReq.setProcessDoc(processDoc.equalsIgnoreCase("5") ? "3" : "8");
+			budgetExcessSheetReq.setAllocatedValue(stationBudgetSnapshot.stationAllocated.toString());
+			budgetExcessSheetReq.setActualSpentSoFar(stationBudgetSnapshot.actualSpentSoFar.toString());
 			iBudgetExcessSheetService.insertBudgetExcessSheetDtl(budgetExcessSheetReq);
 
 			returnMessage.setResponseCode(ResponseMessageMap.responseCodeOk);

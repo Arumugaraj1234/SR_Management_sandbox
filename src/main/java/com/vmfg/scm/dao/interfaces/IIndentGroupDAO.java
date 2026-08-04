@@ -167,6 +167,12 @@ public interface IIndentGroupDAO {
 
 	String getBudgetExcessValue(String indentId);
 
+	// NEW-flow equivalent of getBudgetExcessValue - reads ACTUAL_EXCESS (the real shortfall
+	// amount) instead of EXCESS (always the full quote for NEW-flow, since TARGET_VALUE is never
+	// written - see project_budget_target_cost_removal memory). Same shape: most recent completed
+	// budget_excess_dtl row for this indent, "0" if none.
+	String getApprovedActualExcessByIndentId(String indentId);
+
 	String getIsPdfOrNot(String dmId);
 
 	String getScsGrpType(String scsId);

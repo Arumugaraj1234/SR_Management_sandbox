@@ -899,6 +899,7 @@ com/vmfg/project/entity/ProjectHdr.class
 com/vmfg/util/entity/lastUpdatedValueRowMapper.class
 com/vmfg/quality/dao/interfaces/IQualityInspectionDAO.class
 com/vmfg/project/request/AssyMstRequest.class
+com/vmfg/scm/services/impl/IndentGroupService$StationBudgetSnapshot.class
 com/vmfg/sales/request/SalesBudgetSheetDtlRequest.class
 com/vmfg/util/entity/OeeMonthlyInfo.class
 com/vmfg/master/entity/IndustryTypeEntity.class
