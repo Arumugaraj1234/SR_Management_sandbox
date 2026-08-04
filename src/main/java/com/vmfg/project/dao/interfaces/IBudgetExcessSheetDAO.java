@@ -26,7 +26,8 @@ public interface IBudgetExcessSheetDAO {
 
 	int insertBudgetExcessSheetDtl(String indentId, String pmHdrId, String budgetValue, String scmBudAllocatedValue,
 			String excess, String vendor, String reason, String rootCase, String action, String responsible,
-			String seqNo, String docStatus, String updatedBy, String tenantID, String dskId,String igScsId, String scsActualCost);
+			String seqNo, String docStatus, String updatedBy, String tenantID, String dskId,String igScsId, String scsActualCost,
+			String allocatedValue, String actualSpentSoFar, String pjsRefNo);
 
 	int insertBudgetExcessStatus(int beHdrId, String seqNo, String docStatus, String remarks, String updatedBy,
 			String tenantID);
@@ -74,5 +75,11 @@ public interface IBudgetExcessSheetDAO {
 	String getVerChechForBudgetExcessByBeHdrId(String indentId, String tenantId);
 
 	String checkIndentExcessCount(String indentId, String tenantID);
+
+	String getOverallExcessCostByPkaId(String pkaId, String tenantId);
+
+	// Project-wide (not per-discipline) running count, matching the existing INDENT_CODE
+	// RUNNING_NO convention - see project_budget_target_cost_removal memory.
+	int getNextPjsRefSeqByProjectId(String projectId, String tenantId);
 
 }

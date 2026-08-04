@@ -100,7 +100,22 @@ public class RetriveBudgetExcessSheetDtlRowMapper implements RowMapper<BudgetExc
 			if(columnExists(rs, "ACTUAL_EXCESS")) {
 				budgetExcessSheetEntity.setActualExcess(rs.getString("ACTUAL_EXCESS"));
 			}
-			
+			if(columnExists(rs, "ALLOCATED_VALUE")) {
+				budgetExcessSheetEntity.setAllocatedValue(rs.getString("ALLOCATED_VALUE"));
+			}
+			if(columnExists(rs, "ACTUAL_SPENT_SO_FAR")) {
+				budgetExcessSheetEntity.setActualSpentSoFar(rs.getString("ACTUAL_SPENT_SO_FAR"));
+			}
+			if(columnExists(rs, "PJS_REF_NO")) {
+				budgetExcessSheetEntity.setPjsRefNo(rs.getString("PJS_REF_NO"));
+			}
+			if(columnExists(rs, "COST_FLOW_TYPE")) {
+				budgetExcessSheetEntity.setCostFlowType(rs.getString("COST_FLOW_TYPE"));
+			}
+			if(columnExists(rs, "PKA_ID")) {
+				budgetExcessSheetEntity.setPkaId(rs.getString("PKA_ID"));
+			}
+
 		} catch (Exception ex) {
 			logger.error("BudgetExcessSheetRowMapper  Method Exception" + ex);
 

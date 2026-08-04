@@ -16,5 +16,6 @@ public class BudgetExcessBasedIndentHdrDtl implements Serializable {
 	private String targetValue;
 	private String scmBudAllocatedValue;
 	private String dskId;
+	private String sbcCode;
 
 }

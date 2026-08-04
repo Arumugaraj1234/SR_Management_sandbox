@@ -347,6 +347,20 @@ public class ProjectService implements IProjectService {
 	}
 
 	@Override
+	public ResponseAsMessage getCostFlowTypeByPmHdrId(ProjectByIDRequest projHdr) {
+		ResponseAsMessage rmsg = new ResponseAsMessage();
+		try {
+			String costFlowType = iProjectDAO.getCostFlowTypeByPmHdrId(projHdr.getProjectID());
+			rmsg.setResponseCode(ResponseMessageMap.responseCodeOk);
+			rmsg.setResponseMessage(ResponseMessageMap.success);
+			rmsg.setResponseDataMessage(costFlowType);
+		} catch (Exception ex) {
+			logger.error("Error getCostFlowTypeByPmHdrId " + ex);
+		}
+		return rmsg;
+	}
+
+	@Override
 	public ResponseAsList getelementHdrDistinct(ProjectByIDRequest projHdr) {
 		ResponseAsList list = new ResponseAsList();
 		try {

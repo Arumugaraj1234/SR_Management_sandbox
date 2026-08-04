@@ -16,5 +16,7 @@ public class BudgetExcessSheetRequest {
 	private String projectId;
 	private String scsFinalCost;
     private String processDoc;
-		
+	private String allocatedValue;
+	private String actualSpentSoFar;
+
 }

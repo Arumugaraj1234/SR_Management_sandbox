@@ -236,6 +236,22 @@ public class ProjectController {
 	}
 
 	@CrossOrigin(maxAge = 3600)
+	@PostMapping("getCostFlowTypeByPmHdrId")
+	public ResponseEntity<ResponseAsMessage> getCostFlowTypeByPmHdrId(@RequestBody ProjectByIDRequest projHdr) {
+		logger.info("getCostFlowTypeByPmHdrId   method Start");
+		ResponseAsMessage resp = null;
+		try {
+
+			resp = iProjectService.getCostFlowTypeByPmHdrId(projHdr);
+
+		} catch (Exception ex) {
+			logger.error("getCostFlowTypeByPmHdrId  method  exception" + ex);
+		}
+		logger.debug("getCostFlowTypeByPmHdrId   method end");
+		return new ResponseEntity<ResponseAsMessage>(resp, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
 	@PostMapping("getelementHdrDistinct")
 	public ResponseEntity<ResponseAsList> getelementHdrDistinct(@RequestBody ProjectByIDRequest projectByIdReq) {
 		logger.info("getelementHdrDistinct   method Start");

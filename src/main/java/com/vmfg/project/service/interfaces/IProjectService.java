@@ -35,6 +35,8 @@ public interface IProjectService {
 	ResponseAsMessage updatedesignindentReq(ProjectByIDRequest projHdr);
 
 	ResponseAsList getLinkStatusByPMId(ProjectByIDRequest projHdr);
+
+	ResponseAsMessage getCostFlowTypeByPmHdrId(ProjectByIDRequest projHdr);
 	
 	ResponseAsList getelementHdrDistinct(ProjectByIDRequest projHdr);
 
