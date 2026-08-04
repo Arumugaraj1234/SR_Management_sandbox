@@ -58,6 +58,7 @@ import com.vmfg.general.response.ResponseAsMessage;
 import com.vmfg.general.response.ResponseMessageMap;
 import com.vmfg.inventory.entity.InventoryMaterialTransferEntity;
 import com.vmfg.project.dao.impl.ProjectDAO;
+import com.vmfg.project.dao.interfaces.IBudgetExcessSheetDAO;
 import com.vmfg.project.request.PmHdrIdAndTenantIdRequest;
 import com.vmfg.project.request.ProjectInitiationMstRequest;
 import com.vmfg.sales.dao.impl.EnquiryDAO;
@@ -119,6 +120,9 @@ public class IndentUploadService implements IIndentUploadService {
 
 	@Autowired
 	IIndentGroupDAO iIndentGroupDAO;
+
+	@Autowired
+	IBudgetExcessSheetDAO iBudgetExcessSheetDAO;
 
 	@Autowired
 	IndentGroupDAO indentGroupDAO;
@@ -1016,6 +1020,25 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 			resp.setMaterialTransfeCost(materialTransferVal);
 			resp.setAvailablebudgetOnDate(AvailableBudget.toString());
 			resp.setDebitNoteValue(dnValue);
+
+			String costFlowType = projectDAO.getCostFlowTypeByPmHdrId(cstDtl.getHdrId());
+			resp.setCostFlowType(costFlowType);
+			if ("NEW".equalsIgnoreCase(costFlowType)) {
+				String allocatedValue = projectDAO.getAllocatedValSumByPmHdrId(cstDtl.getHdrId());
+				String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", cstDtl.getTenantId());
+				String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", cstDtl.getTenantId());
+				String minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
+				BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByProjectId(cstDtl.getHdrId()));
+				BigDecimal committedScsTotal = new BigDecimal(
+						iIndentGroupDAO.getCommittedScsTotalByProjectId(cstDtl.getHdrId(), minSeqNo));
+				BigDecimal consumedSoFar = approvedPoTotal.add(committedScsTotal);
+				BigDecimal budgetExcessApproved = new BigDecimal(
+						iBudgetExcessSheetDAO.getApprovedExcessTotalByPmHdrId(cstDtl.getHdrId()));
+				resp.setAllocatedValue(allocatedValue);
+				resp.setConsumedSoFar(consumedSoFar.toString());
+				resp.setBudgetExcessApproved(budgetExcessApproved.toString());
+			}
+
 			respList.add(resp);
 			if (respList.size() > 0) {
 				returnList.setResponseData(respList);

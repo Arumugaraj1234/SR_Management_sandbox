@@ -190,4 +190,8 @@ public interface IProjectDAO {
 	int updateBudgetSheetPaymentTerms(String sbPtId, String actualDate, String remarks);
 
 	String getDebitVal(String pmHdrId, String tenantID);
+
+	String getAllocatedValSumByPmHdrId(String pmHdrId);
+
+	String getEmployeeCostByPmHdrId(String pmHdrId, String tenantId);
 }

@@ -41,5 +41,8 @@ public class ProjectHdr implements Serializable {
 	private String debitValue;
 	private String isInternal;
 	private List<BudgetSheetPaymentEntity> paymentTerms;
-	
+
+	private String costFlowType;
+	private String allocatedValue;
+	private String actualSpent;
 }

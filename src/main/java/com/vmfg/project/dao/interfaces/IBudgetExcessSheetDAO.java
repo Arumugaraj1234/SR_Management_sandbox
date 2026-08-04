@@ -78,6 +78,8 @@ public interface IBudgetExcessSheetDAO {
 
 	String getOverallExcessCostByPkaId(String pkaId, String tenantId);
 
+	String getApprovedExcessTotalByPmHdrId(String pmHdrId);
+
 	// Project-wide (not per-discipline) running count, matching the existing INDENT_CODE
 	// RUNNING_NO convention - see project_budget_target_cost_removal memory.
 	int getNextPjsRefSeqByProjectId(String projectId, String tenantId);

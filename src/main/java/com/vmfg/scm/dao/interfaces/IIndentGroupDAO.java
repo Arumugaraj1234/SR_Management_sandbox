@@ -182,4 +182,6 @@ public interface IIndentGroupDAO {
 	int getPendingUngroupedItemCount(String indentId, String tenantId);
 
 	String getOtherCommittedScsTotalByPkaId(String pkaId, String excludeIndentId, String minSeqNo);
+
+	String getCommittedScsTotalByProjectId(String projectId, String minSeqNo);
 }

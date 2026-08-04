@@ -211,4 +211,6 @@ public interface IPoDAO {
 
 	String getApprovedPoTotalByPkaId(String pkaId);
 
+	String getApprovedPoTotalByProjectId(String projectId);
+
 }
