@@ -21,4 +21,7 @@ public class getLinkStatusByPMIdRespEntity implements Serializable {
 	private String budgetCost;
 	private String actualCost;
 	private String targetCost;
+
+	private String costFlowType;
+	private String consumedSoFar;
 }

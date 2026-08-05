@@ -351,6 +351,13 @@ public class ProjectService implements IProjectService {
 			List<getLinkStatusByPMIdRespEntity> finalResp = new ArrayList<getLinkStatusByPMIdRespEntity>();
 			List<ProjectKeyAreaMstEntity> keyArea = iDesignDAO.getKeyArea(tentReq);
 			if (keyArea.size() > 0) {
+				String costFlowType = iProjectDAO.getCostFlowTypeByPmHdrId(projHdr.getProjectID());
+				String minSeqNo = null;
+				if ("NEW".equalsIgnoreCase(costFlowType)) {
+					String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", projHdr.getTenantID());
+					String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", projHdr.getTenantID());
+					minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
+				}
 				for (int i = 0; i < keyArea.size(); i++) {
 					getLinkStatusByPMIdRespEntity resp = iProjectDAO.linkStatusCount(projHdr.getProjectID(),
 							keyArea.get(i).getPkId(), projHdr.getTenantID());
@@ -363,6 +370,13 @@ public class ProjectService implements IProjectService {
 						resp.setActualCost("0");
 						resp.setTargetCost("0");
 						resp.setBudgetCost("0");
+					}
+					resp.setCostFlowType(costFlowType);
+					if ("NEW".equalsIgnoreCase(costFlowType)) {
+						BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByPkaId(resp.getPkaId()));
+						BigDecimal otherCommittedPjs = new BigDecimal(
+								iIndentGroupDAO.getOtherCommittedScsTotalByPkaId(resp.getPkaId(), "-1", minSeqNo));
+						resp.setConsumedSoFar(approvedPoTotal.add(otherCommittedPjs).toString());
 					}
 					finalResp.add(resp);
 				}

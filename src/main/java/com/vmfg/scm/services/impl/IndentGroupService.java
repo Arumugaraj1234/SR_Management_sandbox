@@ -120,6 +120,7 @@ public class IndentGroupService implements IIndentGroupService {
 				Map<String, List<DocumentStatusMstEntity>> nextSeqDocCache = new HashMap<>();
 				Map<String, String> statusDescCache = new HashMap<>();
 				for(int i=0;i<list.size();i++) {
+					list.get(i).setCostFlowType(indentUploadDAO.getCostFlowTypeByIndentId(list.get(i).getIndentId()));
 					String vendorQualified=iIndentGroupDAO.getVenQualifiedByIgHdrId(list.get(i).getIgHdrId());
 					String basicTotalCol="";
 					if(!vendorQualified.equalsIgnoreCase("NA")) {
@@ -1411,8 +1412,12 @@ public class IndentGroupService implements IIndentGroupService {
 				List<String> docGroupList = iIndentGroupDAO.getDistinctScsDocGroup("DC038", tenantId, processDoc);
 				Map<String, List<DocumentStatusMstEntity>> nextSeqDocCache = new HashMap<>();
 				Map<String, String> statusDescCache = new HashMap<>();
+				// This endpoint is always scoped to one project (pmHdrId), so costFlowType is the
+				// same for every row - fetch once instead of once per row.
+				String costFlowTypeForScs = projectDAO.getCostFlowTypeByPmHdrId(pmHdrId);
 				for(int i=0;i<list.size();i++) {
 					list.get(i).setSNumber(String.valueOf(i+1));
+					list.get(i).setCostFlowType(costFlowTypeForScs);
 					int verFlag = iIndentGroupDAO.pjsversioncheck(list.get(i).getIgHdrId());
 					list.get(i).setVersionCheck(Integer.toString(verFlag));
 					String vendorQualified=iIndentGroupDAO.getVendorQualified(list.get(i).getScsId());

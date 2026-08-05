@@ -184,4 +184,6 @@ public interface IIndentGroupDAO {
 	String getOtherCommittedScsTotalByPkaId(String pkaId, String excludeIndentId, String minSeqNo);
 
 	String getCommittedScsTotalByProjectId(String projectId, String minSeqNo);
+
+	String getCommittedScsTotalByProjectIdAndSbcCode(String projectId, String sbcCode, String minSeqNo);
 }

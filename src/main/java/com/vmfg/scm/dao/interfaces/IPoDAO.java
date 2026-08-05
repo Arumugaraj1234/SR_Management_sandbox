@@ -213,4 +213,6 @@ public interface IPoDAO {
 
 	String getApprovedPoTotalByProjectId(String projectId);
 
+	String getApprovedPoTotalByProjectIdAndSbcCode(String projectId, String sbcCode);
+
 }
