@@ -783,6 +783,37 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 	}
 
 	@Override
+	public String getApprovedExcessTotalByPmHdrId(String pmHdrId) {
+		String overallExcess = "0";
+		try {
+			String query = "SELECT COALESCE(SUM(bed.ACTUAL_EXCESS),0) AS OVERALL_EXCESS "
+					+ "FROM budget_excess_dtl bed "
+					+ "WHERE bed.PM_HDR_ID = ? AND bed.IS_COMPLETED = '1'";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(query, pmHdrId);
+			overallExcess = resultMap.get("OVERALL_EXCESS").toString();
+		} catch (Exception ex) {
+			logger.error("getApprovedExcessTotalByPmHdrId method Error" + ex);
+		}
+		return overallExcess;
+	}
+
+	@Override
+	public String getApprovedExcessTotalByPmHdrIdAndSbcCode(String pmHdrId, String sbcCode) {
+		String overallExcess = "0";
+		try {
+			String query = "SELECT COALESCE(SUM(bed.ACTUAL_EXCESS),0) AS OVERALL_EXCESS "
+					+ "FROM budget_excess_dtl bed "
+					+ "INNER JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID "
+					+ "WHERE bed.PM_HDR_ID = ? AND ih.SBC_CODE = ? AND bed.IS_COMPLETED = '1'";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(query, pmHdrId, sbcCode);
+			overallExcess = resultMap.get("OVERALL_EXCESS").toString();
+		} catch (Exception ex) {
+			logger.error("getApprovedExcessTotalByPmHdrIdAndSbcCode method Error" + ex);
+		}
+		return overallExcess;
+	}
+
+	@Override
 	public int getNextPjsRefSeqByProjectId(String projectId, String tenantId) {
 		int nextSeq = 1;
 		try {

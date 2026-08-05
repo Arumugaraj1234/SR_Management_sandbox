@@ -1,5 +1,6 @@
 package com.vmfg.general.services.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,12 @@ import com.vmfg.general.response.GetTileViewResponse;
 import com.vmfg.general.response.ResponseAsList;
 import com.vmfg.general.response.ResponseMessageMap;
 import com.vmfg.general.services.interfaces.ITileViewService;
+import com.vmfg.design.dao.impl.IndentUploadDAO;
+import com.vmfg.project.dao.interfaces.IBudgetExcessSheetDAO;
 import com.vmfg.project.dao.interfaces.IProjectDAO;
+import com.vmfg.scm.dao.interfaces.IIndentGroupDAO;
+import com.vmfg.scm.dao.interfaces.IPoDAO;
+import com.vmfg.scm.request.HdrIdandTenantIdRequest;
 import com.vmfg.project.entity.ProjectHdr;
 import com.vmfg.project.request.ProjectHdrRequest;
 import com.vmfg.quality.dao.impl.QualityDAO;
@@ -58,6 +64,18 @@ public class TileViewService implements ITileViewService {
 	
 	@Autowired
 	IProjectDAO iProjectDAO;
+
+	@Autowired
+	IPoDAO iPoDAO;
+
+	@Autowired
+	IIndentGroupDAO iIndentGroupDAO;
+
+	@Autowired
+	IBudgetExcessSheetDAO iBudgetExcessSheetDAO;
+
+	@Autowired
+	IndentUploadDAO indentUploadDao;
 	
 	@Autowired
 	IAssemblyDAO iAssyDAO;
@@ -189,6 +207,36 @@ respList.add(resp);
 
 				projHdr.setIndentPlan(iProjectDAO.getBudgetValue(projHdr.getPmHdrId(), tenReq.getTenantID()));
 				projHdr.setIndentActual(iProjectDAO.getAllocValue(projHdr.getPmHdrId(), tenReq.getTenantID()));
+
+				String costFlowType = iProjectDAO.getCostFlowTypeByPmHdrId(projHdr.getPmHdrId());
+				projHdr.setCostFlowType(costFlowType);
+				if ("NEW".equalsIgnoreCase(costFlowType)) {
+					BigDecimal allocatedValue = new BigDecimal(iProjectDAO.getAllocatedValSumByPmHdrId(projHdr.getPmHdrId()));
+					String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", tenReq.getTenantID());
+					String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", tenReq.getTenantID());
+					String minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
+					BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByProjectId(projHdr.getPmHdrId()));
+					BigDecimal committedScsTotal = new BigDecimal(
+							iIndentGroupDAO.getCommittedScsTotalByProjectId(projHdr.getPmHdrId(), minSeqNo));
+					BigDecimal consumedSoFar = approvedPoTotal.add(committedScsTotal);
+
+					HdrIdandTenantIdRequest transferReq = new HdrIdandTenantIdRequest();
+					transferReq.setHdrId(projHdr.getPmHdrId());
+					transferReq.setTenantId(tenReq.getTenantID());
+					BigDecimal matCost = new BigDecimal(indentUploadDao.getSumOfTransferValue(transferReq));
+
+					BigDecimal employeeCost = new BigDecimal(
+							iProjectDAO.getEmployeeCostByPmHdrId(projHdr.getPmHdrId(), tenReq.getTenantID()));
+					BigDecimal debitCost = new BigDecimal(iProjectDAO.getDebitVal(projHdr.getPmHdrId(), tenReq.getTenantID()));
+					BigDecimal budgetExcessApproved = new BigDecimal(
+							iBudgetExcessSheetDAO.getApprovedExcessTotalByPmHdrId(projHdr.getPmHdrId()));
+
+					BigDecimal actualSpent = consumedSoFar.add(matCost).add(employeeCost).add(budgetExcessApproved)
+							.subtract(debitCost);
+
+					projHdr.setAllocatedValue(allocatedValue.toString());
+					projHdr.setActualSpent(actualSpent.toString());
+				}
 			});
 			
 	GetTileViewResponse resp =new GetTileViewResponse();

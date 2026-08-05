@@ -19,4 +19,9 @@ public class BudgetSummaryResponse {
 	private String materialTransfeCost;
 	private String debitNoteValue;
 	private List<CatbaseIndentCostDtlEntity> catbaseIndentCostDtl;
+
+	private String costFlowType;
+	private String allocatedValue;
+	private String consumedSoFar;
+	private String budgetExcessApproved;
 }

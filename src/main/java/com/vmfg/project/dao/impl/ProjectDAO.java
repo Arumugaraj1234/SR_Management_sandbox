@@ -1098,6 +1098,22 @@ public class ProjectDAO implements IProjectDAO {
 	}
 
 	@Override
+	public String getAllocatedValSumByPmHdrId(String pmHdrId) {
+		String allocatedVal = "0";
+		try {
+			String qry = "SELECT CASE WHEN COUNT(*)>0 THEN SUM(extn.ALLOCATED_VALUE) ELSE 0 END AS VAL " +
+					"FROM project_key_area_extn extn " +
+					"INNER JOIN project_key_area pka ON pka.PKA_ID = extn.PKA_ID " +
+					"WHERE pka.PM_HDR_ID = ?";
+			Map<String,Object> resultData = jdbcTemplate.queryForMap(qry, pmHdrId);
+			allocatedVal = resultData.get("VAL").toString();
+		} catch (Exception ex) {
+			logger.error("getAllocatedValSumByPmHdrId error " + ex.getMessage());
+		}
+		return allocatedVal;
+	}
+
+	@Override
 	public String getUnallocatedSalesBudgetTotalByMstId(String mstId, String tenantId) {
 		String unallocatedVal = "0";
 		try {
@@ -1806,5 +1822,21 @@ public class ProjectDAO implements IProjectDAO {
 		}
 		return DebitNote.toString();
 	}
-	
+
+	@Override
+	public String getEmployeeCostByPmHdrId(String pmHdrId, String tenantId) {
+		String employeeCost = "0";
+		try {
+			String qry = "SELECT COALESCE(SUM(td.TIMESHEET_COST),0) AS VAL " +
+					"FROM timesheet_hdr th " +
+					"INNER JOIN timesheet_dtl td ON td.T_HDR_ID = th.T_HDR_ID " +
+					"WHERE th.PM_HDR_ID = ? AND th.TENANT_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, pmHdrId, tenantId);
+			employeeCost = resultMap.get("VAL").toString();
+		} catch (Exception ex) {
+			logger.error("getEmployeeCostByPmHdrId error " + ex.getMessage());
+		}
+		return employeeCost;
+	}
+
 }

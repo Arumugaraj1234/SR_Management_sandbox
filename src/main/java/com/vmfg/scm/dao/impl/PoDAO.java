@@ -2579,4 +2579,36 @@ String poDate= CommonMethod.getCurrentDate();
 	    return totalVal;
 	}
 
+	@Override
+	public String getApprovedPoTotalByProjectId(String projectId) {
+	    String totalVal = "0";
+	    try {
+	        String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ph.BASIC_TOTAL) ELSE 0 END AS VAL " +
+	                     "FROM po_hdr ph " +
+	                     "INNER JOIN indent_hdr ih ON ih.INDENT_ID = ph.INDENT_ID " +
+	                     "WHERE ih.PROJECT_ID = ? AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1";
+	        Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, projectId);
+	        totalVal = resultMap.get("VAL").toString();
+	    } catch (Exception e) {
+	        logger.error("getApprovedPoTotalByProjectId error: " + e);
+	    }
+	    return totalVal;
+	}
+
+	@Override
+	public String getApprovedPoTotalByProjectIdAndSbcCode(String projectId, String sbcCode) {
+	    String totalVal = "0";
+	    try {
+	        String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ph.BASIC_TOTAL) ELSE 0 END AS VAL " +
+	                     "FROM po_hdr ph " +
+	                     "INNER JOIN indent_hdr ih ON ih.INDENT_ID = ph.INDENT_ID " +
+	                     "WHERE ih.PROJECT_ID = ? AND ih.SBC_CODE = ? AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1";
+	        Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, projectId, sbcCode);
+	        totalVal = resultMap.get("VAL").toString();
+	    } catch (Exception e) {
+	        logger.error("getApprovedPoTotalByProjectIdAndSbcCode error: " + e);
+	    }
+	    return totalVal;
+	}
+
 }

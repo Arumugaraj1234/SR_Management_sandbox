@@ -2331,4 +2331,42 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 		return totalVal;
 	}
 
+	@Override
+	public String getCommittedScsTotalByProjectId(String projectId, String minSeqNo) {
+		String totalVal = "0";
+		try {
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ih.SCM_BUDGET_ALLOCATED) ELSE 0 END AS VAL " +
+					"FROM indent_grp_scs scs " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
+					"WHERE ih.PROJECT_ID = ? AND scs.SEQUENCE_NO >= ? " +
+					"AND NOT EXISTS (" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					")";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, projectId, minSeqNo);
+			totalVal = resultMap.get("VAL").toString();
+		} catch (Exception ex) {
+			logger.error("getCommittedScsTotalByProjectId method Error" + ex);
+		}
+		return totalVal;
+	}
+
+	@Override
+	public String getCommittedScsTotalByProjectIdAndSbcCode(String projectId, String sbcCode, String minSeqNo) {
+		String totalVal = "0";
+		try {
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ih.SCM_BUDGET_ALLOCATED) ELSE 0 END AS VAL " +
+					"FROM indent_grp_scs scs " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
+					"WHERE ih.PROJECT_ID = ? AND ih.SBC_CODE = ? AND scs.SEQUENCE_NO >= ? " +
+					"AND NOT EXISTS (" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					")";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, projectId, sbcCode, minSeqNo);
+			totalVal = resultMap.get("VAL").toString();
+		} catch (Exception ex) {
+			logger.error("getCommittedScsTotalByProjectIdAndSbcCode method Error" + ex);
+		}
+		return totalVal;
+	}
+
 }

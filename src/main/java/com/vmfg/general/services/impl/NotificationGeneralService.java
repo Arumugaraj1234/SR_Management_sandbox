@@ -187,17 +187,18 @@ public class NotificationGeneralService implements INotificationGeneralService {
 					List<DocumentStatusMstEntity> currSeqDocLifeCycleMstList = new ArrayList<DocumentStatusMstEntity>();
 //					
 					if(obj.getDocTypeCode().equalsIgnoreCase("DC018")) {
-			
+
 						 currentSeq = indentUploadDAO.getCurrentSeqByIndentId(obj.getRefId(),
 									TENANT_ID);
 						 if(currentSeq>0) {
 						 allocatedValue = indentUploadDAO.getindentBudgetval(obj.getRefId());
 						 availableValue = indentUploadDAO.getAvailableValue(obj.getRefId());
 						 targetValue = indentUploadDAO.getTargetValue(obj.getRefId());
+						 getList.setCostFlowType(indentUploadDAO.getCostFlowTypeByIndentId(obj.getRefId()));
 
 						 docGroup = indentUploadDAO.getIndentTypeCodeByIndentId(obj.getRefId(),
 								TENANT_ID);
-						 } 
+						 }
 					}else if(obj.getDocTypeCode().equalsIgnoreCase("DC038")) {
 						
 						currentSeq = indentUploadDAO.getCurIndentGrpSeq(obj.getRefId());
@@ -216,13 +217,14 @@ public class NotificationGeneralService implements INotificationGeneralService {
 							String getIgHdrId= iIndentGroupDAO.getIgHdrId(obj.getRefId(),TENANT_ID);
 							String indentId = iIndentGroupDAO.getIndentIdByIgHdrId(getIgHdrId);
 							 targetValue = indentUploadDAO.getTargetValue(indentId);
-							 allocatedValue = new BigDecimal(iIndentGroupDAO.venDtlBasicCost(getIgHdrId,basicTotalCol));		
+							 allocatedValue = new BigDecimal(iIndentGroupDAO.venDtlBasicCost(getIgHdrId,basicTotalCol));
 							getList.setAllocatedValue(allocatedValue.toString());
 							getList.setTargetValue(targetValue);
+							getList.setCostFlowType(indentUploadDAO.getCostFlowTypeByIndentId(indentId));
 						}else {
 							getList.setAllocatedValue("0");
 							getList.setTargetValue("0");
-						}	
+						}
 						      if(obj.getIsInternal().equalsIgnoreCase("1")) {
 							     docGroup = getScsDocGroup(getList.getAllocatedValue(),TENANT_ID, obj.getDocTypeCode(),"8");
 						      }else {

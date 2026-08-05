@@ -14,4 +14,7 @@ public class CatbaseIndentCostDtlEntity {
 	private String finalBudgetStatus;
 	private String totalTargetCost;
 	private List<IndentCostDtlEntity> indentCostDtl;
+
+	private String consumedSoFar;
+	private String budgetExcessApproved;
 }

@@ -58,6 +58,7 @@ import com.vmfg.general.response.ResponseAsMessage;
 import com.vmfg.general.response.ResponseMessageMap;
 import com.vmfg.inventory.entity.InventoryMaterialTransferEntity;
 import com.vmfg.project.dao.impl.ProjectDAO;
+import com.vmfg.project.dao.interfaces.IBudgetExcessSheetDAO;
 import com.vmfg.project.request.PmHdrIdAndTenantIdRequest;
 import com.vmfg.project.request.ProjectInitiationMstRequest;
 import com.vmfg.sales.dao.impl.EnquiryDAO;
@@ -119,6 +120,9 @@ public class IndentUploadService implements IIndentUploadService {
 
 	@Autowired
 	IIndentGroupDAO iIndentGroupDAO;
+
+	@Autowired
+	IBudgetExcessSheetDAO iBudgetExcessSheetDAO;
 
 	@Autowired
 	IndentGroupDAO indentGroupDAO;
@@ -320,9 +324,26 @@ public class IndentUploadService implements IIndentUploadService {
 		try {
 			allocatedValue = iIndentUploadDAO.getindentBudgetval(indentDtlReq.getIndentId());
 			list = iIndentUploadDAO.getIndentDtlsByIndentId(indentDtlReq.getProjectId(), indentDtlReq.getIndentId(), indentDtlReq.getTenantId());
-			String availableValue = iIndentUploadDAO.getAvailableValue(indentDtlReq.getIndentId());
 			String targetValue = iIndentUploadDAO.getTargetValue(indentDtlReq.getIndentId());
 			String costFlowType = iIndentUploadDAO.getCostFlowTypeByIndentId(indentDtlReq.getIndentId());
+			String availableValue;
+			if ("NEW".equalsIgnoreCase(costFlowType)) {
+				// Real station-level Available Budget for NEW-flow: Allocated Value minus real
+				// approved PO spend minus committed PJS quotes past "Project Approved" with no PO
+				// yet - same formula already proven for the Budget Excess gate / PJS screen's
+				// "Available Value" field, just reused here for this indent-detail popup.
+				String pkaId = iIndentUploadDAO.getPkaIdByIndentId(indentDtlReq.getIndentId());
+				BigDecimal stationAllocated = new BigDecimal(projectDAO.getAllocatedValSum(pkaId));
+				BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByPkaId(pkaId));
+				String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", indentDtlReq.getTenantId());
+				String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", indentDtlReq.getTenantId());
+				String minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
+				BigDecimal otherCommittedPjs = new BigDecimal(
+						iIndentGroupDAO.getOtherCommittedScsTotalByPkaId(pkaId, "-1", minSeqNo));
+				availableValue = stationAllocated.subtract(approvedPoTotal).subtract(otherCommittedPjs).toString();
+			} else {
+				availableValue = iIndentUploadDAO.getAvailableValue(indentDtlReq.getIndentId());
+			}
 			if (list.size() > 0) {
 //				for (int i = 0; i < list.size(); i++) {
 				String getPmId = "";
@@ -959,6 +980,15 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 			String materialTransferVal=iIndentUploadDAO.getSumOfTransferValue(cstDtl);
 			List<BudgetKeyCategory> catLi = iIndentUploadDAO.getbudgetKeyCategoryList(cstDtl.getTenantId());
 			List<CatbaseIndentCostDtlEntity> catbaseIndentList = new ArrayList<CatbaseIndentCostDtlEntity>();
+
+			String costFlowTypeForCat = projectDAO.getCostFlowTypeByPmHdrId(cstDtl.getHdrId());
+			String minSeqNoForCat = null;
+			if ("NEW".equalsIgnoreCase(costFlowTypeForCat)) {
+				String scsSeqForCat = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", cstDtl.getTenantId());
+				String capexScsSeqForCat = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", cstDtl.getTenantId());
+				minSeqNoForCat = new BigDecimal(scsSeqForCat).min(new BigDecimal(capexScsSeqForCat)).toString();
+			}
+
 			for (int i = 0; i < catLi.size(); i++) {
 				CatbaseIndentCostDtlEntity catbaseIndent = new CatbaseIndentCostDtlEntity();
 				String poCheck = iIndentUploadDAO.cheackPoCreateOrNot(cstDtl.getHdrId(),cstDtl.getTenantId());
@@ -995,10 +1025,23 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 					catbaseIndent.setTotalPoCost(totalPoCost.toString());
 					catbaseIndent.setTotalTargetCost(totalTargetCode.toString());
 					catbaseIndent.setIndentCostDtl(proj);
-					catbaseIndentList.add(catbaseIndent);
 					indentedMaterial = indentedMaterial.add(totalBudgetCost);
 					poReleased = poReleased.add(totalPoCost);
 					dnValue = proj.get(0).getDnValue();
+
+					if ("NEW".equalsIgnoreCase(costFlowTypeForCat)) {
+						String sbcCode = catLi.get(i).getKeyCatCode();
+						BigDecimal approvedPoTotalForCat = new BigDecimal(
+								iPoDAO.getApprovedPoTotalByProjectIdAndSbcCode(cstDtl.getHdrId(), sbcCode));
+						BigDecimal committedScsTotalForCat = new BigDecimal(iIndentGroupDAO
+								.getCommittedScsTotalByProjectIdAndSbcCode(cstDtl.getHdrId(), sbcCode, minSeqNoForCat));
+						BigDecimal budgetExcessApprovedForCat = new BigDecimal(
+								iBudgetExcessSheetDAO.getApprovedExcessTotalByPmHdrIdAndSbcCode(cstDtl.getHdrId(), sbcCode));
+						catbaseIndent.setConsumedSoFar(approvedPoTotalForCat.add(committedScsTotalForCat).toString());
+						catbaseIndent.setBudgetExcessApproved(budgetExcessApprovedForCat.toString());
+					}
+
+					catbaseIndentList.add(catbaseIndent);
 				}
 
 			}
@@ -1016,6 +1059,25 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 			resp.setMaterialTransfeCost(materialTransferVal);
 			resp.setAvailablebudgetOnDate(AvailableBudget.toString());
 			resp.setDebitNoteValue(dnValue);
+
+			String costFlowType = projectDAO.getCostFlowTypeByPmHdrId(cstDtl.getHdrId());
+			resp.setCostFlowType(costFlowType);
+			if ("NEW".equalsIgnoreCase(costFlowType)) {
+				String allocatedValue = projectDAO.getAllocatedValSumByPmHdrId(cstDtl.getHdrId());
+				String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", cstDtl.getTenantId());
+				String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", cstDtl.getTenantId());
+				String minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
+				BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByProjectId(cstDtl.getHdrId()));
+				BigDecimal committedScsTotal = new BigDecimal(
+						iIndentGroupDAO.getCommittedScsTotalByProjectId(cstDtl.getHdrId(), minSeqNo));
+				BigDecimal consumedSoFar = approvedPoTotal.add(committedScsTotal);
+				BigDecimal budgetExcessApproved = new BigDecimal(
+						iBudgetExcessSheetDAO.getApprovedExcessTotalByPmHdrId(cstDtl.getHdrId()));
+				resp.setAllocatedValue(allocatedValue);
+				resp.setConsumedSoFar(consumedSoFar.toString());
+				resp.setBudgetExcessApproved(budgetExcessApproved.toString());
+			}
+
 			respList.add(resp);
 			if (respList.size() > 0) {
 				returnList.setResponseData(respList);
