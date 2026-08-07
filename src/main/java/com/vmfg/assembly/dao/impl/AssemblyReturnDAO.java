@@ -69,11 +69,17 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 				MrHdrRetrieveEntity obj=new MrHdrRetrieveEntity();
 				BeanUtils.copyProperties(count, obj);
 				String prodCountQ = "select count(PRODUCT_ID) as COUNT from material_return_dtl where MRH_ID=?";
-				
+
 				Map<String, Object> result = this.jdbcTemplate.queryForMap(prodCountQ,count.getMrhId());
 				int pCount = Integer.parseInt(result.get("COUNT").toString());
-				
+
 				obj.setProductCount(String.valueOf(pCount));
+
+				String groupCountQ = "select count(*) as COUNT from material_return_dtl where MRH_ID=? and MS_HDR_ID is not null";
+				Map<String, Object> groupResult = this.jdbcTemplate.queryForMap(groupCountQ, count.getMrhId());
+				int groupCount = Integer.parseInt(groupResult.get("COUNT").toString());
+				obj.setReturnType(groupCount > 0 ? "Group" : "Individual");
+
 				list.add(obj);
 			}
 
@@ -127,15 +133,16 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 	}
 
 	@Override
-	public int insertMaterialReturnDtl(int responseMrHdrId, String productId, String qty, String tenantId) {
+	public int insertMaterialReturnDtl(int responseMrHdrId, String productId, String qty, String tenantId,
+			String msHdrId, String msName) {
 		logger.debug("insertMaterialReturnDtl   method Start");
 		int insertRes = 0;
 		try {
 
-			String insertQ = "INSERT INTO material_return_dtl (MRH_ID, PRODUCT_ID, QTY, TENANT_ID) "
-					+ "VALUES (?,?,?,?)";
+			String insertQ = "INSERT INTO material_return_dtl (MRH_ID, PRODUCT_ID, QTY, TENANT_ID, MS_HDR_ID, MS_NAME) "
+					+ "VALUES (?,?,?,?,?,?)";
 
-			insertRes = this.jdbcTemplate.update(insertQ, responseMrHdrId, productId, qty, tenantId);
+			insertRes = this.jdbcTemplate.update(insertQ, responseMrHdrId, productId, qty, tenantId, msHdrId, msName);
 
 		} catch (Exception ex) {
 			logger.error("insertMaterialReturnDtl  method  exception" + ex);
@@ -149,17 +156,19 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 		List<RetrieveMReturnDtlByHdrEntity> list1 = new ArrayList<>();
 		try {
 			
-			String qry = "SELECT \r\n" + 
-					"    mrd.QTY,\r\n" + 
-					"    mrd.MRD_ID,\r\n" + 
-					"    mrd.IS_APPROVED,\r\n" + 
-					"    pm.PRODUCT_ID,\r\n" + 
-					"    pm.PRODUCT_CODE,\r\n" + 
-					"    pm.PRODUCT_DESCRIPTION,\r\n" + 
-					"    um.UOM_LONG_DESCRIPTION,\r\n" + 
-					"    pkam.PK_DESC AS STATION,\r\n" + 
-					"    pksam.PSK_DESC AS SUB_ASSY\r\n" + 
-					"FROM\r\n" + 
+			String qry = "SELECT \r\n" +
+					"    mrd.QTY,\r\n" +
+					"    mrd.MRD_ID,\r\n" +
+					"    mrd.IS_APPROVED,\r\n" +
+					"    mrd.MS_HDR_ID,\r\n" +
+					"    mrd.MS_NAME,\r\n" +
+					"    pm.PRODUCT_ID,\r\n" +
+					"    pm.PRODUCT_CODE,\r\n" +
+					"    pm.PRODUCT_DESCRIPTION,\r\n" +
+					"    um.UOM_LONG_DESCRIPTION,\r\n" +
+					"    pkam.PK_DESC AS STATION,\r\n" +
+					"    pksam.PSK_DESC AS SUB_ASSY\r\n" +
+					"FROM\r\n" +
 					"    material_return_dtl mrd\r\n" + 
 					"        INNER JOIN\r\n" + 
 					"    product_mst pm ON pm.PRODUCT_ID = mrd.PRODUCT_ID\r\n" + 

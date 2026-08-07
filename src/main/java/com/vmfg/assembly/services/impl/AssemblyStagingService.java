@@ -1,6 +1,5 @@
 package com.vmfg.assembly.services.impl;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,39 +117,32 @@ public class AssemblyStagingService implements IAssemblyStagingService {
 					materialReqHdr.getTenantId());
 
 			if (list.size() > 0) {
-				BigDecimal invValue = iAssemblyStagingDAO.checkInv(list, materialReqHdr.getTenantId());
-				if (invValue.compareTo(new BigDecimal(list.get(0).getStageQty())) == 0  || invValue.compareTo(new BigDecimal(list.get(0).getStageQty()))>0) {
+				List<RetrieveMSDtlByHdrEntity> list1 = iAssemblyStagingDAO
+						.retrieveMSDtlByHdr(list.get(0).getMsHdrId(), materialReqHdr.getTenantId());
 
-					List<RetrieveMSDtlByHdrEntity> list1 = iAssemblyStagingDAO
-							.retrieveMSDtlByHdr(list.get(0).getMsHdrId(), materialReqHdr.getTenantId());
+				if (list1.size() > 0) {
 
-					if (list1.size() > 0) {
-
-						for (int b = 0; b < list1.size(); b++) {
-							iAssemblyStagingDAO.updateMsDtlInv(list1.get(b).getProductId(), list1.get(b).getQty(),
-									list.get(0).getPmHdrId(), materialReqHdr.getTenantId(), materialReqHdr.getEmpId(),
-									list1.get(b).getDtlId());
-						}
-
+					for (int b = 0; b < list1.size(); b++) {
+						iAssemblyStagingDAO.updateMsDtlInv(list1.get(b).getProductId(), list1.get(b).getQty(),
+								list.get(0).getPmHdrId(), materialReqHdr.getTenantId(), materialReqHdr.getEmpId(),
+								list1.get(b).getDtlId());
 					}
 
-					String prodCode = iAssemblyStagingDAO.prodIdFromDesc(list.get(0).getMsName(),
-							list.get(0).getPmHdrId(), materialReqHdr.getTenantId());
+				}
 
-					responseMsHdrId = iAssemblyStagingDAO.cancelMsHdrReq(materialReqHdr.getHdrId(),
-							materialReqHdr.getTenantId(), materialReqHdr.getEmpId(), list.get(0).getStageQty(),
-							list.get(0).getPmHdrId(), prodCode);
+				String prodCode = iAssemblyStagingDAO.prodIdFromDesc(list.get(0).getMsName(),
+						list.get(0).getPmHdrId(), materialReqHdr.getTenantId());
 
-					if (responseMsHdrId > 0) {
-						returnres.setResponseCode(ResponseMessageMap.responseCodeOk);
-						returnres.setResponseMessage(ResponseMessageMap.successfulDeleted);
-					} else {
-						returnres.setResponseCode(ResponseMessageMap.responseCodeNotOk);
-						returnres.setResponseMessage(ResponseMessageMap.deleteUnSuccessful);
-					}
+				responseMsHdrId = iAssemblyStagingDAO.cancelMsHdrReq(materialReqHdr.getHdrId(),
+						materialReqHdr.getTenantId(), materialReqHdr.getEmpId(), list.get(0).getStageQty(),
+						list.get(0).getPmHdrId(), prodCode);
+
+				if (responseMsHdrId > 0) {
+					returnres.setResponseCode(ResponseMessageMap.responseCodeOk);
+					returnres.setResponseMessage(ResponseMessageMap.successfulDeleted);
 				} else {
 					returnres.setResponseCode(ResponseMessageMap.responseCodeNotOk);
-					returnres.setResponseMessage(ResponseMessageMap.stageUnav);
+					returnres.setResponseMessage(ResponseMessageMap.deleteUnSuccessful);
 				}
 			}
 

@@ -199,7 +199,7 @@ public class AssemblyReturnService implements IAssemblyReturnService {
 				// Material Return Dtl Insert
 				for (InsertMrDtlReq dtlObj : insertMrDtls.getMrDtlList()) {
 					 iAssemblyReturnDAO.insertMaterialReturnDtl(responseMrHdrId, dtlObj.getProductId(),
-							dtlObj.getQty(), dtlObj.getTenantId());
+							dtlObj.getQty(), dtlObj.getTenantId(), dtlObj.getMsHdrId(), dtlObj.getMsName());
 				}
 				responseMsg.setResponseCode(ResponseMessageMap.responseCodeOk);
 				responseMsg.setResponseMessage(ResponseMessageMap.successCreated);
