@@ -1,10 +1,12 @@
 package com.vmfg.project.dao.impl;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -811,6 +813,25 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 			logger.error("getApprovedExcessTotalByPmHdrIdAndSbcCode method Error" + ex);
 		}
 		return overallExcess;
+	}
+
+	@Override
+	public Map<String, BigDecimal> getApprovedExcessTotalGroupedBySbcCode(String pmHdrId) {
+		Map<String, BigDecimal> totalsBySbcCode = new HashMap<>();
+		try {
+			String query = "SELECT ih.SBC_CODE AS SBC_CODE, COALESCE(SUM(bed.ACTUAL_EXCESS),0) AS OVERALL_EXCESS "
+					+ "FROM budget_excess_dtl bed "
+					+ "INNER JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID "
+					+ "WHERE bed.PM_HDR_ID = ? AND bed.IS_COMPLETED = '1' "
+					+ "GROUP BY ih.SBC_CODE";
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(query, pmHdrId);
+			for (Map<String, Object> row : rows) {
+				totalsBySbcCode.put(row.get("SBC_CODE").toString(), new BigDecimal(row.get("OVERALL_EXCESS").toString()));
+			}
+		} catch (Exception ex) {
+			logger.error("getApprovedExcessTotalGroupedBySbcCode method Error" + ex);
+		}
+		return totalsBySbcCode;
 	}
 
 	@Override

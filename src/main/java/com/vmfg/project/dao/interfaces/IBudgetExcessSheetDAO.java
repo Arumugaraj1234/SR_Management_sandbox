@@ -1,6 +1,8 @@
 package com.vmfg.project.dao.interfaces;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import com.vmfg.general.entity.DocumentStatusMstEntity;
 import com.vmfg.project.entity.BudgetExcessSheetEntity;
@@ -81,6 +83,8 @@ public interface IBudgetExcessSheetDAO {
 	String getApprovedExcessTotalByPmHdrId(String pmHdrId);
 
 	String getApprovedExcessTotalByPmHdrIdAndSbcCode(String pmHdrId, String sbcCode);
+
+	Map<String, BigDecimal> getApprovedExcessTotalGroupedBySbcCode(String pmHdrId);
 
 	// Project-wide (not per-discipline) running count, matching the existing INDENT_CODE
 	// RUNNING_NO convention - see project_budget_target_cost_removal memory.

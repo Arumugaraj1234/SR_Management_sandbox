@@ -5,9 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import com.vmfg.project.dao.impl.ProjectDAO;
 import com.vmfg.project.request.*;
@@ -94,6 +97,33 @@ public class ProjectService implements IProjectService {
 		ResponseAsList respLi = new ResponseAsList();
 		if (resp.size() > 0) {
 
+			// Batch the per-project NEW-flow lookups once for the whole list instead of once per project inside the
+			// loop below - avoids an O(N) round-trip pattern per project that made project-list screens slow to load
+			// when several NEW-flow projects are present. Same approach used for the WBS screen's per-station totals.
+			List<String> pmHdrIds = resp.stream().map(ProjectHdr::getPmHdrId).collect(Collectors.toList());
+			Map<String, String> costFlowTypeByPmHdrId = iProjectDAO.getCostFlowTypeGroupedByPmHdrIds(pmHdrIds);
+			List<String> newFlowPmHdrIds = pmHdrIds.stream()
+					.filter(id -> "NEW".equalsIgnoreCase(costFlowTypeByPmHdrId.get(id)))
+					.collect(Collectors.toList());
+			Map<String, BigDecimal> approvedPoTotalByPmHdrId = new HashMap<>();
+			Map<String, BigDecimal> committedScsTotalByPmHdrId = new HashMap<>();
+			if (!newFlowPmHdrIds.isEmpty()) {
+				String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", tenReq.getTenantID());
+				String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", tenReq.getTenantID());
+				Map<String, String> isInternalByPmHdrId = iProjectDAO.getIsInternalGroupedByPmHdrIds(newFlowPmHdrIds);
+				List<String> capexPmHdrIds = newFlowPmHdrIds.stream()
+						.filter(id -> "1".equals(isInternalByPmHdrId.get(id))).collect(Collectors.toList());
+				List<String> normalPmHdrIds = newFlowPmHdrIds.stream()
+						.filter(id -> !"1".equals(isInternalByPmHdrId.get(id))).collect(Collectors.toList());
+				approvedPoTotalByPmHdrId.putAll(iPoDAO.getApprovedPoTotalGroupedByProjectIds(newFlowPmHdrIds));
+				if (!capexPmHdrIds.isEmpty()) {
+					committedScsTotalByPmHdrId.putAll(iIndentGroupDAO.getCommittedScsTotalGroupedByProjectIds(capexPmHdrIds, capexScsSeq));
+				}
+				if (!normalPmHdrIds.isEmpty()) {
+					committedScsTotalByPmHdrId.putAll(iIndentGroupDAO.getCommittedScsTotalGroupedByProjectIds(normalPmHdrIds, scsSeq));
+				}
+			}
+
 			resp.forEach(projHdr -> {
 				 List<BudgetSheetPaymentEntity> paymentTerms = iProjectDAO.getBudgetSheetPaymentTerms(projHdr.getSbHdrId());
                 projHdr.setPaymentTerms(paymentTerms);
@@ -103,16 +133,12 @@ public class ProjectService implements IProjectService {
 				projHdr.setCompletionPercent(iProjectDAO.getCompletionPercent(projHdr.getPmHdrId(), tenReq.getTenantID()));
 				projHdr.setDebitValue(iProjectDAO.getDebitVal(projHdr.getPmHdrId(), tenReq.getTenantID()));
 
-				String costFlowType = iProjectDAO.getCostFlowTypeByPmHdrId(projHdr.getPmHdrId());
+				String costFlowType = costFlowTypeByPmHdrId.getOrDefault(projHdr.getPmHdrId(), "LEGACY");
 				projHdr.setCostFlowType(costFlowType);
 				if ("NEW".equalsIgnoreCase(costFlowType)) {
 					BigDecimal allocatedValue = new BigDecimal(iProjectDAO.getAllocatedValSumByPmHdrId(projHdr.getPmHdrId()));
-					String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", tenReq.getTenantID());
-					String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", tenReq.getTenantID());
-					String minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
-					BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByProjectId(projHdr.getPmHdrId()));
-					BigDecimal committedScsTotal = new BigDecimal(
-							iIndentGroupDAO.getCommittedScsTotalByProjectId(projHdr.getPmHdrId(), minSeqNo));
+					BigDecimal approvedPoTotal = approvedPoTotalByPmHdrId.getOrDefault(projHdr.getPmHdrId(), BigDecimal.ZERO);
+					BigDecimal committedScsTotal = committedScsTotalByPmHdrId.getOrDefault(projHdr.getPmHdrId(), BigDecimal.ZERO);
 					BigDecimal consumedSoFar = approvedPoTotal.add(committedScsTotal);
 
 					HdrIdandTenantIdRequest transferReq = new HdrIdandTenantIdRequest();
@@ -254,6 +280,16 @@ public class ProjectService implements IProjectService {
 		return response;
 	}
 
+	// Picks the correct "committed PJS" threshold for a project: SCS_BUDGET_EXCESS (Project Approved)
+	// for normal projects, CAPEX_SCS_BUDGET_EXCESS (Purchase Approved) only for capex projects.
+	// Previously this was approximated with min(scsSeq, capexScsSeq), which always resolved to the
+	// lower capex threshold and let non-capex PJS count as "committed" one stage too early.
+	private String resolveCommittedScsMinSeqNo(String tenantId, String pmHdrId, String scsSeq, String capexScsSeq) {
+		ProjectInternalResponse internalResp = iProjectDAO.getProjectInternal(tenantId, pmHdrId);
+		boolean isCapex = internalResp != null && "1".equals(internalResp.getIsInternal());
+		return isCapex ? capexScsSeq : scsSeq;
+	}
+
 	@Override
 	public ResponseAsMessage insertKeyAreaByPMId(List<KeyAreaRequest> keyAre) {
 
@@ -352,11 +388,16 @@ public class ProjectService implements IProjectService {
 			List<ProjectKeyAreaMstEntity> keyArea = iDesignDAO.getKeyArea(tentReq);
 			if (keyArea.size() > 0) {
 				String costFlowType = iProjectDAO.getCostFlowTypeByPmHdrId(projHdr.getProjectID());
-				String minSeqNo = null;
+				Map<String, BigDecimal> approvedPoTotalByPka = new HashMap<>();
+				Map<String, BigDecimal> otherCommittedPjsByPka = new HashMap<>();
 				if ("NEW".equalsIgnoreCase(costFlowType)) {
 					String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", projHdr.getTenantID());
 					String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", projHdr.getTenantID());
-					minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
+					String minSeqNo = resolveCommittedScsMinSeqNo(projHdr.getTenantID(), projHdr.getProjectID(), scsSeq, capexScsSeq);
+					// Fetch per-station totals once for the whole project instead of once per station in the loop below -
+					// avoids an O(2N) round-trip pattern that made this screen slow to load for projects with many stations.
+					approvedPoTotalByPka = iPoDAO.getApprovedPoTotalGroupedByPmHdrId(projHdr.getProjectID());
+					otherCommittedPjsByPka = iIndentGroupDAO.getOtherCommittedScsTotalGroupedByPmHdrId(projHdr.getProjectID(), minSeqNo);
 				}
 				for (int i = 0; i < keyArea.size(); i++) {
 					getLinkStatusByPMIdRespEntity resp = iProjectDAO.linkStatusCount(projHdr.getProjectID(),
@@ -373,9 +414,8 @@ public class ProjectService implements IProjectService {
 					}
 					resp.setCostFlowType(costFlowType);
 					if ("NEW".equalsIgnoreCase(costFlowType)) {
-						BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByPkaId(resp.getPkaId()));
-						BigDecimal otherCommittedPjs = new BigDecimal(
-								iIndentGroupDAO.getOtherCommittedScsTotalByPkaId(resp.getPkaId(), "-1", minSeqNo));
+						BigDecimal approvedPoTotal = approvedPoTotalByPka.getOrDefault(resp.getPkaId(), BigDecimal.ZERO);
+						BigDecimal otherCommittedPjs = otherCommittedPjsByPka.getOrDefault(resp.getPkaId(), BigDecimal.ZERO);
 						resp.setConsumedSoFar(approvedPoTotal.add(otherCommittedPjs).toString());
 					}
 					finalResp.add(resp);
@@ -508,7 +548,7 @@ public class ProjectService implements IProjectService {
 					BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByPkaId(pkaId));
 					String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", deleteSubAreaExtReq.getTenantId());
 					String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", deleteSubAreaExtReq.getTenantId());
-					String minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
+					String minSeqNo = "1".equals(iProjectDAO.getIsInternalByPkaId(pkaId)) ? capexScsSeq : scsSeq;
 					BigDecimal otherCommittedPjs = new BigDecimal(
 							iIndentGroupDAO.getOtherCommittedScsTotalByPkaId(pkaId, "-1", minSeqNo));
 					BigDecimal remainingAfterRemoval = stationAllocated.subtract(thisRowValue)

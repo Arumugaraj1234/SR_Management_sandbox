@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -2580,6 +2581,25 @@ String poDate= CommonMethod.getCurrentDate();
 	}
 
 	@Override
+	public Map<String, BigDecimal> getApprovedPoTotalGroupedByPmHdrId(String pmHdrId) {
+	    Map<String, BigDecimal> totalsByPkaId = new HashMap<>();
+	    try {
+	        String qry = "SELECT ih.PKA_ID AS PKA_ID, SUM(ph.BASIC_TOTAL) AS VAL " +
+	                     "FROM po_hdr ph " +
+	                     "INNER JOIN indent_hdr ih ON ih.INDENT_ID = ph.INDENT_ID " +
+	                     "WHERE ih.PROJECT_ID = ? AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1 " +
+	                     "GROUP BY ih.PKA_ID";
+	        List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, pmHdrId);
+	        for (Map<String, Object> row : rows) {
+	            totalsByPkaId.put(row.get("PKA_ID").toString(), new BigDecimal(row.get("VAL").toString()));
+	        }
+	    } catch (Exception e) {
+	        logger.error("getApprovedPoTotalGroupedByPmHdrId error: " + e);
+	    }
+	    return totalsByPkaId;
+	}
+
+	@Override
 	public String getApprovedPoTotalByProjectId(String projectId) {
 	    String totalVal = "0";
 	    try {
@@ -2609,6 +2629,48 @@ String poDate= CommonMethod.getCurrentDate();
 	        logger.error("getApprovedPoTotalByProjectIdAndSbcCode error: " + e);
 	    }
 	    return totalVal;
+	}
+
+	@Override
+	public Map<String, BigDecimal> getApprovedPoTotalGroupedBySbcCode(String projectId) {
+	    Map<String, BigDecimal> totalsBySbcCode = new HashMap<>();
+	    try {
+	        String qry = "SELECT ih.SBC_CODE AS SBC_CODE, SUM(ph.BASIC_TOTAL) AS VAL " +
+	                     "FROM po_hdr ph " +
+	                     "INNER JOIN indent_hdr ih ON ih.INDENT_ID = ph.INDENT_ID " +
+	                     "WHERE ih.PROJECT_ID = ? AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1 " +
+	                     "GROUP BY ih.SBC_CODE";
+	        List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, projectId);
+	        for (Map<String, Object> row : rows) {
+	            totalsBySbcCode.put(row.get("SBC_CODE").toString(), new BigDecimal(row.get("VAL").toString()));
+	        }
+	    } catch (Exception e) {
+	        logger.error("getApprovedPoTotalGroupedBySbcCode error: " + e);
+	    }
+	    return totalsBySbcCode;
+	}
+
+	@Override
+	public Map<String, BigDecimal> getApprovedPoTotalGroupedByProjectIds(List<String> projectIds) {
+	    Map<String, BigDecimal> totalsByProjectId = new HashMap<>();
+	    if (projectIds == null || projectIds.isEmpty()) {
+	        return totalsByProjectId;
+	    }
+	    try {
+	        String placeholders = String.join(",", projectIds.stream().map(id -> "?").toArray(String[]::new));
+	        String qry = "SELECT ih.PROJECT_ID AS PROJECT_ID, SUM(ph.BASIC_TOTAL) AS VAL " +
+	                     "FROM po_hdr ph " +
+	                     "INNER JOIN indent_hdr ih ON ih.INDENT_ID = ph.INDENT_ID " +
+	                     "WHERE ih.PROJECT_ID IN (" + placeholders + ") AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1 " +
+	                     "GROUP BY ih.PROJECT_ID";
+	        List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, projectIds.toArray());
+	        for (Map<String, Object> row : rows) {
+	            totalsByProjectId.put(row.get("PROJECT_ID").toString(), new BigDecimal(row.get("VAL").toString()));
+	        }
+	    } catch (Exception e) {
+	        logger.error("getApprovedPoTotalGroupedByProjectIds error: " + e);
+	    }
+	    return totalsByProjectId;
 	}
 
 }

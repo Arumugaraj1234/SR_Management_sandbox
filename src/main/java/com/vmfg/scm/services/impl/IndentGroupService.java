@@ -849,6 +849,25 @@ public class IndentGroupService implements IIndentGroupService {
             }
 			
 			indentId=poDAO.getIndentId(scsId);
+
+			// Block reversal ("Previous Stage") outright while a Budget Excess is raised against
+			// this SCS, at any stage - pending or already approved, before or after "Project
+			// Approved". Reversing while one exists would silently drop this PJS out of the
+			// station's committed total (see getOtherCommittedScsTotalByPkaId) while the Budget
+			// Excess approval itself stays on record, letting another PJS claim the same money.
+			// The PM must resolve/reverse the Budget Excess itself first (its own "Previous Stage"
+			// action on the Budget Excess Sheet screen).
+			if ("NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(indentId))) {
+				int currentPersistedSeq = iIndentGroupDAO.getScsCurrentSeq(scsId);
+				int requestedSeq = Integer.parseInt(updateHdrReq.getCurrentseq());
+				boolean isReversal = requestedSeq < currentPersistedSeq;
+				if (isReversal && iIndentGroupDAO.getBudgetExcessDtlCount(scsId) > 0) {
+					returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+					returnMessage.setResponseMessage(ResponseMessageMap.reverseNotAllowedBudgetExcess);
+					return returnMessage;
+				}
+			}
+
 			//	String vendorQualified=iIndentGroupDAO.getVendorQualified(scsId);
 			// check for SCS - budget excess
 			if(updateHdrReq.getCurrentseq().equals(scsBudgetExcessSeq)) {
@@ -880,7 +899,16 @@ public class IndentGroupService implements IIndentGroupService {
 					// only, so it doesn't inflate budget for other indents sharing the same station.
 					BigDecimal approvedExcessForThisIndent = new BigDecimal(
 							iIndentGroupDAO.getApprovedActualExcessByIndentId(indentId));
-					BigDecimal effectiveRemaining = remainingStationBudget.add(approvedExcessForThisIndent);
+					// Also reserve the full value of any OTHER indent at this station that has a
+					// Budget Excess raised but still pending approval - it hasn't reached the
+					// "committed" sequence yet (so computeStationBudgetSnapshot's own
+					// otherCommittedPjs sum doesn't see it), but its claim on this station's
+					// remaining balance is real. Without this, a second PJS could pass this same
+					// check using the exact balance the first one is already waiting on.
+					BigDecimal otherPendingExcessReserved = new BigDecimal(iIndentGroupDAO
+							.getPendingBudgetExcessReservedTotalByPkaId(indentUploadDAO.getPkaIdByIndentId(indentId), indentId));
+					BigDecimal effectiveRemaining = remainingStationBudget.add(approvedExcessForThisIndent)
+							.subtract(otherPendingExcessReserved);
 					isBudgetExceeded = effectiveRemaining.compareTo(scmBudgetValue) < 0;
 				} else {
 					indentTargetValue = new BigDecimal(iIndentGroupDAO.getIndentTargetValue(indentId));

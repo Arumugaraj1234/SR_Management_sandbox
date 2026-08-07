@@ -3,7 +3,9 @@ package com.vmfg.design.services.impl;
 import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -61,6 +63,7 @@ import com.vmfg.project.dao.impl.ProjectDAO;
 import com.vmfg.project.dao.interfaces.IBudgetExcessSheetDAO;
 import com.vmfg.project.request.PmHdrIdAndTenantIdRequest;
 import com.vmfg.project.request.ProjectInitiationMstRequest;
+import com.vmfg.project.response.ProjectInternalResponse;
 import com.vmfg.sales.dao.impl.EnquiryDAO;
 import com.vmfg.sales.dao.impl.UploadManagementDAO;
 import com.vmfg.sales.entity.BudgetKeyCategory;
@@ -308,6 +311,16 @@ public class IndentUploadService implements IIndentUploadService {
 		return returnMessage;
 	}
 
+	// Picks the correct "committed PJS" threshold for a project: SCS_BUDGET_EXCESS (Project Approved)
+	// for normal projects, CAPEX_SCS_BUDGET_EXCESS (Purchase Approved) only for capex projects.
+	// Previously this was approximated with min(scsSeq, capexScsSeq), which always resolved to the
+	// lower capex threshold and let non-capex PJS count as "committed" one stage too early.
+	private String resolveCommittedScsMinSeqNo(String tenantId, String pmHdrId, String scsSeq, String capexScsSeq) {
+		ProjectInternalResponse internalResp = projectDAO.getProjectInternal(tenantId, pmHdrId);
+		boolean isCapex = internalResp != null && "1".equals(internalResp.getIsInternal());
+		return isCapex ? capexScsSeq : scsSeq;
+	}
+
 	@Override
 	public ResponseAsList getIndentDtlsByIndentId(IndentDtlRequest indentDtlReq) {
 		ResponseAsList returnList = new ResponseAsList();
@@ -337,7 +350,7 @@ public class IndentUploadService implements IIndentUploadService {
 				BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByPkaId(pkaId));
 				String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", indentDtlReq.getTenantId());
 				String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", indentDtlReq.getTenantId());
-				String minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
+				String minSeqNo = "1".equals(projectDAO.getIsInternalByPkaId(pkaId)) ? capexScsSeq : scsSeq;
 				BigDecimal otherCommittedPjs = new BigDecimal(
 						iIndentGroupDAO.getOtherCommittedScsTotalByPkaId(pkaId, "-1", minSeqNo));
 				availableValue = stationAllocated.subtract(approvedPoTotal).subtract(otherCommittedPjs).toString();
@@ -926,9 +939,19 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 					BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByPkaId(pkaId));
 					BigDecimal otherCommittedPjs = new BigDecimal(iIndentGroupDAO
 							.getOtherCommittedScsTotalByPkaId(pkaId, indentReq.getIndentId(), scsBudgetExcessSeq));
-					BigDecimal actualConsumedValue = approvedPoTotal.add(otherCommittedPjs);
+					// Reserves the full value of any other indent at this station with a Budget
+					// Excess raised but not yet approved - same reservation the "Project Approved"
+					// gate now checks (see IndentGroupService.updateScpSeqAndStatus) - folded in here
+					// too so this screen's Available Value/isShortfall can't show "fine" right before
+					// the gate blocks the same click for a reason this display doesn't know about.
+					BigDecimal reservedPendingExcess = new BigDecimal(iIndentGroupDAO
+							.getPendingBudgetExcessReservedTotalByPkaId(pkaId, indentReq.getIndentId()));
+					BigDecimal actualConsumedValue = approvedPoTotal.add(otherCommittedPjs).add(reservedPendingExcess);
 					proj.get(0).setAllocatedValue(allocatedValue.toString());
 					proj.get(0).setActualConsumedValue(actualConsumedValue.toString());
+					proj.get(0).setApprovedPoAmount(approvedPoTotal.toString());
+					proj.get(0).setCommittedPjsAmount(otherCommittedPjs.toString());
+					proj.get(0).setReservedPendingExcessAmount(reservedPendingExcess.toString());
 
 					// Is this station short on this SCS's own quote, and if so, is there any
 					// unallocated Sales Budget left anywhere in the project for the PM to pull
@@ -983,10 +1006,18 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 
 			String costFlowTypeForCat = projectDAO.getCostFlowTypeByPmHdrId(cstDtl.getHdrId());
 			String minSeqNoForCat = null;
+			Map<String, BigDecimal> approvedPoTotalBySbcCode = new HashMap<>();
+			Map<String, BigDecimal> committedScsTotalBySbcCode = new HashMap<>();
+			Map<String, BigDecimal> budgetExcessApprovedBySbcCode = new HashMap<>();
 			if ("NEW".equalsIgnoreCase(costFlowTypeForCat)) {
 				String scsSeqForCat = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", cstDtl.getTenantId());
 				String capexScsSeqForCat = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", cstDtl.getTenantId());
-				minSeqNoForCat = new BigDecimal(scsSeqForCat).min(new BigDecimal(capexScsSeqForCat)).toString();
+				minSeqNoForCat = resolveCommittedScsMinSeqNo(cstDtl.getTenantId(), cstDtl.getHdrId(), scsSeqForCat, capexScsSeqForCat);
+				// Fetch per-category totals once for the whole project instead of once per category in the loop below -
+				// same batching approach used for the WBS screen, avoids an O(3N) round-trip pattern per category.
+				approvedPoTotalBySbcCode = iPoDAO.getApprovedPoTotalGroupedBySbcCode(cstDtl.getHdrId());
+				committedScsTotalBySbcCode = iIndentGroupDAO.getCommittedScsTotalGroupedBySbcCode(cstDtl.getHdrId(), minSeqNoForCat);
+				budgetExcessApprovedBySbcCode = iBudgetExcessSheetDAO.getApprovedExcessTotalGroupedBySbcCode(cstDtl.getHdrId());
 			}
 
 			for (int i = 0; i < catLi.size(); i++) {
@@ -1031,12 +1062,9 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 
 					if ("NEW".equalsIgnoreCase(costFlowTypeForCat)) {
 						String sbcCode = catLi.get(i).getKeyCatCode();
-						BigDecimal approvedPoTotalForCat = new BigDecimal(
-								iPoDAO.getApprovedPoTotalByProjectIdAndSbcCode(cstDtl.getHdrId(), sbcCode));
-						BigDecimal committedScsTotalForCat = new BigDecimal(iIndentGroupDAO
-								.getCommittedScsTotalByProjectIdAndSbcCode(cstDtl.getHdrId(), sbcCode, minSeqNoForCat));
-						BigDecimal budgetExcessApprovedForCat = new BigDecimal(
-								iBudgetExcessSheetDAO.getApprovedExcessTotalByPmHdrIdAndSbcCode(cstDtl.getHdrId(), sbcCode));
+						BigDecimal approvedPoTotalForCat = approvedPoTotalBySbcCode.getOrDefault(sbcCode, BigDecimal.ZERO);
+						BigDecimal committedScsTotalForCat = committedScsTotalBySbcCode.getOrDefault(sbcCode, BigDecimal.ZERO);
+						BigDecimal budgetExcessApprovedForCat = budgetExcessApprovedBySbcCode.getOrDefault(sbcCode, BigDecimal.ZERO);
 						catbaseIndent.setConsumedSoFar(approvedPoTotalForCat.add(committedScsTotalForCat).toString());
 						catbaseIndent.setBudgetExcessApproved(budgetExcessApprovedForCat.toString());
 					}
@@ -1066,7 +1094,7 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 				String allocatedValue = projectDAO.getAllocatedValSumByPmHdrId(cstDtl.getHdrId());
 				String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", cstDtl.getTenantId());
 				String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", cstDtl.getTenantId());
-				String minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
+				String minSeqNo = resolveCommittedScsMinSeqNo(cstDtl.getTenantId(), cstDtl.getHdrId(), scsSeq, capexScsSeq);
 				BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByProjectId(cstDtl.getHdrId()));
 				BigDecimal committedScsTotal = new BigDecimal(
 						iIndentGroupDAO.getCommittedScsTotalByProjectId(cstDtl.getHdrId(), minSeqNo));
