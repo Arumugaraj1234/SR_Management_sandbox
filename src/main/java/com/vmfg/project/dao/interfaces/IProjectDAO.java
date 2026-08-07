@@ -2,6 +2,7 @@ package com.vmfg.project.dao.interfaces;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import com.vmfg.design.request.TenantRequest;
 import com.vmfg.design.response.KeyArea;
@@ -168,6 +169,12 @@ public interface IProjectDAO {
 	String getCostFlowTypeByPkaId(String pkaId);
 
 	String getCostFlowTypeByPmHdrId(String pmHdrId);
+
+	String getIsInternalByPkaId(String pkaId);
+
+	Map<String, String> getCostFlowTypeGroupedByPmHdrIds(List<String> pmHdrIds);
+
+	Map<String, String> getIsInternalGroupedByPmHdrIds(List<String> pmHdrIds);
 
 	String getpmHdrIdByPkaId(String pkaId);
 	

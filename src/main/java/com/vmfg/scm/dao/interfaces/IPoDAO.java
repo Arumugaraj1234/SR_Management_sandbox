@@ -1,6 +1,8 @@
 package com.vmfg.scm.dao.interfaces;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import com.vmfg.design.entity.ProductMstDropDownEntity;
 import com.vmfg.master.entity.VendorMstEntity;
@@ -211,8 +213,14 @@ public interface IPoDAO {
 
 	String getApprovedPoTotalByPkaId(String pkaId);
 
+	Map<String, BigDecimal> getApprovedPoTotalGroupedByPmHdrId(String pmHdrId);
+
 	String getApprovedPoTotalByProjectId(String projectId);
 
 	String getApprovedPoTotalByProjectIdAndSbcCode(String projectId, String sbcCode);
+
+	Map<String, BigDecimal> getApprovedPoTotalGroupedBySbcCode(String projectId);
+
+	Map<String, BigDecimal> getApprovedPoTotalGroupedByProjectIds(List<String> projectIds);
 
 }

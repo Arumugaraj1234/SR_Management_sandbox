@@ -2,7 +2,10 @@ package com.vmfg.general.services.impl;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -203,21 +206,43 @@ respList.add(resp);
 		for(int i =0;i<statusDesc.size();i++) {
 			List<ProjectHdr> projectTitleViewList=iTitleViewDAO.projectTitleViewList(tenantId, customerName, fromDate, toDate, tenReq.getProjectID(), empId, tenReq.getPmId(), statusDesc.get(i));
 
+			// Batch the per-project NEW-flow lookups once for this status's project list instead of once per project
+			// inside the loop below - same batching approach used for the WBS screen's per-station totals.
+			List<String> pmHdrIds = projectTitleViewList.stream().map(ProjectHdr::getPmHdrId).collect(Collectors.toList());
+			Map<String, String> costFlowTypeByPmHdrId = iProjectDAO.getCostFlowTypeGroupedByPmHdrIds(pmHdrIds);
+			List<String> newFlowPmHdrIds = pmHdrIds.stream()
+					.filter(id -> "NEW".equalsIgnoreCase(costFlowTypeByPmHdrId.get(id)))
+					.collect(Collectors.toList());
+			Map<String, BigDecimal> approvedPoTotalByPmHdrId = new HashMap<>();
+			Map<String, BigDecimal> committedScsTotalByPmHdrId = new HashMap<>();
+			if (!newFlowPmHdrIds.isEmpty()) {
+				String scsSeqForStatus = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", tenReq.getTenantID());
+				String capexScsSeqForStatus = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", tenReq.getTenantID());
+				Map<String, String> isInternalByPmHdrId = iProjectDAO.getIsInternalGroupedByPmHdrIds(newFlowPmHdrIds);
+				List<String> capexPmHdrIds = newFlowPmHdrIds.stream()
+						.filter(id -> "1".equals(isInternalByPmHdrId.get(id))).collect(Collectors.toList());
+				List<String> normalPmHdrIds = newFlowPmHdrIds.stream()
+						.filter(id -> !"1".equals(isInternalByPmHdrId.get(id))).collect(Collectors.toList());
+				approvedPoTotalByPmHdrId.putAll(iPoDAO.getApprovedPoTotalGroupedByProjectIds(newFlowPmHdrIds));
+				if (!capexPmHdrIds.isEmpty()) {
+					committedScsTotalByPmHdrId.putAll(iIndentGroupDAO.getCommittedScsTotalGroupedByProjectIds(capexPmHdrIds, capexScsSeqForStatus));
+				}
+				if (!normalPmHdrIds.isEmpty()) {
+					committedScsTotalByPmHdrId.putAll(iIndentGroupDAO.getCommittedScsTotalGroupedByProjectIds(normalPmHdrIds, scsSeqForStatus));
+				}
+			}
+
 			projectTitleViewList.forEach(projHdr -> {
 
 				projHdr.setIndentPlan(iProjectDAO.getBudgetValue(projHdr.getPmHdrId(), tenReq.getTenantID()));
 				projHdr.setIndentActual(iProjectDAO.getAllocValue(projHdr.getPmHdrId(), tenReq.getTenantID()));
 
-				String costFlowType = iProjectDAO.getCostFlowTypeByPmHdrId(projHdr.getPmHdrId());
+				String costFlowType = costFlowTypeByPmHdrId.getOrDefault(projHdr.getPmHdrId(), "LEGACY");
 				projHdr.setCostFlowType(costFlowType);
 				if ("NEW".equalsIgnoreCase(costFlowType)) {
 					BigDecimal allocatedValue = new BigDecimal(iProjectDAO.getAllocatedValSumByPmHdrId(projHdr.getPmHdrId()));
-					String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", tenReq.getTenantID());
-					String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", tenReq.getTenantID());
-					String minSeqNo = new BigDecimal(scsSeq).min(new BigDecimal(capexScsSeq)).toString();
-					BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByProjectId(projHdr.getPmHdrId()));
-					BigDecimal committedScsTotal = new BigDecimal(
-							iIndentGroupDAO.getCommittedScsTotalByProjectId(projHdr.getPmHdrId(), minSeqNo));
+					BigDecimal approvedPoTotal = approvedPoTotalByPmHdrId.getOrDefault(projHdr.getPmHdrId(), BigDecimal.ZERO);
+					BigDecimal committedScsTotal = committedScsTotalByPmHdrId.getOrDefault(projHdr.getPmHdrId(), BigDecimal.ZERO);
 					BigDecimal consumedSoFar = approvedPoTotal.add(committedScsTotal);
 
 					HdrIdandTenantIdRequest transferReq = new HdrIdandTenantIdRequest();

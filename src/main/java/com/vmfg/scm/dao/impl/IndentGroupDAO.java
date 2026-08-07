@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -1589,6 +1590,22 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 		return scsId;
 	}
 
+	// The SCS's own currently-persisted sequence, used to tell a reversal ("Previous Stage")
+	// apart from an ordinary forward approval click - forward clicks always request a sequence
+	// ahead of this value, reversals always request one behind it.
+	@Override
+	public int getScsCurrentSeq(String scsId) {
+		int seq = 0;
+		try {
+			String qry = "select SEQUENCE_NO from indent_grp_scs where IG_SCS_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, scsId);
+			seq = resultMap.get("SEQUENCE_NO") != null ? Integer.parseInt(resultMap.get("SEQUENCE_NO").toString()) : 0;
+		} catch (Exception e) {
+			logger.error("getScsCurrentSeq Method Exception --->" + e);
+		}
+		return seq;
+	}
+
 	@Override
 	public int getScsPtCount(String scpID) {
 		int count=0;
@@ -2329,6 +2346,101 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 			logger.error("getOtherCommittedScsTotalByPkaId method Error" + ex);
 		}
 		return totalVal;
+	}
+
+	// Reserves the FULL value of any other indent at this station that already has a Budget
+	// Excess raised but not yet approved (IS_COMPLETED != 1) - closes the gap where a PJS with a
+	// pending excess doesn't count as "committed" yet (SEQUENCE_NO stays below the threshold
+	// while blocked), so without this a second PJS at the same station could otherwise walk away
+	// with the exact same remaining balance the first one is already waiting on. Reserves the
+	// indent's whole SCM_BUDGET_ALLOCATED, not just its excess/shortfall portion - the rest of
+	// that indent's cost is already spoken for too, just not yet committed via ordinary allocation.
+	@Override
+	public String getPendingBudgetExcessReservedTotalByPkaId(String pkaId, String excludeIndentId) {
+		String totalVal = "0";
+		try {
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ih.SCM_BUDGET_ALLOCATED) ELSE 0 END AS VAL " +
+					"FROM budget_excess_dtl bed " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID " +
+					"WHERE ih.PKA_ID = ? AND bed.INDENT_ID <> ? AND bed.IS_COMPLETED != '1'";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, pkaId, excludeIndentId);
+			totalVal = resultMap.get("VAL").toString();
+		} catch (Exception ex) {
+			logger.error("getPendingBudgetExcessReservedTotalByPkaId method Error" + ex);
+		}
+		return totalVal;
+	}
+
+	@Override
+	public Map<String, BigDecimal> getOtherCommittedScsTotalGroupedByPmHdrId(String pmHdrId, String minSeqNo) {
+		Map<String, BigDecimal> totalsByPkaId = new HashMap<>();
+		try {
+			String qry = "SELECT ih.PKA_ID AS PKA_ID, SUM(ih.SCM_BUDGET_ALLOCATED) AS VAL " +
+					"FROM indent_grp_scs scs " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
+					"WHERE ih.PROJECT_ID = ? AND scs.SEQUENCE_NO >= ? " +
+					"AND NOT EXISTS (" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					") " +
+					"GROUP BY ih.PKA_ID";
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, pmHdrId, minSeqNo);
+			for (Map<String, Object> row : rows) {
+				totalsByPkaId.put(row.get("PKA_ID").toString(), new BigDecimal(row.get("VAL").toString()));
+			}
+		} catch (Exception ex) {
+			logger.error("getOtherCommittedScsTotalGroupedByPmHdrId method Error" + ex);
+		}
+		return totalsByPkaId;
+	}
+
+	@Override
+	public Map<String, BigDecimal> getCommittedScsTotalGroupedBySbcCode(String projectId, String minSeqNo) {
+		Map<String, BigDecimal> totalsBySbcCode = new HashMap<>();
+		try {
+			String qry = "SELECT ih.SBC_CODE AS SBC_CODE, SUM(ih.SCM_BUDGET_ALLOCATED) AS VAL " +
+					"FROM indent_grp_scs scs " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
+					"WHERE ih.PROJECT_ID = ? AND scs.SEQUENCE_NO >= ? " +
+					"AND NOT EXISTS (" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					") " +
+					"GROUP BY ih.SBC_CODE";
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, projectId, minSeqNo);
+			for (Map<String, Object> row : rows) {
+				totalsBySbcCode.put(row.get("SBC_CODE").toString(), new BigDecimal(row.get("VAL").toString()));
+			}
+		} catch (Exception ex) {
+			logger.error("getCommittedScsTotalGroupedBySbcCode method Error" + ex);
+		}
+		return totalsBySbcCode;
+	}
+
+	@Override
+	public Map<String, BigDecimal> getCommittedScsTotalGroupedByProjectIds(List<String> projectIds, String minSeqNo) {
+		Map<String, BigDecimal> totalsByProjectId = new HashMap<>();
+		if (projectIds == null || projectIds.isEmpty()) {
+			return totalsByProjectId;
+		}
+		try {
+			String placeholders = String.join(",", projectIds.stream().map(id -> "?").toArray(String[]::new));
+			String qry = "SELECT ih.PROJECT_ID AS PROJECT_ID, SUM(ih.SCM_BUDGET_ALLOCATED) AS VAL " +
+					"FROM indent_grp_scs scs " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
+					"WHERE ih.PROJECT_ID IN (" + placeholders + ") AND scs.SEQUENCE_NO >= ? " +
+					"AND NOT EXISTS (" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					") " +
+					"GROUP BY ih.PROJECT_ID";
+			List<Object> params = new ArrayList<>(projectIds);
+			params.add(minSeqNo);
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, params.toArray());
+			for (Map<String, Object> row : rows) {
+				totalsByProjectId.put(row.get("PROJECT_ID").toString(), new BigDecimal(row.get("VAL").toString()));
+			}
+		} catch (Exception ex) {
+			logger.error("getCommittedScsTotalGroupedByProjectIds method Error" + ex);
+		}
+		return totalsByProjectId;
 	}
 
 	@Override

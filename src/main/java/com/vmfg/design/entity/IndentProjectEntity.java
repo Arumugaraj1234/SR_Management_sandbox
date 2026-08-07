@@ -24,5 +24,10 @@ public class IndentProjectEntity implements Serializable {
 	private String isShortfall;
 	private String hasBudgetExcess;
 	private String pkaId;
+	// Utilized-value breakdown for the info icon next to Available Value (NEW-flow only) -
+	// approvedPoAmount + committedPjsAmount + reservedPendingExcessAmount sums to actualConsumedValue.
+	private String approvedPoAmount;
+	private String committedPjsAmount;
+	private String reservedPendingExcessAmount;
 
 }

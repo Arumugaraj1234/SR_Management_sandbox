@@ -2,6 +2,7 @@ package com.vmfg.scm.dao.interfaces;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 import com.vmfg.design.entity.IndentDtlTblEntity;
 import com.vmfg.scm.entity.IndentGroupDetailsEntity;
@@ -183,7 +184,17 @@ public interface IIndentGroupDAO {
 
 	String getOtherCommittedScsTotalByPkaId(String pkaId, String excludeIndentId, String minSeqNo);
 
+	String getPendingBudgetExcessReservedTotalByPkaId(String pkaId, String excludeIndentId);
+
+	int getScsCurrentSeq(String scsId);
+
+	Map<String, BigDecimal> getOtherCommittedScsTotalGroupedByPmHdrId(String pmHdrId, String minSeqNo);
+
 	String getCommittedScsTotalByProjectId(String projectId, String minSeqNo);
 
 	String getCommittedScsTotalByProjectIdAndSbcCode(String projectId, String sbcCode, String minSeqNo);
+
+	Map<String, BigDecimal> getCommittedScsTotalGroupedBySbcCode(String projectId, String minSeqNo);
+
+	Map<String, BigDecimal> getCommittedScsTotalGroupedByProjectIds(List<String> projectIds, String minSeqNo);
 }

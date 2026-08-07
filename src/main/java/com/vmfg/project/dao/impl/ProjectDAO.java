@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -1642,6 +1643,66 @@ public class ProjectDAO implements IProjectDAO {
 			logger.error("getCostFlowTypeByPkaId error " + ex.getMessage());
 		}
 		return costFlowType;
+	}
+
+	@Override
+	public String getIsInternalByPkaId(String pkaId) {
+		String isInternal = "0";
+		try {
+			String qry = "SELECT se.IS_INTERNAL FROM project_key_area pka "
+					+ "INNER JOIN project_hdr ph ON pka.PM_HDR_ID = ph.PM_HDR_ID "
+					+ "INNER JOIN sales_enq_hdr se ON ph.ENQUIRY_ID = se.SE_ID "
+					+ "WHERE pka.PKA_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, pkaId);
+			if (resultMap.get("IS_INTERNAL") != null) {
+				isInternal = resultMap.get("IS_INTERNAL").toString();
+			}
+		} catch (Exception ex) {
+			logger.error("getIsInternalByPkaId error " + ex.getMessage());
+		}
+		return isInternal;
+	}
+
+	@Override
+	public Map<String, String> getCostFlowTypeGroupedByPmHdrIds(List<String> pmHdrIds) {
+		Map<String, String> costFlowTypeByPmHdrId = new HashMap<>();
+		if (pmHdrIds == null || pmHdrIds.isEmpty()) {
+			return costFlowTypeByPmHdrId;
+		}
+		try {
+			String placeholders = String.join(",", pmHdrIds.stream().map(id -> "?").toArray(String[]::new));
+			String qry = "SELECT PM_HDR_ID, COST_FLOW_TYPE FROM project_hdr WHERE PM_HDR_ID IN (" + placeholders + ")";
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, pmHdrIds.toArray());
+			for (Map<String, Object> row : rows) {
+				String costFlowType = row.get("COST_FLOW_TYPE") != null ? row.get("COST_FLOW_TYPE").toString() : "LEGACY";
+				costFlowTypeByPmHdrId.put(row.get("PM_HDR_ID").toString(), costFlowType);
+			}
+		} catch (Exception ex) {
+			logger.error("getCostFlowTypeGroupedByPmHdrIds error " + ex.getMessage());
+		}
+		return costFlowTypeByPmHdrId;
+	}
+
+	@Override
+	public Map<String, String> getIsInternalGroupedByPmHdrIds(List<String> pmHdrIds) {
+		Map<String, String> isInternalByPmHdrId = new HashMap<>();
+		if (pmHdrIds == null || pmHdrIds.isEmpty()) {
+			return isInternalByPmHdrId;
+		}
+		try {
+			String placeholders = String.join(",", pmHdrIds.stream().map(id -> "?").toArray(String[]::new));
+			String qry = "SELECT ph.PM_HDR_ID AS PM_HDR_ID, se.IS_INTERNAL AS IS_INTERNAL "
+					+ "FROM project_hdr ph INNER JOIN sales_enq_hdr se ON ph.ENQUIRY_ID = se.SE_ID "
+					+ "WHERE ph.PM_HDR_ID IN (" + placeholders + ")";
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, pmHdrIds.toArray());
+			for (Map<String, Object> row : rows) {
+				String isInternal = row.get("IS_INTERNAL") != null ? row.get("IS_INTERNAL").toString() : "0";
+				isInternalByPmHdrId.put(row.get("PM_HDR_ID").toString(), isInternal);
+			}
+		} catch (Exception ex) {
+			logger.error("getIsInternalGroupedByPmHdrIds error " + ex.getMessage());
+		}
+		return isInternalByPmHdrId;
 	}
 
 	@Override
