@@ -20,4 +20,6 @@ public class RetrieveMReturnDtlByHdrEntity implements Serializable {
 	private String isApproved;
 	private String specification;
 	private String make;
+	private String msHdrId;
+	private String msName;
 }

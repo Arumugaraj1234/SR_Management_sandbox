@@ -11,7 +11,8 @@ public interface IAssemblyReturnDAO {
 
 	List<MrHdrRetrieveEntity> mrHdrRetrieve(String hdrId, String tenantId);
 
-	int insertMaterialReturnDtl(int responseMrHdrId, String productId, String qty, String tenantId);
+	int insertMaterialReturnDtl(int responseMrHdrId, String productId, String qty, String tenantId, String msHdrId,
+			String msName);
 
 	List<RetrieveMReturnDtlByHdrEntity> retrieveMreturnDtlByHdr(String hdrId, String tenantId);
 

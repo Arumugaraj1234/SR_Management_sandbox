@@ -54,6 +54,12 @@ public class RetrieveMReturnDtlByHdrRowMapper implements RowMapper<RetrieveMRetu
 			if (columnExists(rs, "MAKE")) {
 				result.setMake(rs.getString("MAKE"));
 			}
+			if (columnExists(rs, "MS_HDR_ID")) {
+				result.setMsHdrId(rs.getString("MS_HDR_ID"));
+			}
+			if (columnExists(rs, "MS_NAME")) {
+				result.setMsName(rs.getString("MS_NAME"));
+			}
 
 		} catch (Exception ex) {
 			logger.error("RetrieveMReturnDtlByHdrRowMapper error " + ex);
