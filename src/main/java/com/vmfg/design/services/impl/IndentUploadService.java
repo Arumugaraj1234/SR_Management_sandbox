@@ -1017,7 +1017,7 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 				// same batching approach used for the WBS screen, avoids an O(3N) round-trip pattern per category.
 				approvedPoTotalBySbcCode = iPoDAO.getApprovedPoTotalGroupedBySbcCode(cstDtl.getHdrId());
 				committedScsTotalBySbcCode = iIndentGroupDAO.getCommittedScsTotalGroupedBySbcCode(cstDtl.getHdrId(), minSeqNoForCat);
-				budgetExcessApprovedBySbcCode = iBudgetExcessSheetDAO.getApprovedExcessTotalGroupedBySbcCode(cstDtl.getHdrId());
+				budgetExcessApprovedBySbcCode = iBudgetExcessSheetDAO.getApprovedExcessTotalGroupedBySbcCode(cstDtl.getHdrId(), minSeqNoForCat);
 			}
 
 			for (int i = 0; i < catLi.size(); i++) {
@@ -1100,7 +1100,7 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 						iIndentGroupDAO.getCommittedScsTotalByProjectId(cstDtl.getHdrId(), minSeqNo));
 				BigDecimal consumedSoFar = approvedPoTotal.add(committedScsTotal);
 				BigDecimal budgetExcessApproved = new BigDecimal(
-						iBudgetExcessSheetDAO.getApprovedExcessTotalByPmHdrId(cstDtl.getHdrId()));
+						iBudgetExcessSheetDAO.getApprovedExcessTotalByPmHdrId(cstDtl.getHdrId(), minSeqNo));
 				resp.setAllocatedValue(allocatedValue);
 				resp.setConsumedSoFar(consumedSoFar.toString());
 				resp.setBudgetExcessApproved(budgetExcessApproved.toString());

@@ -785,13 +785,20 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 	}
 
 	@Override
-	public String getApprovedExcessTotalByPmHdrId(String pmHdrId) {
+	public String getApprovedExcessTotalByPmHdrId(String pmHdrId, String minSeqNo) {
 		String overallExcess = "0";
 		try {
+			// Excludes indents already reflected elsewhere in "Consumed So Far" - once an indent's SCS
+			// reaches the committed threshold (>= minSeqNo) or it already has an approved PO, its full
+			// committed value (which the approved excess is only a portion of) is already counted via
+			// committedScsTotal/approvedPoTotal. Without these two exclusions, the excess amount gets
+			// added a second time on top of the total that already contains it.
 			String query = "SELECT COALESCE(SUM(bed.ACTUAL_EXCESS),0) AS OVERALL_EXCESS "
 					+ "FROM budget_excess_dtl bed "
-					+ "WHERE bed.PM_HDR_ID = ? AND bed.IS_COMPLETED = '1'";
-			Map<String, Object> resultMap = jdbcTemplate.queryForMap(query, pmHdrId);
+					+ "WHERE bed.PM_HDR_ID = ? AND bed.IS_COMPLETED = '1' "
+					+ "AND NOT EXISTS (SELECT 1 FROM indent_grp_scs scs WHERE scs.INDENT_ID = bed.INDENT_ID AND scs.SEQUENCE_NO >= ?) "
+					+ "AND NOT EXISTS (SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = bed.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1)";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(query, pmHdrId, minSeqNo);
 			overallExcess = resultMap.get("OVERALL_EXCESS").toString();
 		} catch (Exception ex) {
 			logger.error("getApprovedExcessTotalByPmHdrId method Error" + ex);
@@ -800,14 +807,16 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 	}
 
 	@Override
-	public String getApprovedExcessTotalByPmHdrIdAndSbcCode(String pmHdrId, String sbcCode) {
+	public String getApprovedExcessTotalByPmHdrIdAndSbcCode(String pmHdrId, String sbcCode, String minSeqNo) {
 		String overallExcess = "0";
 		try {
 			String query = "SELECT COALESCE(SUM(bed.ACTUAL_EXCESS),0) AS OVERALL_EXCESS "
 					+ "FROM budget_excess_dtl bed "
 					+ "INNER JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID "
-					+ "WHERE bed.PM_HDR_ID = ? AND ih.SBC_CODE = ? AND bed.IS_COMPLETED = '1'";
-			Map<String, Object> resultMap = jdbcTemplate.queryForMap(query, pmHdrId, sbcCode);
+					+ "WHERE bed.PM_HDR_ID = ? AND ih.SBC_CODE = ? AND bed.IS_COMPLETED = '1' "
+					+ "AND NOT EXISTS (SELECT 1 FROM indent_grp_scs scs WHERE scs.INDENT_ID = bed.INDENT_ID AND scs.SEQUENCE_NO >= ?) "
+					+ "AND NOT EXISTS (SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = bed.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1)";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(query, pmHdrId, sbcCode, minSeqNo);
 			overallExcess = resultMap.get("OVERALL_EXCESS").toString();
 		} catch (Exception ex) {
 			logger.error("getApprovedExcessTotalByPmHdrIdAndSbcCode method Error" + ex);
@@ -816,15 +825,17 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 	}
 
 	@Override
-	public Map<String, BigDecimal> getApprovedExcessTotalGroupedBySbcCode(String pmHdrId) {
+	public Map<String, BigDecimal> getApprovedExcessTotalGroupedBySbcCode(String pmHdrId, String minSeqNo) {
 		Map<String, BigDecimal> totalsBySbcCode = new HashMap<>();
 		try {
 			String query = "SELECT ih.SBC_CODE AS SBC_CODE, COALESCE(SUM(bed.ACTUAL_EXCESS),0) AS OVERALL_EXCESS "
 					+ "FROM budget_excess_dtl bed "
 					+ "INNER JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID "
 					+ "WHERE bed.PM_HDR_ID = ? AND bed.IS_COMPLETED = '1' "
+					+ "AND NOT EXISTS (SELECT 1 FROM indent_grp_scs scs WHERE scs.INDENT_ID = bed.INDENT_ID AND scs.SEQUENCE_NO >= ?) "
+					+ "AND NOT EXISTS (SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = bed.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1) "
 					+ "GROUP BY ih.SBC_CODE";
-			List<Map<String, Object>> rows = jdbcTemplate.queryForList(query, pmHdrId);
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(query, pmHdrId, minSeqNo);
 			for (Map<String, Object> row : rows) {
 				totalsBySbcCode.put(row.get("SBC_CODE").toString(), new BigDecimal(row.get("OVERALL_EXCESS").toString()));
 			}

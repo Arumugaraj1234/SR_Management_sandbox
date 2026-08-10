@@ -107,6 +107,7 @@ public class ProjectService implements IProjectService {
 					.collect(Collectors.toList());
 			Map<String, BigDecimal> approvedPoTotalByPmHdrId = new HashMap<>();
 			Map<String, BigDecimal> committedScsTotalByPmHdrId = new HashMap<>();
+			Map<String, String> minSeqNoByPmHdrId = new HashMap<>();
 			if (!newFlowPmHdrIds.isEmpty()) {
 				String scsSeq = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", tenReq.getTenantID());
 				String capexScsSeq = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", tenReq.getTenantID());
@@ -118,9 +119,11 @@ public class ProjectService implements IProjectService {
 				approvedPoTotalByPmHdrId.putAll(iPoDAO.getApprovedPoTotalGroupedByProjectIds(newFlowPmHdrIds));
 				if (!capexPmHdrIds.isEmpty()) {
 					committedScsTotalByPmHdrId.putAll(iIndentGroupDAO.getCommittedScsTotalGroupedByProjectIds(capexPmHdrIds, capexScsSeq));
+					capexPmHdrIds.forEach(id -> minSeqNoByPmHdrId.put(id, capexScsSeq));
 				}
 				if (!normalPmHdrIds.isEmpty()) {
 					committedScsTotalByPmHdrId.putAll(iIndentGroupDAO.getCommittedScsTotalGroupedByProjectIds(normalPmHdrIds, scsSeq));
+					normalPmHdrIds.forEach(id -> minSeqNoByPmHdrId.put(id, scsSeq));
 				}
 			}
 
@@ -149,8 +152,9 @@ public class ProjectService implements IProjectService {
 					BigDecimal employeeCost = new BigDecimal(
 							iProjectDAO.getEmployeeCostByPmHdrId(projHdr.getPmHdrId(), tenReq.getTenantID()));
 					BigDecimal debitCost = new BigDecimal(projHdr.getDebitValue());
+					String minSeqNo = minSeqNoByPmHdrId.get(projHdr.getPmHdrId());
 					BigDecimal budgetExcessApproved = new BigDecimal(
-							iBudgetExcessSheetDAO.getApprovedExcessTotalByPmHdrId(projHdr.getPmHdrId()));
+							iBudgetExcessSheetDAO.getApprovedExcessTotalByPmHdrId(projHdr.getPmHdrId(), minSeqNo));
 
 					BigDecimal actualSpent = consumedSoFar.add(matCost).add(employeeCost).add(budgetExcessApproved)
 							.subtract(debitCost);
