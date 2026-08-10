@@ -215,6 +215,7 @@ respList.add(resp);
 					.collect(Collectors.toList());
 			Map<String, BigDecimal> approvedPoTotalByPmHdrId = new HashMap<>();
 			Map<String, BigDecimal> committedScsTotalByPmHdrId = new HashMap<>();
+			Map<String, String> minSeqNoByPmHdrId = new HashMap<>();
 			if (!newFlowPmHdrIds.isEmpty()) {
 				String scsSeqForStatus = iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", tenReq.getTenantID());
 				String capexScsSeqForStatus = iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", tenReq.getTenantID());
@@ -226,9 +227,11 @@ respList.add(resp);
 				approvedPoTotalByPmHdrId.putAll(iPoDAO.getApprovedPoTotalGroupedByProjectIds(newFlowPmHdrIds));
 				if (!capexPmHdrIds.isEmpty()) {
 					committedScsTotalByPmHdrId.putAll(iIndentGroupDAO.getCommittedScsTotalGroupedByProjectIds(capexPmHdrIds, capexScsSeqForStatus));
+					capexPmHdrIds.forEach(id -> minSeqNoByPmHdrId.put(id, capexScsSeqForStatus));
 				}
 				if (!normalPmHdrIds.isEmpty()) {
 					committedScsTotalByPmHdrId.putAll(iIndentGroupDAO.getCommittedScsTotalGroupedByProjectIds(normalPmHdrIds, scsSeqForStatus));
+					normalPmHdrIds.forEach(id -> minSeqNoByPmHdrId.put(id, scsSeqForStatus));
 				}
 			}
 
@@ -253,8 +256,9 @@ respList.add(resp);
 					BigDecimal employeeCost = new BigDecimal(
 							iProjectDAO.getEmployeeCostByPmHdrId(projHdr.getPmHdrId(), tenReq.getTenantID()));
 					BigDecimal debitCost = new BigDecimal(iProjectDAO.getDebitVal(projHdr.getPmHdrId(), tenReq.getTenantID()));
+					String minSeqNo = minSeqNoByPmHdrId.get(projHdr.getPmHdrId());
 					BigDecimal budgetExcessApproved = new BigDecimal(
-							iBudgetExcessSheetDAO.getApprovedExcessTotalByPmHdrId(projHdr.getPmHdrId()));
+							iBudgetExcessSheetDAO.getApprovedExcessTotalByPmHdrId(projHdr.getPmHdrId(), minSeqNo));
 
 					BigDecimal actualSpent = consumedSoFar.add(matCost).add(employeeCost).add(budgetExcessApproved)
 							.subtract(debitCost);
