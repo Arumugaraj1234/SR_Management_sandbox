@@ -49,14 +49,33 @@ public class AssemblyStagingDAO implements IAssemblyStagingDAO {
 		List<MsHdrRetrieveEntity> list1 = new ArrayList<>();
 		try {
 			String qry = "SELECT \r\n"
-					+ "    msh.MS_NAME,msh.MS_HDR_ID, msh.QTY,msh.PM_HDR_ID, msh.CREATED_ON, em.EMPLOYEE_FIRSTNAME AS CREATED_BY\r\n"
+					+ "    msh.MS_NAME,msh.STATUS,msh.MS_HDR_ID, msh.QTY,msh.PM_HDR_ID, msh.CREATED_ON, em.EMPLOYEE_FIRSTNAME AS CREATED_BY\r\n"
 					+ "FROM\r\n" + "    material_staging_hdr msh,\r\n" + "    employee_mst em\r\n" + "WHERE\r\n"
 					+ "    msh.CREATED_BY = em.EMPLOYEE_ID\r\n" + "        AND msh.PM_HDR_ID = '" + hdrId + "'\r\n"
+					+ "        AND msh.STATUS = 'ACTIVE'\r\n"
 					+ "        AND msh.TENANT_ID = '" + tenantId + "'";
 			list1 = this.jdbcTemplate.query(qry, new MsHdrRetrieveRowMapper());
 
 		} catch (Exception e) {
 			logger.error("msHdrRetrieve Method Exception --->" + e);
+		}
+		return list1;
+	}
+
+	@Override
+	public List<MsHdrRetrieveEntity> msHdrRetrieveAll(String hdrId, String tenantId) {
+		List<MsHdrRetrieveEntity> list1 = new ArrayList<>();
+		try {
+			String qry = "SELECT \r\n"
+					+ "    msh.MS_NAME,msh.STATUS,msh.MS_HDR_ID, msh.QTY,msh.PM_HDR_ID, msh.CREATED_ON, em.EMPLOYEE_FIRSTNAME AS CREATED_BY\r\n"
+					+ "FROM\r\n" + "    material_staging_hdr msh,\r\n" + "    employee_mst em\r\n" + "WHERE\r\n"
+					+ "    msh.CREATED_BY = em.EMPLOYEE_ID\r\n" + "        AND msh.PM_HDR_ID = '" + hdrId + "'\r\n"
+					+ "        AND msh.TENANT_ID = '" + tenantId + "'\r\n"
+					+ "ORDER BY msh.CREATED_ON DESC";
+			list1 = this.jdbcTemplate.query(qry, new MsHdrRetrieveRowMapper());
+
+		} catch (Exception e) {
+			logger.error("msHdrRetrieveAll Method Exception --->" + e);
 		}
 		return list1;
 	}
@@ -66,9 +85,10 @@ public class AssemblyStagingDAO implements IAssemblyStagingDAO {
 		List<MsHdrRetrieveEntity> list1 = new ArrayList<>();
 		try {
 			String qry = "SELECT \r\n"
-					+ "    msh.MS_NAME,msh.MS_HDR_ID, msh.QTY,msh.PM_HDR_ID, msh.CREATED_ON, em.EMPLOYEE_FIRSTNAME AS CREATED_BY\r\n"
+					+ "    msh.MS_NAME,msh.STATUS,msh.MS_HDR_ID, msh.QTY,msh.PM_HDR_ID, msh.CREATED_ON, em.EMPLOYEE_FIRSTNAME AS CREATED_BY\r\n"
 					+ "FROM\r\n" + "    material_staging_hdr msh,\r\n" + "    employee_mst em\r\n" + "WHERE\r\n"
 					+ "    msh.CREATED_BY = em.EMPLOYEE_ID\r\n" + "        AND msh.MS_HDR_ID = '" + hdrId + "'\r\n"
+					+ "        AND msh.STATUS = 'ACTIVE'\r\n"
 					+ "        AND msh.TENANT_ID = '" + tenantId + "'";
 			list1 = this.jdbcTemplate.query(qry, new MsHdrRetrieveRowMapper());
 
@@ -111,6 +131,19 @@ public class AssemblyStagingDAO implements IAssemblyStagingDAO {
 			logger.error("retrieveMSDtlByHdr Method Exception --->" + e);
 		}
 		return list1;
+	}
+
+	@Override
+	public int checkMsHdrNameExists(String pmHdrId, String msName, String tenantId) {
+		int count = 0;
+		try {
+			String qry = "select count(*) AS MS_NAME_COUNT from material_staging_hdr where PM_HDR_ID = ? and MS_NAME = ? and TENANT_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, pmHdrId, msName, tenantId);
+			count = Integer.parseInt(resultMap.get("MS_NAME_COUNT").toString());
+		} catch (Exception ex) {
+			logger.error("checkMsHdrNameExists error " + ex);
+		}
+		return count;
 	}
 
 	@Override
@@ -191,28 +224,33 @@ public class AssemblyStagingDAO implements IAssemblyStagingDAO {
 
 	@Override
 	public int cancelMsHdrReq(String hdrId, String tenantId, String empId,String qty,String projectId,String productId) {
-		logger.debug("cancelMsHdrReq   method Start");
-		int deleteDtl = 0, deleteHdr = 0;
+		return finalizeMsHdr(hdrId, tenantId, empId, qty, projectId, productId, "CANCELLED");
+	}
+
+	@Override
+	public int useMsHdrForReturn(String hdrId, String tenantId, String empId, String qty, String projectId,
+			String productId) {
+		return finalizeMsHdr(hdrId, tenantId, empId, qty, projectId, productId, "USED");
+	}
+
+	private int finalizeMsHdr(String hdrId, String tenantId, String empId, String qty, String projectId,
+			String productId, String status) {
+		logger.debug("finalizeMsHdr   method Start");
+		int updateHdr = 0;
 		try {
-			
+
 //			String productCode = poDAO.getProdCodeByprodId(productId);
 			CommonMethod.updateProductInvDtl(projectId, productId, "ILC0003", new BigDecimal(qty), "Subraction", "ITTC0012",
 					hdrId + "", empId, CommonMethod.getCurrentDateTime(), tenantId, jdbcTemplate);
-			
-			
 
-			String deleteDtlQ = "DELETE FROM material_staging_dtl WHERE MS_HDR_ID = ? and TENANT_ID=?";
-			deleteDtl = this.jdbcTemplate.update(deleteDtlQ,hdrId,tenantId);
-			if (deleteDtl > 0) {
-				String deleteHdrQ = "DELETE FROM material_staging_hdr WHERE MS_HDR_ID = ? and TENANT_ID=? ";
-				deleteHdr = this.jdbcTemplate.update(deleteHdrQ,hdrId,tenantId);
-			}
+			String updateHdrQ = "UPDATE material_staging_hdr SET STATUS = ? WHERE MS_HDR_ID = ? and TENANT_ID=? ";
+			updateHdr = this.jdbcTemplate.update(updateHdrQ, status, hdrId, tenantId);
 
 		} catch (Exception ex) {
-			logger.error("cancelMsHdrReq  method  exception" + ex);
+			logger.error("finalizeMsHdr  method  exception" + ex);
 		}
-		logger.debug("cancelMsHdrReq   method end");
-		return deleteHdr;
+		logger.debug("finalizeMsHdr   method end");
+		return updateHdr;
 	}
 
 	@Override

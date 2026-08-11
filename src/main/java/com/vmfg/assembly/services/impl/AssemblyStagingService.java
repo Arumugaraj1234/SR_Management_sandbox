@@ -51,6 +51,29 @@ public class AssemblyStagingService implements IAssemblyStagingService {
 	}
 
 	@Override
+	public ResponseAsList msHdrRetrieveAll(MaterialReqHdrRequest materialHdrReq) {
+		ResponseAsList returnList = new ResponseAsList();
+		List<MsHdrRetrieveEntity> list = new ArrayList<MsHdrRetrieveEntity>();
+		logger.info("msHdrRetrieveAll Service start ");
+		try {
+			list = iAssemblyStagingDAO.msHdrRetrieveAll(materialHdrReq.getHdrId(), materialHdrReq.getTenantId());
+			if (list.size() > 0) {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
+				returnList.setResponseMessage(ResponseMessageMap.success);
+			} else {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				returnList.setResponseMessage(ResponseMessageMap.noRecord);
+			}
+			logger.info("msHdrRetrieveAll Service end ");
+		} catch (Exception ex) {
+			logger.error("msHdrRetrieveAll error " + ex);
+		}
+		return returnList;
+	}
+
+	@Override
 	public ResponseAsList retrieveMSDtlByHdr(MaterialReqHdrRequest materialHdrReq) {
 		ResponseAsList returnList = new ResponseAsList();
 		List<RetrieveMSDtlByHdrEntity> list = new ArrayList<>();
@@ -80,6 +103,15 @@ public class AssemblyStagingService implements IAssemblyStagingService {
 		int responseMsHdrId = 0, responseMsDtlId = 0;
 
 		try {
+			int existingCount = iAssemblyStagingDAO.checkMsHdrNameExists(insertMsDtls.getPmHdrId(),
+					insertMsDtls.getMsName(), insertMsDtls.getTenantId());
+
+			if (existingCount > 0) {
+				returnres.setResponseCode(ResponseMessageMap.responseAlreadyExists);
+				returnres.setResponseMessage(ResponseMessageMap.msNameDuplicate);
+				return returnres;
+			}
+
 			responseMsHdrId = iAssemblyStagingDAO.insertMsHdr(insertMsDtls.getPmHdrId(), insertMsDtls.getMsName(),
 					insertMsDtls.getStageQty(), insertMsDtls.getTenantId(), insertMsDtls.getCreatedBy(),
 					insertMsDtls.getUom());
@@ -108,8 +140,18 @@ public class AssemblyStagingService implements IAssemblyStagingService {
 
 	@Override
 	public ResponseAsMessage cancelMsHdrReq(MaterialReqHdrRequest materialReqHdr) {
+		return finalizeMsHdr(materialReqHdr, false);
+	}
+
+	@Override
+	public ResponseAsMessage useMsHdrForReturn(MaterialReqHdrRequest materialReqHdr) {
+		return finalizeMsHdr(materialReqHdr, true);
+	}
+
+	private ResponseAsMessage finalizeMsHdr(MaterialReqHdrRequest materialReqHdr, boolean usedForReturn) {
 		ResponseAsMessage returnres = new ResponseAsMessage();
-		logger.info("cancelMsHdrReq Service start ");
+		String logTag = usedForReturn ? "useMsHdrForReturn" : "cancelMsHdrReq";
+		logger.info(logTag + " Service start ");
 		int responseMsHdrId = 0;
 		try {
 
@@ -133,9 +175,15 @@ public class AssemblyStagingService implements IAssemblyStagingService {
 				String prodCode = iAssemblyStagingDAO.prodIdFromDesc(list.get(0).getMsName(),
 						list.get(0).getPmHdrId(), materialReqHdr.getTenantId());
 
-				responseMsHdrId = iAssemblyStagingDAO.cancelMsHdrReq(materialReqHdr.getHdrId(),
-						materialReqHdr.getTenantId(), materialReqHdr.getEmpId(), list.get(0).getStageQty(),
-						list.get(0).getPmHdrId(), prodCode);
+				if (usedForReturn) {
+					responseMsHdrId = iAssemblyStagingDAO.useMsHdrForReturn(materialReqHdr.getHdrId(),
+							materialReqHdr.getTenantId(), materialReqHdr.getEmpId(), list.get(0).getStageQty(),
+							list.get(0).getPmHdrId(), prodCode);
+				} else {
+					responseMsHdrId = iAssemblyStagingDAO.cancelMsHdrReq(materialReqHdr.getHdrId(),
+							materialReqHdr.getTenantId(), materialReqHdr.getEmpId(), list.get(0).getStageQty(),
+							list.get(0).getPmHdrId(), prodCode);
+				}
 
 				if (responseMsHdrId > 0) {
 					returnres.setResponseCode(ResponseMessageMap.responseCodeOk);
@@ -146,9 +194,9 @@ public class AssemblyStagingService implements IAssemblyStagingService {
 				}
 			}
 
-			logger.info("cancelMsHdrReq Service end ");
+			logger.info(logTag + " Service end ");
 		} catch (Exception ex) {
-			logger.error("cancelMsHdrReq error " + ex);
+			logger.error(logTag + " error " + ex);
 		}
 		return returnres;
 	}

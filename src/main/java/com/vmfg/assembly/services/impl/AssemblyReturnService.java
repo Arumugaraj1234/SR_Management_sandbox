@@ -238,6 +238,30 @@ public class AssemblyReturnService implements IAssemblyReturnService {
 		}
 		return returnList;
 	}
+
+	@Override
+	public ResponseAsList retrieveApprovedGroupReturnsByProject(MaterialReqHdrRequest materialHdrReq) {
+		ResponseAsList returnList = new ResponseAsList();
+		List<RetrieveMReturnDtlByHdrEntity> list = new ArrayList<>();
+		logger.info("retrieveApprovedGroupReturnsByProject Service start ");
+		try {
+			list = iAssemblyReturnDAO.retrieveApprovedGroupReturnsByProject(materialHdrReq.getHdrId(),
+					materialHdrReq.getTenantId());
+			if (list.size() > 0) {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
+				returnList.setResponseMessage(ResponseMessageMap.success);
+			} else {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				returnList.setResponseMessage(ResponseMessageMap.noRecord);
+			}
+			logger.info("retrieveApprovedGroupReturnsByProject Service end ");
+		} catch (Exception ex) {
+			logger.error("retrieveApprovedGroupReturnsByProject error " + ex);
+		}
+		return returnList;
+	}
 	
 	@Override
 	public  ResponseAsMessage ApproveMreturnDtls(MaterialReqDtlRequest materialDtlReq) {

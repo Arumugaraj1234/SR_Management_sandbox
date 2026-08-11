@@ -74,6 +74,7 @@ public class ResponseMessageMap {
 	public static String taskcantdeleteMsg = "Milestone cannot be deleted. Task has already been created";
 	public static String stageUnav = "Staged Product not in inventory";
 	public static String vendorAlreadyExist = "Vendor name already exist";
+	public static String msNameDuplicate = "Material Staging Group name already exists";
 	
 	public static String failtoinsert = "Fail to Insert";
 	public static String projectCodeDuplicate="Project code already exists";

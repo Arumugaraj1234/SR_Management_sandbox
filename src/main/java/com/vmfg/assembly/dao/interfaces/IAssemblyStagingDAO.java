@@ -11,9 +11,14 @@ public interface IAssemblyStagingDAO {
 
 	List<MsHdrRetrieveEntity> msHdrRetrieve(String hdrId, String tenantId);
 
+	List<MsHdrRetrieveEntity> msHdrRetrieveAll(String hdrId, String tenantId);
+
 	List<RetrieveMSDtlByHdrEntity> retrieveMSDtlByHdr(String hdrId, String tenantId);
 
 	int cancelMsHdrReq(String hdrId, String tenantId, String empId, String qty, String projectId, String productId);
+
+	int useMsHdrForReturn(String hdrId, String tenantId, String empId, String qty, String projectId,
+			String productId);
 
 	List<RetrieveForMSEntity> retrieveForMS(String hdrId, String tenantId);
 
@@ -29,5 +34,7 @@ public interface IAssemblyStagingDAO {
 	String prodIdFromDesc(String msName, String pmHdrId, String tenantId);
 
 	List<MsHdrRetrieveEntity> msHdrRetrieveByHdrId(String hdrId, String tenantId);
+
+	int checkMsHdrNameExists(String pmHdrId, String msName, String tenantId);
 
 }
