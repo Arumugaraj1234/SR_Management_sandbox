@@ -198,6 +198,43 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 	}
 
 	@Override
+	public List<RetrieveMReturnDtlByHdrEntity> retrieveApprovedGroupReturnsByProject(String pmHdrId, String tenantId) {
+		List<RetrieveMReturnDtlByHdrEntity> list1 = new ArrayList<>();
+		try {
+
+			String qry = "SELECT \r\n" +
+					"    mrd.QTY,\r\n" +
+					"    mrd.MRD_ID,\r\n" +
+					"    mrd.MS_HDR_ID,\r\n" +
+					"    mrd.MS_NAME,\r\n" +
+					"    pm.PRODUCT_ID,\r\n" +
+					"    pm.PRODUCT_CODE,\r\n" +
+					"    pm.PRODUCT_DESCRIPTION,\r\n" +
+					"    um.UOM_LONG_DESCRIPTION\r\n" +
+					"FROM\r\n" +
+					"    material_return_hdr mrh\r\n" +
+					"        INNER JOIN\r\n" +
+					"    material_return_dtl mrd ON mrd.MRH_ID = mrh.MRH_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    product_mst pm ON pm.PRODUCT_ID = mrd.PRODUCT_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    uom_mst um ON pm.PRODUCT_UOM_CODE = um.UOM_CODE\r\n" +
+					"WHERE\r\n" +
+					"    mrh.PM_HDR_ID = '"+pmHdrId+"'\r\n" +
+					"        AND mrd.TENANT_ID = '"+tenantId+"'\r\n" +
+					"        AND mrd.IS_APPROVED = '1'\r\n" +
+					"        AND mrd.MS_HDR_ID IS NOT NULL\r\n" +
+					"ORDER BY mrd.MS_HDR_ID;";
+
+			list1 = this.jdbcTemplate.query(qry, new RetrieveMReturnDtlByHdrRowMapper());
+
+		} catch (Exception e) {
+			logger.error("retrieveApprovedGroupReturnsByProject Method Exception --->" + e);
+		}
+		return list1;
+	}
+
+	@Override
 	public int cancelMaterialReturnHdr(String hdrId, String tenantId,String seqStatus,String seqNo) {
 		logger.debug("cancelMaterialReturnHdr   method Start");
 		int  deleteHdr = 0;

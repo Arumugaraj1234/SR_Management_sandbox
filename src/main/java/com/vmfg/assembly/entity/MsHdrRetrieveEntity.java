@@ -10,6 +10,7 @@ import lombok.Setter;
 public class MsHdrRetrieveEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String msName;
+	private String status;
 	private String stageQty;
 	private String createdOn;
 	private String createdBy;

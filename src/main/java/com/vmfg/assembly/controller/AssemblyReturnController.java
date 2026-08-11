@@ -74,7 +74,24 @@ public class AssemblyReturnController {
 		logger.debug("retrieveMreturnDtlByHdr   method end");
 		return new ResponseEntity<ResponseAsList>(list, HttpStatus.OK);
 	}
-	
+
+	@CrossOrigin(maxAge = 3600)
+	@PostMapping("retrieveApprovedGroupReturnsByProject")
+	public ResponseEntity<ResponseAsList> retrieveApprovedGroupReturnsByProject(
+			@RequestBody MaterialReqHdrRequest materialHdrReq) {
+		logger.debug("retrieveApprovedGroupReturnsByProject   method Start");
+		ResponseAsList list = null;
+		try {
+
+			list = iAssemblyReturnService.retrieveApprovedGroupReturnsByProject(materialHdrReq);
+
+		} catch (Exception ex) {
+			logger.error("retrieveApprovedGroupReturnsByProject  method  exception" + ex);
+		}
+		logger.debug("retrieveApprovedGroupReturnsByProject   method end");
+		return new ResponseEntity<ResponseAsList>(list, HttpStatus.OK);
+	}
+
 	@CrossOrigin(maxAge = 3600)
 	@PostMapping("ApproveMreturnDtls")
 	public ResponseEntity<ResponseAsMessage> ApproveMreturnDtls(@RequestBody MaterialReqDtlRequest materialDtlReq) {

@@ -22,6 +22,10 @@ public class MsHdrRetrieveRowMapper implements RowMapper<MsHdrRetrieveEntity> {
 				result.setMsName(rs.getString("MS_NAME"));
 			}
 
+			if (columnExists(rs, "STATUS")) {
+				result.setStatus(rs.getString("STATUS"));
+			}
+
 			if (columnExists(rs, "QTY")) {
 				result.setStageQty(rs.getString("QTY"));
 			}

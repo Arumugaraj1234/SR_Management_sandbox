@@ -16,6 +16,8 @@ public interface IAssemblyReturnDAO {
 
 	List<RetrieveMReturnDtlByHdrEntity> retrieveMreturnDtlByHdr(String hdrId, String tenantId);
 
+	List<RetrieveMReturnDtlByHdrEntity> retrieveApprovedGroupReturnsByProject(String pmHdrId, String tenantId);
+
 	int cancelMaterialReturnHdr(String hdrId, String tenantId,String seqStatus,String seqNo);
 
 	List<MaterialReturnAcceptEntity> materialReturnAccept(String mrhId, String tenantId);

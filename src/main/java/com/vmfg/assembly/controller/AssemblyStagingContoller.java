@@ -42,6 +42,22 @@ public class AssemblyStagingContoller {
 	}
 
 	@CrossOrigin(maxAge = 3600)
+	@PostMapping("msHdrRetrieveAll")
+	public ResponseEntity<ResponseAsList> msHdrRetrieveAll(@RequestBody MaterialReqHdrRequest materialHdrReq) {
+		logger.debug("msHdrRetrieveAll   method Start");
+		ResponseAsList list = null;
+		try {
+
+			list = iAssemblyStagingService.msHdrRetrieveAll(materialHdrReq);
+
+		} catch (Exception ex) {
+			logger.error("msHdrRetrieveAll  method  exception" + ex);
+		}
+		logger.debug("msHdrRetrieveAll   method end");
+		return new ResponseEntity<ResponseAsList>(list, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
 	@PostMapping("retrieveMSDtlByHdr")
 	public ResponseEntity<ResponseAsList> retrieveMSDtlByHdr(@RequestBody MaterialReqHdrRequest materialHdrReq) {
 		logger.debug("retrieveMSDtlByHdr   method Start");
@@ -86,6 +102,22 @@ public class AssemblyStagingContoller {
 			logger.error("cancelMsHdrReq  method  exception" + ex);
 		}
 		logger.debug("cancelMsHdrReq   method end");
+		return new ResponseEntity<ResponseAsMessage>(respMsg, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
+	@PostMapping("useMsHdrForReturn")
+	public ResponseEntity<ResponseAsMessage> useMsHdrForReturn(@RequestBody MaterialReqHdrRequest materialReqHdr) {
+		logger.debug("useMsHdrForReturn   method Start");
+		ResponseAsMessage respMsg = null;
+		try {
+
+			respMsg = iAssemblyStagingService.useMsHdrForReturn(materialReqHdr);
+
+		} catch (Exception ex) {
+			logger.error("useMsHdrForReturn  method  exception" + ex);
+		}
+		logger.debug("useMsHdrForReturn   method end");
 		return new ResponseEntity<ResponseAsMessage>(respMsg, HttpStatus.OK);
 	}
 

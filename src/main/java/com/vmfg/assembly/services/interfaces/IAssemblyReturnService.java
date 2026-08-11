@@ -13,6 +13,8 @@ public interface IAssemblyReturnService {
 
 	ResponseAsList retrieveMreturnDtlByHdr(MaterialReqHdrRequest materialHdrReq);
 
+	ResponseAsList retrieveApprovedGroupReturnsByProject(MaterialReqHdrRequest materialHdrReq);
+
 	ResponseAsMessage cancelMaterialReturnHdr(MaterialReqHdrRequest materialReqHdr);
 
 	ResponseAsMessage materialReturnAccept(MaterialReturnAcceptRequest materialAccept);
