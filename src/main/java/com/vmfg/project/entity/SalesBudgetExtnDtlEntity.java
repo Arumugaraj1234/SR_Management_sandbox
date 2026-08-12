@@ -27,4 +27,7 @@ public class SalesBudgetExtnDtlEntity implements Serializable {
 	private String specification;
 	private String make;
 	private String perPartVal;
+	private String totalAmount;
+	private String utilizedAmount;
+	private String availableAmount;
 }

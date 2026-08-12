@@ -184,7 +184,7 @@ public interface IIndentGroupDAO {
 
 	String getOtherCommittedScsTotalByPkaId(String pkaId, String excludeIndentId, String minSeqNo);
 
-	String getPendingBudgetExcessReservedTotalByPkaId(String pkaId, String excludeIndentId);
+	String getPendingBudgetExcessReservedTotalByPkaId(String pkaId, String excludeIndentId, String minSeqNo);
 
 	int getScsCurrentSeq(String scsId);
 

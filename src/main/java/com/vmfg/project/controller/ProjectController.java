@@ -404,6 +404,23 @@ public class ProjectController {
 	}
 
 	@CrossOrigin(maxAge = 3600)
+	@PostMapping("getSubAreaExtnHist")
+	public ResponseEntity<ResponseAsList> getSubAreaExtnHist(
+			@RequestBody GetSubAreaPmHdrListRequest getSubAreaPmHdrListReq) {
+		logger.info("getSubAreaExtnHist   method Start");
+		ResponseAsList resp = null;
+		try {
+
+			resp = iProjectService.getSubAreaExtnHist(getSubAreaPmHdrListReq);
+
+		} catch (Exception ex) {
+			logger.error("getSubAreaExtnHist  method  exception" + ex);
+		}
+		logger.debug("getSubAreaExtnHist   method end");
+		return new ResponseEntity<ResponseAsList>(resp, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
 	@PostMapping("getindentbudgetDtlbyindentDtlId")
 	public ResponseEntity<ResponseAsList> getindentbudgetDtlbyindentDtlId(
 			@RequestBody GetindentbudgetDtlbyindentDtlIdRequest getindentbudgetDtlbyindentDtlIdReq) {

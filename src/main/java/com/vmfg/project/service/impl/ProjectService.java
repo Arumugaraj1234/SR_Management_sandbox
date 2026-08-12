@@ -47,6 +47,7 @@ import com.vmfg.project.entity.ProjectWBSTemplate;
 import com.vmfg.project.entity.SalesBudgetExtnDtlEntity;
 import com.vmfg.project.entity.BudgetSheetPaymentEntity;
 import com.vmfg.project.entity.SalesBudgetExtnListDtlEntity;
+import com.vmfg.project.entity.SubAreaExtnHistEntity;
 import com.vmfg.project.entity.SubAreaPmHdrListEntity;
 import com.vmfg.project.entity.SumOfIndentHdrEntity;
 import com.vmfg.project.entity.getLinkStatusByPMIdRespEntity;
@@ -624,6 +625,12 @@ public class ProjectService implements IProjectService {
 				String budgetValue = iProjectDAO.getBudgetValSum(insertSubAreaExtnreq.get(i).getPkaId());
 				iProjectDAO.updateAllocatedAndBudgetVal(allocatedValue, budgetValue,
 						insertSubAreaExtnreq.get(i).getPkaId());
+				// Audit trail: who topped up how much, when, from PJS or WBS - see
+				// project_key_area_extn_hist (V4 migration) / project_topup_history memory.
+				iProjectDAO.insertSubAreaExtnHist(insertSubAreaExtnreq.get(i).getPkaId(),
+						insertSubAreaExtnreq.get(i).getSbExtnId(), insertSubAreaExtnreq.get(i).getAllocatedQty(),
+						insertSubAreaExtnreq.get(i).getAllocatedvalue(), insertSubAreaExtnreq.get(i).getSource(),
+						insertSubAreaExtnreq.get(i).getEmpId(), insertSubAreaExtnreq.get(i).getTenantId());
 			}
 
 			logger.debug("insertfinalCount  " + insertfinalCount);
@@ -766,6 +773,21 @@ public class ProjectService implements IProjectService {
 		rm.setResponseDataMessage(qResp.toString());
 
 		return rm;
+	}
+
+	@Override
+	public ResponseAsList getSubAreaExtnHist(GetSubAreaPmHdrListRequest getSubAreaPmHdrListreq) {
+		ResponseAsList rl = new ResponseAsList();
+		try {
+			List<SubAreaExtnHistEntity> hist = iProjectDAO
+					.getSubAreaExtnHistByPkaId(getSubAreaPmHdrListreq.getPkaId(), getSubAreaPmHdrListreq.getTenantId());
+			rl.setResponseCode(ResponseMessageMap.responseCodeOk);
+			rl.setResponseMessage(ResponseMessageMap.sucessExecuted);
+			rl.setResponseData(hist);
+		} catch (Exception ex) {
+			logger.error("Error getSubAreaExtnHist " + ex);
+		}
+		return rl;
 	}
 
 	@Override

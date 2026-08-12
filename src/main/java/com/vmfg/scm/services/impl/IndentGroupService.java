@@ -181,6 +181,14 @@ public class IndentGroupService implements IIndentGroupService {
 							if(poDtlCount>0) {
 								list.get(i).setPoId(String.valueOf(poDtlCount));
 								list.get(i).setPoStatus(iIndentGroupDAO.getPoStatusDesc(igScsId,tenantId));
+								// A PO already exists for this PJS - the document_lifecycle_mst NEXT_SEQ
+								// chain above still points at whatever the next approval step would
+								// naturally be (e.g. "Finance Approved"), but that's stale/misleading once
+								// a PO is created (most visibly via the Budget Excess approval bypass in
+								// updateScpSeqAndStatus, which skips straight to PO creation without
+								// walking through those steps). Blank it out - the frontend already
+								// renders a null nextStatus as '-'.
+								list.get(i).setNextStatus(null);
 							}else {
 								list.get(i).setPoStatus("PO Not Created");
 							}
@@ -906,7 +914,7 @@ public class IndentGroupService implements IIndentGroupService {
 					// remaining balance is real. Without this, a second PJS could pass this same
 					// check using the exact balance the first one is already waiting on.
 					BigDecimal otherPendingExcessReserved = new BigDecimal(iIndentGroupDAO
-							.getPendingBudgetExcessReservedTotalByPkaId(indentUploadDAO.getPkaIdByIndentId(indentId), indentId));
+							.getPendingBudgetExcessReservedTotalByPkaId(indentUploadDAO.getPkaIdByIndentId(indentId), indentId, scsBudgetExcessSeq));
 					BigDecimal effectiveRemaining = remainingStationBudget.add(approvedExcessForThisIndent)
 							.subtract(otherPendingExcessReserved);
 					isBudgetExceeded = effectiveRemaining.compareTo(scmBudgetValue) < 0;
@@ -972,10 +980,25 @@ public class IndentGroupService implements IIndentGroupService {
 					isCompletedCount=iIndentGroupDAO.getBudgetExcessIsCompleted(scsId);
 				}
 				if(isCompletedCount>0 || getCount == 0 ) {
+					// NEW-flow: if this transition is proceeding because a raised Budget Excess is
+					// now fully approved (isCompletedCount>0) - not merely because budget was
+					// sufficient (getCount==0) - then Finance/ED/Management have effectively already
+					// signed off via the excess's own approval chain. Skip straight to PO creation
+					// instead of making them approve the same spend again: force LAST_SEQ="1" for
+					// this one transition regardless of the bucket's natural (always "0" here) value.
+					// Applies to both regular ("Project Approved", seq 6) and CAPEX ("Finance
+					// Approved", seq 4) - same gate, same budgetExcessSeq check, both flows confirmed
+					// to have their own genuine excess-approval chain including Finance sign-off.
+					String effectiveLastSeq = currSeqDocLifeCycleMstList.get(0).getLastSeq();
+					boolean bypassRemainingApprovals = isCompletedCount > 0
+							&& "NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(indentId));
+					if (bypassRemainingApprovals) {
+						effectiveLastSeq = "1";
+					}
 					returnMessage=updateScsDtls(scsId,updateHdrReq.getCurrentseq(),currSeqDocLifeCycleMstList.get(0).getDocStatus(),updateHdrReq.getRemarks(), updateHdrReq.getEmpId(),
-							updateHdrReq.getTenantId(),currSeqDocLifeCycleMstList.get(0).getLastSeq(),
+							updateHdrReq.getTenantId(),effectiveLastSeq,
 							updateHdrReq.getPmId(),updateHdrReq.getMstId(),
-							updateHdrReq.getDocTypeCode(),updateHdrReq.getPmHdrId(),updateHdrReq.getEnquiryId(),docGroup,processDoc);
+							updateHdrReq.getDocTypeCode(),updateHdrReq.getPmHdrId(),updateHdrReq.getEnquiryId(),docGroup,processDoc,bypassRemainingApprovals);
 					if(budgetExcessInsert==1) {
 						returnMessage.setResponseDataMessage(ResponseMessageMap.budgetExcessReported);
 					}
@@ -992,7 +1015,7 @@ public class IndentGroupService implements IIndentGroupService {
 				returnMessage=updateScsDtls(scsId,updateHdrReq.getCurrentseq(),currSeqDocLifeCycleMstList.get(0).getDocStatus(),updateHdrReq.getRemarks(), updateHdrReq.getEmpId(),
 						updateHdrReq.getTenantId(),currSeqDocLifeCycleMstList.get(0).getLastSeq(),
 						updateHdrReq.getPmId(),updateHdrReq.getMstId(),updateHdrReq.getDocTypeCode(),
-						updateHdrReq.getPmHdrId(),updateHdrReq.getEnquiryId(),docGroup,processDoc);
+						updateHdrReq.getPmHdrId(),updateHdrReq.getEnquiryId(),docGroup,processDoc,false);
 				if(budgetExcessInsert==1) {
 					returnMessage.setResponseDataMessage(ResponseMessageMap.budgetExcessReported);
 				}
@@ -1102,7 +1125,8 @@ public class IndentGroupService implements IIndentGroupService {
 
 	private ResponseAsMessage updateScsDtls(String scsId, String currentseq, String docStatus,
 											String remarks,String empId, String tenantId,String lastSeq,String pmId,
-											String masterId,String docType,String pmHdrId,String enquiryId,String docGroup, String processDoc) {
+											String masterId,String docType,String pmHdrId,String enquiryId,String docGroup, String processDoc,
+											boolean bypassRemainingApprovals) {
 		ResponseAsMessage returnMessage = new ResponseAsMessage();
 		GetPoDtlsEntity poList= new GetPoDtlsEntity();
 		try {
@@ -1112,19 +1136,25 @@ public class IndentGroupService implements IIndentGroupService {
 
 				iIndentGroupDAO.insertInScpStatus(scsId, currentseq, docStatus, remarks,empId, tenantId);
 //				 String pjsLastUpdatedDate = iIndentGroupDAO.getLastUpdatedDateTime(indentDtlId, tenantId, "PJS");
-				List<String> messageList = new ArrayList<>();
-				List<String> otherEmp = new ArrayList<>();
 				String IndentCode=iIndentGroupDAO.getindentCode(scsId);
-				String type = iIndentGroupDAO.getScsGrpType(scsId);
-				String approveDesig ="";
-				if(type.equalsIgnoreCase("0")) {
-					approveDesig=commonNotifyMethod.getNxtAppDescByDocGroup("DC038", currentseq,docGroup,tenantId,processDoc);
+				// bypassRemainingApprovals: this transition is being force-treated as terminal
+				// (see updateScpSeqAndStatus) even though document_lifecycle_mst's own NEXT_SEQ
+				// chain still points at a real next approver (Finance/ED/Management) - skip
+				// notifying them entirely, since there's nothing left for them to actually approve.
+				if (!bypassRemainingApprovals) {
+					List<String> messageList = new ArrayList<>();
+					List<String> otherEmp = new ArrayList<>();
+					String type = iIndentGroupDAO.getScsGrpType(scsId);
+					String approveDesig ="";
+					if(type.equalsIgnoreCase("0")) {
+						approveDesig=commonNotifyMethod.getNxtAppDescByDocGroup("DC038", currentseq,docGroup,tenantId,processDoc);
+					}
+					messageList.add(IndentCode);
+					commonNotifyMethod.InvokeNotificationMethod(2, 27, null,
+							tenantId, messageList, otherEmp, "", pmId, "", approveDesig);
+					commonNotifyMethod.InvokeApprovalDesigMethod(pmId, "DC038", scsId,
+							pmHdrId, tenantId, "", approveDesig, enquiryId,IndentCode);
 				}
-				messageList.add(IndentCode);
-				commonNotifyMethod.InvokeNotificationMethod(2, 27, null,
-						tenantId, messageList, otherEmp, "", pmId, "", approveDesig);
-				commonNotifyMethod.InvokeApprovalDesigMethod(pmId, "DC038", scsId,
-						pmHdrId, tenantId, "", approveDesig, enquiryId,IndentCode);
 				if(lastSeq !=null && lastSeq.equalsIgnoreCase("1")) {
 					iIndentGroupDAO.updateScpApproved(scsId,"1");
 
@@ -1499,6 +1529,14 @@ public class IndentGroupService implements IIndentGroupService {
 							if(poDtlCount>0) {
 								list.get(i).setPoId(String.valueOf(poDtlCount));
 								list.get(i).setPoStatus(iIndentGroupDAO.getPoStatusDesc(list.get(i).getScsId(),tenantId));
+								// A PO already exists for this PJS - the document_lifecycle_mst NEXT_SEQ
+								// chain above still points at whatever the next approval step would
+								// naturally be (e.g. "Finance Approved"), but that's stale/misleading once
+								// a PO is created (most visibly via the Budget Excess approval bypass in
+								// updateScpSeqAndStatus, which skips straight to PO creation without
+								// walking through those steps). Blank it out - the frontend already
+								// renders a null nextStatus as '-'.
+								list.get(i).setNextStatus(null);
 							}else {
 								list.get(i).setPoStatus("PO Not Created");
 							}

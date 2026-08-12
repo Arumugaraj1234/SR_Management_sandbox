@@ -2348,22 +2348,35 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 		return totalVal;
 	}
 
-	// Reserves the FULL value of any other indent at this station that already has a Budget
-	// Excess raised but not yet approved (IS_COMPLETED != 1) - closes the gap where a PJS with a
-	// pending excess doesn't count as "committed" yet (SEQUENCE_NO stays below the threshold
-	// while blocked), so without this a second PJS at the same station could otherwise walk away
-	// with the exact same remaining balance the first one is already waiting on. Reserves the
-	// indent's whole SCM_BUDGET_ALLOCATED, not just its excess/shortfall portion - the rest of
-	// that indent's cost is already spoken for too, just not yet committed via ordinary allocation.
+	// Reserves the portion of any other indent at this station that's still competing for the
+	// shared remaining station balance, for indents that have an active Budget Excess (not
+	// cancelled, i.e. SEQUENCE_NO != 6) but whose own SCS hasn't yet reached the "committed"
+	// threshold (SEQUENCE_NO < minSeqNo) - closes the gap where such a PJS doesn't count as
+	// "committed" yet, so without this a second PJS at the same station could otherwise walk
+	// away with the exact same remaining balance the first one is already drawing on. This is
+	// keyed on the SCS's own sequence, NOT on whether the excess itself is IS_COMPLETED - an
+	// indent whose excess just got APPROVED but hasn't yet been advanced to "Project Approved"
+	// (a separate, manual click) would otherwise vanish from both this bucket AND
+	// getOtherCommittedScsTotalByPkaId, undercounting the station's true consumption during
+	// that window (real case: indent 3343, excess IS_COMPLETED=1, SCS still at SEQUENCE_NO=5).
+	// Also excludes any indent that already has an approved PO (already counted via
+	// approvedPoTotal instead). Reserves SCM_BUDGET_ALLOCATED minus ACTUAL_EXCESS (the shortfall
+	// already carved out via the excess request itself), not the indent's whole allocated value
+	// - the excess portion is separately-requested top-up money, not a draw against the shared
+	// remaining balance, so it shouldn't also be reserved against it.
 	@Override
-	public String getPendingBudgetExcessReservedTotalByPkaId(String pkaId, String excludeIndentId) {
+	public String getPendingBudgetExcessReservedTotalByPkaId(String pkaId, String excludeIndentId, String minSeqNo) {
 		String totalVal = "0";
 		try {
-			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ih.SCM_BUDGET_ALLOCATED) ELSE 0 END AS VAL " +
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(GREATEST(ih.SCM_BUDGET_ALLOCATED - COALESCE(bed.ACTUAL_EXCESS, 0), 0)) ELSE 0 END AS VAL " +
 					"FROM budget_excess_dtl bed " +
 					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID " +
-					"WHERE ih.PKA_ID = ? AND bed.INDENT_ID <> ? AND bed.IS_COMPLETED != '1'";
-			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, pkaId, excludeIndentId);
+					"INNER JOIN indent_grp_scs scs ON scs.IG_SCS_ID = bed.IG_SCS_ID " +
+					"WHERE ih.PKA_ID = ? AND bed.INDENT_ID <> ? AND bed.SEQUENCE_NO != 6 AND scs.SEQUENCE_NO < ? " +
+					"AND NOT EXISTS (" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = bed.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					")";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, pkaId, excludeIndentId, minSeqNo);
 			totalVal = resultMap.get("VAL").toString();
 		} catch (Exception ex) {
 			logger.error("getPendingBudgetExcessReservedTotalByPkaId method Error" + ex);
