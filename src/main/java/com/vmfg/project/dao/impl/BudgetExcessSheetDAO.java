@@ -157,20 +157,27 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 			}
 			
 			
-				if(currBudgetExcDtlSeq>0 && currSeq.equalsIgnoreCase(budIndentCode)) {
-					
+				Map<String,Object> resultID = jdbcTemplate.queryForMap("Select INDENT_ID from budget_excess_dtl where  BE_HDR_ID = ? ", beHdrId);
+						String indentId= resultID.get("INDENT_ID").toString();
+						String cancelCostFlowType = indentUploadDao.getCostFlowTypeByIndentId(indentId);
+
+				// NEW-flow: cancelling a Budget Excess should only cancel the excess request
+				// itself (SEQUENCE_NO gets set to the cancel/reject value by the caller) and
+				// leave the PJS/indent exactly where it already is - it's still sitting at
+				// "Project Approved", now with hasBudgetExcess flipping back to false
+				// (getBudgetExcessDtlCount excludes cancelled rows), so "Raise Budget
+				// Excess"/"Allocate to Station" reappear on their own. Only LEGACY flow still
+				// reverses the whole indent back to its pre-excess stage (PM Accept) on cancel.
+				if(currBudgetExcDtlSeq>0 && currSeq.equalsIgnoreCase(budIndentCode) && !"NEW".equalsIgnoreCase(cancelCostFlowType)) {
+
 //					Map<String,Object> resultMap = jdbcTemplate.queryForMap("Select IG_SCS_ID from budget_excess_dtl where  BE_HDR_ID = ? ", beHdrId);
 //					String indGrpId= resultMap.get("IG_SCS_ID").toString();
-							
+
 //					List<DocumentStatusMstEntity> currSeqDocLifeCycleMstList = stageManagementDAO.getDocDtlcurrentSeq("DC038","1",tenantId);
 //					if(currSeqDocLifeCycleMstList.size()>0) {
 //						indentGroupDAO.updateScpSeqAndStatus(indGrpId,currSeqDocLifeCycleMstList.get(0).getCurrSequence(), currSeqDocLifeCycleMstList.get(0).getDocStatus(),empId);
 //					}
-					
-					
-					Map<String,Object> resultID = jdbcTemplate.queryForMap("Select INDENT_ID from budget_excess_dtl where  BE_HDR_ID = ? ", beHdrId);
-							String indentId= resultID.get("INDENT_ID").toString();
-							
+
 					Map<String,Object> resultCode = jdbcTemplate.queryForMap("Select INDENT_TYPE_CODE from indent_hdr where  INDENT_ID = ? ", indentId);
 							String indentType=resultCode.get("INDENT_TYPE_CODE").toString();
 							

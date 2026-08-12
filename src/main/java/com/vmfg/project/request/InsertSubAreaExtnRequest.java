@@ -13,4 +13,6 @@ public class InsertSubAreaExtnRequest {
 	private String allocatedvalue;
 	private String tenantId;
 	private String pmId;
+	private String empId;
+	private String source;
 }

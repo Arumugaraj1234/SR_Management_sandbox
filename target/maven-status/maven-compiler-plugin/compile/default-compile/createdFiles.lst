@@ -585,6 +585,7 @@ com/vmfg/sales/rowmapper/SalesBudgetSheetRowMapper.class
 com/vmfg/scm/rowmapper/LocationMstRowMapper.class
 com/vmfg/master/rowmapper/TaskCategoryRowMapper.class
 com/vmfg/design/request/getPoDetailByIndentDtlRequest.class
+com/vmfg/project/entity/SubAreaExtnHistEntity.class
 com/vmfg/export/entity/DcRequestDtlEntity.class
 com/vmfg/design/request/UpdateIndentAssignTeamReq.class
 com/vmfg/design/request/GetIndentDtlProductCostRequest.class
@@ -1241,6 +1242,7 @@ com/vmfg/task/request/GetReqManHdrDtlRequest.class
 com/vmfg/assembly/entity/RetrieveMSDtlByHdrEntity.class
 com/vmfg/sales/entity/DocumentManagementTblEntity.class
 com/vmfg/scm/request/GetPoCostTypeReq.class
+com/vmfg/project/rowmapper/SubAreaExtnHistRowMapper.class
 com/vmfg/mis/rowmapper/PMWidgetRowMapper.class
 com/vmfg/general/dao/impl/StageManagementDAO$5.class
 com/vmfg/util/entity/FinancialYearRowMapper.class

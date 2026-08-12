@@ -35,6 +35,9 @@ public class SalesBudgetExtnDtlRowMapper  implements RowMapper<SalesBudgetExtnDt
 			ph.setSpecification(row.getString("SPECIFICATION"));
 			ph.setMake(row.getString("MAKE"));
 			ph.setPerPartVal(row.getString("PER_PART_VAUE"));
+			ph.setTotalAmount(row.getString("TOTAL_AMOUNT"));
+			ph.setUtilizedAmount(row.getString("UTILIZED_AMOUNT"));
+			ph.setAvailableAmount(row.getString("AVAILABLE_AMOUNT"));
 		} catch (Exception e) {
 			logger.error("SalesBudgetExtnDtlRowMapper Exception--->" + e);
 		}

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * API and breaks (NoSuchMethodError) against Flyway 9.x+, so we call the Flyway 9.22.3
  * API directly instead of going through Spring's autoconfiguration. Dev/sandbox only.
  */
-//@Component
+@Component
 @Profile("dev")
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class DevFlywayMigrationRunner implements CommandLineRunner {

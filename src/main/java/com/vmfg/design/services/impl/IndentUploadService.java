@@ -945,7 +945,7 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 					// too so this screen's Available Value/isShortfall can't show "fine" right before
 					// the gate blocks the same click for a reason this display doesn't know about.
 					BigDecimal reservedPendingExcess = new BigDecimal(iIndentGroupDAO
-							.getPendingBudgetExcessReservedTotalByPkaId(pkaId, indentReq.getIndentId()));
+							.getPendingBudgetExcessReservedTotalByPkaId(pkaId, indentReq.getIndentId(), scsBudgetExcessSeq));
 					BigDecimal actualConsumedValue = approvedPoTotal.add(otherCommittedPjs).add(reservedPendingExcess);
 					proj.get(0).setAllocatedValue(allocatedValue.toString());
 					proj.get(0).setActualConsumedValue(actualConsumedValue.toString());

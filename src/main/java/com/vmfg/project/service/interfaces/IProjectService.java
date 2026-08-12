@@ -55,6 +55,8 @@ public interface IProjectService {
 	ResponseAsMessage insertindentBudget(List<IndentBudgetDtlEntity> indentBudgetReq);
 	
 	ResponseAsMessage totalSubAreaValueByPskId(GetSubAreaPmHdrListRequest getSubAreaPmHdrListreq);
+
+	ResponseAsList getSubAreaExtnHist(GetSubAreaPmHdrListRequest getSubAreaPmHdrListreq);
 	
 	ResponseAsList getindentbudgetDtlbyindentDtlId(GetindentbudgetDtlbyindentDtlIdRequest getindentbudgetDtlbyindentDtlIdReq);
 

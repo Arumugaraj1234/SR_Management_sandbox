@@ -41,6 +41,7 @@ import com.vmfg.project.entity.ProjectTimelineResp;
 import com.vmfg.project.entity.ProjectWBSTemplate;
 import com.vmfg.project.entity.SalesBudgetExtnDtlEntity;
 import com.vmfg.project.entity.SalesBudgetExtnListDtlEntity;
+import com.vmfg.project.entity.SubAreaExtnHistEntity;
 import com.vmfg.project.entity.SubAreaPmHdrListEntity;
 import com.vmfg.project.entity.SumOfIndentHdrEntity;
 import com.vmfg.project.entity.getLinkStatusByPMIdRespEntity;
@@ -494,7 +495,9 @@ public class ProjectDAO implements IProjectDAO {
 					+ "    extn.QTY - extn.ALLOCATED_QTY AS ALLOCATED_QTY,\r\n" + "    extn.ELEMENT_HDR,\r\n"
 					+ "    extn.ELEMENT_DTL,\r\n" + "    extn.SB_DTL_ID,\r\n" + "    extn.SPECIFICATION,\r\n"
 					+ "    extn.MAKE,extn.SB_EXTN_ID,\r\n" + "    sbc.SBC_CODE,\r\n" + "    sbc.SBC_DESC,\r\n"
-					+ "    hdr.TENANT_ID,\r\n" + "    extn.TOTAL_VALUE / extn.QTY AS PER_PART_VAUE\r\n" + "FROM\r\n"
+					+ "    hdr.TENANT_ID,\r\n" + "    extn.TOTAL_VALUE / extn.QTY AS PER_PART_VAUE,\r\n"
+					+ "    extn.TOTAL_VALUE AS TOTAL_AMOUNT,\r\n" + "    extn.ALLOCATED_VALUE AS UTILIZED_AMOUNT,\r\n"
+					+ "    extn.TOTAL_VALUE - extn.ALLOCATED_VALUE AS AVAILABLE_AMOUNT\r\n" + "FROM\r\n"
 					+ "    sales_budget_sheet_hdr hdr,\r\n" + "    sales_budget_sheet_dtl dtl,\r\n"
 					+ "    sales_budget_sheet_extn extn,\r\n" + "    sales_budget_category sbc\r\n" + "WHERE\r\n"
 					+ "    hdr.SB_HDR_ID = dtl.SB_HDR_ID\r\n" + "        AND dtl.SB_DTL_ID = extn.SB_DTL_ID\r\n"
@@ -546,6 +549,42 @@ public class ProjectDAO implements IProjectDAO {
 	        logger.error("insertsubAreaExtn error " + ex.getMessage());
 	    }
 	    return qResp;
+	}
+
+	@Override
+	public int insertSubAreaExtnHist(String pkaId, String sbExtnId, String allocatedQty, String allocatedValue,
+			String source, String empId, String tenantId) {
+		int qResp = 0;
+		try {
+			BigDecimal allocQty = new BigDecimal(allocatedQty).setScale(4, RoundingMode.HALF_UP);
+			BigDecimal allocValue = new BigDecimal(allocatedValue).setScale(4, RoundingMode.HALF_UP);
+			String insertStr = "INSERT INTO project_key_area_extn_hist "
+					+ "(PKA_ID, SB_EXTN_ID, ALLOCATED_QTY, ALLOCATED_VALUE, SOURCE, CREATED_BY, TENANT_ID) "
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+			qResp = jdbcTemplate.update(insertStr, pkaId, sbExtnId, allocQty, allocValue, source, empId, tenantId);
+		} catch (Exception ex) {
+			logger.error("insertSubAreaExtnHist error " + ex.getMessage());
+		}
+		return qResp;
+	}
+
+	@Override
+	public List<SubAreaExtnHistEntity> getSubAreaExtnHistByPkaId(String pkaId, String tenantId) {
+		List<SubAreaExtnHistEntity> hist = new ArrayList<>();
+		try {
+			String qry = "SELECT hist.PKSE_HIST_ID, extn.ELEMENT_HDR, extn.ELEMENT_DTL, extn.SPECIFICATION, "
+					+ "extn.MAKE, hist.ALLOCATED_QTY, hist.ALLOCATED_VALUE, hist.SOURCE, "
+					+ "em.EMPLOYEE_FIRSTNAME, hist.CREATED_ON "
+					+ "FROM project_key_area_extn_hist hist "
+					+ "INNER JOIN sales_budget_sheet_extn extn ON hist.SB_EXTN_ID = extn.SB_EXTN_ID "
+					+ "LEFT JOIN employee_mst em ON hist.CREATED_BY = em.EMPLOYEE_ID "
+					+ "WHERE hist.PKA_ID = ? AND hist.TENANT_ID = ? "
+					+ "ORDER BY hist.CREATED_ON DESC";
+			hist = jdbcTemplate.query(qry, new SubAreaExtnHistRowMapper(), pkaId, tenantId);
+		} catch (Exception ex) {
+			logger.error("getSubAreaExtnHistByPkaId error " + ex.getMessage());
+		}
+		return hist;
 	}
 
 	@Override

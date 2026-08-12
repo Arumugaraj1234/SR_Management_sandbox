@@ -18,6 +18,7 @@ import com.vmfg.project.entity.ProjectTimelineResp;
 import com.vmfg.project.entity.ProjectWBSTemplate;
 import com.vmfg.project.entity.SalesBudgetExtnDtlEntity;
 import com.vmfg.project.entity.SalesBudgetExtnListDtlEntity;
+import com.vmfg.project.entity.SubAreaExtnHistEntity;
 import com.vmfg.project.entity.SubAreaPmHdrListEntity;
 import com.vmfg.project.entity.SumOfIndentHdrEntity;
 import com.vmfg.project.entity.getLinkStatusByPMIdRespEntity;
@@ -79,6 +80,11 @@ public interface IProjectDAO {
 	int deleteindentBudGetId(String indentId);
 
 	int insertsubAreaExtn(String dskId, String sbExtnId, String allocatedQty, String allocatedValue);
+
+	int insertSubAreaExtnHist(String pkaId, String sbExtnId, String allocatedQty, String allocatedValue,
+			String source, String empId, String tenantId);
+
+	List<SubAreaExtnHistEntity> getSubAreaExtnHistByPkaId(String pkaId, String tenantId);
 
 	int insertAreaExtn(String pkaId, String sbExtnId, String allocatedQty, String allocatedValue);
 
