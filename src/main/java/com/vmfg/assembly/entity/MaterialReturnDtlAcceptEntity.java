@@ -17,4 +17,5 @@ public class MaterialReturnDtlAcceptEntity implements Serializable {
 	private String mrHdrId;
 	private String tenantId;
     private String productId;
+    private String msHdrId;
 }

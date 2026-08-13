@@ -28,4 +28,6 @@ public class DcDtlEntity implements Serializable {
 	private String hdrId;
 	private String indentDtlId;
 	private String locationCode;
+	private String msHdrId;
+	private String msName;
 }

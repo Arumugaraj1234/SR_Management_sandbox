@@ -105,6 +105,8 @@ public interface IPoDAO {
 	List<DcDtlEntity>getDtlByDcId(String dcId,String tenantId, String pmHdrId);
 	
 	int getCountDtlByDcId(String dcId,String tenantId);
+
+	int getGroupDtlCountByDcId(String dcId,String tenantId);
 	
 	int insertDcHdr(DcHdrEntity dcHdrEntity);
 	

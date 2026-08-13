@@ -43,6 +43,7 @@ public class DcHdrEntity implements Serializable {
     private String totalValue;
     private String tenantId;
     private String dcDtlCount;
+    private String dcMode;
     private String dcTypeDesc;
     private String shippedPinCode;
     private String shippedGstIn;

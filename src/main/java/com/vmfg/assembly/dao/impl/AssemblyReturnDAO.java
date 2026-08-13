@@ -202,6 +202,38 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 		List<RetrieveMReturnDtlByHdrEntity> list1 = new ArrayList<>();
 		try {
 
+			// Old query, kept for revert reference — did not exclude groups that have
+			// already been dispatched via a Delivery Challan (no DISPATCHED_DC_ID filter),
+			// so a dispatched machine would keep showing as available.
+			// String qry = "SELECT \r\n" +
+			// 		"    mrd.QTY,\r\n" +
+			// 		"    mrd.MRD_ID,\r\n" +
+			// 		"    mrd.MS_HDR_ID,\r\n" +
+			// 		"    mrd.MS_NAME,\r\n" +
+			// 		"    pm.PRODUCT_ID,\r\n" +
+			// 		"    pm.PRODUCT_CODE,\r\n" +
+			// 		"    pm.PRODUCT_DESCRIPTION,\r\n" +
+			// 		"    um.UOM_LONG_DESCRIPTION\r\n" +
+			// 		"FROM\r\n" +
+			// 		"    material_return_hdr mrh\r\n" +
+			// 		"        INNER JOIN\r\n" +
+			// 		"    material_return_dtl mrd ON mrd.MRH_ID = mrh.MRH_ID\r\n" +
+			// 		"        INNER JOIN\r\n" +
+			// 		"    product_mst pm ON pm.PRODUCT_ID = mrd.PRODUCT_ID\r\n" +
+			// 		"        INNER JOIN\r\n" +
+			// 		"    uom_mst um ON pm.PRODUCT_UOM_CODE = um.UOM_CODE\r\n" +
+			// 		"WHERE\r\n" +
+			// 		"    mrh.PM_HDR_ID = '"+pmHdrId+"'\r\n" +
+			// 		"        AND mrd.TENANT_ID = '"+tenantId+"'\r\n" +
+			// 		"        AND mrd.IS_APPROVED = '1'\r\n" +
+			// 		"        AND mrd.MS_HDR_ID IS NOT NULL\r\n" +
+			// 		"ORDER BY mrd.MS_HDR_ID;";
+			// Groups staged/dissolved before the material_staging_hdr soft-delete (STATUS)
+			// feature existed were hard-deleted, so their MS_HDR_ID has no matching row in
+			// material_staging_hdr at all — an INNER JOIN would silently exclude those
+			// legacy groups from ever being dispatchable. Use LEFT JOIN and treat "no
+			// staging header row" the same as "not dispatched" (there's no earlier
+			// DISPATCHED_DC_ID to check for them either way).
 			String qry = "SELECT \r\n" +
 					"    mrd.QTY,\r\n" +
 					"    mrd.MRD_ID,\r\n" +
@@ -210,7 +242,9 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 					"    pm.PRODUCT_ID,\r\n" +
 					"    pm.PRODUCT_CODE,\r\n" +
 					"    pm.PRODUCT_DESCRIPTION,\r\n" +
-					"    um.UOM_LONG_DESCRIPTION\r\n" +
+					"    pm.PRODUCT_COST_PER_UNIT,\r\n" +
+					"    um.UOM_LONG_DESCRIPTION,\r\n" +
+					"    um.UOM_CODE\r\n" +
 					"FROM\r\n" +
 					"    material_return_hdr mrh\r\n" +
 					"        INNER JOIN\r\n" +
@@ -219,11 +253,14 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 					"    product_mst pm ON pm.PRODUCT_ID = mrd.PRODUCT_ID\r\n" +
 					"        INNER JOIN\r\n" +
 					"    uom_mst um ON pm.PRODUCT_UOM_CODE = um.UOM_CODE\r\n" +
+					"        LEFT JOIN\r\n" +
+					"    material_staging_hdr msh ON msh.MS_HDR_ID = mrd.MS_HDR_ID\r\n" +
 					"WHERE\r\n" +
 					"    mrh.PM_HDR_ID = '"+pmHdrId+"'\r\n" +
 					"        AND mrd.TENANT_ID = '"+tenantId+"'\r\n" +
 					"        AND mrd.IS_APPROVED = '1'\r\n" +
 					"        AND mrd.MS_HDR_ID IS NOT NULL\r\n" +
+					"        AND (msh.MS_HDR_ID IS NULL OR msh.DISPATCHED_DC_ID IS NULL)\r\n" +
 					"ORDER BY mrd.MS_HDR_ID;";
 
 			list1 = this.jdbcTemplate.query(qry, new RetrieveMReturnDtlByHdrRowMapper());
@@ -313,8 +350,21 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 	public List<MaterialReturnDtlAcceptEntity> ApproveMreturnDtls(String dtlId, String tenantId) {
 		List<MaterialReturnDtlAcceptEntity> list = new ArrayList<>();
 		try {
+			// Old query, kept for revert reference — did not select MS_HDR_ID, so the
+			// service layer couldn't tell group-sourced rows apart from individual ones.
+			// String qry = "SELECT \r\n"
+			// 		+ "    mrh.PM_HDR_ID, mrh.MRH_ID, pm.PRODUCT_CODE, pm.PRODUCT_ID, mrd.QTY,mrh.CREATED_BY as EMPLOYEE_ID, mrd.TENANT_ID\r\n"
+			// 		+ "FROM\r\n"
+			// 		+ "    material_return_hdr mrh,\r\n"
+			// 		+ "    material_return_dtl mrd,\r\n"
+			// 		+ "    product_mst pm\r\n"
+			// 		+ "WHERE\r\n"
+			// 		+ "    mrh.MRH_ID = mrd.MRH_ID\r\n"
+			// 		+ "        AND pm.PRODUCT_ID = mrd.PRODUCT_ID\r\n"
+			// 		+ "        AND mrd.MRD_ID = '"+dtlId+"'\r\n"
+			// 		+ "        AND mrd.TENANT_ID = '"+tenantId+"'";
 			String qry = "SELECT \r\n"
-					+ "    mrh.PM_HDR_ID, mrh.MRH_ID, pm.PRODUCT_CODE, pm.PRODUCT_ID, mrd.QTY,mrh.CREATED_BY as EMPLOYEE_ID, mrd.TENANT_ID\r\n"
+					+ "    mrh.PM_HDR_ID, mrh.MRH_ID, pm.PRODUCT_CODE, pm.PRODUCT_ID, mrd.QTY,mrh.CREATED_BY as EMPLOYEE_ID, mrd.TENANT_ID, mrd.MS_HDR_ID\r\n"
 					+ "FROM\r\n"
 					+ "    material_return_hdr mrh,\r\n"
 					+ "    material_return_dtl mrd,\r\n"

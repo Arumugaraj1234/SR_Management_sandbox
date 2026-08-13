@@ -38,6 +38,9 @@ public class MaterialReturnDtlAcceptRowMapper implements RowMapper<MaterialRetur
 			if (columnExists(rs, "TENANT_ID")) {
 				result.setTenantId(rs.getString("TENANT_ID"));
 			}
+			if (columnExists(rs, "MS_HDR_ID")) {
+				result.setMsHdrId(rs.getString("MS_HDR_ID"));
+			}
 
 		} catch (Exception ex) {
 			logger.error("MaterialReturnDtlAcceptRowMapper error " + ex);

@@ -297,11 +297,24 @@ public class AssemblyReturnService implements IAssemblyReturnService {
 							"ILC0003", transQty, "Subraction", "ITTC0017", obj.getMrHdrId(),
 							materialDtlReq.getEmpId(), createdOn, obj.getTenantId(), jdbcTemplate);
 
-					if (decreasing > 0) {
+					// Old behaviour, kept for revert reference — this ran unconditionally for
+					// every approved row, so group-sourced returns were added into ILC0002
+					// (main store) exactly like individual items, becoming indistinguishable
+					// loose stock. Group-sourced rows (MS_HDR_ID set) should NOT be added to
+					// ILC0002 at all — their qty/items stay tracked only via
+					// material_return_dtl (MS_HDR_ID/MS_NAME), shown under "Material Groups"
+					// screens, until a Delivery Challan dispatches the group.
+					// if (decreasing > 0) {
+					// 	CommonMethod.updateProductInvDtl(obj.getProjectId(), obj.getProductId(), "ILC0002", transQty,
+					// 			"", "ITTC0017", obj.getMrHdrId(), materialDtlReq.getEmpId(), createdOn,
+					// 			obj.getTenantId(), jdbcTemplate);
+				    // }
+					boolean isGroupSourced = obj.getMsHdrId() != null && !obj.getMsHdrId().isEmpty();
+					if (decreasing > 0 && !isGroupSourced) {
 						CommonMethod.updateProductInvDtl(obj.getProjectId(), obj.getProductId(), "ILC0002", transQty,
 								"", "ITTC0017", obj.getMrHdrId(), materialDtlReq.getEmpId(), createdOn,
 								obj.getTenantId(), jdbcTemplate);
-				    }	
+				    }
 				}
 		    }
 		}
