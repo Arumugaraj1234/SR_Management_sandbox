@@ -28,6 +28,7 @@ import com.vmfg.export.response.ResponseAsList;
 import com.vmfg.export.services.interfaces.IDeliveryChallanReportService;
 import com.vmfg.general.response.ResponseAsMessage;
 import com.vmfg.general.response.ResponseMessageMap;
+import com.vmfg.scm.dao.interfaces.IPoDAO;
 import com.vmfg.util.CommonBase64Class;
 import com.vmfg.util.CommonMethod;
 
@@ -48,6 +49,9 @@ public class DeliveryChallanReportService implements IDeliveryChallanReportServi
 
 	@Autowired
 	IProjectReportTrackerDAO iProjectReportTrackerDAO;
+
+	@Autowired
+	IPoDAO iPoDAO;
 
 	@Override
 	public ResponseAsList getDeliveryChallanReportPdf(DeliveryChallanRequest deliveryReq) {
@@ -94,9 +98,12 @@ public class DeliveryChallanReportService implements IDeliveryChallanReportServi
 			inputStream = resource;
 			report = JasperCompileManager.compileReport(inputStream);
 
+			boolean isGroupDc = iPoDAO.getGroupDtlCountByDcId(deliveryReq.getDcId(), deliveryReq.getTenantId()) > 0;
+
 			params.put("TENANT_ID", deliveryReq.getTenantId());
 			params.put("DC_ID", deliveryReq.getDcId());
 			params.put("SUBREPORT", subReportPath);
+			params.put("IS_GROUP_DC", isGroupDc);
 
 			connection = iDeliveryChallanReportTrackerDAO.getConnection();
 			JasperPrint print = null;

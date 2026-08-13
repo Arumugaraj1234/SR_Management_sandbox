@@ -13,6 +13,7 @@ public class RetrieveMReturnDtlByHdrEntity implements Serializable {
 	private String productCode;
 	private String productDesc;
 	private String uomLongDesc;
+	private String uomCode;
 	private String station;
 	private String subAssy;
 	private String qty;
@@ -22,4 +23,5 @@ public class RetrieveMReturnDtlByHdrEntity implements Serializable {
 	private String make;
 	private String msHdrId;
 	private String msName;
+	private String costPerUnit;
 }

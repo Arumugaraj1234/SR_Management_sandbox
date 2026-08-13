@@ -1226,6 +1226,8 @@ public class PoService implements IPoServices {
 			for (int i = 0; i < dcHdrList.size(); i++) {
 				int dcDtlCount = iPoDAO.getCountDtlByDcId(dcHdrList.get(i).getDcID(), dcHdrList.get(i).getTenantId());
 				dcHdrList.get(i).setDcDtlCount(Integer.toString(dcDtlCount));
+				int groupDtlCount = iPoDAO.getGroupDtlCountByDcId(dcHdrList.get(i).getDcID(), dcHdrList.get(i).getTenantId());
+				dcHdrList.get(i).setDcMode(groupDtlCount > 0 ? "Group" : "Individual");
 			}
 			if (dcHdrList.size() > 0) {
 				returnList.setResponseData(dcHdrList);
@@ -1321,9 +1323,10 @@ public class PoService implements IPoServices {
 						getDcDtlByDcIdReq.getTenantId(),dchdrList.get(0).getPmHdrId());
 
 				for (int i = 0; i < dcDtlList.size(); i++) {
-					if (!dcDtlList.get(i).getProductId().equalsIgnoreCase("")) {
-						String prodCode = poDAO.getProdCodeByprodId(dcDtlList.get(i).getProductId());
-						iPoDAO.increaseIntPrdDtl(dcDtlList.get(i).getProductId(), dcDtlList.get(i).getQty(),
+					String productId = dcDtlList.get(i).getProductId();
+					if (productId != null && !productId.equalsIgnoreCase("")) {
+						String prodCode = poDAO.getProdCodeByprodId(productId);
+						iPoDAO.increaseIntPrdDtl(productId, dcDtlList.get(i).getQty(),
 								dchdrList.get(0).getPmHdrId(), dchdrList.get(0).getDcCode(), prodCode,
 								getDcDtlByDcIdReq.getEmpId(), getDcDtlByDcIdReq.getTenantId());
 					}

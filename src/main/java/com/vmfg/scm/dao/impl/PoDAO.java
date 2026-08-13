@@ -10,8 +10,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -1372,7 +1374,7 @@ String poDate= CommonMethod.getCurrentDate();
 //					in future needs to change the join only 
                   "    product_mst pm ON dtl.PRODUCT_ID = pm.PRODUCT_ID \r\n" + 
 	                "WHERE \r\n" +
-	                "    hdr.DC_ID = ? AND hdr.TENANT_ID = ? AND pm.PM_HDR_ID = ?";
+	                "    hdr.DC_ID = ? AND hdr.TENANT_ID = ? AND (pm.PM_HDR_ID = ? OR dtl.MS_HDR_ID IS NOT NULL)";
 
 			returnList = this.jdbcTemplate.query(retQry, new DcDtlRowMapper(), dcId, tenantId, pmHdrId);
 
@@ -1408,6 +1410,19 @@ String poDate= CommonMethod.getCurrentDate();
 			logger.error("getCountDtlByDcId method Error" + e);
 		}
 		return getCountDtlByDcId;
+	}
+
+	@Override
+	public int getGroupDtlCountByDcId(String dcId, String tenantId) {
+		int getGroupDtlCountByDcId = 0;
+		try {
+			String getGroupDtlCountByDcIdStr = "select Count(*) as COUNT from dc_dtl  where DC_ID =? and MS_HDR_ID is not null ";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(getGroupDtlCountByDcIdStr,dcId);
+			getGroupDtlCountByDcId = Integer.parseInt(resultMap.get("COUNT").toString());
+		} catch (Exception e) {
+			logger.error("getGroupDtlCountByDcId method Error" + e);
+		}
+		return getGroupDtlCountByDcId;
 	}
 
 	@Override
@@ -1476,7 +1491,8 @@ String poDate= CommonMethod.getCurrentDate();
 			insertRes = holder.getKey().intValue();
 			if (insertRes > 0) {
 				this.jdbcTemplate.update("UPDATE `dc_hdr` SET `REC_NO`=? WHERE `DC_ID`= ? ", insertRes, insertRes);
-				String dcDtlInsertStr = "INSERT INTO `dc_dtl` (`DC_ID`, `DESCRIPTION_OF_GOODS`, `HSN_NO`, `QTY`, `UOM`, `RATE`, `TOTAL`,`PRODUCT_ID`, `PRODUCT_CODE`) VALUES (?, ?, ?, ?, ?, ?, ?,?,?)";
+				String dcDtlInsertStr = "INSERT INTO `dc_dtl` (`DC_ID`, `DESCRIPTION_OF_GOODS`, `HSN_NO`, `QTY`, `UOM`, `RATE`, `TOTAL`,`PRODUCT_ID`, `PRODUCT_CODE`, `MS_HDR_ID`, `MS_NAME`) VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?)";
+				Set<String> dispatchedMsHdrIds = new HashSet<>();
 				for (int j = 0; j < dcHdrEntity.getDcDtlList().size(); j++) {
 					String uom = "";
 					if (dcHdrEntity.getDcDtlList().get(j).getUomDesc().equalsIgnoreCase("")) {
@@ -1492,6 +1508,14 @@ String poDate= CommonMethod.getCurrentDate();
 						uom = dcHdrEntity.getDcDtlList().get(j).getUomDesc();
 					}
                          String productId = "";
+					String rowMsHdrId = dcHdrEntity.getDcDtlList().get(j).getMsHdrId();
+					String rowMsName = dcHdrEntity.getDcDtlList().get(j).getMsName();
+					boolean isGroupRow = rowMsHdrId != null && !rowMsHdrId.isEmpty();
+					// Group-sourced rows represent a whole machine (Material Group), not a
+					// single real product — skip product_mst lookup/auto-create entirely for
+					// them so a "group name" never gets inserted into product_mst as a fake
+					// product. PRODUCT_ID/PRODUCT_CODE stay empty for these rows.
+					if (!isGroupRow) {
 					if(dcHdrEntity.getDcDtlList().get(j).getProductId().equalsIgnoreCase("")) {
 						String query = "SELECT \r\n" + "    CASE\r\n" + "        WHEN COUNT(PRODUCT_ID) > 0 THEN PRODUCT_ID\r\n"
 								+ "        ELSE 0\r\n" + "    END as COUNT\r\n" + "FROM\r\n" + "    product_mst\r\n" + "WHERE\r\n"
@@ -1533,12 +1557,17 @@ String poDate= CommonMethod.getCurrentDate();
 					}else {
 						 productId = dcHdrEntity.getDcDtlList().get(j).getProductId();
 					}
+					}
 					this.jdbcTemplate.update(dcDtlInsertStr, insertRes,
 							dcHdrEntity.getDcDtlList().get(j).getDescOfGoods(),
 							dcHdrEntity.getDcDtlList().get(j).getHsnNo(), dcHdrEntity.getDcDtlList().get(j).getQty(),
 							uom, dcHdrEntity.getDcDtlList().get(j).getRate(),
 							dcHdrEntity.getDcDtlList().get(j).getTotal(),
-							productId,dcHdrEntity.getDcDtlList().get(j).getProductCode());
+							productId,dcHdrEntity.getDcDtlList().get(j).getProductCode(),
+							rowMsHdrId, rowMsName);
+					if (rowMsHdrId != null && !rowMsHdrId.isEmpty()) {
+						dispatchedMsHdrIds.add(rowMsHdrId);
+					}
 
 					String mrHdrId = dcHdrEntity.getDcDtlList().get(j).getMrHdrId();
 					String Qty =  dcHdrEntity.getDcDtlList().get(j).getQty();
@@ -1575,7 +1604,13 @@ String poDate= CommonMethod.getCurrentDate();
 					}else {
 						productCode = dcHdrEntity.getDcDtlList().get(j).getProductCode();
 					}
-					if (!productCode.equalsIgnoreCase("")) {
+					// Group-sourced rows (MS_HDR_ID set) never had their quantity added to any
+					// inventory location at Material Return approval time (see
+					// AssemblyReturnService.ApproveMreturnDtls), so there is nothing to
+					// decrement here for them — decrementing would incorrectly push that
+					// product's on-hand quantity negative. Only decrement for rows that came
+					// from real store stock (Individual Items tab).
+					if (!productCode.equalsIgnoreCase("") && (rowMsHdrId == null || rowMsHdrId.isEmpty())) {
 
 //						String name = invLocType(dcHdrEntity.getShippedFrom(), dcHdrEntity.getTenantId());
 						String name = dcHdrEntity.getDcDtlList().get(j).getLocationCode();
@@ -1588,6 +1623,12 @@ String poDate= CommonMethod.getCurrentDate();
 								new BigDecimal(dcHdrEntity.getDcDtlList().get(j).getQty()), "Subraction", "ITTC0018",
 								dcCode, dcHdrEntity.getEmpId(), CommonMethod.getCurrentDateTime(),
 								dcHdrEntity.getTenantId(), jdbcTemplate);
+					}
+				}
+				if (!dispatchedMsHdrIds.isEmpty()) {
+					String markDispatchedQry = "UPDATE material_staging_hdr SET DISPATCHED_DC_ID = ? WHERE MS_HDR_ID = ?";
+					for (String msHdrId : dispatchedMsHdrIds) {
+						this.jdbcTemplate.update(markDispatchedQry, insertRes, msHdrId);
 					}
 				}
 			}
@@ -1603,6 +1644,14 @@ String poDate= CommonMethod.getCurrentDate();
 		try {
 			String cancelDcHdrStr = "UPDATE `dc_hdr` SET `IS_CANCEL`='1' WHERE `DC_ID`= ? ";
 			cancelDcHdr = this.jdbcTemplate.update(cancelDcHdrStr, getDcDtlByDcIdReq.getDcHdrId());
+
+			if (cancelDcHdr > 0) {
+				// Undo the group dispatch mark so a cancelled DC's Material Group becomes
+				// pickable again on the Inventory Master Material Groups tab and this DC
+				// screen's own group picker (both filter on DISPATCHED_DC_ID IS NULL).
+				String revertGroupDispatchQry = "UPDATE material_staging_hdr SET DISPATCHED_DC_ID = NULL WHERE DISPATCHED_DC_ID = ?";
+				this.jdbcTemplate.update(revertGroupDispatchQry, getDcDtlByDcIdReq.getDcHdrId());
+			}
 
 		} catch (Exception e) {
 			logger.error("cancelDcHdr method Error" + e);

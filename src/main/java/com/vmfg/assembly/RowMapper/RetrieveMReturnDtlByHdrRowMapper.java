@@ -36,6 +36,9 @@ public class RetrieveMReturnDtlByHdrRowMapper implements RowMapper<RetrieveMRetu
 			if (columnExists(rs, "UOM_LONG_DESCRIPTION")) {
 				result.setUomLongDesc(rs.getString("UOM_LONG_DESCRIPTION"));
 			}
+			if (columnExists(rs, "UOM_CODE")) {
+				result.setUomCode(rs.getString("UOM_CODE"));
+			}
 			if (columnExists(rs, "STATION")) {
 				result.setStation(rs.getString("STATION"));
 			}
@@ -59,6 +62,9 @@ public class RetrieveMReturnDtlByHdrRowMapper implements RowMapper<RetrieveMRetu
 			}
 			if (columnExists(rs, "MS_NAME")) {
 				result.setMsName(rs.getString("MS_NAME"));
+			}
+			if (columnExists(rs, "PRODUCT_COST_PER_UNIT")) {
+				result.setCostPerUnit(rs.getString("PRODUCT_COST_PER_UNIT"));
 			}
 
 		} catch (Exception ex) {

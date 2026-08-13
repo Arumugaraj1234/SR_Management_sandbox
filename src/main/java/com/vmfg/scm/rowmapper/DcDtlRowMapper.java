@@ -29,6 +29,11 @@ public class DcDtlRowMapper implements RowMapper<DcDtlEntity> {
 			bd.setProductId(rs.getString("PM_PRODUCT_ID"));
 			bd.setProductCode(rs.getString("PRODUCT_CODE"));
 			bd.setHdrId(rs.getString("PRODUCT_ID"));
+			bd.setMsHdrId(rs.getString("MS_HDR_ID"));
+			bd.setMsName(rs.getString("MS_NAME"));
+			// INDENT_DTL_ID is not currently selected by this query (see PoDAO.getDtlByDcId,
+			// where the subquery for it is commented out) — rs.getString throws here, so this
+			// must stay last or it silently aborts every field mapped after it.
 			bd.setIndentDtlId(rs.getString("INDENT_DTL_ID"));
 		} catch (Exception ex) {
 			logger.error("DcDtlRowMapper error " + ex);
