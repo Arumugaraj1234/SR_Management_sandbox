@@ -29,5 +29,9 @@ public class IndentProjectEntity implements Serializable {
 	private String approvedPoAmount;
 	private String committedPjsAmount;
 	private String reservedPendingExcessAmount;
+	// Universal PJS No. minted once at PJS creation (indent_grp_scs.PJS_REF_NO) - see
+	// IndentGroupService.insertScpDtlsByIgHdrId. Blank for indents with no PJS yet, or for
+	// pre-existing PJS the V5 backfill migration couldn't resolve.
+	private String pjsRefNo;
 
 }

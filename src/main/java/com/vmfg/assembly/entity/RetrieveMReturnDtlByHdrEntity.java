@@ -24,4 +24,8 @@ public class RetrieveMReturnDtlByHdrEntity implements Serializable {
 	private String msHdrId;
 	private String msName;
 	private String costPerUnit;
+	// Staging Group's own UOM (material_staging_hdr.UOM_CODE, set when the group was created) -
+	// distinct from uomLongDesc above, which is each individual item's own product UOM. For a
+	// group return, the group's own UOM should be shown, not derived/aggregated from its items.
+	private String msUomLongDesc;
 }

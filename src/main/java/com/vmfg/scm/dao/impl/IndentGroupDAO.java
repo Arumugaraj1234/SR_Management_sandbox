@@ -1715,30 +1715,31 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 					"    inh.PKSA_ID,\r\n" + 
 					"    pksam.PSK_DESC,\r\n" + 
 					"    inh.TARGET_VALUE,\r\n" + 
-					"    hdr.IS_INVENTORY,\r\n" + 
-					"    scs.IG_SCS_ID\r\n" + 
-					"FROM\r\n" + 
-					"    indent_grp_hdr hdr\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    indent_grp_dtl dtl ON dtl.IG_HDR_ID = hdr.IG_HDR_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    indent_dtl ind ON ind.INDENT_DTL_ID = dtl.INDENT_DTL_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    indent_hdr inh ON inh.INDENT_ID = ind.INDENT_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    sales_budget_category sb ON sb.SBC_CODE = inh.SBC_CODE\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    project_hdr ph ON ph.PM_HDR_ID = inh.PROJECT_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    project_key_area pka ON pka.PKA_ID = inh.PKA_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    project_key_area_mst pkam ON pkam.PK_ID = pka.PK_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    project_key_sub_area pksa ON pksa.PKSA_ID = inh.PKSA_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    project_key_sub_area_mst pksam ON pksam.PSK_ID = pksa.PSK_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    indent_grp_scs scs ON hdr.IG_HDR_ID = scs.IG_HDR_ID\r\n" + 
+					"    hdr.IS_INVENTORY,\r\n" +
+					"    scs.IG_SCS_ID,\r\n" +
+					"    scs.PJS_REF_NO\r\n" +
+					"FROM\r\n" +
+					"    indent_grp_hdr hdr\r\n" +
+					"        INNER JOIN\r\n" +
+					"    indent_grp_dtl dtl ON dtl.IG_HDR_ID = hdr.IG_HDR_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    indent_dtl ind ON ind.INDENT_DTL_ID = dtl.INDENT_DTL_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    indent_hdr inh ON inh.INDENT_ID = ind.INDENT_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    sales_budget_category sb ON sb.SBC_CODE = inh.SBC_CODE\r\n" +
+					"        INNER JOIN\r\n" +
+					"    project_hdr ph ON ph.PM_HDR_ID = inh.PROJECT_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    project_key_area pka ON pka.PKA_ID = inh.PKA_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    project_key_area_mst pkam ON pkam.PK_ID = pka.PK_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    project_key_sub_area pksa ON pksa.PKSA_ID = inh.PKSA_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    project_key_sub_area_mst pksam ON pksam.PSK_ID = pksa.PSK_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    indent_grp_scs scs ON hdr.IG_HDR_ID = scs.IG_HDR_ID\r\n" +
 					"WHERE\r\n" + 
 					"    inh.PROJECT_ID = ?\r\n" + 
 					"        AND hdr.TENANT_ID = ?\r\n" + 
@@ -2382,6 +2383,51 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 			logger.error("getPendingBudgetExcessReservedTotalByPkaId method Error" + ex);
 		}
 		return totalVal;
+	}
+
+	// Project-wide (not per-discipline) sequence for the universal PJS No., minted once at
+	// indent_grp_scs creation time - same numbering scheme budget_excess_dtl.PJS_REF_NO used
+	// to mint independently (see V5__add_universal_pjs_ref_no.sql), now unified so every PJS
+	// has one number regardless of whether a Budget Excess was ever raised for it.
+	@Override
+	public int getNextPjsRefSeqByProjectId(String projectId, String tenantId) {
+		int nextSeq = 1;
+		try {
+			String qry = "SELECT COUNT(*) AS CNT FROM indent_grp_scs igs " +
+					"JOIN indent_hdr ih ON ih.INDENT_ID = igs.INDENT_ID " +
+					"WHERE ih.PROJECT_ID = ? AND igs.TENANT_ID = ? AND igs.PJS_REF_NO IS NOT NULL";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, projectId, tenantId);
+			nextSeq = Integer.parseInt(resultMap.get("CNT").toString()) + 1;
+		} catch (Exception ex) {
+			logger.error("getNextPjsRefSeqByProjectId method Error" + ex);
+		}
+		return nextSeq;
+	}
+
+	@Override
+	public int updatePjsRefNoByIgScsId(String igScsId, String pjsRefNo, String tenantId) {
+		int updateStatus = 0;
+		try {
+			String qry = "UPDATE indent_grp_scs SET PJS_REF_NO = ? WHERE IG_SCS_ID = ? AND TENANT_ID = ?";
+			updateStatus = this.jdbcTemplate.update(qry, pjsRefNo, igScsId, tenantId);
+		} catch (Exception ex) {
+			logger.error("updatePjsRefNoByIgScsId method Error" + ex);
+		}
+		return updateStatus;
+	}
+
+	@Override
+	public String getPjsRefNoByIgScsId(String igScsId, String tenantId) {
+		String pjsRefNo = "";
+		try {
+			String qry = "SELECT PJS_REF_NO FROM indent_grp_scs WHERE IG_SCS_ID = ? AND TENANT_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, igScsId, tenantId);
+			Object val = resultMap.get("PJS_REF_NO");
+			pjsRefNo = val == null ? "" : val.toString();
+		} catch (Exception ex) {
+			logger.error("getPjsRefNoByIgScsId method Error" + ex);
+		}
+		return pjsRefNo;
 	}
 
 	@Override

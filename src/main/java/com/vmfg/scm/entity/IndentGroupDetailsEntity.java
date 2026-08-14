@@ -40,4 +40,5 @@ public class IndentGroupDetailsEntity implements Serializable {
 	private String pjsCreatedPerson;
 	private String empId;
 	private String costFlowType;
+	private String pjsRefNo;
 }

@@ -177,6 +177,7 @@ public class IndentGroupService implements IIndentGroupService {
 							list.get(i).setScsStatus(iIndentGroupDAO.getScsStatusDesc(list.get(i).getIgHdrId()));
 							String igScsId=iIndentGroupDAO.getScsIdByIgHdrId(list.get(i).getIgHdrId());
 							list.get(i).setScsId(igScsId);
+							list.get(i).setPjsRefNo(iIndentGroupDAO.getPjsRefNoByIgScsId(igScsId, tenantId));
 							int poDtlCount=iIndentGroupDAO.getPoCountByIgScsId(igScsId);
 							if(poDtlCount>0) {
 								list.get(i).setPoId(String.valueOf(poDtlCount));
@@ -656,6 +657,23 @@ public class IndentGroupService implements IIndentGroupService {
 					//Scp status table insert
 					iIndentGroupDAO.insertInScpStatus(scpID, "1", "DS069", "created", scpDtlsEntity.get(0).getCreatedBy(), scpDtlsEntity.get(0).getTenantId());
 
+					// Mint this PJS's universal PJS No. once, right at creation - format
+					// {PROJECT_CODE}/{DISCIPLINE}/PJS/{SEQ}, project-wide sequence, same scheme
+					// budget_excess_dtl.PJS_REF_NO used to mint independently at excess-raise time
+					// (now reads this instead, see BudgetExcessSheetService.insertBudgetExcessSheetDtl).
+					try {
+						String tenantIdForRef = scpDtlsEntity.get(0).getTenantId();
+						String pmHdrIdForRef = indentUploadDAO.getProjectIdByIndentId(indentId);
+						String projectCodeForRef = indentUploadDAO.getProjectCodeByProjId(pmHdrIdForRef, tenantIdForRef);
+						String sbcCodeForRef = indentUploadDAO.getSbcCodeByIndentId(indentId, tenantIdForRef);
+						String sbcShortDescForRef = indentUploadDAO.getSbcShortDescBySbcCode(sbcCodeForRef, tenantIdForRef);
+						int nextPjsSeq = iIndentGroupDAO.getNextPjsRefSeqByProjectId(pmHdrIdForRef, tenantIdForRef);
+						String pjsRefNo = projectCodeForRef + "/" + sbcShortDescForRef + "/PJS/" + nextPjsSeq;
+						iIndentGroupDAO.updatePjsRefNoByIgScsId(scpID, pjsRefNo, tenantIdForRef);
+					} catch (Exception pjsRefEx) {
+						logger.error("PJS No. minting error for IG_SCS_ID " + scpID + " " + pjsRefEx);
+					}
+
 				}else {
 					scpID=scpDtlsEntity.get(0).getIgScpId();
 					oldVendorQualified = iIndentGroupDAO.getVendorQualified(scpDtlsEntity.get(0).getIgScpId());
@@ -1075,7 +1093,19 @@ public class IndentGroupService implements IIndentGroupService {
 					? iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", updateHdrReq.getTenantId())
 					: iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", updateHdrReq.getTenantId());
 			StationBudgetSnapshot stationBudgetSnapshot = computeStationBudgetSnapshot(indentId, scsBudgetExcessSeq);
-			boolean isBudgetExceeded = stationBudgetSnapshot.remaining.compareTo(scmBudgetValue) < 0;
+			// Same reservation the approval gate (updateScpSeqAndStatus, line ~916) already applies
+			// on top of computeStationBudgetSnapshot - an OTHER indent at this station with a Budget
+			// Excess raised but still pending approval hasn't reached the "committed" sequence yet,
+			// so computeStationBudgetSnapshot's own otherCommittedPjs sum doesn't see it, but its
+			// claim on the shared remaining balance is real. Without this, the excess actually raised
+			// here (scsActualCost, computed downstream in insertBudgetExcessSheetDtl from the frozen
+			// allocatedValue/actualSpentSoFar set below) could understate the true shortage by
+			// whatever another pending excess at the same station has already claimed - see
+			// project_budget_target_cost_removal memory for the two-PJS race this mirrors.
+			BigDecimal otherPendingExcessReserved = new BigDecimal(iIndentGroupDAO
+					.getPendingBudgetExcessReservedTotalByPkaId(indentUploadDAO.getPkaIdByIndentId(indentId), indentId, scsBudgetExcessSeq));
+			BigDecimal effectiveRemaining = stationBudgetSnapshot.remaining.subtract(otherPendingExcessReserved);
+			boolean isBudgetExceeded = effectiveRemaining.compareTo(scmBudgetValue) < 0;
 			if (!isBudgetExceeded) {
 				returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
 				returnMessage.setResponseMessage(ResponseMessageMap.actionNotAllowed);
@@ -1112,7 +1142,13 @@ public class IndentGroupService implements IIndentGroupService {
 			budgetExcessSheetReq.setScsFinalCost(updateHdrReq.getScsFinalCost());
 			budgetExcessSheetReq.setProcessDoc(processDoc.equalsIgnoreCase("5") ? "3" : "8");
 			budgetExcessSheetReq.setAllocatedValue(stationBudgetSnapshot.stationAllocated.toString());
-			budgetExcessSheetReq.setActualSpentSoFar(stationBudgetSnapshot.actualSpentSoFar.toString());
+			// Fold otherPendingExcessReserved into the frozen actualSpentSoFar (not just the
+			// isBudgetExceeded gate above) - insertBudgetExcessSheetDtl re-derives scsActualCost
+			// (the amount actually raised) from allocatedValue/actualSpentSoFar independently, so
+			// leaving this unreserved would let the raised amount understate the true shortage even
+			// though the gate above correctly saw it.
+			budgetExcessSheetReq.setActualSpentSoFar(
+					stationBudgetSnapshot.actualSpentSoFar.add(otherPendingExcessReserved).toString());
 			iBudgetExcessSheetService.insertBudgetExcessSheetDtl(budgetExcessSheetReq);
 
 			returnMessage.setResponseCode(ResponseMessageMap.responseCodeOk);

@@ -188,6 +188,12 @@ public interface IIndentGroupDAO {
 
 	int getScsCurrentSeq(String scsId);
 
+	int getNextPjsRefSeqByProjectId(String projectId, String tenantId);
+
+	int updatePjsRefNoByIgScsId(String igScsId, String pjsRefNo, String tenantId);
+
+	String getPjsRefNoByIgScsId(String igScsId, String tenantId);
+
 	Map<String, BigDecimal> getOtherCommittedScsTotalGroupedByPmHdrId(String pmHdrId, String minSeqNo);
 
 	String getCommittedScsTotalByProjectId(String projectId, String minSeqNo);

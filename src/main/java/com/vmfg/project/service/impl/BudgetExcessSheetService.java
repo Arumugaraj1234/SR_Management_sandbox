@@ -28,6 +28,7 @@ import com.vmfg.project.request.updateBudgetExcessSheetRequest;
 import com.vmfg.project.response.BudgetExcessBasedIndentHdrDtl;
 import com.vmfg.project.service.interfaces.IBudgetExcessSheetService;
 import com.vmfg.sales.dao.impl.UploadManagementDAO;
+import com.vmfg.scm.dao.interfaces.IIndentGroupDAO;
 import com.vmfg.scm.request.UpdateSeqAndStatusRequest;
 import com.vmfg.task.dao.impl.DesignTaskDAO;
 import com.vmfg.util.CommonNotifyMethod;
@@ -48,6 +49,8 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 	
 	@Autowired
 	private CommonNotifyMethod commonNotifyMethod;
+	@Autowired
+	private IIndentGroupDAO iIndentGroupDAO;
 
 	@Override
 	public ResponseAsMessage insertBudgetExcessSheetDtl(BudgetExcessSheetRequest budgetExcessSheetRequest) {
@@ -89,14 +92,12 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 				BigDecimal remaining = allocated.subtract(spentSoFar);
 				scsActualCost = actualCost.subtract(remaining.max(BigDecimal.ZERO));
 
-				// PJS Ref No., e.g. "1096/E/PJS/1" - {PROJECT_CODE}/{discipline}/PJS/{seq}. Minted once
-				// here and persisted, never recomputed, same as INDENT_CODE/PO_CODE. Seq is project-wide
-				// (not per-discipline), matching INDENT_CODE's own RUNNING_NO convention - confirmed with
-				// user rather than assumed.
-				String projectCode = indentUploadDAO.getProjectCodeByProjId(hdrDtl.getPmHdrId(), budgetExcessSheetRequest.getTenantID());
-				String sbcShortDesc = indentUploadDAO.getSbcShortDescBySbcCode(hdrDtl.getSbcCode(), budgetExcessSheetRequest.getTenantID());
-				int nextSeq = iBudgetExcessSheetDAO.getNextPjsRefSeqByProjectId(hdrDtl.getPmHdrId(), budgetExcessSheetRequest.getTenantID());
-				pjsRefNo = projectCode + "/" + sbcShortDesc + "/PJS/" + nextSeq;
+				// PJS Ref No., e.g. "1096/E/PJS/1" - {PROJECT_CODE}/{discipline}/PJS/{seq}. No longer
+				// minted here - every PJS now gets this number once, at creation time (see
+				// IndentGroupService.insertScpDtlsByIgHdrId), so raising an excess just reads the
+				// already-existing number off the PJS itself instead of minting a second, separately
+				// numbered one.
+				pjsRefNo = iIndentGroupDAO.getPjsRefNoByIgScsId(budgetExcessSheetRequest.getIgScsId(), budgetExcessSheetRequest.getTenantID());
 			} else {
 				// insertBudgetSheetDtl
 				String bugtExCheck = iBudgetExcessSheetDAO.checkIndentExcessCount(hdrDtl.getIndentId(), budgetExcessSheetRequest.getTenantID());

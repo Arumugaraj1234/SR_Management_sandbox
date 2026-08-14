@@ -166,25 +166,33 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 					"    pm.PRODUCT_CODE,\r\n" +
 					"    pm.PRODUCT_DESCRIPTION,\r\n" +
 					"    um.UOM_LONG_DESCRIPTION,\r\n" +
+					// material_staging_hdr.UOM_CODE is NOT a real uom_mst.UOM_CODE foreign key -
+					// it stores the UOM label text directly (e.g. "Nos"), as typed/picked when the
+					// Staging Group was created (see AssemblyStagingDAO.insertMsHdr) - use as-is,
+					// no join needed (a uom_mst join here always returns NULL, since "Nos" never
+					// matches a real code like "U0001").
+					"    msh.UOM_CODE AS MS_UOM_LONG_DESCRIPTION,\r\n" +
 					"    pkam.PK_DESC AS STATION,\r\n" +
 					"    pksam.PSK_DESC AS SUB_ASSY\r\n" +
 					"FROM\r\n" +
-					"    material_return_dtl mrd\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    product_mst pm ON pm.PRODUCT_ID = mrd.PRODUCT_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    uom_mst um ON pm.PRODUCT_UOM_CODE = um.UOM_CODE\r\n" + 
-					"        LEFT JOIN\r\n" + 
-					"    project_key_area pka ON pm.PKA_ID = pka.PKA_ID\r\n" + 
-					"        LEFT JOIN\r\n" + 
-					"    project_key_area_mst pkam ON pka.PK_ID = pkam.PK_ID\r\n" + 
-					"        LEFT JOIN\r\n" + 
-					"    project_key_sub_area pksa ON pm.PSKA_ID = pksa.PKSA_ID\r\n" + 
-					"        LEFT JOIN\r\n" + 
-					"    project_key_sub_area_mst pksam ON pksa.PSK_ID = pksam.PSK_ID\r\n" + 
-					"WHERE\r\n" + 
-					"    mrd.MRH_ID = '"+hdrId+"'\r\n" + 
-					"        AND mrd.TENANT_ID = '"+tenantId+"'\r\n" + 
+					"    material_return_dtl mrd\r\n" +
+					"        INNER JOIN\r\n" +
+					"    product_mst pm ON pm.PRODUCT_ID = mrd.PRODUCT_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    uom_mst um ON pm.PRODUCT_UOM_CODE = um.UOM_CODE\r\n" +
+					"        LEFT JOIN\r\n" +
+					"    material_staging_hdr msh ON msh.MS_HDR_ID = mrd.MS_HDR_ID\r\n" +
+					"        LEFT JOIN\r\n" +
+					"    project_key_area pka ON pm.PKA_ID = pka.PKA_ID\r\n" +
+					"        LEFT JOIN\r\n" +
+					"    project_key_area_mst pkam ON pka.PK_ID = pkam.PK_ID\r\n" +
+					"        LEFT JOIN\r\n" +
+					"    project_key_sub_area pksa ON pm.PSKA_ID = pksa.PKSA_ID\r\n" +
+					"        LEFT JOIN\r\n" +
+					"    project_key_sub_area_mst pksam ON pksa.PSK_ID = pksam.PSK_ID\r\n" +
+					"WHERE\r\n" +
+					"    mrd.MRH_ID = '"+hdrId+"'\r\n" +
+					"        AND mrd.TENANT_ID = '"+tenantId+"'\r\n" +
 					"ORDER BY STATION , SUB_ASSY;";
 			
 			
@@ -244,7 +252,11 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 					"    pm.PRODUCT_DESCRIPTION,\r\n" +
 					"    pm.PRODUCT_COST_PER_UNIT,\r\n" +
 					"    um.UOM_LONG_DESCRIPTION,\r\n" +
-					"    um.UOM_CODE\r\n" +
+					"    um.UOM_CODE,\r\n" +
+					// Staging Group's own UOM label (not a real uom_mst FK - see
+					// retrieveMreturnDtlByHdr above for the same pattern) - used instead of
+					// deriving the group's UOM from its member items' own uomLongDesc.
+					"    msh.UOM_CODE AS MS_UOM_LONG_DESCRIPTION\r\n" +
 					"FROM\r\n" +
 					"    material_return_hdr mrh\r\n" +
 					"        INNER JOIN\r\n" +
