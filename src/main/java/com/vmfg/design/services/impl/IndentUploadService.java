@@ -926,6 +926,14 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 
 			if (proj.size() > 0) {
 			//	proj.get(0).setTotalBudgetConsumed(iIndentUploadDAO.totalbudgetConsumed(indentReq.getIndentId()));
+				// PJS No. applies regardless of cost flow type (every PJS gets one at creation,
+				// see IndentGroupService.insertScpDtlsByIgHdrId) - resolved here, not inside the
+				// NEW-flow branch below, so it shows for legacy indents too.
+				String scsIdForPjsRef = iIndentGroupDAO.getScsIdByIndentId(indentReq.getIndentId());
+				if (!scsIdForPjsRef.isEmpty()) {
+					proj.get(0).setPjsRefNo(
+							iIndentGroupDAO.getPjsRefNoByIgScsId(scsIdForPjsRef, indentReq.getTenantId()));
+				}
 				if ("NEW".equalsIgnoreCase(proj.get(0).getCostFlowType())) {
 					// NEW-flow: Budget Cost/Budget Consumed are hidden on this screen (see
 					// project_budget_target_cost_removal), replaced with real station numbers -

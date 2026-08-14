@@ -44,6 +44,9 @@ public class IndentGroupDetailsRowMapper implements RowMapper<IndentGroupDetails
 			if(columnExists(rs, "EMPLOYEE_FIRSTNAME")){
 				result.setPjsCreatedPerson(rs.getString("EMPLOYEE_FIRSTNAME"));
 			}
+			if (columnExists(rs, "PJS_REF_NO")) {
+				result.setPjsRefNo(rs.getString("PJS_REF_NO"));
+			}
 		} catch (Exception ex) {
 			logger.error("IndentGroupDetailsRowMapper error " + ex);
 		}

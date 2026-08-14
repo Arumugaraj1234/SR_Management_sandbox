@@ -66,6 +66,9 @@ public class RetrieveMReturnDtlByHdrRowMapper implements RowMapper<RetrieveMRetu
 			if (columnExists(rs, "PRODUCT_COST_PER_UNIT")) {
 				result.setCostPerUnit(rs.getString("PRODUCT_COST_PER_UNIT"));
 			}
+			if (columnExists(rs, "MS_UOM_LONG_DESCRIPTION")) {
+				result.setMsUomLongDesc(rs.getString("MS_UOM_LONG_DESCRIPTION"));
+			}
 
 		} catch (Exception ex) {
 			logger.error("RetrieveMReturnDtlByHdrRowMapper error " + ex);

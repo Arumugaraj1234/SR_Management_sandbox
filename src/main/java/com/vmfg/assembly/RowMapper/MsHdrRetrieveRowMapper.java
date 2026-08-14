@@ -40,6 +40,9 @@ public class MsHdrRetrieveRowMapper implements RowMapper<MsHdrRetrieveEntity> {
 			if (columnExists(rs, "MS_HDR_ID")) {
 				result.setMsHdrId(rs.getString("MS_HDR_ID"));
 			}
+			if (columnExists(rs, "UOM_CODE")) {
+				result.setUomCode(rs.getString("UOM_CODE"));
+			}
 			result.setPmHdrId(rs.getString("PM_HDR_ID"));
 
 		} catch (Exception ex) {

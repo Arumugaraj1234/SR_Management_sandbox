@@ -49,7 +49,7 @@ public class AssemblyStagingDAO implements IAssemblyStagingDAO {
 		List<MsHdrRetrieveEntity> list1 = new ArrayList<>();
 		try {
 			String qry = "SELECT \r\n"
-					+ "    msh.MS_NAME,msh.STATUS,msh.MS_HDR_ID, msh.QTY,msh.PM_HDR_ID, msh.CREATED_ON, em.EMPLOYEE_FIRSTNAME AS CREATED_BY\r\n"
+					+ "    msh.MS_NAME,msh.STATUS,msh.MS_HDR_ID, msh.QTY,msh.PM_HDR_ID, msh.UOM_CODE, msh.CREATED_ON, em.EMPLOYEE_FIRSTNAME AS CREATED_BY\r\n"
 					+ "FROM\r\n" + "    material_staging_hdr msh,\r\n" + "    employee_mst em\r\n" + "WHERE\r\n"
 					+ "    msh.CREATED_BY = em.EMPLOYEE_ID\r\n" + "        AND msh.PM_HDR_ID = '" + hdrId + "'\r\n"
 					+ "        AND msh.STATUS = 'ACTIVE'\r\n"
@@ -67,7 +67,7 @@ public class AssemblyStagingDAO implements IAssemblyStagingDAO {
 		List<MsHdrRetrieveEntity> list1 = new ArrayList<>();
 		try {
 			String qry = "SELECT \r\n"
-					+ "    msh.MS_NAME,msh.STATUS,msh.MS_HDR_ID, msh.QTY,msh.PM_HDR_ID, msh.CREATED_ON, em.EMPLOYEE_FIRSTNAME AS CREATED_BY\r\n"
+					+ "    msh.MS_NAME,msh.STATUS,msh.MS_HDR_ID, msh.QTY,msh.PM_HDR_ID, msh.UOM_CODE, msh.CREATED_ON, em.EMPLOYEE_FIRSTNAME AS CREATED_BY\r\n"
 					+ "FROM\r\n" + "    material_staging_hdr msh,\r\n" + "    employee_mst em\r\n" + "WHERE\r\n"
 					+ "    msh.CREATED_BY = em.EMPLOYEE_ID\r\n" + "        AND msh.PM_HDR_ID = '" + hdrId + "'\r\n"
 					+ "        AND msh.TENANT_ID = '" + tenantId + "'\r\n"
@@ -85,7 +85,7 @@ public class AssemblyStagingDAO implements IAssemblyStagingDAO {
 		List<MsHdrRetrieveEntity> list1 = new ArrayList<>();
 		try {
 			String qry = "SELECT \r\n"
-					+ "    msh.MS_NAME,msh.STATUS,msh.MS_HDR_ID, msh.QTY,msh.PM_HDR_ID, msh.CREATED_ON, em.EMPLOYEE_FIRSTNAME AS CREATED_BY\r\n"
+					+ "    msh.MS_NAME,msh.STATUS,msh.MS_HDR_ID, msh.QTY,msh.PM_HDR_ID, msh.UOM_CODE, msh.CREATED_ON, em.EMPLOYEE_FIRSTNAME AS CREATED_BY\r\n"
 					+ "FROM\r\n" + "    material_staging_hdr msh,\r\n" + "    employee_mst em\r\n" + "WHERE\r\n"
 					+ "    msh.CREATED_BY = em.EMPLOYEE_ID\r\n" + "        AND msh.MS_HDR_ID = '" + hdrId + "'\r\n"
 					+ "        AND msh.STATUS = 'ACTIVE'\r\n"

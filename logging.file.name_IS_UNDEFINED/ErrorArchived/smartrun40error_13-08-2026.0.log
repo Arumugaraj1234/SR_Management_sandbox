@@ -1,0 +1,46 @@
+2026-08-13 16:25:25 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-08-13 16:29:30 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-08-13 16:29:30 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-08-13 16:29:30 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-08-13 16:29:30 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-08-13 16:44:31 [http-nio-8495-exec-8] ERROR c.v.a.dao.impl.AssemblyStagingDAO -prodIdFromDesc  method  exceptionorg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-08-13 16:44:31 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonMethod -getInventoryProductDtlId Method Exception --->java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
+				
+2026-08-13 16:44:31 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonMethod -UpdateProductInvDtl Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-08-13 16:48:00 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-08-13 16:48:00 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-08-13 16:48:00 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-08-13 16:48:00 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-08-13 16:48:53 [http-nio-8495-exec-2] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocType Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-08-13 16:50:15 [http-nio-8495-exec-6] ERROR c.v.s.r.BillingDetailRowMapper -DcDtlRowMapper error java.sql.SQLSyntaxErrorException: Column 'INDENT_DTL_ID' not found.
+				
+2026-08-13 16:50:15 [http-nio-8495-exec-6] ERROR c.v.s.r.BillingDetailRowMapper -DcDtlRowMapper error java.sql.SQLSyntaxErrorException: Column 'INDENT_DTL_ID' not found.
+				
+2026-08-13 16:50:15 [http-nio-8495-exec-6] ERROR c.v.s.r.BillingDetailRowMapper -DcDtlRowMapper error java.sql.SQLSyntaxErrorException: Column 'INDENT_DTL_ID' not found.
+				
+2026-08-13 16:50:15 [http-nio-8495-exec-6] ERROR c.v.s.r.BillingDetailRowMapper -DcDtlRowMapper error java.sql.SQLSyntaxErrorException: Column 'INDENT_DTL_ID' not found.
+				
+2026-08-13 16:50:16 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.PoDAO -getBinValue method Error: org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 4
+				
+2026-08-13 16:50:16 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.PoDAO -getBinValue method Error: org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 4
+				
+2026-08-13 16:50:16 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.PoDAO -getBinValue method Error: org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 4
+				
+2026-08-13 16:50:16 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.PoDAO -getBinValue method Error: org.springframework.dao.IncorrectResultSizeDataAccessException: Incorrect result size: expected 1, actual 4
+				
+2026-08-13 16:51:38 [http-nio-8495-exec-3] ERROR c.v.s.r.BillingDetailRowMapper -DcDtlRowMapper error java.sql.SQLSyntaxErrorException: Column 'INDENT_DTL_ID' not found.
+				
+2026-08-13 16:51:38 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.PoDAO -getBinValue method Error: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				

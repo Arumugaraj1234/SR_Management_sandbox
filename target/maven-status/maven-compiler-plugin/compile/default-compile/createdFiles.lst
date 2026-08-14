@@ -483,7 +483,6 @@ com/vmfg/util/entity/MaxQuantityorferRowMapper.class
 com/vmfg/assembly/services/impl/AssemblyService.class
 com/vmfg/util/entity/ProductQuntyVlRowMapper.class
 com/vmfg/master/request/TaskCategoryDrpdwnRequest.class
-com/vmfg/config/DevFlywayMigrationRunner.class
 com/vmfg/assembly/RowMapper/MaterialIssueDtlRowMapper.class
 com/vmfg/task/request/InsertRMRemarksRequest.class
 com/vmfg/design/rowmapper/DesignAreaRowMapper.class
