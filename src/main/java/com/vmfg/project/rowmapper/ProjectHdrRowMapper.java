@@ -46,7 +46,7 @@ public class ProjectHdrRowMapper implements RowMapper<ProjectHdr> {
 			if(columnExists(row, "SB_HDR_ID")) {
 				ph.setSbHdrId(row.getString("SB_HDR_ID"));
 			}
-			
+
 			
 			if(row.getString("PRIORITY").equalsIgnoreCase("3")) {
 				ph.setPriority("High");
