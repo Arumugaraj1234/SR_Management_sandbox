@@ -99,10 +99,10 @@ public class ProjectDAO implements IProjectDAO {
 //						"						    CASE \r\n" + 
 //						"						        WHEN COUNT(shdr.MASTER_ID) > 0 THEN  (shdr.TOTAL_BUDGET_COST + shdr.CR_COST)   \r\n" + 
 //						"						        ELSE 0 \r\n" + 
-						"						    (shdr.TOTAL_BUDGET_COST + shdr.CR_COST) AS FINAL_SALE_VALUE, shdr.SB_HDR_ID AS SB_HDR_ID, eqh.IS_INTERNAL \r\n" + 
+						"						    (shdr.TOTAL_BUDGET_COST + shdr.CR_COST) AS FINAL_SALE_VALUE, shdr.SB_HDR_ID AS SB_HDR_ID, eqh.IS_INTERNAL \r\n" +
 						"						FROM     project_hdr hdr,     process_config pms,\r\n" + 
-						"						    document_status_type_code dst,     sales_enq_hdr eqh,\r\n" + 
-						"						    process_assigned_team pat,  sales_budget_sheet_hdr shdr, stg_master stg,(SELECT @a:= 0) AS a  WHERE\r\n" + 
+						"						    document_status_type_code dst,     sales_enq_hdr eqh,\r\n" +
+						"						    process_assigned_team pat,  sales_budget_sheet_hdr shdr, stg_master stg,(SELECT @a:= 0) AS a  WHERE\r\n" +
 						"						    hdr.TRANSACTION_STATUS = dst.DOCUMENT_STATUS_TYPE_CODE\r\n" + 
 						"						        AND hdr.TRANSACTION_STAGE = pms.STG_CODE \r\n" + 
 						"						        AND shdr.MASTER_ID = hdr.ENQUIRY_ID\r\n" + 
