@@ -80,6 +80,14 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 				int groupCount = Integer.parseInt(groupResult.get("COUNT").toString());
 				obj.setReturnType(groupCount > 0 ? "Group" : "Individual");
 
+				if (groupCount > 0) {
+					String groupNameQ = "select distinct MS_NAME from material_return_dtl where MRH_ID=? and MS_HDR_ID is not null";
+					List<String> groupNames = this.jdbcTemplate.queryForList(groupNameQ, String.class, count.getMrhId());
+					obj.setGroupName(String.join(", ", groupNames));
+				} else {
+					obj.setGroupName("-");
+				}
+
 				list.add(obj);
 			}
 
@@ -256,7 +264,9 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 					// Staging Group's own UOM label (not a real uom_mst FK - see
 					// retrieveMreturnDtlByHdr above for the same pattern) - used instead of
 					// deriving the group's UOM from its member items' own uomLongDesc.
-					"    msh.UOM_CODE AS MS_UOM_LONG_DESCRIPTION\r\n" +
+					"    msh.UOM_CODE AS MS_UOM_LONG_DESCRIPTION,\r\n" +
+					"    msh.CREATED_ON AS MS_CREATED_ON,\r\n" +
+					"    msEm.EMPLOYEE_FIRSTNAME AS MS_CREATED_BY\r\n" +
 					"FROM\r\n" +
 					"    material_return_hdr mrh\r\n" +
 					"        INNER JOIN\r\n" +
@@ -267,6 +277,8 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 					"    uom_mst um ON pm.PRODUCT_UOM_CODE = um.UOM_CODE\r\n" +
 					"        LEFT JOIN\r\n" +
 					"    material_staging_hdr msh ON msh.MS_HDR_ID = mrd.MS_HDR_ID\r\n" +
+					"        LEFT JOIN\r\n" +
+					"    employee_mst msEm ON msEm.EMPLOYEE_ID = msh.CREATED_BY\r\n" +
 					"WHERE\r\n" +
 					"    mrh.PM_HDR_ID = '"+pmHdrId+"'\r\n" +
 					"        AND mrd.TENANT_ID = '"+tenantId+"'\r\n" +
@@ -376,7 +388,7 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 			// 		+ "        AND mrd.MRD_ID = '"+dtlId+"'\r\n"
 			// 		+ "        AND mrd.TENANT_ID = '"+tenantId+"'";
 			String qry = "SELECT \r\n"
-					+ "    mrh.PM_HDR_ID, mrh.MRH_ID, pm.PRODUCT_CODE, pm.PRODUCT_ID, mrd.QTY,mrh.CREATED_BY as EMPLOYEE_ID, mrd.TENANT_ID, mrd.MS_HDR_ID\r\n"
+					+ "    mrh.PM_HDR_ID, mrh.MRH_ID, pm.PRODUCT_CODE, pm.PRODUCT_ID, mrd.QTY,mrh.CREATED_BY as EMPLOYEE_ID, mrd.TENANT_ID, mrd.MS_HDR_ID, mrd.MS_NAME\r\n"
 					+ "FROM\r\n"
 					+ "    material_return_hdr mrh,\r\n"
 					+ "    material_return_dtl mrd,\r\n"

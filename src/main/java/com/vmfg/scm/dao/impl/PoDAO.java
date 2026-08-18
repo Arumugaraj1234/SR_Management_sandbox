@@ -1623,6 +1623,24 @@ String poDate= CommonMethod.getCurrentDate();
 								new BigDecimal(dcHdrEntity.getDcDtlList().get(j).getQty()), "Subraction", "ITTC0018",
 								dcCode, dcHdrEntity.getEmpId(), CommonMethod.getCurrentDateTime(),
 								dcHdrEntity.getTenantId(), jdbcTemplate);
+					} else if (rowMsHdrId != null && !rowMsHdrId.isEmpty()) {
+						// Group-sourced row: no single real product/qty for the group itself, and
+						// no real ILC0002 movement (see comment above). Log one Inventory Journal
+						// row per member item of the group instead, so a Group DC dispatch shows
+						// the same real Part Number/Qty detail an individual DC row would, just
+						// tagged Group/MS_NAME, with OPENING_BALANCE=CLOSING_BALANCE (no real
+						// quantity actually moved for these rows).
+						String groupItemsQry = "select mrd.PRODUCT_ID, mrd.QTY from material_return_dtl mrd where mrd.MS_HDR_ID = ? and mrd.TENANT_ID = ?";
+						List<Map<String, Object>> groupItems = this.jdbcTemplate.queryForList(groupItemsQry, rowMsHdrId,
+								dcHdrEntity.getTenantId());
+						for (Map<String, Object> groupItem : groupItems) {
+							String groupItemProductId = groupItem.get("PRODUCT_ID").toString();
+							BigDecimal groupItemQty = new BigDecimal(groupItem.get("QTY").toString());
+							CommonMethod.logGroupInvJournal(dcHdrEntity.getPmHdrId(), groupItemProductId, "ILC0002",
+									groupItemQty, "ITTC0018", dcCode, dcHdrEntity.getEmpId(),
+									CommonMethod.getCurrentDateTime(), dcHdrEntity.getTenantId(), rowMsHdrId,
+									rowMsName, jdbcTemplate);
+						}
 					}
 				}
 				if (!dispatchedMsHdrIds.isEmpty()) {

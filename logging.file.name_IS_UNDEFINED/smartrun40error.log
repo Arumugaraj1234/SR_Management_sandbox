@@ -1,172 +1,114 @@
-2026-08-17 09:42:01 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+2026-08-18 10:41:15 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
-2026-08-17 09:42:22 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 10:41:37 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 09:42:22 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 10:41:37 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 09:42:22 [http-nio-8495-exec-2] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+2026-08-18 10:41:37 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-08-17 09:42:22 [http-nio-8495-exec-2] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+2026-08-18 10:41:37 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-08-17 09:53:22 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 10:53:01 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
-2026-08-17 09:53:22 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 10:54:28 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 09:53:22 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+2026-08-18 10:54:28 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 09:53:22 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+2026-08-18 10:54:28 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-08-17 09:53:26 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 10:54:28 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-08-17 09:53:26 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 10:55:21 [http-nio-8495-exec-4] ERROR c.v.s.r.BillingDetailRowMapper -DcDtlRowMapper error java.sql.SQLSyntaxErrorException: Column 'INDENT_DTL_ID' not found.
 				
-2026-08-17 09:53:26 [http-nio-8495-exec-1] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+2026-08-18 10:55:21 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.PoDAO -getBinValue method Error: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 09:53:26 [http-nio-8495-exec-1] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+2026-08-18 10:56:45 [http-nio-8495-exec-5] ERROR c.v.s.r.BillingDetailRowMapper -DcDtlRowMapper error java.sql.SQLSyntaxErrorException: Column 'INDENT_DTL_ID' not found.
 				
-2026-08-17 10:12:08 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+2026-08-18 10:56:45 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.PoDAO -getBinValue method Error: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:12:25 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 11:02:44 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:12:25 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 11:02:44 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:12:25 [http-nio-8495-exec-1] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+2026-08-18 11:02:44 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-08-17 10:12:25 [http-nio-8495-exec-1] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+2026-08-18 11:02:44 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-08-17 10:32:53 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+2026-08-18 11:08:12 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:37:33 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 11:08:12 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:37:33 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 11:08:12 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-08-17 10:37:33 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+2026-08-18 11:08:12 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-08-17 10:37:33 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+2026-08-18 12:56:00 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
-2026-08-17 10:40:42 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 12:56:29 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:40:42 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 12:56:29 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:40:42 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+2026-08-18 12:56:29 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-08-17 10:40:42 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+2026-08-18 12:56:29 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-08-17 10:40:59 [http-nio-8495-exec-9] ERROR com.vmfg.project.dao.impl.ProjectDAO -getProjectDtl error PreparedStatementCallback; bad SQL grammar [SELECT      @a:=@a+1 serial_number, eqh.ENQUIRY_CODE,     PM_HDR_ID,
-						    hdr.PROJECT_CODE,     hdr.PROJECT_NAME,     hdr.PROJECT_DESCRIPTION,
-						    ENQUIRY_ID,     hdr.PRODUCT_DETAILS,     hdr.CREATED_DATE,
-						    hdr.DUE_DATE,     hdr.CUSTOMER_NAME,     pms.STG_CODE,
-						    dst.DOCUMENT_STATUS_TYPE_DESCRIPTION,eqh.PROJECT_HANDOVER_DATE AS PROJECT_HANDOVER_DATE,
-						    stg.STG_DESC,hdr.INITIATION_DATE,hdr.PLANNED_START_DATE,hdr.PLANNED_END_DATE,hdr.INDUSTRIAL_TYPE,hdr.SCOPE_OF_WORK,hdr.PRIORITY, 
-						    (shdr.TOTAL_BUDGET_COST + shdr.CR_COST) AS FINAL_SALE_VALUE, shdr.SB_HDR_ID AS SB_HDR_ID, eqh.IS_INTERNAL, sec.CONTACT_NAME AS SEC_CONTACT_NAME, sec.CONTACT_EMAIL AS SEC_CONTACT_EMAIL, sec.CONTACT_NO AS SEC_CONTACT_NO 
-						FROM     project_hdr hdr,     process_config pms,
-						    document_status_type_code dst,     sales_enq_hdr eqh,
-						    process_assigned_team pat,  sales_budget_sheet_hdr shdr, stg_master stg,(SELECT @a:= 0) AS a LEFT JOIN sales_enq_contact sec ON sec.MASTER_ID = eqh.SE_ID AND sec.IS_PRIMARY = 1  WHERE
-						    hdr.TRANSACTION_STATUS = dst.DOCUMENT_STATUS_TYPE_CODE
-						        AND hdr.TRANSACTION_STAGE = pms.STG_CODE 
-						        AND shdr.MASTER_ID = hdr.ENQUIRY_ID
-						        and stg.STG_CODE = pms.STG_CODE AND pat.TENANT_ID = hdr.TENANT_ID AND pms.TENANT_ID = eqh.TENANT_ID 
-						        AND pat.MASTER_ID = hdr.PM_HDR_ID         AND pat.ASSIGNED_EMP_ID = ?
-						        AND eqh.SE_ID = hdr.ENQUIRY_ID         AND hdr.CUSTOMER_NAME LIKE ?
-						                 AND hdr.TENANT_ID = ?
-						        AND pat.PM_ID = ?  AND pat.IS_ACTIVE = 1  ]; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'eqh.SE_ID' in 'on clause'
+2026-08-18 13:07:17 [http-nio-8495-exec-5] ERROR c.v.a.dao.impl.AssemblyStagingDAO -prodIdFromDesc  method  exceptionorg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:40:59 [http-nio-8495-exec-9] ERROR c.v.p.controller.ProjectController -getProjectDtl  method  exceptionjava.lang.NullPointerException
+2026-08-18 13:07:17 [http-nio-8495-exec-5] ERROR com.vmfg.util.CommonMethod -getInventoryProductDtlId Method Exception --->java.lang.IndexOutOfBoundsException: Index: 0, Size: 0
 				
-2026-08-17 10:41:18 [http-nio-8495-exec-4] ERROR com.vmfg.project.dao.impl.ProjectDAO -getProjectDtl error PreparedStatementCallback; bad SQL grammar [SELECT      @a:=@a+1 serial_number, eqh.ENQUIRY_CODE,     PM_HDR_ID,
-						    hdr.PROJECT_CODE,     hdr.PROJECT_NAME,     hdr.PROJECT_DESCRIPTION,
-						    ENQUIRY_ID,     hdr.PRODUCT_DETAILS,     hdr.CREATED_DATE,
-						    hdr.DUE_DATE,     hdr.CUSTOMER_NAME,     pms.STG_CODE,
-						    dst.DOCUMENT_STATUS_TYPE_DESCRIPTION,eqh.PROJECT_HANDOVER_DATE AS PROJECT_HANDOVER_DATE,
-						    stg.STG_DESC,hdr.INITIATION_DATE,hdr.PLANNED_START_DATE,hdr.PLANNED_END_DATE,hdr.INDUSTRIAL_TYPE,hdr.SCOPE_OF_WORK,hdr.PRIORITY, 
-						    (shdr.TOTAL_BUDGET_COST + shdr.CR_COST) AS FINAL_SALE_VALUE, shdr.SB_HDR_ID AS SB_HDR_ID, eqh.IS_INTERNAL, sec.CONTACT_NAME AS SEC_CONTACT_NAME, sec.CONTACT_EMAIL AS SEC_CONTACT_EMAIL, sec.CONTACT_NO AS SEC_CONTACT_NO 
-						FROM     project_hdr hdr,     process_config pms,
-						    document_status_type_code dst,     sales_enq_hdr eqh,
-						    process_assigned_team pat,  sales_budget_sheet_hdr shdr, stg_master stg,(SELECT @a:= 0) AS a LEFT JOIN sales_enq_contact sec ON sec.MASTER_ID = eqh.SE_ID AND sec.IS_PRIMARY = 1  WHERE
-						    hdr.TRANSACTION_STATUS = dst.DOCUMENT_STATUS_TYPE_CODE
-						        AND hdr.TRANSACTION_STAGE = pms.STG_CODE 
-						        AND shdr.MASTER_ID = hdr.ENQUIRY_ID
-						        and stg.STG_CODE = pms.STG_CODE AND pat.TENANT_ID = hdr.TENANT_ID AND pms.TENANT_ID = eqh.TENANT_ID 
-						        AND pat.MASTER_ID = hdr.PM_HDR_ID         AND pat.ASSIGNED_EMP_ID = ?
-						        AND eqh.SE_ID = hdr.ENQUIRY_ID         AND hdr.CUSTOMER_NAME LIKE ?
-						                 AND hdr.TENANT_ID = ?
-						        AND pat.PM_ID = ?  AND pat.IS_ACTIVE = 1  ]; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'eqh.SE_ID' in 'on clause'
+2026-08-18 13:07:17 [http-nio-8495-exec-5] ERROR com.vmfg.util.CommonMethod -UpdateProductInvDtl Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:41:18 [http-nio-8495-exec-4] ERROR c.v.p.controller.ProjectController -getProjectDtl  method  exceptionjava.lang.NullPointerException
+2026-08-18 13:09:26 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:41:45 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+2026-08-18 13:09:26 [http-nio-8495-exec-4] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:41:59 [http-nio-8495-exec-6] ERROR com.vmfg.project.dao.impl.ProjectDAO -getProjectDtl error PreparedStatementCallback; bad SQL grammar [SELECT      @a:=@a+1 serial_number, eqh.ENQUIRY_CODE,     PM_HDR_ID,
-						    hdr.PROJECT_CODE,     hdr.PROJECT_NAME,     hdr.PROJECT_DESCRIPTION,
-						    ENQUIRY_ID,     hdr.PRODUCT_DETAILS,     hdr.CREATED_DATE,
-						    hdr.DUE_DATE,     hdr.CUSTOMER_NAME,     pms.STG_CODE,
-						    dst.DOCUMENT_STATUS_TYPE_DESCRIPTION,eqh.PROJECT_HANDOVER_DATE AS PROJECT_HANDOVER_DATE,
-						    stg.STG_DESC,hdr.INITIATION_DATE,hdr.PLANNED_START_DATE,hdr.PLANNED_END_DATE,hdr.INDUSTRIAL_TYPE,hdr.SCOPE_OF_WORK,hdr.PRIORITY, 
-						    (shdr.TOTAL_BUDGET_COST + shdr.CR_COST) AS FINAL_SALE_VALUE, shdr.SB_HDR_ID AS SB_HDR_ID, eqh.IS_INTERNAL, sec.CONTACT_NAME AS SEC_CONTACT_NAME, sec.CONTACT_EMAIL AS SEC_CONTACT_EMAIL, sec.CONTACT_NO AS SEC_CONTACT_NO 
-						FROM     project_hdr hdr,     process_config pms,
-						    document_status_type_code dst,     sales_enq_hdr eqh,
-						    process_assigned_team pat,  sales_budget_sheet_hdr shdr, stg_master stg,(SELECT @a:= 0) AS a LEFT JOIN sales_enq_contact sec ON sec.MASTER_ID = eqh.SE_ID AND sec.IS_PRIMARY = 1  WHERE
-						    hdr.TRANSACTION_STATUS = dst.DOCUMENT_STATUS_TYPE_CODE
-						        AND hdr.TRANSACTION_STAGE = pms.STG_CODE 
-						        AND shdr.MASTER_ID = hdr.ENQUIRY_ID
-						        and stg.STG_CODE = pms.STG_CODE AND pat.TENANT_ID = hdr.TENANT_ID AND pms.TENANT_ID = eqh.TENANT_ID 
-						        AND pat.MASTER_ID = hdr.PM_HDR_ID         AND pat.ASSIGNED_EMP_ID = ?
-						        AND eqh.SE_ID = hdr.ENQUIRY_ID         AND hdr.CUSTOMER_NAME LIKE ?
-						                 AND hdr.TENANT_ID = ?
-						        AND pat.PM_ID = ?  AND pat.IS_ACTIVE = 1  ]; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'eqh.SE_ID' in 'on clause'
+2026-08-18 13:09:26 [http-nio-8495-exec-4] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-08-17 10:41:59 [http-nio-8495-exec-6] ERROR c.v.p.controller.ProjectController -getProjectDtl  method  exceptionjava.lang.NullPointerException
+2026-08-18 13:09:26 [http-nio-8495-exec-4] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-08-17 10:45:56 [http-nio-8495-exec-1] ERROR com.vmfg.project.dao.impl.ProjectDAO -getProjectDtl error PreparedStatementCallback; bad SQL grammar [SELECT      @a:=@a+1 serial_number, eqh.ENQUIRY_CODE,     PM_HDR_ID,
-						    hdr.PROJECT_CODE,     hdr.PROJECT_NAME,     hdr.PROJECT_DESCRIPTION,
-						    ENQUIRY_ID,     hdr.PRODUCT_DETAILS,     hdr.CREATED_DATE,
-						    hdr.DUE_DATE,     hdr.CUSTOMER_NAME,     pms.STG_CODE,
-						    dst.DOCUMENT_STATUS_TYPE_DESCRIPTION,eqh.PROJECT_HANDOVER_DATE AS PROJECT_HANDOVER_DATE,
-						    stg.STG_DESC,hdr.INITIATION_DATE,hdr.PLANNED_START_DATE,hdr.PLANNED_END_DATE,hdr.INDUSTRIAL_TYPE,hdr.SCOPE_OF_WORK,hdr.PRIORITY, 
-						    (shdr.TOTAL_BUDGET_COST + shdr.CR_COST) AS FINAL_SALE_VALUE, shdr.SB_HDR_ID AS SB_HDR_ID, eqh.IS_INTERNAL, sec.CONTACT_NAME AS SEC_CONTACT_NAME, sec.CONTACT_EMAIL AS SEC_CONTACT_EMAIL, sec.CONTACT_NO AS SEC_CONTACT_NO 
-						FROM     project_hdr hdr,     process_config pms,
-						    document_status_type_code dst,     sales_enq_hdr eqh,
-						    process_assigned_team pat,  sales_budget_sheet_hdr shdr, stg_master stg,(SELECT @a:= 0) AS a LEFT JOIN sales_enq_contact sec ON sec.MASTER_ID = eqh.SE_ID AND sec.IS_PRIMARY = 1  WHERE
-						    hdr.TRANSACTION_STATUS = dst.DOCUMENT_STATUS_TYPE_CODE
-						        AND hdr.TRANSACTION_STAGE = pms.STG_CODE 
-						        AND shdr.MASTER_ID = hdr.ENQUIRY_ID
-						        and stg.STG_CODE = pms.STG_CODE AND pat.TENANT_ID = hdr.TENANT_ID AND pms.TENANT_ID = eqh.TENANT_ID 
-						        AND pat.MASTER_ID = hdr.PM_HDR_ID         AND pat.ASSIGNED_EMP_ID = ?
-						        AND eqh.SE_ID = hdr.ENQUIRY_ID         AND hdr.CUSTOMER_NAME LIKE ?
-						                 AND hdr.TENANT_ID = ?
-						        AND pat.PM_ID = ?  AND pat.IS_ACTIVE = 1  ]; nested exception is java.sql.SQLSyntaxErrorException: Unknown column 'eqh.SE_ID' in 'on clause'
+2026-08-18 13:10:40 [http-nio-8495-exec-2] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocType Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:45:56 [http-nio-8495-exec-1] ERROR c.v.p.controller.ProjectController -getProjectDtl  method  exceptionjava.lang.NullPointerException
+2026-08-18 13:12:09 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:47:07 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+2026-08-18 13:12:09 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:47:50 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 13:12:09 [http-nio-8495-exec-1] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-08-17 10:47:50 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 13:12:09 [http-nio-8495-exec-1] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-08-17 10:47:50 [http-nio-8495-exec-1] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+2026-08-18 13:13:00 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:47:50 [http-nio-8495-exec-1] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+2026-08-18 13:13:00 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:51:19 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+2026-08-18 13:13:00 [http-nio-8495-exec-2] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-08-17 10:53:57 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 13:13:00 [http-nio-8495-exec-2] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-08-17 10:53:57 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 13:18:58 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
-2026-08-17 10:53:57 [http-nio-8495-exec-10] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+2026-08-18 13:29:46 [http-nio-8495-exec-10] ERROR c.v.s.r.BillingDetailRowMapper -DcDtlRowMapper error java.sql.SQLSyntaxErrorException: Column 'INDENT_DTL_ID' not found.
 				
-2026-08-17 10:53:57 [http-nio-8495-exec-10] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+2026-08-18 13:29:46 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.PoDAO -getBinValue method Error: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:54:02 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 13:32:25 [http-nio-8495-exec-9] ERROR c.v.s.r.BillingDetailRowMapper -DcDtlRowMapper error java.sql.SQLSyntaxErrorException: Column 'INDENT_DTL_ID' not found.
 				
-2026-08-17 10:54:02 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-08-18 13:32:25 [http-nio-8495-exec-9] ERROR com.vmfg.scm.dao.impl.PoDAO -getBinValue method Error: org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-08-17 10:54:02 [http-nio-8495-exec-9] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+2026-08-18 13:37:55 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
-2026-08-17 10:54:02 [http-nio-8495-exec-9] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+2026-08-18 13:40:17 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
-2026-08-17 10:55:36 [restartedMain] ERROR com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Exception during pool initialization.
+2026-08-18 13:46:10 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+				
+2026-08-18 15:11:32 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-08-18 15:11:32 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+				
+2026-08-18 15:11:32 [http-nio-8495-exec-10] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+				
+2026-08-18 15:11:32 [http-nio-8495-exec-10] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+				
+2026-08-18 15:15:20 [restartedMain] ERROR com.zaxxer.hikari.pool.HikariPool -HikariPool-1 - Exception during pool initialization.
 				
 java.sql.SQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:102)
@@ -288,7 +230,7 @@ Caused by: com.mysql.cj.exceptions.CJException: Access denied for user 'root'@'l
 	at com.mysql.cj.NativeSession.connect(NativeSession.java:155)
 	at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:851)
 	... 94 common frames omitted
-2026-08-17 10:55:36 [restartedMain] ERROR o.s.boot.SpringApplication -Application run failed
+2026-08-18 15:15:20 [restartedMain] ERROR o.s.boot.SpringApplication -Application run failed
 				
 org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
 	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
@@ -428,7 +370,7 @@ Caused by: com.mysql.cj.exceptions.CJException: Access denied for user 'root'@'l
 	at com.mysql.cj.NativeSession.connect(NativeSession.java:155)
 	at com.mysql.cj.jdbc.ConnectionImpl.connectWithRetries(ConnectionImpl.java:851)
 	... 94 common frames omitted
-2026-08-17 10:55:36 [restartedMain] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+2026-08-18 15:15:20 [restartedMain] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jdbcMappingContext' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Unsatisfied dependency expressed through method 'jdbcMappingContext' parameter 1; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcCustomConversions' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.jdbc.core.convert.JdbcCustomConversions]: Factory method 'jdbcCustomConversions' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jdbcDialect' defined in class path resource [org/springframework/boot/autoconfigure/data/jdbc/JdbcRepositoriesAutoConfiguration$SpringBootJdbcConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.data.relational.core.dialect.Dialect]: Factory method 'jdbcDialect' threw exception; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection; nested exception is java.sql.SQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
 				
-2026-08-17 10:55:36 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+2026-08-18 15:15:20 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				

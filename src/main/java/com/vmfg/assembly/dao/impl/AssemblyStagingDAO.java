@@ -201,7 +201,7 @@ public class AssemblyStagingDAO implements IAssemblyStagingDAO {
 
 	@Override
 	public int insertMsDtl(int responseMsHdrId, String productId, String qty, String tenantId, String pmHdrId,
-			String createdBy) {
+			String createdBy, String msName) {
 		logger.debug("insertMsDtl   method Start");
 		int insertRes = 0;
 		try {
@@ -213,7 +213,8 @@ public class AssemblyStagingDAO implements IAssemblyStagingDAO {
 
 //			String productCode = poDAO.getProdCodeByprodId(productId);
 			CommonMethod.updateProductInvDtl(pmHdrId, productId, "ILC0003", new BigDecimal(qty), "Subraction",
-					"ITTC0012", insertRes + "", createdBy, CommonMethod.getCurrentDateTime(), tenantId, jdbcTemplate);
+					"ITTC0012", insertRes + "", createdBy, CommonMethod.getCurrentDateTime(), tenantId, jdbcTemplate,
+					String.valueOf(responseMsHdrId), msName);
 
 		} catch (Exception ex) {
 			logger.error("insertMsDtl  method  exception" + ex);
@@ -304,12 +305,12 @@ public class AssemblyStagingDAO implements IAssemblyStagingDAO {
 
 	@Override
 	public void updateMsDtlInv(String productId, String qty, String projectId, String tenantId, String empId,
-			String dtlId) {
+			String dtlId, String msHdrId, String msName) {
 		try {
 
 //			String productCode = poDAO.getProdCodeByprodId(productId);
 			CommonMethod.updateProductInvDtl(projectId, productId, "ILC0003", new BigDecimal(qty), "", "ITTC0012",
-					dtlId + "", empId, CommonMethod.getCurrentDateTime(), tenantId, jdbcTemplate);
+					dtlId + "", empId, CommonMethod.getCurrentDateTime(), tenantId, jdbcTemplate, msHdrId, msName);
 
 		} catch (Exception ex) {
 			logger.error("updateMsDtlInv  method  exception" + ex);
