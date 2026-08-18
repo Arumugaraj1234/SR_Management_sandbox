@@ -29,4 +29,9 @@ public class InventoryJournalEntity implements Serializable {
 		private String inventoryTransactionQuantity;
 		private String projectName;
 	    private String poCode;
+	    private String msHdrId;
+	    private String msName;
+	    private String transactionMode;
+	    private String createdOn;
+	    private String createdBy;
 }

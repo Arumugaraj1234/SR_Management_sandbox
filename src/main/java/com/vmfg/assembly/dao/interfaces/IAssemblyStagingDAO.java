@@ -25,11 +25,12 @@ public interface IAssemblyStagingDAO {
 	int insertMsHdr(String pmHdrId, String msName, String stageQty, String tenantId, String createdBy, String uom);
 
 	int insertMsDtl(int responseMsHdrId, String productId, String qty, String tenantId, String pmHdrId,
-			String createdBy);
+			String createdBy, String msName);
 
 	BigDecimal checkInv(List<MsHdrRetrieveEntity> list, String tenantId);
 
-	void updateMsDtlInv(String productId, String qty, String projectId, String tenantId, String empId, String dtlId);
+	void updateMsDtlInv(String productId, String qty, String projectId, String tenantId, String empId, String dtlId,
+			String msHdrId, String msName);
 
 	String prodIdFromDesc(String msName, String pmHdrId, String tenantId);
 

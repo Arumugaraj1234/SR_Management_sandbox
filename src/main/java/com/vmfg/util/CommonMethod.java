@@ -1466,6 +1466,17 @@ public class CommonMethod {
 	public static int updateProductInvDtl(String projectId, String productCode, String locationCode,
 			BigDecimal transQty, String operation, String invTransType, String transRefId, String transferredBy,
 			String transDateTime, String tenantId, JdbcTemplate jdbcTemplate) {
+		return updateProductInvDtl(projectId, productCode, locationCode, transQty, operation, invTransType,
+				transRefId, transferredBy, transDateTime, tenantId, jdbcTemplate, null, null);
+	}
+
+	// Overload used for group-sourced (Material Staging/Group Return) movements -
+	// same real inventory_product_dtl update as above, but also tags the journal
+	// row with the Staging Group's MS_HDR_ID/MS_NAME so it can be shown/filtered
+	// as "Group" type on the Inventory Journal screen instead of a bare part row.
+	public static int updateProductInvDtl(String projectId, String productCode, String locationCode,
+			BigDecimal transQty, String operation, String invTransType, String transRefId, String transferredBy,
+			String transDateTime, String tenantId, JdbcTemplate jdbcTemplate, String msHdrId, String msName) {
 		int returnVal = 0;
 		try {
 			if (projectId != null) {
@@ -1476,22 +1487,22 @@ public class CommonMethod {
 				String qry="select PRODUCT_QUANTITY_ON_HAND from inventory_product_dtl where INVENTORY_LOCATION_CODE = ? and PRODUCT_ID = ? and TENANT_ID = ?";
 				Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry,locationCode,ProdId,tenantId);
 				String qtyOnHand = resultMap.get("PRODUCT_QUANTITY_ON_HAND").toString();
-				String updateQry = "UPDATE inventory_product_dtl \r\n" + 
-						"SET \r\n" + 
-						"    PRODUCT_QUANTITY_ON_HAND = CASE\r\n" + 
-						"        WHEN (PRODUCT_QUANTITY_ON_HAND + ?) < 0 THEN 0\r\n" + 
-						"        ELSE PRODUCT_QUANTITY_ON_HAND + ?\r\n" + 
-						"    END\r\n" + 
-						"WHERE\r\n" + 
-						"    INVENTORY_LOCATION_CODE = ?\r\n" + 
-						"        AND PRODUCT_ID = ?\r\n" + 
+				String updateQry = "UPDATE inventory_product_dtl \r\n" +
+						"SET \r\n" +
+						"    PRODUCT_QUANTITY_ON_HAND = CASE\r\n" +
+						"        WHEN (PRODUCT_QUANTITY_ON_HAND + ?) < 0 THEN 0\r\n" +
+						"        ELSE PRODUCT_QUANTITY_ON_HAND + ?\r\n" +
+						"    END\r\n" +
+						"WHERE\r\n" +
+						"    INVENTORY_LOCATION_CODE = ?\r\n" +
+						"        AND PRODUCT_ID = ?\r\n" +
 						"        AND TENANT_ID = ?;";
 				logger.info("updateProductInvDtl in Store Inventory Balance for Transaction Type - " + invTransType
 						+ " - Transaction Ref Id - " + transRefId + " - Transaction DateTime - " + transDateTime);
 				returnVal = jdbcTemplate.update(updateQry,transQty,transQty,locationCode,ProdId,tenantId);
 				if (returnVal > 0) {
 					updateInvjournal(projectId, ProdId, locationCode, invTransType, transRefId, transDateTime,
-							transferredBy, new BigDecimal(qtyOnHand), transQty, tenantId, jdbcTemplate);
+							transferredBy, new BigDecimal(qtyOnHand), transQty, tenantId, jdbcTemplate, msHdrId, msName);
 				}
 			}
 		} catch (Exception ex) {
@@ -1503,17 +1514,53 @@ public class CommonMethod {
 	public static int updateInvjournal(String projectId, String productId, String locCode, String invTransType,
 			String transRefId, String transDateTime, String transferredBy, BigDecimal openingBal, BigDecimal transQty,
 			String tenantId, JdbcTemplate jdbcTemplate) {
+		return updateInvjournal(projectId, productId, locCode, invTransType, transRefId, transDateTime,
+				transferredBy, openingBal, transQty, tenantId, jdbcTemplate, null, null);
+	}
+
+	public static int updateInvjournal(String projectId, String productId, String locCode, String invTransType,
+			String transRefId, String transDateTime, String transferredBy, BigDecimal openingBal, BigDecimal transQty,
+			String tenantId, JdbcTemplate jdbcTemplate, String msHdrId, String msName) {
 		int returnMsg = 0;
 		try {
 			BigDecimal closingBal = openingBal.add(transQty);
-			String insertJournal = "insert into inventory_journal (PRODUCT_ID, INVENTORY_LOCATION_CODE, INVENTORY_TRANSACTION_TYPE_CODE, INVENTORY_TRANSACTION_REFERENCE_ID, INVENTORY_TRANSACTION_DATE, INVENTORY_TRANSACTION_USER_ID, INVENTORY_RECORD_CREATED_DATE, INVENTORY_TRANSACTION_QUANTITY, TENANT_ID, PROJECT_ID, OPENING_BALANCE, CLOSING_BALANCE) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+			String insertJournal = "insert into inventory_journal (PRODUCT_ID, INVENTORY_LOCATION_CODE, INVENTORY_TRANSACTION_TYPE_CODE, INVENTORY_TRANSACTION_REFERENCE_ID, INVENTORY_TRANSACTION_DATE, INVENTORY_TRANSACTION_USER_ID, INVENTORY_RECORD_CREATED_DATE, INVENTORY_TRANSACTION_QUANTITY, TENANT_ID, PROJECT_ID, OPENING_BALANCE, CLOSING_BALANCE, MS_HDR_ID, MS_NAME) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			returnMsg = jdbcTemplate.update(insertJournal, productId, locCode, invTransType, transRefId, transDateTime,
 					transferredBy, CommonMethod.getCurrentDateTime(), transQty, tenantId, projectId, openingBal,
-					closingBal);
+					closingBal, msHdrId, msName);
 			logger.info("updateInvjournal for Transaction Type - " + invTransType + " - Transaction Ref Id - "
 					+ transRefId + " - Transaction DateTime - " + transDateTime);
 		} catch (Exception ex) {
 			logger.error("updateInvjournal Method Exception --->" + ex);
+		}
+		return returnMsg;
+	}
+
+	// Log-only Inventory Journal entry for group events that must NOT move real
+	// stock (Group Return approved / Group DC dispatched) - group items were
+	// never added back into ILC0002 as loose stock in the first place (see
+	// AssemblyReturnService.ApproveMreturnDtls), so there is nothing real to
+	// subtract/add here. Writes a real-part row (Product/UOM/Qty) tagged with
+	// MS_HDR_ID/MS_NAME for traceability, but OPENING_BALANCE/CLOSING_BALANCE are
+	// both set to the product's CURRENT on-hand qty (unchanged) instead of a real
+	// before/after movement, so the Journal never shows a fabricated balance
+	// change for a product that didn't actually move.
+	public static int logGroupInvJournal(String projectId, String productId, String locationCode,
+			BigDecimal transQty, String invTransType, String transRefId, String transferredBy,
+			String transDateTime, String tenantId, String msHdrId, String msName, JdbcTemplate jdbcTemplate) {
+		int returnMsg = 0;
+		try {
+			String qry = "select PRODUCT_QUANTITY_ON_HAND from inventory_product_dtl where INVENTORY_LOCATION_CODE = ? and PRODUCT_ID = ? and TENANT_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, locationCode, productId, tenantId);
+			BigDecimal currentQty = new BigDecimal(resultMap.get("PRODUCT_QUANTITY_ON_HAND").toString());
+			String insertJournal = "insert into inventory_journal (PRODUCT_ID, INVENTORY_LOCATION_CODE, INVENTORY_TRANSACTION_TYPE_CODE, INVENTORY_TRANSACTION_REFERENCE_ID, INVENTORY_TRANSACTION_DATE, INVENTORY_TRANSACTION_USER_ID, INVENTORY_RECORD_CREATED_DATE, INVENTORY_TRANSACTION_QUANTITY, TENANT_ID, PROJECT_ID, OPENING_BALANCE, CLOSING_BALANCE, MS_HDR_ID, MS_NAME) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			returnMsg = jdbcTemplate.update(insertJournal, productId, locationCode, invTransType, transRefId,
+					transDateTime, transferredBy, CommonMethod.getCurrentDateTime(), transQty, tenantId, projectId,
+					currentQty, currentQty, msHdrId, msName);
+			logger.info("logGroupInvJournal for Transaction Type - " + invTransType + " - Transaction Ref Id - "
+					+ transRefId + " - Group - " + msName);
+		} catch (Exception ex) {
+			logger.error("logGroupInvJournal Method Exception --->" + ex);
 		}
 		return returnMsg;
 	}

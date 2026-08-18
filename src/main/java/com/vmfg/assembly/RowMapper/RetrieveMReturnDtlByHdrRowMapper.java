@@ -69,6 +69,12 @@ public class RetrieveMReturnDtlByHdrRowMapper implements RowMapper<RetrieveMRetu
 			if (columnExists(rs, "MS_UOM_LONG_DESCRIPTION")) {
 				result.setMsUomLongDesc(rs.getString("MS_UOM_LONG_DESCRIPTION"));
 			}
+			if (columnExists(rs, "MS_CREATED_ON")) {
+				result.setMsCreatedOn(rs.getString("MS_CREATED_ON"));
+			}
+			if (columnExists(rs, "MS_CREATED_BY")) {
+				result.setMsCreatedBy(rs.getString("MS_CREATED_BY"));
+			}
 
 		} catch (Exception ex) {
 			logger.error("RetrieveMReturnDtlByHdrRowMapper error " + ex);

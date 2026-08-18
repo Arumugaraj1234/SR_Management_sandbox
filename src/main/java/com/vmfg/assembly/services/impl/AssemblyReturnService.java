@@ -290,12 +290,14 @@ public class AssemblyReturnService implements IAssemblyReturnService {
 			list = iAssemblyReturnDAO.ApproveMreturnDtls(dtlObj.getMrDtlId(),
 					materialDtlReq.getTenantId());
 		
-			if(list.size() > 0) {	
+			if(list.size() > 0) {
 				for (MaterialReturnDtlAcceptEntity obj : list) {
 					BigDecimal transQty = new BigDecimal(obj.getQty());
+					boolean isGroupSourced = obj.getMsHdrId() != null && !obj.getMsHdrId().isEmpty();
 					int decreasing = CommonMethod.updateProductInvDtl(obj.getProjectId(), obj.getProductId(),
 							"ILC0003", transQty, "Subraction", "ITTC0017", obj.getMrHdrId(),
-							materialDtlReq.getEmpId(), createdOn, obj.getTenantId(), jdbcTemplate);
+							materialDtlReq.getEmpId(), createdOn, obj.getTenantId(), jdbcTemplate,
+							obj.getMsHdrId(), obj.getMsName());
 
 					// Old behaviour, kept for revert reference — this ran unconditionally for
 					// every approved row, so group-sourced returns were added into ILC0002
@@ -309,12 +311,18 @@ public class AssemblyReturnService implements IAssemblyReturnService {
 					// 			"", "ITTC0017", obj.getMrHdrId(), materialDtlReq.getEmpId(), createdOn,
 					// 			obj.getTenantId(), jdbcTemplate);
 				    // }
-					boolean isGroupSourced = obj.getMsHdrId() != null && !obj.getMsHdrId().isEmpty();
 					if (decreasing > 0 && !isGroupSourced) {
 						CommonMethod.updateProductInvDtl(obj.getProjectId(), obj.getProductId(), "ILC0002", transQty,
 								"", "ITTC0017", obj.getMrHdrId(), materialDtlReq.getEmpId(), createdOn,
 								obj.getTenantId(), jdbcTemplate);
-				    }
+				    } else if (decreasing > 0) {
+						// Group-sourced row: no real ILC0002 addition (see above), but still log
+						// a trace of "this part came back as part of Group X" on the Inventory
+						// Journal, with OPENING_BALANCE=CLOSING_BALANCE (no real qty movement).
+						CommonMethod.logGroupInvJournal(obj.getProjectId(), obj.getProductId(), "ILC0002", transQty,
+								"ITTC0017", obj.getMrHdrId(), materialDtlReq.getEmpId(), createdOn,
+								obj.getTenantId(), obj.getMsHdrId(), obj.getMsName(), jdbcTemplate);
+					}
 				}
 		    }
 		}

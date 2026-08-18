@@ -38,6 +38,8 @@ public class InventoryJournalDao implements IInventoryJournalDao {
 					+ "    pm.PRODUCT_DESCRIPTION, pm.SPECIFICATION,\r\n" + "    ij.PROJECT_ID,\r\n"
 					+ "    ij.INVENTORY_LOCATION_CODE,\r\n" + "    ilm. INVENTORY_LOCATION_DESCRIPTION,\r\n"
 					+ "    ij.OPENING_BALANCE,\r\n" + "    ij.CLOSING_BALANCE,\r\n" + "    phdr.PROJECT_NAME,\r\n"
+					+ "    ij.MS_HDR_ID,\r\n" + "    ij.MS_NAME,\r\n"
+					+ "    ij.INVENTORY_RECORD_CREATED_DATE,\r\n" + "    ijEm.EMPLOYEE_FIRSTNAME AS CREATED_BY,\r\n"
 					+ "    um.UOM_LONG_DESCRIPTION,\r\n" + "    um.UOM_SHORT_DESCRIPTION,phdr.PROJECT_CODE, \r\n"
 					+ " ( select CASE WHEN COUNT(phdr.PO_ID) > 0  THEN PO_CODE ELSE (select mhdr.PO_CODE from material_inward_hdr mhdr inner join material_inward_dtl mdtl\r\n" + 
 					"       on mdtl.MI_ID = mhdr.MI_ID inner join product_mst mst \r\n" + 
@@ -55,6 +57,7 @@ public class InventoryJournalDao implements IInventoryJournalDao {
 					+ "        INNER JOIN \r\n"
 					+ "        inventory_location_mst ilm ON ij.INVENTORY_LOCATION_CODE = ilm.INVENTORY_LOCATION_CODE\r\n"
 					+ "		 INNER JOIN \r\n" + "        uom_mst um ON um.UOM_CODE = pm.PRODUCT_UOM_CODE\r\n"
+					+ "        LEFT JOIN \r\n" + "        employee_mst ijEm ON ijEm.EMPLOYEE_ID = ij.INVENTORY_TRANSACTION_USER_ID\r\n"
 					+ "WHERE\r\n" + "    DATE(ij.INVENTORY_TRANSACTION_DATE) BETWEEN ? AND ? \r\n"
 					+ "    AND ij.TENANT_ID = ? \r\n"
 					+ "    AND ij.PROJECT_ID LIKE ? order by ij.INVENTORY_RECORD_CREATED_DATE desc";

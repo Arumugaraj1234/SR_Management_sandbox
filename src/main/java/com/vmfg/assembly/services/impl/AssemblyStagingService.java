@@ -121,7 +121,7 @@ public class AssemblyStagingService implements IAssemblyStagingService {
 
 					responseMsDtlId = iAssemblyStagingDAO.insertMsDtl(responseMsHdrId, dtlObj.getProductId(),
 							dtlObj.getQty(), dtlObj.getTenantId(), insertMsDtls.getPmHdrId(),
-							insertMsDtls.getCreatedBy());
+							insertMsDtls.getCreatedBy(), insertMsDtls.getMsName());
 				}
 			}
 			if (responseMsHdrId > 0 && responseMsDtlId > 0) {
@@ -167,7 +167,7 @@ public class AssemblyStagingService implements IAssemblyStagingService {
 					for (int b = 0; b < list1.size(); b++) {
 						iAssemblyStagingDAO.updateMsDtlInv(list1.get(b).getProductId(), list1.get(b).getQty(),
 								list.get(0).getPmHdrId(), materialReqHdr.getTenantId(), materialReqHdr.getEmpId(),
-								list1.get(b).getDtlId());
+								list1.get(b).getDtlId(), list.get(0).getMsHdrId(), list.get(0).getMsName());
 					}
 
 				}

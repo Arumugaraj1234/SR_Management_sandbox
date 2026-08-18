@@ -36,6 +36,12 @@ public class InventoryJournalRowMapper implements RowMapper<InventoryJournalEnti
 				lst.setProjectName(rs.getString("PROJECT_NAME"));
 				lst.setSpecification(rs.getString("SPECIFICATION"));
 				lst.setPoCode(rs.getString("PO_CODE"));
+				String msHdrId = rs.getString("MS_HDR_ID");
+				lst.setMsHdrId(msHdrId);
+				lst.setMsName(rs.getString("MS_NAME"));
+				lst.setTransactionMode((msHdrId != null && !msHdrId.isEmpty()) ? "Group" : "Individual");
+				lst.setCreatedOn(rs.getString("INVENTORY_RECORD_CREATED_DATE"));
+				lst.setCreatedBy(rs.getString("CREATED_BY"));
 			}catch (Exception e) {
 				// TODO: handle exception
 				logger.error("InventoryJournalRowMapper  Method Exception" + e);

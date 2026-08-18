@@ -26,6 +26,7 @@ public class MrHdrRetrieveEntity implements Serializable {
 	private String lastUpdatedBy;
 	private String productCount;
 	private String returnType;
+	private String groupName;
 	List<DocumentStatusMstEntity> DocumentStatusMstList;
 	List<DocumentStatusMstEntity> DocumentCurrentMstList;
 }
