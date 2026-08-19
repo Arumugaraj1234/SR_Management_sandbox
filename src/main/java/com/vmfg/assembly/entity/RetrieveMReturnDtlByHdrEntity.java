@@ -28,6 +28,10 @@ public class RetrieveMReturnDtlByHdrEntity implements Serializable {
 	// distinct from uomLongDesc above, which is each individual item's own product UOM. For a
 	// group return, the group's own UOM should be shown, not derived/aggregated from its items.
 	private String msUomLongDesc;
+	// Staging Group's own Qty (material_staging_hdr.QTY, set when the group was created) -
+	// distinct from qty above, which is each individual item's own returned quantity. For a
+	// group return, the group's own Qty should be shown, not summed from its items.
+	private String msQty;
 	// Staging Group's own CREATED_ON/CREATED_BY (material_staging_hdr) - only
 	// populated by retrieveApprovedGroupReturnsByProject, not the other queries
 	// sharing this entity/row mapper (Inventory Master's Material Groups tab).

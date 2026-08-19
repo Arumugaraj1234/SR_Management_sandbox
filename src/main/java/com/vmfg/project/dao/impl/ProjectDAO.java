@@ -786,6 +786,12 @@ public class ProjectDAO implements IProjectDAO {
 					+ "    ALLOCATED_QTY = ALLOCATED_QTY - ?,\r\n"
 					+ "    ALLOCATED_VALUE = ALLOCATED_VALUE - ?\r\n" + "WHERE\r\n" + "    SB_EXTN_ID = ? ";
 			qResp = this.jdbcTemplate.update(updateStr, qty, value, sbExtnId);
+			// Guards against ALLOCATED_VALUE/QTY going negative if this ever runs more than
+			// once for the same removal (double-click, retry, concurrent delete) - same
+			// floor-cleanup pattern already used for project_key_area_extn.BUDGET_VALUE/QTY
+			// in updateBudgetQtyAndval above.
+			this.jdbcTemplate.update("UPDATE sales_budget_sheet_extn SET ALLOCATED_VALUE = 0 WHERE ALLOCATED_VALUE < 0 AND SB_EXTN_ID = ?", sbExtnId);
+			this.jdbcTemplate.update("UPDATE sales_budget_sheet_extn SET ALLOCATED_QTY = 0 WHERE ALLOCATED_QTY < 0 AND SB_EXTN_ID = ?", sbExtnId);
 
 		} catch (Exception ex) {
 			logger.error("updateBudgetExtn error " + ex.getMessage());
