@@ -180,6 +180,7 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 					// no join needed (a uom_mst join here always returns NULL, since "Nos" never
 					// matches a real code like "U0001").
 					"    msh.UOM_CODE AS MS_UOM_LONG_DESCRIPTION,\r\n" +
+					"    msh.QTY AS MS_QTY,\r\n" +
 					"    pkam.PK_DESC AS STATION,\r\n" +
 					"    pksam.PSK_DESC AS SUB_ASSY\r\n" +
 					"FROM\r\n" +
@@ -265,6 +266,7 @@ public class AssemblyReturnDAO implements IAssemblyReturnDAO {
 					// retrieveMreturnDtlByHdr above for the same pattern) - used instead of
 					// deriving the group's UOM from its member items' own uomLongDesc.
 					"    msh.UOM_CODE AS MS_UOM_LONG_DESCRIPTION,\r\n" +
+					"    msh.QTY AS MS_QTY,\r\n" +
 					"    msh.CREATED_ON AS MS_CREATED_ON,\r\n" +
 					"    msEm.EMPLOYEE_FIRSTNAME AS MS_CREATED_BY\r\n" +
 					"FROM\r\n" +

@@ -1422,7 +1422,7 @@ public class IndentUploadDAO implements IIndentUploadDAO {
 	public String getAvailableValue(String indentId) {
 		String availableValue = "";
 		try {
-			String qry = "SELECT \r\n" + "   ABS ((pka.ALLOCATED_VALUE) - (pka.BUDGET_VALUE)) AS availableValue\r\n"
+			String qry = "SELECT \r\n" + "   (pka.ALLOCATED_VALUE) - (pka.BUDGET_VALUE) AS availableValue\r\n"
 					+ "FROM\r\n" + "    indent_hdr AS ihr\r\n" + "        INNER JOIN\r\n"
 					+ "   project_key_area AS pka ON ihr.PKA_ID=pka.PKA_ID\r\n" + "WHERE\r\n" + "    ihr.INDENT_ID = ?";
 			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry,indentId);

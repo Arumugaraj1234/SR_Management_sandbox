@@ -1,6 +1,7 @@
 package com.vmfg.finance.dao.interfaces;
 
 import java.util.List;
+import java.util.Map;
 
 import com.vmfg.finance.entity.*;
 import com.vmfg.finance.request.PraCancelRequest;
@@ -23,6 +24,8 @@ public interface IPraDAO {
 	String grnDtlList(String grnHdrId,String tenantId);
 	
 	int updatePraHdr(String invoiceNo ,String invoiceDate, String transportValue, String pfValue, String insuranceValue, String otherValue ,String reamarks,String tds,String amountPayable,String retention, String ld, String others ,String praId);
+
+	Map<String, Object> getInvoiceGstByPraId(String praId, String tenantId);
 
 	int updPraAfterPoCancel(String poId, String newPoId, String tenantId);
 

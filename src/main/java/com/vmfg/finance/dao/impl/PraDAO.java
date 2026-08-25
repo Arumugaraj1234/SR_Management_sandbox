@@ -195,6 +195,18 @@ public class PraDAO implements IPraDAO {
 	}
 
 	@Override
+	public Map<String, Object> getInvoiceGstByPraId(String praId, String tenantId) {
+		try {
+			return this.jdbcTemplate.queryForMap(
+					"SELECT INVOICE_VALUE, GST_VALUE, IGST_VALUE FROM pra_hdr WHERE PRA_ID = ? AND TENANT_ID = ?",
+					praId, tenantId);
+		} catch (Exception ex) {
+			logger.error("getInvoiceGstByPraId Method Exception " + ex);
+			return null;
+		}
+	}
+
+	@Override
 	public int updatePraHdr(String invoiceNo, String invoiceDate, String transportValue, String pfValue, String insuranceValue, String otherValue, String reamarks,String tds,String amountPayable,String retention, String ld, String others ,String praId) {
 		int res=0;
 		try {

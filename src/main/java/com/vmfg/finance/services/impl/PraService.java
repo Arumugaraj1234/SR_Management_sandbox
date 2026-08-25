@@ -1,8 +1,10 @@
 package com.vmfg.finance.services.impl;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,6 +76,24 @@ public class PraService implements IPraService {
 	@Autowired
 	private IndentGroupDAO indentGroupDAO;
 
+	// Null/blank-safe BigDecimal parse — several of these fields (transport/pf/insurance/other
+	// charges, tds/retention/ld/others) are optional in the UI and can arrive as null or "",
+	// which the UI itself already treats as 0 (see PRASearchCard's getFormattedValue).
+	private static BigDecimal parseAmount(Object value) {
+		if (value == null) {
+			return BigDecimal.ZERO;
+		}
+		String str = String.valueOf(value).trim();
+		if (str.isEmpty() || str.equalsIgnoreCase("null")) {
+			return BigDecimal.ZERO;
+		}
+		try {
+			return new BigDecimal(str);
+		} catch (NumberFormatException ex) {
+			return BigDecimal.ZERO;
+		}
+	}
+
 	@Override
 	public ResponseAsMessage insertPRA(PraInsertRequest praInsertRequest) {
 		ResponseAsMessage returnList = new ResponseAsMessage();
@@ -82,7 +102,36 @@ public class PraService implements IPraService {
 		try {
 			if(praInsertRequest.getPraId() != null && !praInsertRequest.getPraId().equalsIgnoreCase("")) {
 				//update
-				int updatePraHdr = iPraDAO.updatePraHdr(praInsertRequest.getInvoiceNumber(), praInsertRequest.getInvoiceDate(),praInsertRequest.getTransportValue(),praInsertRequest.getPfValue(),praInsertRequest.getInsuranceValue(),praInsertRequest.getOtherValue(),praInsertRequest.getRemarks(),praInsertRequest.getTds(),praInsertRequest.getAmountPayable(),praInsertRequest.getRetention(),praInsertRequest.getLd(),praInsertRequest.getOthers(), praInsertRequest.getPraId());
+				// Recompute amountPayable server-side from this PRA's own immutable INVOICE_VALUE/GST_VALUE/IGST_VALUE
+				// (fetched fresh from DB) plus the freshly-submitted charges/TDS/retention/LD/others, instead of
+				// trusting the client-computed total — closes the gap that let a stale/wrong client value
+				// (e.g. from rapid back-to-back approvals) get persisted verbatim. See project_pra_race_condition_fixes memory.
+				String recomputedAmountPayable = praInsertRequest.getAmountPayable();
+				Map<String, Object> invoiceGst = iPraDAO.getInvoiceGstByPraId(praInsertRequest.getPraId(), praInsertRequest.getTenantId());
+				if (invoiceGst != null) {
+					BigDecimal invoice = parseAmount(invoiceGst.get("INVOICE_VALUE"));
+					BigDecimal gstVal = parseAmount(invoiceGst.get("GST_VALUE"));
+					BigDecimal igstVal = parseAmount(invoiceGst.get("IGST_VALUE"));
+					BigDecimal transport = parseAmount(praInsertRequest.getTransportValue());
+					BigDecimal pf = parseAmount(praInsertRequest.getPfValue());
+					BigDecimal insurance = parseAmount(praInsertRequest.getInsuranceValue());
+					BigDecimal otherCharge = parseAmount(praInsertRequest.getOtherValue());
+					BigDecimal tds = parseAmount(praInsertRequest.getTds());
+					BigDecimal retention = parseAmount(praInsertRequest.getRetention());
+					BigDecimal ld = parseAmount(praInsertRequest.getLd());
+					BigDecimal othersDeduction = parseAmount(praInsertRequest.getOthers());
+
+					BigDecimal gross = invoice.add(gstVal).add(igstVal).add(transport).add(pf).add(insurance).add(otherCharge);
+					BigDecimal tdsDeduction = tds.divide(new BigDecimal("100")).multiply(gross);
+					BigDecimal recomputed = gross.subtract(tdsDeduction).subtract(retention).subtract(ld).subtract(othersDeduction);
+					if (recomputed.compareTo(BigDecimal.ZERO) < 0) {
+						recomputed = BigDecimal.ZERO;
+					}
+					recomputedAmountPayable = recomputed.setScale(2, RoundingMode.HALF_UP).toPlainString();
+				} else {
+					logger.error("PRA update: could not fetch INVOICE_VALUE/GST_VALUE/IGST_VALUE for praId=" + praInsertRequest.getPraId() + "; falling back to client-submitted amountPayable");
+				}
+				int updatePraHdr = iPraDAO.updatePraHdr(praInsertRequest.getInvoiceNumber(), praInsertRequest.getInvoiceDate(),praInsertRequest.getTransportValue(),praInsertRequest.getPfValue(),praInsertRequest.getInsuranceValue(),praInsertRequest.getOtherValue(),praInsertRequest.getRemarks(),praInsertRequest.getTds(),recomputedAmountPayable,praInsertRequest.getRetention(),praInsertRequest.getLd(),praInsertRequest.getOthers(), praInsertRequest.getPraId());
 				List<String> indentDtlIds = iPraDAO.getIndentDtlId(praInsertRequest.getPraId(), praInsertRequest.getTenantId());
 				String UpdatedDateTime = "";
 				String type = "PRA";
