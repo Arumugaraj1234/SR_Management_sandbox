@@ -279,7 +279,7 @@ public class ScmMisDAO implements IScmMisDAO{
 	@Override
 	public List<ScmEmployeeIndentDtlsEntity> getScmEmployeeIndentDtls(String empId, String pmHdrId, String tenantId,String month, String year,String lifeSpan) {
 		List<ScmEmployeeIndentDtlsEntity> list=new ArrayList<ScmEmployeeIndentDtlsEntity>();
-		String projectIdcol="",empIdCol="",monthYear="";
+		String projectIdcol="",empIdCol="",empIdColPat="",monthYear="";
 		try {
 			if(pmHdrId.equalsIgnoreCase("getall")) {
 				projectIdcol	="  hdr.PROJECT_ID like '%%' ";
@@ -289,15 +289,22 @@ public class ScmMisDAO implements IScmMisDAO{
 			
 			if(empId.equalsIgnoreCase("getall")) {
 				empIdCol =" AND iat.EMPLOYEE_ID like '%%' ";
+				empIdColPat =" AND pat.ASSIGNED_EMP_ID like '%%' ";
 			}else {
 				empIdCol =" AND iat.EMPLOYEE_ID = '"+empId+"'";
+				empIdColPat =" AND pat.ASSIGNED_EMP_ID = '"+empId+"'";
 			}
 			
 			if(lifeSpan.equalsIgnoreCase("0")) {
 				monthYear="and month(hdr.CREATED_DATE)='"+month+"' and year(hdr.CREATED_DATE)='"+year+"'";
 			}
 	
-			String qry="SELECT \r\n" + 
+			// LEGACY projects: employee list comes from the old per-part assign table (unchanged).
+			// NEW-flow projects: employee list comes from the project's SCM team instead (via scm_hdr),
+			// since per-part assignment is no longer used there. Combined with UNION so "all projects"
+			// reports include both kinds correctly.
+			String qry="SELECT PM_HDR_ID, PROJECT_CODE, EMPLOYEE, EMPLOYEE_ID FROM (\r\n" +
+					"SELECT \r\n" + 
 					"    proj.PM_HDR_ID,\r\n" + 
 					"    proj.PROJECT_CODE AS PROJECT_CODE,\r\n" + 
 					"    emp.EMPLOYEE_FIRSTNAME AS EMPLOYEE,\r\n" + 
@@ -318,10 +325,36 @@ public class ScmMisDAO implements IScmMisDAO{
 					"    po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID\r\n" + 
 					"        AND pod.PO_ID = poh.PO_ID\r\n" + 
 					"WHERE\r\n" + 
+					"    proj.COST_FLOW_TYPE <> 'NEW' AND " +
 					projectIdcol+"\r\n" + 
 					empIdCol+"\r\n" + 
 					" AND iat.IS_PRIMARY=0      AND hdr.TENANT_ID = '"+tenantId+"'\r\n" +  monthYear+
-					"GROUP BY proj.PM_HDR_ID , iat.EMPLOYEE_ID ORDER BY PROJECT_CODE";
+					"GROUP BY proj.PM_HDR_ID , iat.EMPLOYEE_ID\r\n" +
+					"UNION\r\n" +
+					"SELECT DISTINCT\r\n" +
+					"    proj.PM_HDR_ID,\r\n" +
+					"    proj.PROJECT_CODE AS PROJECT_CODE,\r\n" +
+					"    emp.EMPLOYEE_FIRSTNAME AS EMPLOYEE,\r\n" +
+					"    pat.ASSIGNED_EMP_ID AS EMPLOYEE_ID\r\n" +
+					"FROM\r\n" +
+					"    indent_hdr hdr\r\n" +
+					"        INNER JOIN\r\n" +
+					"    indent_dtl dtl ON hdr.INDENT_ID = dtl.INDENT_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    project_hdr proj ON hdr.PROJECT_ID = proj.PM_HDR_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    scm_hdr sch ON sch.PM_HDR_ID = proj.PM_HDR_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID AND pat.PM_ID = '5' AND pat.IS_ACTIVE = 1\r\n" +
+					"        INNER JOIN\r\n" +
+					"    employee_mst emp ON pat.ASSIGNED_EMP_ID = emp.EMPLOYEE_ID\r\n" +
+					"WHERE\r\n" +
+					"    proj.COST_FLOW_TYPE = 'NEW' AND " +
+					projectIdcol+"\r\n" + 
+					empIdColPat+"\r\n" + 
+					"    AND hdr.TENANT_ID = '"+tenantId+"'\r\n" +  monthYear+
+					") combined\r\n" +
+					"ORDER BY PROJECT_CODE";
 
 			list = this.jdbcTemplate.query(qry, new ScmEmployeeIndentRowmapper());
 			
@@ -331,6 +364,7 @@ public class ScmMisDAO implements IScmMisDAO{
 		logger.debug("getScmEmployeeIndentDtls method end");
 		return list;
 	}
+
 
 	@Override
 	public String noOfPoApproved(String pmHdrId, String tenantId, String assignedTo,String month,String year, String lifeSpan) {
@@ -349,19 +383,31 @@ public class ScmMisDAO implements IScmMisDAO{
 					"        INNER JOIN\r\n" + 
 					"    indent_dtl dtl ON hdr.INDENT_ID = dtl.INDENT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
-					"    indent_assign_team iat ON dtl.INDENT_DTL_ID = iat.INDENT_DTL_ID\r\n" + 
+					"    project_hdr ph ON ph.PM_HDR_ID = hdr.PROJECT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
 					"    po_hdr poh ON hdr.INDENT_ID = poh.INDENT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
 					"    po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID  AND poh.PO_ID = pod.PO_ID\r\n" + 
 					"WHERE\r\n" + 
 					"        hdr.PROJECT_ID like ? \r\n" + 
-					"        AND iat.EMPLOYEE_ID = ?\r\n" + 
 					"        AND hdr.TENANT_ID = ?\r\n" + 
 					"        AND poh.IS_LATEST = 1\r\n" + 
 					"        AND poh.IS_APPROVED = 1 and poh.SEQUENCE_STATUS !='DS100' #and hdr.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077') \r\n" +
+					"    AND (\r\n" +
+					"        (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\r\n" +
+					"            SELECT 1 FROM scm_hdr sch\r\n" +
+					"            INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n" +
+					"            WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\r\n" +
+					"                AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\r\n" +
+					"        ))\r\n" +
+					"        OR\r\n" +
+					"        (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\r\n" +
+					"            SELECT 1 FROM indent_assign_team iat\r\n" +
+					"            WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+					"        ))\r\n" +
+					"    )\r\n" +
 					" and month(hdr.CREATED_DATE)=? and year(hdr.CREATED_DATE)=?";
-				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,pmHdrId,assignedTo,tenantId,month,year);
+				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,pmHdrId,tenantId,assignedTo,assignedTo,month,year);
 				count = resultMap.get("count").toString();
 			}else {
 				String qry="SELECT \r\n" + 
@@ -371,18 +417,30 @@ public class ScmMisDAO implements IScmMisDAO{
 						"        INNER JOIN\r\n" + 
 						"    indent_dtl dtl ON hdr.INDENT_ID = dtl.INDENT_ID\r\n" + 
 						"        INNER JOIN\r\n" + 
-						"    indent_assign_team iat ON dtl.INDENT_DTL_ID = iat.INDENT_DTL_ID\r\n" + 
+						"    project_hdr ph ON ph.PM_HDR_ID = hdr.PROJECT_ID\r\n" + 
 						"        INNER JOIN\r\n" + 
 						"    po_hdr poh ON hdr.INDENT_ID = poh.INDENT_ID\r\n" + 
 						"        INNER JOIN\r\n" + 
 						"    po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID  AND poh.PO_ID = pod.PO_ID\r\n" + 
 						"WHERE\r\n" + 
 						"        hdr.PROJECT_ID like ? \r\n" + 
-						"        AND iat.EMPLOYEE_ID = ? #AND IS_PRIMARY =1\r\n" + 
 						"        AND hdr.TENANT_ID = ? #AND  hdr.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077') \r\n" + 
 						"        AND poh.IS_LATEST = 1\r\n" + 
-						"        AND poh.IS_APPROVED = 1  and poh.SEQUENCE_STATUS !='DS100'" ;
-				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,pmHdrId,assignedTo,tenantId);
+						"        AND poh.IS_APPROVED = 1  and poh.SEQUENCE_STATUS !='DS100'\r\n" +
+						"    AND (\r\n" +
+						"        (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\r\n" +
+						"            SELECT 1 FROM scm_hdr sch\r\n" +
+						"            INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n" +
+						"            WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\r\n" +
+						"                AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\r\n" +
+						"        ))\r\n" +
+						"        OR\r\n" +
+						"        (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\r\n" +
+						"            SELECT 1 FROM indent_assign_team iat\r\n" +
+						"            WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+						"        ))\r\n" +
+						"    )\r\n";
+				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,pmHdrId,tenantId,assignedTo,assignedTo);
 				count = resultMap.get("count").toString();
 			}	
 		} catch (Exception ex) {
@@ -391,6 +449,7 @@ public class ScmMisDAO implements IScmMisDAO{
 		logger.debug("noOfPoApproved method end");
 		return count;
 	}
+	
 	
 	@Override
 	public String getIndentDtlCount(String pmHdrId, String tenantId, String assignedTo,String month,String year, String lifeSpan,String pmId) {
@@ -409,21 +468,26 @@ public class ScmMisDAO implements IScmMisDAO{
 						"        INNER JOIN\r\n" + 
 						"    indent_hdr AS ih ON dtl.INDENT_ID = ih.INDENT_ID\r\n" + 
 						"        INNER JOIN\r\n" + 
-						"    indent_assign_team iat ON dtl.INDENT_DTL_ID = iat.INDENT_DTL_ID\r\n" + 
-						"        INNER JOIN\r\n" + 
-						"    scm_hdr AS sh ON sh.PM_HDR_ID = ih.PROJECT_ID\r\n" + 
-						"        INNER JOIN\r\n" + 
-						"    process_assigned_team team ON team.MASTER_ID = sh.SCM_HDR_ID\r\n" + 
+						"    project_hdr ph ON ph.PM_HDR_ID = ih.PROJECT_ID\r\n" + 
 						"WHERE\r\n" + 
-						"    iat.EMPLOYEE_ID = ?\r\n" + 
-						"        AND team.ASSIGNED_EMP_ID = ?\r\n" + 
-						"        AND team.IS_ACTIVE = '1'\r\n" + 
-						"        AND team.PM_ID = ?\r\n" + 
-						"        AND ih.PROJECT_ID like ? AND ih.TENANT_ID=?\r\n" + 
+						"    ih.PROJECT_ID like ? AND ih.TENANT_ID=?\r\n" + 
 						"        AND ih.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077')\r\n" + 
+						"        AND EXISTS (\r\n" +
+						"            SELECT 1 FROM scm_hdr sh\r\n" +
+						"            INNER JOIN process_assigned_team team ON team.MASTER_ID = sh.SCM_HDR_ID\r\n" +
+						"            WHERE sh.PM_HDR_ID = ph.PM_HDR_ID AND team.PM_ID = ?\r\n" +
+						"                AND team.ASSIGNED_EMP_ID = ? AND team.IS_ACTIVE = '1'\r\n" +
+						"        )\r\n" +
+						"        AND (\r\n" +
+						"            ph.COST_FLOW_TYPE = 'NEW'\r\n" +
+						"            OR EXISTS (\r\n" +
+						"                SELECT 1 FROM indent_assign_team iat\r\n" +
+						"                WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+						"            )\r\n" +
+						"        )\r\n" +
 						"        and month(ih.CREATED_DATE)=? and year(ih.CREATED_DATE)=?;";
 				
-				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,assignedTo,assignedTo,pmId,pmHdrId,tenantId,month,year);
+				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,pmHdrId,tenantId,pmId,assignedTo,assignedTo,month,year);
 				count = resultMap.get("INDENT_DTL_ID").toString();
 			}else {
 				String qry="SELECT \r\n" + 
@@ -433,20 +497,25 @@ public class ScmMisDAO implements IScmMisDAO{
 						"        INNER JOIN\r\n" + 
 						"    indent_hdr AS ih ON dtl.INDENT_ID = ih.INDENT_ID\r\n" + 
 						"        INNER JOIN\r\n" + 
-						"    indent_assign_team iat ON dtl.INDENT_DTL_ID = iat.INDENT_DTL_ID\r\n" + 
-						"        INNER JOIN\r\n" + 
-						"    scm_hdr AS sh ON sh.PM_HDR_ID = ih.PROJECT_ID\r\n" + 
-						"        INNER JOIN\r\n" + 
-						"    process_assigned_team team ON team.MASTER_ID = sh.SCM_HDR_ID\r\n" + 
+						"    project_hdr ph ON ph.PM_HDR_ID = ih.PROJECT_ID\r\n" + 
 						"WHERE\r\n" + 
-						"    iat.EMPLOYEE_ID = ?\r\n" + 
-						"        AND team.ASSIGNED_EMP_ID = ?\r\n" + 
-						"        AND team.IS_ACTIVE = '1'\r\n" + 
-						"        AND team.PM_ID = ?\r\n" + 
-						"        AND ih.PROJECT_ID like ? AND ih.TENANT_ID=?\r\n" + 
-						"        AND ih.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077')\r\n" ;
+						"    ih.PROJECT_ID like ? AND ih.TENANT_ID=?\r\n" + 
+						"        AND ih.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077')\r\n" + 
+						"        AND EXISTS (\r\n" +
+						"            SELECT 1 FROM scm_hdr sh\r\n" +
+						"            INNER JOIN process_assigned_team team ON team.MASTER_ID = sh.SCM_HDR_ID\r\n" +
+						"            WHERE sh.PM_HDR_ID = ph.PM_HDR_ID AND team.PM_ID = ?\r\n" +
+						"                AND team.ASSIGNED_EMP_ID = ? AND team.IS_ACTIVE = '1'\r\n" +
+						"        )\r\n" +
+						"        AND (\r\n" +
+						"            ph.COST_FLOW_TYPE = 'NEW'\r\n" +
+						"            OR EXISTS (\r\n" +
+						"                SELECT 1 FROM indent_assign_team iat\r\n" +
+						"                WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+						"            )\r\n" +
+						"        )";
 				
-				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,assignedTo,assignedTo,pmId,pmHdrId,tenantId);
+				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,pmHdrId,tenantId,pmId,assignedTo,assignedTo);
 				count = resultMap.get("INDENT_DTL_ID").toString();
 			}	
 		} catch (Exception ex) {
@@ -527,19 +596,24 @@ public class ScmMisDAO implements IScmMisDAO{
 					"        INNER JOIN\r\n" + 
 					"    indent_hdr inhdr ON indtl.INDENT_ID = inhdr.INDENT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
+					"    project_hdr ph ON ph.PM_HDR_ID = inhdr.PROJECT_ID\r\n" + 
+					"        INNER JOIN\r\n" + 
 					"    scm_hdr sc ON sc.PM_HDR_ID = inhdr.PROJECT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
 					"    process_assigned_team team ON team.MASTER_ID = sc.SCM_HDR_ID\r\n" + 
-					"        INNER JOIN \r\n" +
-					"    indent_assign_team iat ON iat.INDENT_DTL_ID = indtl.INDENT_DTL_ID \r\n" +
-					"        INNER JOIN\r\n" + 
-					"    employee_mst mst ON iat.EMPLOYEE_ID = mst.EMPLOYEE_ID\r\n" + 
 					"WHERE\r\n" + 
 					"    inhdr.IS_COMPLETED = 0\r\n" + 
-					"        AND team.ASSIGNED_EMP_ID = ? and iat.EMPLOYEE_ID = '"+empId+"'\r\n" + 
+					"        AND team.ASSIGNED_EMP_ID = ?\r\n" + 
 					"        AND team.IS_ACTIVE = '1'\r\n" + 
 					"        AND team.PM_ID = ?\r\n  AND inhdr.PROJECT_ID like ? \r\n" + 
 					"        AND inhdr.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077')\r\n and inhdr.TENANT_ID='"+tenantId+"'\r\n" + 
+					"        AND (\r\n" +
+					"            ph.COST_FLOW_TYPE = 'NEW'\r\n" +
+					"            OR EXISTS (\r\n" +
+					"                SELECT 1 FROM indent_assign_team iat\r\n" +
+					"                WHERE iat.INDENT_DTL_ID = indtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+					"            )\r\n" +
+					"        )\r\n" +
 					"        AND indtl.INDENT_DTL_ID NOT IN (SELECT \r\n" + 
 					"            podtl.INDENT_DTL_ID\r\n" + 
 					"        FROM\r\n" + 
@@ -558,7 +632,7 @@ public class ScmMisDAO implements IScmMisDAO{
 					"        WHERE\r\n" + 
 					"            inhdr.IS_INVENTORY = '1' and inhdr.TENANT_ID='"+tenantId+"')\r\n" +
 					"and month(inhdr.CREATED_DATE)=? and year(inhdr.CREATED_DATE)=? and inhdr.TENANT_ID=? ";
-			Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,empId,pmId,pmHdrId,month,year,tenantId);
+			Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,empId,pmId,pmHdrId,empId,month,year,tenantId);
 			count = resultMap.get("COUNT").toString();
 			}else {
 				String qry="SELECT \r\n" + 
@@ -568,19 +642,24 @@ public class ScmMisDAO implements IScmMisDAO{
 						"        INNER JOIN\r\n" + 
 						"    indent_hdr inhdr ON indtl.INDENT_ID = inhdr.INDENT_ID\r\n" + 
 						"        INNER JOIN\r\n" + 
+						"    project_hdr ph ON ph.PM_HDR_ID = inhdr.PROJECT_ID\r\n" + 
+						"        INNER JOIN\r\n" + 
 						"    scm_hdr sc ON sc.PM_HDR_ID = inhdr.PROJECT_ID\r\n" + 
 						"        INNER JOIN\r\n" + 
 						"    process_assigned_team team ON team.MASTER_ID = sc.SCM_HDR_ID\r\n" + 
-						"        INNER JOIN \r\n" +
-						"    indent_assign_team iat ON iat.INDENT_DTL_ID = indtl.INDENT_DTL_ID \r\n" +
-						"        INNER JOIN\r\n" + 
-						"    employee_mst mst ON iat.EMPLOYEE_ID = mst.EMPLOYEE_ID\r\n" + 
 						"WHERE\r\n" + 
 						"    inhdr.IS_COMPLETED = 0\r\n" + 
-						"        AND team.ASSIGNED_EMP_ID = '"+empId+"' and iat.EMPLOYEE_ID = '"+empId+"'\r\n" + 
+						"        AND team.ASSIGNED_EMP_ID = '"+empId+"'\r\n" + 
 						"        AND team.IS_ACTIVE = '1'\r\n" + 
 						"        AND team.PM_ID = '"+pmId+"'\r\n  AND inhdr.PROJECT_ID like '"+pmHdrId+"' \r\n" + 
 						"        AND inhdr.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077')\r\n and inhdr.TENANT_ID='"+tenantId+"'\r\n " + 
+						"        AND (\r\n" +
+						"            ph.COST_FLOW_TYPE = 'NEW'\r\n" +
+						"            OR EXISTS (\r\n" +
+						"                SELECT 1 FROM indent_assign_team iat\r\n" +
+						"                WHERE iat.INDENT_DTL_ID = indtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = '"+empId+"'\r\n" +
+						"            )\r\n" +
+						"        )\r\n" +
 						"        AND indtl.INDENT_DTL_ID NOT IN (SELECT \r\n" + 
 						"            podtl.INDENT_DTL_ID\r\n" + 
 						"        FROM\r\n" + 
@@ -631,21 +710,26 @@ public class ScmMisDAO implements IScmMisDAO{
 					"						                INNER JOIN \r\n" + 
 					"						            indent_grp_hdr inhdr ON indtl.IG_HDR_ID = inhdr.IG_HDR_ID \r\n" + 
 					"                                        INNER JOIN \r\n" + 
+					"    project_hdr ph ON ph.PM_HDR_ID = hdr.PROJECT_ID \r\n" + 
+					"                                        INNER JOIN \r\n" + 
 					"						            scm_hdr sc ON sc.PM_HDR_ID = hdr.PROJECT_ID \r\n" + 
 					"						                INNER JOIN \r\n" + 
 					"						            process_assigned_team team ON team.MASTER_ID = sc.SCM_HDR_ID \r\n" + 
-					"        INNER JOIN \r\n" +
-					"    indent_assign_team iat ON iat.INDENT_DTL_ID = indtl.INDENT_DTL_ID \r\n" +
-					"        INNER JOIN\r\n" + 
-					"    employee_mst mst ON iat.EMPLOYEE_ID = mst.EMPLOYEE_ID\r\n" + 
 					"						        WHERE \r\n" + 
 					"						            inhdr.IS_INVENTORY = '1' and hdr.TENANT_ID=? AND hdr.IS_COMPLETED=0 \r\n" + 
-					"                                     AND hdr.PROJECT_ID like ? " +
-					"and iat.EMPLOYEE_ID = '"+empId+"' \r\n" + 
+					"                                     AND hdr.PROJECT_ID like ? \r\n" +
 					"                                     AND team.ASSIGNED_EMP_ID = ?\r\n" + 
 					"									 AND team.IS_ACTIVE = '1' \r\n" + 
-					"						             AND team.PM_ID = ? and month(hdr.CREATED_DATE)=? and year(hdr.CREATED_DATE)=? ;";
-			Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,tenantId,pmHdrId,empId,pmId,month,year);
+					"						             AND team.PM_ID = ?\r\n" +
+					"        AND (\r\n" +
+					"            ph.COST_FLOW_TYPE = 'NEW'\r\n" +
+					"            OR EXISTS (\r\n" +
+					"                SELECT 1 FROM indent_assign_team iat\r\n" +
+					"                WHERE iat.INDENT_DTL_ID = indtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+					"            )\r\n" +
+					"        )\r\n" +
+					" and month(hdr.CREATED_DATE)=? and year(hdr.CREATED_DATE)=? ;";
+			Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,tenantId,pmHdrId,empId,pmId,empId,month,year);
 			count = resultMap.get("COUNT").toString();
 			}else {
 				String qry="SELECT  \r\n" + 
@@ -659,21 +743,25 @@ public class ScmMisDAO implements IScmMisDAO{
 						"						                INNER JOIN \r\n" + 
 						"						            indent_grp_hdr inhdr ON indtl.IG_HDR_ID = inhdr.IG_HDR_ID \r\n" + 
 						"                                        INNER JOIN \r\n" + 
+						"    project_hdr ph ON ph.PM_HDR_ID = hdr.PROJECT_ID \r\n" + 
+						"                                        INNER JOIN \r\n" + 
 						"						            scm_hdr sc ON sc.PM_HDR_ID = hdr.PROJECT_ID \r\n" + 
 						"						                INNER JOIN \r\n" + 
 						"						            process_assigned_team team ON team.MASTER_ID = sc.SCM_HDR_ID \r\n" + 
-						"        INNER JOIN \r\n" +
-						"    indent_assign_team iat ON iat.INDENT_DTL_ID = indtl.INDENT_DTL_ID \r\n" +
-						"        INNER JOIN\r\n" + 
-						"    employee_mst mst ON iat.EMPLOYEE_ID = mst.EMPLOYEE_ID\r\n" + 
 						"						        WHERE \r\n" + 
 						"						            inhdr.IS_INVENTORY = '1' and hdr.TENANT_ID=?\r\n" + 
-						"                                     AND hdr.PROJECT_ID like ? " +
-						"and iat.EMPLOYEE_ID = '"+empId+"' \r\n" + 
+						"                                     AND hdr.PROJECT_ID like ? \r\n" +
 						"                                     AND team.ASSIGNED_EMP_ID = ? \r\n" + 
 						"									 AND team.IS_ACTIVE = '1' \r\n" + 
-						"						             AND team.PM_ID = ?;";
-				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,tenantId,pmHdrId,empId,pmId);
+						"						             AND team.PM_ID = ?\r\n" +
+						"        AND (\r\n" +
+						"            ph.COST_FLOW_TYPE = 'NEW'\r\n" +
+						"            OR EXISTS (\r\n" +
+						"                SELECT 1 FROM indent_assign_team iat\r\n" +
+						"                WHERE iat.INDENT_DTL_ID = indtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+						"            )\r\n" +
+						"        );";
+				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,tenantId,pmHdrId,empId,pmId,empId);
 				count = resultMap.get("COUNT").toString();
 			}
 			
@@ -702,19 +790,24 @@ public class ScmMisDAO implements IScmMisDAO{
 					"        INNER JOIN\r\n" + 
 					"    indent_hdr inhdr ON indtl.INDENT_ID = inhdr.INDENT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
+					"    project_hdr ph ON ph.PM_HDR_ID = inhdr.PROJECT_ID\r\n" + 
+					"        INNER JOIN\r\n" + 
 					"    scm_hdr sc ON sc.PM_HDR_ID = inhdr.PROJECT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
 					"    process_assigned_team team ON team.MASTER_ID = sc.SCM_HDR_ID\r\n" + 
-					"        INNER JOIN \r\n" +
-					"    indent_assign_team iat ON iat.INDENT_DTL_ID = indtl.INDENT_DTL_ID \r\n" +
-					"        INNER JOIN\r\n" + 
-					"    employee_mst mst ON iat.EMPLOYEE_ID = mst.EMPLOYEE_ID\r\n" + 
 					"WHERE\r\n" + 
 					"    inhdr.IS_COMPLETED = 0 AND inhdr.SEQUENCE_N0 > 6\r\n" + 
-					"        AND team.ASSIGNED_EMP_ID = ? and iat.EMPLOYEE_ID = '"+empId+"'\r\n" + 
+					"        AND team.ASSIGNED_EMP_ID = ?\r\n" + 
 					"        AND team.IS_ACTIVE = '1'\r\n" + 
 					"        AND team.PM_ID = ? AND inhdr.PROJECT_ID like ?\r\n" + 
 					"        and inhdr.TENANT_ID='"+tenantId+"'" + 
+					"        AND (\r\n" +
+					"            ph.COST_FLOW_TYPE = 'NEW'\r\n" +
+					"            OR EXISTS (\r\n" +
+					"                SELECT 1 FROM indent_assign_team iat\r\n" +
+					"                WHERE iat.INDENT_DTL_ID = indtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+					"            )\r\n" +
+					"        )\r\n" +
 					"        AND indtl.INDENT_DTL_ID NOT IN (SELECT \r\n" + 
 					"            podtl.INDENT_DTL_ID\r\n" + 
 					"        FROM\r\n" + 
@@ -734,7 +827,7 @@ public class ScmMisDAO implements IScmMisDAO{
 					"            inhdr.IS_INVENTORY = '1' and inhdr.TENANT_ID='"+tenantId+"')\r\n" +
 					"and month(inhdr.CREATED_DATE)=? and year(inhdr.CREATED_DATE)=?" +
 					"and inhdr.EXPECTED_DELIVERY_DATE < CURRENT_DATE and inhdr.TENANT_ID='"+tenantId+"'";
-			Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,empId,pmId,pmHdrId,month,year);
+			Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,empId,pmId,pmHdrId,empId,month,year);
 			count = resultMap.get("COUNT").toString();
 			}else {
 				String qry="SELECT \r\n" + 
@@ -798,12 +891,24 @@ public class ScmMisDAO implements IScmMisDAO{
 					"        INNER JOIN\r\n" + 
 					"    indent_dtl dtl ON ih.INDENT_ID = dtl.INDENT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
-					"    indent_assign_team iat ON dtl.INDENT_DTL_ID = iat.INDENT_DTL_ID\r\n" + 
+					"    project_hdr ph ON ph.PM_HDR_ID = ih.PROJECT_ID\r\n" + 
 					"WHERE\r\n" + 
-					"    iat.EMPLOYEE_ID = ? \r\n" + 
-					"        AND ih.PROJECT_ID = ? AND ih.TENANT_ID = ?;";
+					"    ih.PROJECT_ID = ? AND ih.TENANT_ID = ?\r\n" +
+					"    AND (\r\n" +
+					"        (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\r\n" +
+					"            SELECT 1 FROM scm_hdr sch\r\n" +
+					"            INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n" +
+					"            WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\r\n" +
+					"                AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\r\n" +
+					"        ))\r\n" +
+					"        OR\r\n" +
+					"        (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\r\n" +
+					"            SELECT 1 FROM indent_assign_team iat\r\n" +
+					"            WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+					"        ))\r\n" +
+					"    );";
 			
-			Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,empId,pmHdrId,tenantId);
+			Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,pmHdrId,tenantId,empId,empId);
 			val = resultMap.get("TOTAL_ASSIGNED_INDENTS").toString();	 
 		} catch (Exception ex) {
 			logger.error("getTotalAssignedIndents  method exception-->" + ex);
@@ -824,19 +929,31 @@ public class ScmMisDAO implements IScmMisDAO{
 					"        INNER JOIN\r\n" + 
 					"    indent_dtl dtl ON ih.INDENT_ID = dtl.INDENT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
-					"    indent_assign_team iat ON dtl.INDENT_DTL_ID = iat.INDENT_DTL_ID\r\n" + 
+					"    project_hdr ph ON ph.PM_HDR_ID = ih.PROJECT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
 					"    po_hdr poh ON ih.INDENT_ID = poh.INDENT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
 					"    po_dtl pod ON poh.PO_ID = pod.PO_ID\r\n" + 
 					"        AND dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID\r\n" + 
 					"WHERE\r\n" + 
-					"    iat.EMPLOYEE_ID = ?\r\n" + 
-					"        AND ih.PROJECT_ID = ?\r\n" + 
+					"    ih.PROJECT_ID = ?\r\n" + 
 					"        AND poh.IS_APPROVED = 1\r\n" + 
-					"        AND poh.IS_LATEST = 1 AND ih.TENANT_ID = ?;";
+					"        AND poh.IS_LATEST = 1 AND ih.TENANT_ID = ?\r\n" +
+					"    AND (\r\n" +
+					"        (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\r\n" +
+					"            SELECT 1 FROM scm_hdr sch\r\n" +
+					"            INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n" +
+					"            WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\r\n" +
+					"                AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\r\n" +
+					"        ))\r\n" +
+					"        OR\r\n" +
+					"        (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\r\n" +
+					"            SELECT 1 FROM indent_assign_team iat\r\n" +
+					"            WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+					"        ))\r\n" +
+					"    );";
 			
-			Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,empId,pmHdrId,tenantId);
+			Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,pmHdrId,tenantId,empId,empId);
 			val = resultMap.get("COMPLETED_INDENTS").toString();
 		} catch (Exception ex) {
 			logger.error("getCompletedIndentCount  method exception-->" + ex);

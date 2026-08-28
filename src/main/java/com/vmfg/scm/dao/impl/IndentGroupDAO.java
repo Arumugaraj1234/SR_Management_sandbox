@@ -105,13 +105,23 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 					"    project_key_sub_area pksa ON pksa.PKSA_ID = inh.PKSA_ID\n" +
 					"INNER JOIN \n" +
 					"    project_key_sub_area_mst pksam ON pksam.PSK_ID = pksa.PSK_ID\n" +
-					"INNER JOIN \n" +
-					"    indent_assign_team iat ON ind.INDENT_DTL_ID = iat.INDENT_DTL_ID\n" +
 					"WHERE \n" +
 					"    inh.PROJECT_ID = ?\n" +
 					"    AND hdr.TENANT_ID = ?\n" +
 					"    AND inh.SEQUENCE_STATUS IN ('DS020', 'DS077', 'DS070')\n" +
-					"    AND iat.EMPLOYEE_ID = ?\n" +
+					"    AND (\n" +
+					"        (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\n" +
+					"            SELECT 1 FROM scm_hdr sch\n" +
+					"            INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\n" +
+					"            WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\n" +
+					"                AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\n" +
+					"        ))\n" +
+					"        OR\n" +
+					"        (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\n" +
+					"            SELECT 1 FROM indent_assign_team iat\n" +
+					"            WHERE ind.INDENT_DTL_ID = iat.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\n" +
+					"        ))\n" +
+					"    )\n" +
 					"    " + byIndentId + ";";
 
 //			String retQry = "SELECT DISTINCT \n" +
@@ -163,7 +173,7 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 			RowMapper<IndentGroupDetailsEntity> dtlrm = new IndentGroupDetailsRowMapper();
 
 //			returnList = this.jdbcTemplate.query(retQry, dtlrm,fromdate,todate,projectId,tenantId,empId);
-			returnList = this.jdbcTemplate.query(retQry, dtlrm,projectId,tenantId,empId);
+			returnList = this.jdbcTemplate.query(retQry, dtlrm,projectId,tenantId,empId,empId);
 
 		} catch (Exception ex) {
 			logger.error("getIndentGroupRetrieve error---> " + ex);

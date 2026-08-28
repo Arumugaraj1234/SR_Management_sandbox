@@ -139,9 +139,9 @@ public class DrillDownDAO implements IDrillDownDAO {
 					"    indent_hdr inhdr ON indtl.INDENT_ID = inhdr.INDENT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
 					"    indent_type_mst itm ON inhdr.INDENT_TYPE_CODE = itm.INDENT_TYPE_CODE\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    indent_assign_team iat ON indtl.INDENT_DTL_ID = iat.INDENT_DTL_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
+					"        LEFT JOIN\r\n" + 
+					"    indent_assign_team iat ON indtl.INDENT_DTL_ID = iat.INDENT_DTL_ID AND iat.EMPLOYEE_ID = '"+empId+"'\r\n" + 
+					"        LEFT JOIN\r\n" + 
 					"    employee_mst mst ON mst.EMPLOYEE_ID = iat.EMPLOYEE_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
 					"    scm_hdr sc ON sc.PM_HDR_ID = inhdr.PROJECT_ID\r\n" + 
@@ -170,7 +170,7 @@ public class DrillDownDAO implements IDrillDownDAO {
 					"        AND hdr.TENANT_ID = '"+tenantId+"'\r\n" + 
 					"        AND inhdr.PROJECT_ID LIKE '"+projectId+"'\r\n" + 
 					"        AND team.ASSIGNED_EMP_ID = '"+empId+"'\r\n" + 
-					"        AND iat.EMPLOYEE_ID = '"+empId+"'\r\n" + 
+					"        AND (phdr.COST_FLOW_TYPE = 'NEW' OR iat.INDENT_DTL_ID IS NOT NULL)\r\n" + 
 					"        AND team.IS_ACTIVE = '1' "+monthYear+"\r\n" + 
 					"        AND team.PM_ID = '"+pmId+"';";
 		list = this.jdbcTemplate.query(qry, new DrilldownEntityRowMapper());
@@ -373,11 +373,9 @@ public class DrillDownDAO implements IDrillDownDAO {
 					"FROM\r\n" + 
 					"    indent_hdr hdr\r\n" + 
 					"        INNER JOIN\r\n" + 
-//					"    project_hdr proj ON proj.PM_HDR_ID = hdr.PROJECT_ID\r\n" + 
-//					" Inner join \r\n"+
-					"    indent_dtl dtl ON hdr.INDENT_ID = dtl.INDENT_ID\r\n" + 
+					"    project_hdr ph ON ph.PM_HDR_ID = hdr.PROJECT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
-					"    indent_assign_team iat ON dtl.INDENT_DTL_ID = iat.INDENT_DTL_ID\r\n" + 
+					"    indent_dtl dtl ON hdr.INDENT_ID = dtl.INDENT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
 					"    po_hdr poh ON hdr.INDENT_ID = poh.INDENT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
@@ -402,8 +400,13 @@ public class DrillDownDAO implements IDrillDownDAO {
 					"          AND team.ASSIGNED_EMP_ID = '"+empId+"' \r\n" + 
 					"						        AND team.IS_ACTIVE = '1' \r\n" + 
 					"						        AND team.PM_ID = '"+pmId+"'\r\n" +
-					"        AND iat.EMPLOYEE_ID = '"+empId+"'# and IS_PRIMARY =1\r\n" + 
-					"       # and hdr.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077')\r\n" +
+					"        AND (\r\n" +
+					"            ph.COST_FLOW_TYPE = 'NEW'\r\n" +
+					"            OR EXISTS (\r\n" +
+					"                SELECT 1 FROM indent_assign_team iat\r\n" +
+					"                WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = '"+empId+"'\r\n" +
+					"            )\r\n" +
+					"        )\r\n" +
 					"        AND hdr.TENANT_ID = '"+tenantId+"' "+monthYear+"  group by  pod.PO_DTL_ID";
 			list = this.jdbcTemplate.query(qry, new NoOfPoDrillEntityRowMapper());
 		}catch(Exception ex) {

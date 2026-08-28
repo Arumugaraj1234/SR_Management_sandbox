@@ -241,12 +241,28 @@ public class IndentManagementDAO implements IIndentManagementDAO {
 					"    ON dtl.INDENT_DTL_ID = gdtl.INDENT_DTL_ID\n" +
 					"INNER JOIN uom_mst um\n" +
 					"    ON dtl.UNIT = um.UOM_CODE\n" +
-					"INNER JOIN indent_assign_team iat\n" +
-					"    ON iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID\n" +
+					"INNER JOIN indent_hdr ihdr\n" +
+					"    ON ihdr.INDENT_ID = dtl.INDENT_ID\n" +
+					"INNER JOIN project_hdr iph\n" +
+					"    ON iph.PM_HDR_ID = ihdr.PROJECT_ID\n" +
+					// NEW-flow projects: visible if employee is on the project's SCM team (process_assigned_team, PM_ID='5').
+					// LEGACY projects: keep the old per-part assign check (indent_assign_team). See [[project_scm_project_level_assign]].
 					"WHERE\n" +
 					"    dtl.INDENT_ID = ?\n" +
 					"    AND dtl.TENANT_ID = ?\n" +
-					"    AND iat.EMPLOYEE_ID = ?\n" +
+					"    AND (\n" +
+					"        (iph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\n" +
+					"            SELECT 1 FROM scm_hdr sch\n" +
+					"            INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\n" +
+					"            WHERE sch.PM_HDR_ID = iph.PM_HDR_ID AND pat.PM_ID = '5'\n" +
+					"                AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\n" +
+					"        ))\n" +
+					"        OR\n" +
+					"        (iph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\n" +
+					"            SELECT 1 FROM indent_assign_team iat\n" +
+					"            WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\n" +
+					"        ))\n" +
+					"    )\n" +
 					"GROUP BY\n" +
 					"    dtl.INDENT_DTL_ID\n" +
 					"HAVING\n" +
@@ -256,7 +272,7 @@ public class IndentManagementDAO implements IIndentManagementDAO {
 			RowMapper<IndentGroupHdrAndDtlEntity> dtlrm = new IndentGroupHdrAndDtlRowMapper();
 
 			list = this.jdbcTemplate.query(getQ, dtlrm, indentGrpReq.getIndentId(), indentGrpReq.getTenantId(),
-					indentGrpReq.getEmpId());
+					indentGrpReq.getEmpId(), indentGrpReq.getEmpId());
 		} catch (Exception ex) {
 			logger.error("getIndentGrpNewProd Method Exception --->" + ex);
 
@@ -518,22 +534,32 @@ public class IndentManagementDAO implements IIndentManagementDAO {
 
 		try {
 			
-			String qry = "SELECT DISTINCT\r\n" + 
-					"    (hdr.INDENT_CODE), hdr.INDENT_ID, EXPECTED_DELIVERY_DATE\r\n" + 
-					"FROM\r\n" + 
-					"    indent_hdr hdr\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    indent_dtl dtl ON dtl.INDENT_ID = hdr.INDENT_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    project_hdr ph ON hdr.PROJECT_ID = ph.PM_HDR_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
-					"    indent_assign_team iat ON iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID\r\n" + 
-					"WHERE\r\n" + 
-					"    ph.PM_HDR_ID = ?\r\n" + 
-					"        AND hdr.TENANT_ID = ?\r\n" + 
-					"        AND iat.EMPLOYEE_ID = ?\r\n" + 
-					"        AND hdr.SEQUENCE_STATUS IN ('DS077' , 'DS020');";
-			list = this.jdbcTemplate.query(qry, new IndentHdrDropDownRowMapper(), projectId, tenantId,empId);
+			String qry = "SELECT DISTINCT\r\n" +
+					"    (hdr.INDENT_CODE), hdr.INDENT_ID, EXPECTED_DELIVERY_DATE\r\n" +
+					"FROM\r\n" +
+					"    indent_hdr hdr\r\n" +
+					"        INNER JOIN\r\n" +
+					"    indent_dtl dtl ON dtl.INDENT_ID = hdr.INDENT_ID\r\n" +
+					"        INNER JOIN\r\n" +
+					"    project_hdr ph ON hdr.PROJECT_ID = ph.PM_HDR_ID\r\n" +
+					"WHERE\r\n" +
+					"    ph.PM_HDR_ID = ?\r\n" +
+					"        AND hdr.TENANT_ID = ?\r\n" +
+					"        AND hdr.SEQUENCE_STATUS IN ('DS077' , 'DS020')\r\n" +
+					"        AND (\r\n" +
+					"            (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\r\n" +
+					"                SELECT 1 FROM scm_hdr sch\r\n" +
+					"                INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n" +
+					"                WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\r\n" +
+					"                    AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\r\n" +
+					"            ))\r\n" +
+					"            OR\r\n" +
+					"            (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\r\n" +
+					"                SELECT 1 FROM indent_assign_team iat\r\n" +
+					"                WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+					"            ))\r\n" +
+					"        );";
+			list = this.jdbcTemplate.query(qry, new IndentHdrDropDownRowMapper(), projectId, tenantId, empId, empId);
 		} catch (Exception ex) {
 			logger.error("getIndentProjectDtlsByEmployee Method Exception --->" + ex);
 		}
@@ -593,13 +619,23 @@ public class IndentManagementDAO implements IIndentManagementDAO {
 					"    indent_dtl dtl ON dtl.INDENT_ID = hdr.INDENT_ID\r\n" +
 					"        INNER JOIN\r\n" +
 					"    project_hdr ph ON hdr.PROJECT_ID = ph.PM_HDR_ID\r\n" +
-					"        INNER JOIN\r\n" +
-					"    indent_assign_team iat ON iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID\r\n" +
 					"WHERE\r\n" +
 					"    ph.PM_HDR_ID = ?\r\n" +
 					"        AND hdr.TENANT_ID = ?\r\n" +
-					"        AND iat.EMPLOYEE_ID = ?\r\n";
-			list = this.jdbcTemplate.query(qry, new IndentHdrDropDownRowMapper(), projectId, tenantId,empId);
+					"        AND (\r\n" +
+					"            (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\r\n" +
+					"                SELECT 1 FROM scm_hdr sch\r\n" +
+					"                INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n" +
+					"                WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\r\n" +
+					"                    AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\r\n" +
+					"            ))\r\n" +
+					"            OR\r\n" +
+					"            (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\r\n" +
+					"                SELECT 1 FROM indent_assign_team iat\r\n" +
+					"                WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+					"            ))\r\n" +
+					"        )\r\n";
+			list = this.jdbcTemplate.query(qry, new IndentHdrDropDownRowMapper(), projectId, tenantId, empId, empId);
 		} catch (Exception ex) {
 			logger.error("getCapexIndentProjectDtlsByEmployee Method Exception --->" + ex);
 		}
@@ -622,13 +658,24 @@ public class IndentManagementDAO implements IIndentManagementDAO {
 					"    indent_dtl dtl ON dtl.INDENT_ID = hdr.INDENT_ID\r\n" +
 					"        INNER JOIN\r\n" +
 					"    project_hdr ph ON hdr.PROJECT_ID = ph.PM_HDR_ID\r\n" +
-					"        INNER JOIN\r\n" +
-					"    indent_assign_team iat ON iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID\r\n" +
 					"WHERE\r\n" +
 					"    ph.PM_HDR_ID = ?\r\n" +
 					"        AND hdr.TENANT_ID = ?\r\n" +
-					"        AND iat.EMPLOYEE_ID = ?  AND hdr.SEQUENCE_STATUS IN ('DS070', 'DS077')\r\n";
-			list = this.jdbcTemplate.query(qry, new IndentHdrDropDownRowMapper(), projectId, tenantId,empId);
+					"        AND hdr.SEQUENCE_STATUS IN ('DS070', 'DS077')\r\n" +
+					"        AND (\r\n" +
+					"            (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\r\n" +
+					"                SELECT 1 FROM scm_hdr sch\r\n" +
+					"                INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n" +
+					"                WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\r\n" +
+					"                    AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\r\n" +
+					"            ))\r\n" +
+					"            OR\r\n" +
+					"            (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\r\n" +
+					"                SELECT 1 FROM indent_assign_team iat\r\n" +
+					"                WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+					"            ))\r\n" +
+					"        )\r\n";
+			list = this.jdbcTemplate.query(qry, new IndentHdrDropDownRowMapper(), projectId, tenantId, empId, empId);
 		} catch (Exception ex) {
 			logger.error("getCapexIndentProjectDtlsByEmployee Method Exception --->" + ex);
 		}
@@ -650,13 +697,24 @@ public class IndentManagementDAO implements IIndentManagementDAO {
 					"    indent_dtl dtl ON dtl.INDENT_ID = hdr.INDENT_ID\r\n" +
 					"        INNER JOIN\r\n" +
 					"    project_hdr ph ON hdr.PROJECT_ID = ph.PM_HDR_ID\r\n" +
-					"        INNER JOIN\r\n" +
-					"    indent_assign_team iat ON iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID\r\n" +
 					"WHERE\r\n" +
 					"    ph.PM_HDR_ID = ?\r\n" +
 					"        AND hdr.TENANT_ID = ?\r\n" +
-					"        AND iat.EMPLOYEE_ID = ?  AND hdr.SEQUENCE_STATUS IN ('DS020')\r\n";
-			list = this.jdbcTemplate.query(qry, new IndentHdrDropDownRowMapper(), projectId, tenantId,empId);
+					"        AND hdr.SEQUENCE_STATUS IN ('DS020')\r\n" +
+					"        AND (\r\n" +
+					"            (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\r\n" +
+					"                SELECT 1 FROM scm_hdr sch\r\n" +
+					"                INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n" +
+					"                WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\r\n" +
+					"                    AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\r\n" +
+					"            ))\r\n" +
+					"            OR\r\n" +
+					"            (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\r\n" +
+					"                SELECT 1 FROM indent_assign_team iat\r\n" +
+					"                WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
+					"            ))\r\n" +
+					"        )\r\n";
+			list = this.jdbcTemplate.query(qry, new IndentHdrDropDownRowMapper(), projectId, tenantId, empId, empId);
 		} catch (Exception ex) {
 			logger.error("getCapexIndentProjectDtlsByEmployee Method Exception --->" + ex);
 		}
