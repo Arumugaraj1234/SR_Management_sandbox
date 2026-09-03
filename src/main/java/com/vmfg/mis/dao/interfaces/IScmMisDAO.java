@@ -3,6 +3,7 @@ package com.vmfg.mis.dao.interfaces;
 import java.util.List;
 
 import com.vmfg.inventory.entity.InvProdEntity;
+import com.vmfg.mis.entity.DrilldownEntity;
 import com.vmfg.mis.entity.ScmEmployeeIndentDtlsEntity;
 import com.vmfg.mis.entity.VendorDetailDrillDownEntity;
 
@@ -23,6 +24,8 @@ public interface IScmMisDAO {
 	String getItemsDelayedCnt(String pmHdrId, String tenantId, String empId, String month, String year, String lifeSpan,
 			String pmId);
 	String getIndentDtlCount(String pmHdrId, String tenantId, String assignedTo, String month, String year,
+			String lifeSpan, String pmId);
+	List<DrilldownEntity> getIndentDtlList(String pmHdrId, String tenantId, String assignedTo, String month, String year,
 			String lifeSpan, String pmId);
 	String getIndentHdrCount(String pmHdrId, String tenantId, String empId, String month, String year, String lifeSpan,
 			String pmId);

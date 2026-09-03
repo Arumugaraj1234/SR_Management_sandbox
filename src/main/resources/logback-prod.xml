@@ -19,7 +19,7 @@
 
 	<appender name="SAVE-TO-FILE-DEBUG"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${logging.file.name}/smartrun40debug.log</file>
+		<file>${LOG_PATH}/smartrun40debug.log</file>
 		<encoder
 			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -%msg
@@ -29,7 +29,7 @@
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<fileNamePattern>
-				${logging.file.name}/DebugArchived/smartrun40debug_%d{dd-MM-yyyy}.%i.log
+				${LOG_PATH}/DebugArchived/smartrun40debug_%d{dd-MM-yyyy}.%i.log
 			</fileNamePattern>
 			<maxFileSize>20MB</maxFileSize>
 			<maxHistory>90</maxHistory>
@@ -41,7 +41,7 @@
 
 	<appender name="SAVE-TO-FILE-ERROR"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${logging.file.name}/smartrun40error.log</file>
+		<file>${LOG_PATH}/smartrun40error.log</file>
 		<encoder
 			class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} -%msg
@@ -57,7 +57,7 @@
 		<rollingPolicy
 			class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
 			<fileNamePattern>
-				${logging.file.name}/ErrorArchived/smartrun40error_%d{dd-MM-yyyy}.%i.log
+				${LOG_PATH}/ErrorArchived/smartrun40error_%d{dd-MM-yyyy}.%i.log
 			</fileNamePattern>
 			<maxFileSize>20MB</maxFileSize>
 			<maxHistory>90</maxHistory>

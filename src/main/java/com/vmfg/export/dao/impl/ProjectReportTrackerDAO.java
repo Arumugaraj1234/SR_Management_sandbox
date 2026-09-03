@@ -162,6 +162,9 @@ public class ProjectReportTrackerDAO implements IProjectReportTrackerDAO {
 					+ " and UPLOAD_DOC_TYPE='FC015' and TENANT_ID=? order by VERSION desc limit 1;";
 					Map<String, Object> results = this.jdbcTemplate.queryForMap(checkCountStr,indentDtlId,tENANT_ID);
 					int checkCount =  Integer.parseInt(results.get("DM_ID_COUNT").toString());
+					if(checkCount==0) {
+						logger.warn("documentDownloadDocFile: no document_management row (UPLOAD_DOC_TYPE=FC015) for REFERENCE_ID="+indentDtlId+", TENANT_ID="+tENANT_ID);
+					}
 					
 					if(checkCount>0) {
 						String DMid = "select  DM_ID AS DM_ID from document_management where REFERENCE_ID=?"
@@ -196,6 +199,9 @@ public class ProjectReportTrackerDAO implements IProjectReportTrackerDAO {
     					+ "        AND TENANT_ID = ?";
     			Map<String, Object> resultMap = this.jdbcTemplate.queryForMap(DocntQ,DM,tENANT_ID);
             	int cnt = Integer.parseInt(resultMap.get("COUNT").toString());
+			if(cnt==0) {
+				logger.warn("documentDownloadDocFile: no file_manager row for REFERNCE_ID="+DM+", indentDtlId="+indentDtlId+", TENANT_ID="+tENANT_ID);
+			}
             	
 			if(cnt>0) {
 				String fileDocPathQry="select concat(FILE_PATH,'\\\\',FILE_NAME) as FILE_PATH from file_manager where "
@@ -221,7 +227,7 @@ public class ProjectReportTrackerDAO implements IProjectReportTrackerDAO {
 
 		}catch(Exception ex) {
 			fdEntity.setMessageCode("E0092");
-			logger.error("documentDownloadDocFile Method DAO exception---> "+ex );
+			logger.error("documentDownloadDocFile Method DAO exception for indentDtlId="+indentDtlId+", TENANT_ID="+tENANT_ID+" ---> "+ex );
 		}
 		return fdEntity;
 	}

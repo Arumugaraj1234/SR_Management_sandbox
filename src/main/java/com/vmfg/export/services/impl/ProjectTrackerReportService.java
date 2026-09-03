@@ -356,9 +356,16 @@ public class ProjectTrackerReportService implements IProjectTrackerReportService
                    List<String> fileList = new ArrayList<>();
                    if(IndentDtlId.size() > 0) {
                    for(int i=0; i<IndentDtlId.size(); i++) {
-                	   PDFfiles = iProjectReportTrackerDAO.documentDownloadDocFile(idAndTenantIdReq.getTenantId(), IndentDtlId.get(i).getIndentDtlId());
+                	   String currIndentDtlId = IndentDtlId.get(i).getIndentDtlId();
+                	   PDFfiles = iProjectReportTrackerDAO.documentDownloadDocFile(idAndTenantIdReq.getTenantId(), currIndentDtlId);
                 	   if(PDFfiles.getFilePath()!=null && new File(PDFfiles.getFilePath()).exists()) {
-                	   fileList.add(PDFfiles.getFilePath());  
+                	   fileList.add(PDFfiles.getFilePath());
+                	   } else if (PDFfiles.getFilePath() == null) {
+                		   logger.warn("Design file skipped from PO zip - no file path resolved for indentDtlId=" + currIndentDtlId
+                				   + ", poId=" + idAndTenantIdReq.getPoId() + ", messageCode=" + PDFfiles.getMessageCode());
+                	   } else {
+                		   logger.warn("Design file skipped from PO zip - path resolved but not found on disk for indentDtlId=" + currIndentDtlId
+                				   + ", poId=" + idAndTenantIdReq.getPoId() + ", filePath=" + PDFfiles.getFilePath());
                 	   }
                    }
                    }

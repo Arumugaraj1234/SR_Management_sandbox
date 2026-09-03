@@ -239,8 +239,14 @@ public class PraService implements IPraService {
 				if(praHdrId>0) {
 					String paymentPending = iPraDAO.getPotPendingAmnt(praInsertRequest.getPotId());
 					BigDecimal pending = new BigDecimal(paymentPending);
-					BigDecimal invoiceAmnt = new BigDecimal(praInsertRequest.getInvoiceValue());
-					pending = pending.subtract(invoiceAmnt);
+					// Deduct the full GST-inclusive payable, not just the base invoice value. For a non-last
+					// term the frontend always sends GST/transport/PF/insurance/other as 0, so amountPayable
+					// equals invoiceValue there anyway (no behavior change); on a term's last PRA-eligible
+					// term (single 100% term, or the final installment of a multi-term PO) those charges can
+					// be non-zero, and subtracting only invoiceValue used to leave a permanent GST-sized
+					// phantom balance in PENDING_AMOUNT that let further PRAs be created past what was owed.
+					BigDecimal payableAmnt = new BigDecimal(praInsertRequest.getAmountPayable());
+					pending = pending.subtract(payableAmnt);
 
 					String pendAmt = pending.toString();
 

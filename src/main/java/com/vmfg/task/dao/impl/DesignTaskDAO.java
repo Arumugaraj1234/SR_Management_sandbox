@@ -669,6 +669,18 @@ public class DesignTaskDAO implements IDesignTaskDAO {
 
 	}
 	@Override
+	public String getSeqByDocStatus(String docType, String docGrp, String docStatus, String tenantId) {
+		String currSeq = "";
+		try {
+			String qry = "select CURR_SEQUENCE from document_lifecycle_mst where DOC_TYPE=? and DOC_GROUP=? and DOC_STATUS=? and TENANT_ID=?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, docType, docGrp, docStatus, tenantId);
+			currSeq = resultMap.get("CURR_SEQUENCE").toString();
+		} catch (Exception ex) {
+			logger.error("getSeqByDocStatus Error" + ex);
+		}
+		return currSeq;
+	}
+	@Override
 	public int updateTaskDtlStatusTbl(String seq, String status, String teDtlId, String tenantId, String isCompleted,
 			String completedDate, String statusDesc, String remarks, String empId) {
 		int updateStatus = 0;

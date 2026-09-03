@@ -214,7 +214,7 @@ public class AssemblyDAO implements IAssemblyDAO {
 							+ "    \r\n" + "    \r\n" + "FROM\r\n" + "    material_request_hdr mrh,\r\n"
 							+ "    employee_mst em\r\n" + "    \r\n" + "WHERE\r\n" + "    mrh.REQUESTED_BY = em.EMPLOYEE_ID\r\n"
 							+ "        AND mrh.PM_HDR_ID = '" + pmHdrId + "'\r\n" + "    AND mrh.TENANT_ID = '" + tenantId
-							+ "' order by mrh.MR_CODE, IS_COMPLETED , IS_CANCELLED";
+							+ "' order by mrh.MR_HDR_ID DESC";
 			}
 			list = this.jdbcTemplate.query(qry, new MaterialReqHdrRowMapper());
 			for (MaterialReqHdrEntity materialObj : list) {
