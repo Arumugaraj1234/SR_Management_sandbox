@@ -247,14 +247,12 @@ public class IndentGroupService implements IIndentGroupService {
 		if (del > 0) {
 			if(lastCountCheck==1 && !indentId.equalsIgnoreCase("")) {
 				String indentGrpType = indentGroupDAO.getindentTypeCode(indentId);
-				String seqStr = "6";
-				if(indentGrpType.equalsIgnoreCase("IT001")) {
-					seqStr=	iIndentGroupDAO.getTenantPropertyVal("INDENT_SCM_SEQ_PRODUCT", indentGrpDtlReq.getTenantId());
-				}else if(indentGrpType.equalsIgnoreCase("IT002")) {
-					seqStr=	iIndentGroupDAO.getTenantPropertyVal("INDENT_SCM_SEQ_SERVICE", indentGrpDtlReq.getTenantId());
-				}
-				if(seqStr == null ) {
-					seqStr = "6";
+				// Look up the CURR_SEQUENCE that document_lifecycle_mst itself maps to "SCM Accepted"
+				// (DS070) for this doc group, instead of a separately-maintained tenant property -
+				// keeps the reset in sync with the lifecycle master for every doc group (IT001/IT002/IT003/...)
+				String seqStr = designTaskDAO.getSeqByDocStatus("DC018", indentGrpType, "DS070", indentGrpDtlReq.getTenantId());
+				if(seqStr == null || seqStr.equalsIgnoreCase("")) {
+					seqStr = "8";
 				}
 				indentUploadDAO.updateIndentHdrStatusAndSeq(indentId, seqStr, "DS070", indentGrpDtlReq.getEmpId(), indentGrpDtlReq.getTenantId());
 //				if(!indentCode.equalsIgnoreCase("")) {

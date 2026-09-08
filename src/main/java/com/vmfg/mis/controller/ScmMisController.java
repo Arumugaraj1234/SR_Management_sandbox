@@ -60,6 +60,23 @@ public class ScmMisController {
 	}
 	
 	@CrossOrigin(maxAge = 3600)
+	@PostMapping("getIndentLineItemsDrill")
+	public ResponseEntity<ResponseAsList> getIndentLineItemsDrill(@RequestBody ScmMisRequest scmMisReq) {
+
+		logger.debug("getIndentLineItemsDrill   method Start");
+		ResponseAsList resp = null;
+		try {
+
+			resp = iScmMisService.getIndentLineItemsDrill(scmMisReq);
+
+		} catch (Exception ex) {
+			logger.error("getIndentLineItemsDrill  method  exception" + ex);
+		}
+		logger.debug("getIndentLineItemsDrill   method end");
+		return new ResponseEntity<ResponseAsList>(resp, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
 	@PostMapping("getcostnegotiated")
 	public ResponseEntity<ResponseAsMessage> getcostnegotiated(@RequestBody ScmMisRequest scmMisReq) {
 

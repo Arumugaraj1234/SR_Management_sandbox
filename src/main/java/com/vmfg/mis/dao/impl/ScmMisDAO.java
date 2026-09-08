@@ -14,8 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.vmfg.inventory.entity.InvProdEntity;
 import com.vmfg.inventory.rowmapper.InvProdRowMapper;
 import com.vmfg.mis.dao.interfaces.IScmMisDAO;
+import com.vmfg.mis.entity.DrilldownEntity;
 import com.vmfg.mis.entity.ScmEmployeeIndentDtlsEntity;
 import com.vmfg.mis.entity.VendorDetailDrillDownEntity;
+import com.vmfg.mis.rowmapper.DrilldownEntityRowMapper;
 import com.vmfg.mis.rowmapper.GetVendorDetailDrillDownRowMapper;
 import com.vmfg.mis.rowmapper.ScmEmployeeIndentRowmapper;
 @Transactional
@@ -524,7 +526,136 @@ public class ScmMisDAO implements IScmMisDAO{
 		logger.debug("getIndentDtlCount method end");
 		return count;
 	}
-	
+
+	// Row-level counterpart of getIndentDtlCount above — same joins/filters (kept in sync
+	// deliberately), but SELECTs display columns instead of COUNT(...) and GROUP BYs the
+	// indent line item id to preserve the COUNT(DISTINCT ...) semantics (the assignment-team
+	// joins can otherwise fan out to more than one row per indent line item).
+	// NOTE (sandbox port): this mirrors main's getIndentDtlCount logic (LEGACY-flow team/part
+	// assignment only). Sandbox's own getIndentDtlCount above already has NEW-flow-aware logic
+	// from the SCM Project-Level Assign feature that main doesn't have yet — this list method was
+	// NOT updated to match that, so for NEW-flow projects the drill-down list may not agree with
+	// sandbox's own count. Flagged for follow-up, not fixed here.
+	@Override
+	public List<DrilldownEntity> getIndentDtlList(String pmHdrId, String tenantId, String assignedTo, String month, String year, String lifeSpan, String pmId) {
+		List<DrilldownEntity> list = new ArrayList<DrilldownEntity>();
+		try {
+			if(pmHdrId.equalsIgnoreCase("getall")) {
+				pmHdrId	="%%";
+			}
+
+			if(lifeSpan.equalsIgnoreCase("0")) {
+
+				String qry="SELECT \r\n" +
+						"    dtl.INDENT_DTL_ID,\r\n" +
+						"    dtl.PRODUCT_CODE,\r\n" +
+						"    dtl.DESCRIPTION,\r\n" +
+						"    dtl.SPECIFICATION,\r\n" +
+						"    dtl.MAKE,\r\n" +
+						"    dtl.QTY,\r\n" +
+						"    ih.PROJECT_ID AS PM_HDR_ID,\r\n" +
+						"    ih.INDENT_CODE,\r\n" +
+						"    ih.INDENT_TYPE_CODE,\r\n" +
+						"    ih.EXPECTED_DELIVERY_DATE,\r\n" +
+						"    phdr.PROJECT_NAME,\r\n" +
+						"    phdr.PROJECT_DESCRIPTION,\r\n" +
+						"    phdr.PROJECT_CODE,\r\n" +
+						"    phdr.CUSTOMER_NAME,\r\n" +
+						"    sbc.SBC_DESC AS INDENT_TYPE_DESC,\r\n" +
+						"    pk.PK_DESC,\r\n" +
+						"    psk.PSK_DESC\r\n" +
+						"FROM\r\n" +
+						"    indent_dtl dtl\r\n" +
+						"        INNER JOIN\r\n" +
+						"    indent_hdr AS ih ON dtl.INDENT_ID = ih.INDENT_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    indent_assign_team iat ON dtl.INDENT_DTL_ID = iat.INDENT_DTL_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    scm_hdr AS sh ON sh.PM_HDR_ID = ih.PROJECT_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    process_assigned_team team ON team.MASTER_ID = sh.SCM_HDR_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    project_hdr phdr ON phdr.PM_HDR_ID = ih.PROJECT_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    sales_budget_category sbc ON sbc.SBC_CODE = ih.SBC_CODE\r\n" +
+						"        INNER JOIN\r\n" +
+						"    project_key_area pka ON ih.PKA_ID = pka.PKA_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    project_key_area_mst pk ON pka.PK_ID = pk.PK_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    project_key_sub_area pksa ON pksa.PKSA_ID = ih.PKSA_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    project_key_sub_area_mst psk ON pksa.PSK_ID = psk.PSK_ID\r\n" +
+						"WHERE\r\n" +
+						"    iat.EMPLOYEE_ID = ?\r\n" +
+						"        AND team.ASSIGNED_EMP_ID = ?\r\n" +
+						"        AND team.IS_ACTIVE = '1'\r\n" +
+						"        AND team.PM_ID = ?\r\n" +
+						"        AND ih.PROJECT_ID like ? AND ih.TENANT_ID=?\r\n" +
+						"        AND ih.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077')\r\n" +
+						"        and month(ih.CREATED_DATE)=? and year(ih.CREATED_DATE)=?\r\n" +
+						"    GROUP BY dtl.INDENT_DTL_ID;";
+
+				list = this.jdbcTemplate.query(qry, new DrilldownEntityRowMapper(), assignedTo, assignedTo, pmId, pmHdrId, tenantId, month, year);
+			}else {
+				String qry="SELECT \r\n" +
+						"    dtl.INDENT_DTL_ID,\r\n" +
+						"    dtl.PRODUCT_CODE,\r\n" +
+						"    dtl.DESCRIPTION,\r\n" +
+						"    dtl.SPECIFICATION,\r\n" +
+						"    dtl.MAKE,\r\n" +
+						"    dtl.QTY,\r\n" +
+						"    ih.PROJECT_ID AS PM_HDR_ID,\r\n" +
+						"    ih.INDENT_CODE,\r\n" +
+						"    ih.INDENT_TYPE_CODE,\r\n" +
+						"    ih.EXPECTED_DELIVERY_DATE,\r\n" +
+						"    phdr.PROJECT_NAME,\r\n" +
+						"    phdr.PROJECT_DESCRIPTION,\r\n" +
+						"    phdr.PROJECT_CODE,\r\n" +
+						"    phdr.CUSTOMER_NAME,\r\n" +
+						"    sbc.SBC_DESC AS INDENT_TYPE_DESC,\r\n" +
+						"    pk.PK_DESC,\r\n" +
+						"    psk.PSK_DESC\r\n" +
+						"FROM\r\n" +
+						"    indent_dtl dtl\r\n" +
+						"        INNER JOIN\r\n" +
+						"    indent_hdr AS ih ON dtl.INDENT_ID = ih.INDENT_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    indent_assign_team iat ON dtl.INDENT_DTL_ID = iat.INDENT_DTL_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    scm_hdr AS sh ON sh.PM_HDR_ID = ih.PROJECT_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    process_assigned_team team ON team.MASTER_ID = sh.SCM_HDR_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    project_hdr phdr ON phdr.PM_HDR_ID = ih.PROJECT_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    sales_budget_category sbc ON sbc.SBC_CODE = ih.SBC_CODE\r\n" +
+						"        INNER JOIN\r\n" +
+						"    project_key_area pka ON ih.PKA_ID = pka.PKA_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    project_key_area_mst pk ON pka.PK_ID = pk.PK_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    project_key_sub_area pksa ON pksa.PKSA_ID = ih.PKSA_ID\r\n" +
+						"        INNER JOIN\r\n" +
+						"    project_key_sub_area_mst psk ON pksa.PSK_ID = psk.PSK_ID\r\n" +
+						"WHERE\r\n" +
+						"    iat.EMPLOYEE_ID = ?\r\n" +
+						"        AND team.ASSIGNED_EMP_ID = ?\r\n" +
+						"        AND team.IS_ACTIVE = '1'\r\n" +
+						"        AND team.PM_ID = ?\r\n" +
+						"        AND ih.PROJECT_ID like ? AND ih.TENANT_ID=?\r\n" +
+						"        AND ih.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077')\r\n" +
+						"    GROUP BY dtl.INDENT_DTL_ID;";
+
+				list = this.jdbcTemplate.query(qry, new DrilldownEntityRowMapper(), assignedTo, assignedTo, pmId, pmHdrId, tenantId);
+			}
+		} catch (Exception ex) {
+			logger.error("getIndentDtlList method exception-->" + ex);
+		}
+		logger.debug("getIndentDtlList method end");
+		return list;
+	}
+
 	@Override
 	public String getIndentHdrCount(String pmHdrId, String tenantId, String assignedTo,String month,String year, String lifeSpan,String pmId) {
 		String count="";

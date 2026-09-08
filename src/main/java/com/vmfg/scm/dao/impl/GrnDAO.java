@@ -316,13 +316,35 @@ public class GrnDAO implements IGrnDAO {
 			String qtyInspected, String tenantId, String indentDtlId, String pmHdrId, String reqfrom, String miId,String isRework, String empId) {
 
 		if ("0".equals(isRework) && miId != null && !miId.isEmpty()) {
-			String checkQry = "SELECT COUNT(*) FROM quality_inspection_request qir" +
-				" WHERE qir.MI_DTL_ID = ? AND qir.IS_REWORK = 0 AND qir.IS_LATEST = 1" +
-				" AND NOT EXISTS (SELECT 1 FROM quality_inspection_hdr qih" +
-				" WHERE qih.QI_ID = qir.QI_ID AND qih.CANCEL_FLAG = 1 AND qih.IS_LATEST = 1)";
-			int existingCount = this.jdbcTemplate.queryForObject(checkQry, Integer.class, miId);
-			if (existingCount > 0) {
-				logger.warn("Duplicate QI request blocked for MI_DTL_ID: " + miId);
+			// Block only when the received qty is already fully covered by non-cancelled QI requests.
+			// A partial / staged inspection (received qty not yet fully requested) must still be allowed.
+			// Qty that a completed inspection sent back for rework / rejection is credited back into the
+			// available balance (same accounting as PoDAO.getMiQcReqDetails / the MI pendingQty calc), so a
+			// re-inspection after rework is not mistaken for a duplicate request.
+			String coverageQry = "SELECT" +
+				" (SELECT COALESCE(SUM(qir.QTY_TO_BE_INSPECTED),0)" +
+				"   - COALESCE((SELECT SUM(qh.REWORK_INTERNAL + qh.REWORK_VENDOR + qh.REJECTED_INTERNAL + qh.REJECTED_EXTERNAL)" +
+				"               FROM quality_inspection_hdr qh" +
+				"               WHERE qh.QI_ID IN (SELECT q2.QI_ID FROM quality_inspection_request q2" +
+				"                                  WHERE q2.MI_DTL_ID = ? AND q2.IS_REWORK = 0 AND q2.IS_LATEST = 1)" +
+				"                 AND qh.IS_LATEST = 1 AND qh.CANCEL_FLAG = 0 AND qh.IS_COMPLETED = 1),0)" +
+				"   FROM quality_inspection_request qir" +
+				"   WHERE qir.MI_DTL_ID = ? AND qir.IS_REWORK = 0 AND qir.IS_LATEST = 1" +
+				"   AND NOT EXISTS (SELECT 1 FROM quality_inspection_hdr qih" +
+				"     WHERE qih.QI_ID = qir.QI_ID AND qih.CANCEL_FLAG = 1 AND qih.IS_LATEST = 1)) AS already_requested," +
+				" (SELECT COALESCE(RECEIVED_QTY,0) FROM material_inward_dtl WHERE MI_DTL_ID = ?) AS received_qty";
+			Map<String, Object> cov = this.jdbcTemplate.queryForMap(coverageQry, miId, miId, miId);
+			BigDecimal alreadyReq = new BigDecimal(cov.get("already_requested").toString());
+			BigDecimal receivedQty = new BigDecimal(cov.get("received_qty").toString());
+			BigDecimal newQty;
+			try {
+				newQty = new BigDecimal(qtyToBeInspected);
+			} catch (Exception ex) {
+				newQty = BigDecimal.ZERO;
+			}
+			if (alreadyReq.add(newQty).compareTo(receivedQty) > 0) {
+				logger.warn("QI request blocked (qty exceeds received) MI_DTL_ID: " + miId
+					+ " already=" + alreadyReq + " new=" + newQty + " received=" + receivedQty);
 				return 0;
 			}
 		}

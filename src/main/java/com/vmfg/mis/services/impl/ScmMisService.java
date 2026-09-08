@@ -14,6 +14,7 @@ import com.vmfg.general.response.ResponseAsMessage;
 import com.vmfg.general.response.ResponseMessageMap;
 import com.vmfg.inventory.entity.InvProdEntity;
 import com.vmfg.mis.dao.interfaces.IScmMisDAO;
+import com.vmfg.mis.entity.DrilldownEntity;
 import com.vmfg.mis.entity.GetIndentToPOEntity;
 import com.vmfg.mis.entity.GetSCMWidgetDtlEntity;
 import com.vmfg.mis.entity.ScmEmployeeIndentDtlsEntity;
@@ -118,6 +119,31 @@ public class ScmMisService implements IScmMisService {
 			
 		}catch(Exception ex) {
 			logger.error("getIndentToPO method  exception" + ex);
+		}
+		return returnList;
+	}
+
+	// Row-level drill-down backing the "Indent line items" dashboard tile — mirrors
+	// getSCMWidgetDtl's indentDtlCnt (via iScmMisDAO.getIndentDtlCount) so the modal this
+	// opens shows the same rows the count is derived from.
+	@Override
+	public ResponseAsList getIndentLineItemsDrill(ScmMisRequest scmMisReq) {
+		ResponseAsList returnList = new ResponseAsList();
+		try {
+			String month=scmMisReq.getMonthYear().split("-")[0];
+			String year=scmMisReq.getMonthYear().split("-")[1];
+			List<DrilldownEntity> list = iScmMisDAO.getIndentDtlList(scmMisReq.getPmHdrId(),scmMisReq.getTenantId(),scmMisReq.getEmpId(),month,year,scmMisReq.getLifeSpan(),scmMisReq.getPmId());
+			if (list.size() > 0) {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
+				returnList.setResponseMessage(ResponseMessageMap.success);
+			} else {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				returnList.setResponseMessage(ResponseMessageMap.noRecord);
+			}
+		}catch(Exception ex) {
+			logger.error("getIndentLineItemsDrill method exception" + ex);
 		}
 		return returnList;
 	}

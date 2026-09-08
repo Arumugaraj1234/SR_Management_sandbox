@@ -11,6 +11,8 @@ public interface IScmMisService {
 
 	ResponseAsList getIndentToPO(ScmMisRequest scmMisReq);
 
+	ResponseAsList getIndentLineItemsDrill(ScmMisRequest scmMisReq);
+
 	ResponseAsMessage getcostnegotiated(ScmMisRequest scmMisReq);
 
 	ResponseAsMessage getInventoryValue(ScmMisRequest scmMisReq);

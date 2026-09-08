@@ -214,7 +214,7 @@ public class AssemblyDAO implements IAssemblyDAO {
 							+ "    \r\n" + "    \r\n" + "FROM\r\n" + "    material_request_hdr mrh,\r\n"
 							+ "    employee_mst em\r\n" + "    \r\n" + "WHERE\r\n" + "    mrh.REQUESTED_BY = em.EMPLOYEE_ID\r\n"
 							+ "        AND mrh.PM_HDR_ID = '" + pmHdrId + "'\r\n" + "    AND mrh.TENANT_ID = '" + tenantId
-							+ "' order by mrh.MR_CODE, IS_COMPLETED , IS_CANCELLED";
+							+ "' order by mrh.MR_HDR_ID DESC";
 			}
 			list = this.jdbcTemplate.query(qry, new MaterialReqHdrRowMapper());
 			for (MaterialReqHdrEntity materialObj : list) {
@@ -523,77 +523,111 @@ public class AssemblyDAO implements IAssemblyDAO {
 		return rm;
 	}
 
+	// --- DEAD CODE (2026-09-08): getActualAvailableQty + getGrnQty were the "GRN received - all
+	// requests" reinvention of stock-on-hand used ONLY by AssemblyService.retriveFromStock. That
+	// formula double-counted GRN receipts (AND/OR precedence in the WHERE clause) and subtracted
+	// already-issued/completed requests, inflating the "Available Qty" column in the assembly
+	// Material Request dialog by 2x-3x. Replaced by getOpenReservedQty + trusting the on-hand value
+	// the main query already selects. Kept commented for reference / quick rollback.
+	/*
 	@Override
 	public BigDecimal getActualAvailableQty(String pmHdrId, String tenantId, String productCode, String InventoryCode) {
 		BigDecimal getActualAvailableQty = BigDecimal.ZERO;
-		
+
 		try {
-				String qry = "SELECT \r\n" + 
-						"    CASE\r\n" + 
-						"        WHEN COUNT(*) > 0 THEN sum(dtl.REQUESTED_QTY) \r\n" + 
-						"        ELSE 0\r\n" + 
-						"    END AS REQUESTED_QTY\r\n" + 
-						"FROM\r\n" + 
-						"    material_request_hdr hdr\r\n" + 
-						"        LEFT JOIN\r\n" + 
-						"    material_request_dtl dtl ON hdr.MR_HDR_ID = dtl.MR_HDR_ID\r\n" + 
-						"WHERE\r\n" + 
-						"    hdr.PM_HDR_ID = ?\r\n" + 
-						"        AND dtl.PRODUCT_ID = ?\r\n" + 
+				String qry = "SELECT \r\n" +
+						"    CASE\r\n" +
+						"        WHEN COUNT(*) > 0 THEN sum(dtl.REQUESTED_QTY) \r\n" +
+						"        ELSE 0\r\n" +
+						"    END AS REQUESTED_QTY\r\n" +
+						"FROM\r\n" +
+						"    material_request_hdr hdr\r\n" +
+						"        LEFT JOIN\r\n" +
+						"    material_request_dtl dtl ON hdr.MR_HDR_ID = dtl.MR_HDR_ID\r\n" +
+						"WHERE\r\n" +
+						"    hdr.PM_HDR_ID = ?\r\n" +
+						"        AND dtl.PRODUCT_ID = ?\r\n" +
 						"        AND INVENTORY_LOCATION_CODE = ? \r\n" +
-						"        AND hdr.TENANT_ID = ? and IS_CANCELLED = 0 \r\n" + 
+						"        AND hdr.TENANT_ID = ? and IS_CANCELLED = 0 \r\n" +
 						"ORDER BY MR_DTL_ID DESC\r\n ";
 				Map<String, Object> resultmap = this.jdbcTemplate.queryForMap(qry,pmHdrId,productCode,InventoryCode,tenantId);
 				System.out.println(resultmap.get("REQUESTED_QTY").toString());
 				getActualAvailableQty = new BigDecimal(resultmap.get("REQUESTED_QTY").toString());
-				
+
 		} catch (Exception ex) {
 			logger.error("getActualAvailableQty method Error" + ex);
 		}
 		return getActualAvailableQty;
 	}
-	
+
 	@Override
 	public BigDecimal getGrnQty(String pmHdrId, String tenantId, String productCode,String productId, String inventoryCode, String desc, String spec) {
 		BigDecimal qty = BigDecimal.ZERO;
-		
+
 		try {
-				String qry = "SELECT \r\n" + 
-						"    CASE\r\n" + 
-						"        WHEN COUNT(*) > 0 THEN SUM(gd.RECEIVED_QTY)\r\n" + 
-						"        ELSE 0\r\n" + 
-						"    END AS QTY\r\n" + 
-						"FROM\r\n" + 
-						"    grn_dtl gd\r\n" + 
-						"        INNER JOIN\r\n" + 
-						"    grn_hdr gh ON gd.GRN_HDR_ID = gh.GRN_HDR_ID\r\n" + 
-						"WHERE\r\n" + 
-						"    gh.TENANT_ID = ? AND gh.IS_LATEST=1\r\n" + 
-						"        AND gd.PRODUCT_ID = ?\r\n" + 
+				String qry = "SELECT \r\n" +
+						"    CASE\r\n" +
+						"        WHEN COUNT(*) > 0 THEN SUM(gd.RECEIVED_QTY)\r\n" +
+						"        ELSE 0\r\n" +
+						"    END AS QTY\r\n" +
+						"FROM\r\n" +
+						"    grn_dtl gd\r\n" +
+						"        INNER JOIN\r\n" +
+						"    grn_hdr gh ON gd.GRN_HDR_ID = gh.GRN_HDR_ID\r\n" +
+						"WHERE\r\n" +
+						"    gh.TENANT_ID = ? AND gh.IS_LATEST=1\r\n" +
+						"        AND gd.PRODUCT_ID = ?\r\n" +
 						"        AND gh.INVENTORY_LOCATION_CODE = ?\r\n " +
-						"        or gd.INDENT_DTL_ID IN (SELECT \r\n" + 
-						"            id.INDENT_DTL_ID\r\n" + 
-						"        FROM\r\n" + 
-						"            indent_dtl id\r\n" + 
-						"                INNER JOIN\r\n" + 
+						"        or gd.INDENT_DTL_ID IN (SELECT \r\n" +
+						"            id.INDENT_DTL_ID\r\n" +
+						"        FROM\r\n" +
+						"            indent_dtl id\r\n" +
+						"                INNER JOIN\r\n" +
 						"            indent_hdr ih ON id.INDENT_ID = ih.INDENT_ID\r\n" +
-						"    INNER JOIN\r\n" + 
+						"    INNER JOIN\r\n" +
 						"            grn_dtl grn ON id.INDENT_DTL_ID = grn.INDENT_DTL_ID"+
-						"        INNER JOIN\r\n" + 
+						"        INNER JOIN\r\n" +
 						"    grn_hdr ghdr ON grn.GRN_HDR_ID = ghdr.GRN_HDR_ID\r\n" +
-						"        WHERE\r\n" + 
-						"            ih.PROJECT_ID = ? and ghdr.TENANT_ID = ? AND ghdr.IS_LATEST=1 \r\n" + 
-						"                AND id.PRODUCT_CODE = ? AND id.DESCRIPTION = ? AND id.SPECIFICATION = ?\r\n" + 
+						"        WHERE\r\n" +
+						"            ih.PROJECT_ID = ? and ghdr.TENANT_ID = ? AND ghdr.IS_LATEST=1 \r\n" +
+						"                AND id.PRODUCT_CODE = ? AND id.DESCRIPTION = ? AND id.SPECIFICATION = ?\r\n" +
 						"                AND ih.TENANT_ID = ?);";
 				Map<String, Object> resultmap = this.jdbcTemplate.queryForMap(qry,tenantId,productId,inventoryCode,pmHdrId,tenantId,productCode,
 						desc, spec, tenantId);
 				System.out.println(resultmap.get("QTY").toString());
 				qty = new BigDecimal(resultmap.get("QTY").toString());
-				
+
 		} catch (Exception ex) {
 			logger.error("getGrnQty method Error" + ex);
 		}
 		return qty;
+	}
+	*/
+
+	@Override
+	public BigDecimal getOpenReservedQty(String pmHdrId, String tenantId, String productId, String inventoryCode) {
+		BigDecimal reserved = BigDecimal.ZERO;
+		try {
+				String qry = "SELECT \r\n" +
+						"    COALESCE(SUM(dtl.REQUESTED_QTY - dtl.ISSUED_QTY), 0) AS RESERVED_QTY\r\n" +
+						"FROM\r\n" +
+						"    material_request_hdr hdr\r\n" +
+						"        INNER JOIN\r\n" +
+						"    material_request_dtl dtl ON hdr.MR_HDR_ID = dtl.MR_HDR_ID\r\n" +
+						"WHERE\r\n" +
+						"    hdr.PM_HDR_ID = ?\r\n" +
+						"        AND hdr.TENANT_ID = ?\r\n" +
+						"        AND hdr.IS_COMPLETED = 0\r\n" +
+						"        AND hdr.IS_CANCELLED = 0\r\n" +
+						"        AND dtl.PRODUCT_ID = ?\r\n" +
+						"        AND dtl.INVENTORY_LOCATION_CODE = ?\r\n" +
+						"        AND (dtl.REQUESTED_QTY - dtl.ISSUED_QTY) > 0";
+				Map<String, Object> resultmap = this.jdbcTemplate.queryForMap(qry, pmHdrId, tenantId, productId, inventoryCode);
+				reserved = new BigDecimal(resultmap.get("RESERVED_QTY").toString());
+		} catch (Exception ex) {
+			logger.error("getOpenReservedQty method Error" + ex);
+		}
+		return reserved;
 	}
 
 

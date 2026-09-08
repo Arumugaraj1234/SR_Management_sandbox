@@ -117,6 +117,8 @@ public interface IDesignTaskDAO {
 	List<DocumentStatusMstEntity> getNextSeqandStatusByDoc(int currentSeq, String docType, String tenantId,
 			String docGrp);
 	
+	String getSeqByDocStatus(String docType, String docGrp, String docStatus, String tenantId);
+
 	int deleteTaskDtl(String teDtlId, String tenantId);
 
 	String getAssignedTo(String dtlId);

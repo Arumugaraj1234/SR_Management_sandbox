@@ -142,24 +142,31 @@ public class AssemblyService implements IAssemblyService {
 			list = iAssyDAO.retriveFromStock(retriveFromStock.getPmHdrId(), retriveFromStock.getPkaId(),
 					retriveFromStock.getPskaId(), retriveFromStock.getTenantId());
 			List<RetriveFromStockEntity> finalList = new ArrayList<RetriveFromStockEntity>();
-			for(int i=0;i<list.size();i++) {
-				logger.info("retriveFromStock mainList " + list.get(i).getProductId() + " " + list.get(i).getProductode() + " " + list.get(i).getInvLocationCode());
-				BigDecimal grnQty=iAssyDAO.getGrnQty(retriveFromStock.getPmHdrId(), retriveFromStock.getTenantId(),list.get(i).getProductode(),
-						list.get(i).getProductId(),list.get(i).getInvLocationCode(), list.get(i).getProductDesc(), list.get(i).getSpecification());
-				BigDecimal mrReqQty = iAssyDAO.getActualAvailableQty(retriveFromStock.getPmHdrId(), retriveFromStock.getTenantId(), list.get(i).getProductId(),
-						list.get(i).getInvLocationCode());
-				BigDecimal availQty=grnQty.subtract(mrReqQty);
-				logger.info("retriveFromStock Service start " + availQty + " " + list.get(i).getProductode());
-				
-				if(availQty.compareTo(BigDecimal.ZERO) >0) {
-					list.get(i).setAvailableQty(null);
-					list.get(i).setAvailableQty(availQty.toString());
-					finalList.add(list.get(i));
-					logger.info("retriveFromStock Service avail qty " + list.get(i).getAvailableQty() + " " + list.get(i).getProductode());
-					logger.info("Product ID " + list.get(i).getProductId());
+			for (int i = 0; i < list.size(); i++) {
+				RetriveFromStockEntity row = list.get(i);
+				logger.info("retriveFromStock mainList " + row.getProductId() + " " + row.getProductode() + " "
+						+ row.getInvLocationCode());
+
+				// AVAILABLE_QTY from the main query is the inventory on-hand for this product+location
+				// (SUM(inventory_product_dtl.PRODUCT_QUANTITY_ON_HAND), grouped by location+product).
+				BigDecimal onHand = new BigDecimal(
+						(row.getAvailableQty() == null || row.getAvailableQty().trim().isEmpty())
+								? "0" : row.getAvailableQty().trim());
+
+				// Net qty still owed to OPEN (not completed, not cancelled) material requests.
+				BigDecimal openReserved = iAssyDAO.getOpenReservedQty(retriveFromStock.getPmHdrId(),
+						retriveFromStock.getTenantId(), row.getProductId(), row.getInvLocationCode());
+
+				BigDecimal availQty = onHand.subtract(openReserved);
+				logger.info("retriveFromStock availQty " + availQty + " (onHand " + onHand + " - reserved "
+						+ openReserved + ") " + row.getProductode());
+
+				if (availQty.compareTo(BigDecimal.ZERO) > 0) {
+					row.setAvailableQty(availQty.toString());
+					finalList.add(row);
 				}
 			}
-			if (list.size() > 0) {
+			if (finalList.size() > 0) {
 				returnList.setResponseData(finalList);
 				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
 				returnList.setResponseMessage(ResponseMessageMap.success);
