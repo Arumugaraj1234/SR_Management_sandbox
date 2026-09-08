@@ -34,7 +34,10 @@ public interface IAssemblyDAO {
 	int insertMrDtl(int responseMrHdrId, String poductId, String requestedQty, String availableQty, String tenantId,
 			String inventoryLocationCode);
 
-	BigDecimal getActualAvailableQty(String pmHdrId,String tenantId,String productCode, String InventoryCode);
+	// DEAD CODE (2026-09-08) - replaced by getOpenReservedQty, see AssemblyDAO for rationale.
+	// BigDecimal getActualAvailableQty(String pmHdrId,String tenantId,String productCode, String InventoryCode);
+
+	BigDecimal getOpenReservedQty(String pmHdrId, String tenantId, String productId, String inventoryCode);
 
 	ResponseAsMessage IsStagingStatusForQuality(String hdrId, String tenantId);
 
@@ -44,7 +47,8 @@ public interface IAssemblyDAO {
 
 	int checkIsStagingStatus(String hdrId, String tenantId);
 
-	BigDecimal getGrnQty(String pmHdrId, String tenantId, String productCode, String productId, String InventoryCode, String desc, String spec);
+	// DEAD CODE (2026-09-08) - replaced by getOpenReservedQty, see AssemblyDAO for rationale.
+	// BigDecimal getGrnQty(String pmHdrId, String tenantId, String productCode, String productId, String InventoryCode, String desc, String spec);
 
 	String getIsInternalOrNot(String pmHdrId);
 
