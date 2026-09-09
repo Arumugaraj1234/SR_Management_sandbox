@@ -21,12 +21,14 @@ import com.vmfg.scm.entity.ProjectDtlsEntity;
 import com.vmfg.scm.entity.ProjectHdrDtlEntity;
 import com.vmfg.scm.entity.ScmHdrBasedDtlEntity;
 import com.vmfg.scm.entity.ScmHdrEntity;
+import com.vmfg.scm.entity.StationDropDownEntity;
 import com.vmfg.scm.request.IndentGrpRetRequest;
 import com.vmfg.scm.request.ScmHdrBasedDtlRequest;
 import com.vmfg.scm.rowmapper.IndentGroupHdrAndDtlRowMapper;
 import com.vmfg.scm.rowmapper.IndentHdrDropDownRowMapper;
 import com.vmfg.scm.rowmapper.ProjectDtlsRowMapper;
 import com.vmfg.scm.rowmapper.ScmHdrRowMapper;
+import com.vmfg.scm.rowmapper.StationDropDownRowMapper;
 
 @Transactional
 @Repository
@@ -279,6 +281,109 @@ public class IndentManagementDAO implements IIndentManagementDAO {
 		}
 		return list;
 
+	}
+
+	// Which indent statuses count as "groupable" mirrors the indent dropdown: "5" (internal) shows
+	// SCM Accepted / closed indents (DS070, DS077); everything else shows SCM Verified (DS020).
+	private String groupableIndentStatusIn(String getIndent) {
+		return "5".equals(getIndent) ? "'DS070','DS077'" : "'DS020'";
+	}
+
+	@Override
+	public List<StationDropDownEntity> getStationsForGrouping(String projectId, String empId, String tenantId,
+			String getIndent) {
+		List<StationDropDownEntity> list = new ArrayList<StationDropDownEntity>();
+		try {
+			String qry = "SELECT DISTINCT\n" +
+					"    ihdr.PKA_ID AS PKA_ID,\n" +
+					"    pkam.PK_DESC AS PK_DESC\n" +
+					"FROM indent_hdr ihdr\n" +
+					"INNER JOIN indent_dtl dtl ON dtl.INDENT_ID = ihdr.INDENT_ID\n" +
+					"INNER JOIN project_hdr ph ON ph.PM_HDR_ID = ihdr.PROJECT_ID\n" +
+					"INNER JOIN project_key_area pka ON pka.PKA_ID = ihdr.PKA_ID\n" +
+					"INNER JOIN project_key_area_mst pkam ON pkam.PK_ID = pka.PK_ID\n" +
+					"WHERE\n" +
+					"    ihdr.PROJECT_ID = ?\n" +
+					"    AND ihdr.TENANT_ID = ?\n" +
+					"    AND ihdr.SEQUENCE_STATUS IN (" + groupableIndentStatusIn(getIndent) + ")\n" +
+					// still has un-allocated qty on at least one line
+					"    AND (dtl.QTY - COALESCE((SELECT SUM(g.QTY) FROM indent_grp_dtl g\n" +
+					"        WHERE g.INDENT_DTL_ID = dtl.INDENT_DTL_ID), 0)) > 0\n" +
+					"    AND (\n" +
+					"        (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\n" +
+					"            SELECT 1 FROM scm_hdr sch\n" +
+					"            INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\n" +
+					"            WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\n" +
+					"                AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\n" +
+					"        ))\n" +
+					"        OR\n" +
+					"        (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\n" +
+					"            SELECT 1 FROM indent_assign_team iat\n" +
+					"            WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\n" +
+					"        ))\n" +
+					"    )\n" +
+					"ORDER BY pkam.PK_DESC";
+			list = this.jdbcTemplate.query(qry, new StationDropDownRowMapper(), projectId, tenantId, empId, empId);
+		} catch (Exception ex) {
+			logger.error("getStationsForGrouping Method Exception --->" + ex);
+		}
+		return list;
+	}
+
+	@Override
+	public List<IndentGroupHdrAndDtlEntity> getIndentGrpNewProdByStation(IndentGrpRetRequest indentGrpReq) {
+		List<IndentGroupHdrAndDtlEntity> list = null;
+		try {
+
+			String getQ = "SELECT\n" +
+					"    dtl.*,\n" +
+					"    dtl.QTY AS INDENT_QTY,\n" +
+					"    ihdr.INDENT_CODE AS INDENT_CODE,\n" +
+					"    um.UOM_LONG_DESCRIPTION AS UOM,\n" +
+					"    COALESCE(SUM(gdtl.QTY), 0) AS INDENT_GRP_QTY,\n" +
+					"    (dtl.QTY - COALESCE(SUM(gdtl.QTY), 0)) AS DIFFERENCE_QTY\n" +
+					"FROM indent_dtl dtl\n" +
+					"LEFT JOIN indent_grp_dtl gdtl\n" +
+					"    ON dtl.INDENT_DTL_ID = gdtl.INDENT_DTL_ID\n" +
+					"INNER JOIN uom_mst um\n" +
+					"    ON dtl.UNIT = um.UOM_CODE\n" +
+					"INNER JOIN indent_hdr ihdr\n" +
+					"    ON ihdr.INDENT_ID = dtl.INDENT_ID\n" +
+					"INNER JOIN project_hdr iph\n" +
+					"    ON iph.PM_HDR_ID = ihdr.PROJECT_ID\n" +
+					// Same team-visibility rule as getIndentGrpNewProd, just scoped to every eligible
+					// indent under one station (PKA_ID) rather than a single indent id.
+					"WHERE\n" +
+					"    ihdr.PKA_ID = ?\n" +
+					"    AND dtl.TENANT_ID = ?\n" +
+					"    AND ihdr.SEQUENCE_STATUS IN (" + groupableIndentStatusIn(indentGrpReq.getGetIndent()) + ")\n" +
+					"    AND (\n" +
+					"        (iph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\n" +
+					"            SELECT 1 FROM scm_hdr sch\n" +
+					"            INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\n" +
+					"            WHERE sch.PM_HDR_ID = iph.PM_HDR_ID AND pat.PM_ID = '5'\n" +
+					"                AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\n" +
+					"        ))\n" +
+					"        OR\n" +
+					"        (iph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\n" +
+					"            SELECT 1 FROM indent_assign_team iat\n" +
+					"            WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\n" +
+					"        ))\n" +
+					"    )\n" +
+					"GROUP BY\n" +
+					"    dtl.INDENT_DTL_ID, ihdr.INDENT_ID, ihdr.INDENT_CODE\n" +
+					"HAVING\n" +
+					"    SUM(gdtl.QTY) < dtl.QTY\n" +
+					"    OR SUM(gdtl.QTY) IS NULL;\n";
+
+			RowMapper<IndentGroupHdrAndDtlEntity> dtlrm = new IndentGroupHdrAndDtlRowMapper();
+
+			list = this.jdbcTemplate.query(getQ, dtlrm, indentGrpReq.getPkaId(), indentGrpReq.getTenantId(),
+					indentGrpReq.getEmpId(), indentGrpReq.getEmpId());
+		} catch (Exception ex) {
+			logger.error("getIndentGrpNewProdByStation Method Exception --->" + ex);
+		}
+		return list;
 	}
 
 	@Override

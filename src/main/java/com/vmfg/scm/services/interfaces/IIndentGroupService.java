@@ -19,6 +19,9 @@ import com.vmfg.scm.request.getIndentQtyDtlRequest;
 public interface IIndentGroupService {
 	ResponseAsList getIndentGroupDetails(IndentGrpDtlRequest indentGrpDtlReq);
 
+	// Per-indent breakdown for one group (hdrId = IG_HDR_ID) - the "ⓘ" popup on the PJS list.
+	ResponseAsList getPjsIndentBreakdown(IdAndTenantIdRequest idAndTenantIdReq);
+
 	ResponseAsMessage delIndentGrpDtl(IndentGrpDelRequest indentGrpDtlReq);
 
 	ResponseAsList getIndentGroupHdrAndDtl(IndentGrpDelRequest indentGrpDtlReq);

@@ -50,6 +50,20 @@ public class IndentGroupController {
 		return new ResponseEntity<ResponseAsList>(indentGrpDtls, HttpStatus.OK);
 	}
 
+	@CrossOrigin(maxAge = 3600)
+	@PostMapping("getPjsIndentBreakdown")
+	public ResponseEntity<ResponseAsList> getPjsIndentBreakdown(@RequestBody IdAndTenantIdRequest idAndTenantIdReq) {
+		logger.debug("getPjsIndentBreakdown   method Start");
+		ResponseAsList resp = null;
+		try {
+			resp = iIndentGroupService.getPjsIndentBreakdown(idAndTenantIdReq);
+		} catch (Exception ex) {
+			logger.error("getPjsIndentBreakdown  method  exception" + ex);
+		}
+		logger.debug("getPjsIndentBreakdown   method end");
+		return new ResponseEntity<ResponseAsList>(resp, HttpStatus.OK);
+	}
+
 
 	@CrossOrigin(maxAge = 3600)
 	@PostMapping("delIndentGrpDtl")

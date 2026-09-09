@@ -102,6 +102,34 @@ public class IndentManagementController {
 	}
 	
 	@CrossOrigin(maxAge = 3600)
+	@PostMapping("getStationsForGrouping")
+	public ResponseEntity<ResponseAsList> getStationsForGrouping(@RequestBody getIndentHdrRequest projectIdRequest) {
+		logger.info("getStationsForGrouping Controller  method Start");
+		ResponseAsList list = null;
+		try {
+			list = iIndentManagementService.getStationsForGrouping(projectIdRequest);
+		} catch (Exception ex) {
+			logger.error("getStationsForGrouping Controller  method  exception:" + ex);
+		}
+		logger.info("getStationsForGrouping Controller  method end");
+		return new ResponseEntity<ResponseAsList>(list, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
+	@PostMapping("getIndentGrpNewProdByStation")
+	public ResponseEntity<ResponseAsList> getIndentGrpNewProdByStation(@RequestBody IndentGrpRetRequest indentGrpReq) {
+		logger.info("getIndentGrpNewProdByStation Controller  method Start");
+		ResponseAsList list = null;
+		try {
+			list = iIndentManagementService.getIndentGrpNewProdByStation(indentGrpReq);
+		} catch (Exception ex) {
+			logger.error("getIndentGrpNewProdByStation Controller  method  exception:" + ex);
+		}
+		logger.info("getIndentGrpNewProdByStation Controller  method end");
+		return new ResponseEntity<ResponseAsList>(list, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
 	@PostMapping("getScmHdrBasedDtl")
 	public ResponseEntity<ResponseAsList> getScmHdrBasedDtl(@RequestBody ScmHdrBasedDtlRequest scmHdrBasedDtl) {
 		logger.info("getScmHdrBasedDtl   method Start");

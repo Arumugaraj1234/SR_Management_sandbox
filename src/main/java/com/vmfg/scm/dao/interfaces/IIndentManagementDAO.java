@@ -7,6 +7,7 @@ import com.vmfg.scm.entity.IndentGroupHdrAndDtlEntity;
 import com.vmfg.scm.entity.IndentHdrDropDownEntity;
 import com.vmfg.scm.entity.ProjectDtlsEntity;
 import com.vmfg.scm.entity.ScmHdrBasedDtlEntity;
+import com.vmfg.scm.entity.StationDropDownEntity;
 import com.vmfg.scm.request.IndentGrpRetRequest;
 import com.vmfg.scm.request.ScmHdrBasedDtlRequest;
 
@@ -54,5 +55,12 @@ public interface IIndentManagementDAO {
 	int indentVerCheck(String indentId, String tenantId);
 
 	List<IndentHdrDropDownEntity> getIsInternalOneIndents(String empId, String pmId, String projectId, String tenantId);
+
+	// Station-based PJS grouping (NEW-flow). Stations of a project that still have at least one
+	// groupable item across their eligible indents, for the Create Indent Group station dropdown.
+	List<StationDropDownEntity> getStationsForGrouping(String projectId, String empId, String tenantId, String getIndent);
+
+	// Groupable items (un-allocated qty remaining) from every eligible indent under one station.
+	List<IndentGroupHdrAndDtlEntity> getIndentGrpNewProdByStation(IndentGrpRetRequest indentGrpReq);
 
 }

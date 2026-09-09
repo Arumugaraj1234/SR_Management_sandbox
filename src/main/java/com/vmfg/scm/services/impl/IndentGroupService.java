@@ -220,6 +220,27 @@ public class IndentGroupService implements IIndentGroupService {
 	}
 
 	@Override
+	public ResponseAsList getPjsIndentBreakdown(IdAndTenantIdRequest idAndTenantIdReq) {
+		ResponseAsList returnList = new ResponseAsList();
+		try {
+			List<com.vmfg.scm.entity.PjsIndentBreakdownEntity> list = iIndentGroupDAO
+					.getPjsIndentBreakdown(idAndTenantIdReq.getHdrId(), idAndTenantIdReq.getTenantId());
+			if (list != null && list.size() > 0) {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
+				returnList.setResponseMessage(ResponseMessageMap.success);
+			} else {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				returnList.setResponseMessage(ResponseMessageMap.noRecord);
+			}
+		} catch (Exception ex) {
+			logger.error("getPjsIndentBreakdown error---> " + ex);
+		}
+		return returnList;
+	}
+
+	@Override
 	public ResponseAsMessage delIndentGrpDtl(IndentGrpDelRequest indentGrpDtlReq) {
 		int del = 0;
 		int lastCountCheck = 0;

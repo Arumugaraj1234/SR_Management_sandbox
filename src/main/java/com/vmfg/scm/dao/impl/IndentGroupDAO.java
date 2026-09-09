@@ -32,12 +32,14 @@ import com.vmfg.scm.entity.IndentGrpScpVenEntity;
 import com.vmfg.scm.entity.IndentGrpScpVenPtEntity;
 import com.vmfg.scm.entity.IndentGrpScsStatusEntity;
 import com.vmfg.scm.entity.IndentInsertGrpDtlRequest;
+import com.vmfg.scm.entity.PjsIndentBreakdownEntity;
 import com.vmfg.scm.entity.ScpDtlsEntity;
 import com.vmfg.scm.request.IndentGrpDelRequest;
 import com.vmfg.scm.request.IndentInsertGrpRequest;
 import com.vmfg.scm.request.IndentTemplateNameRequest;
 import com.vmfg.scm.rowmapper.IndentGroupDetailsRowMapper;
 import com.vmfg.scm.rowmapper.IndentGroupHdrAndDtlRowMapper;
+import com.vmfg.scm.rowmapper.PjsIndentBreakdownRowMapper;
 import com.vmfg.scm.rowmapper.IndentGrpScpDtlRowMapper;
 import com.vmfg.scm.rowmapper.IndentGrpScpRowMapper;
 import com.vmfg.scm.rowmapper.IndentGrpScpVenDtlRowMapper;
@@ -67,21 +69,26 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 				byIndentId="AND ind.INDENT_ID ='"+indentId+"' ";
 			}
 
-			String retQry = "SELECT DISTINCT \n" +
+			// One row per group (IG_HDR_ID). A group can span several indents in the same station
+			// (NEW-flow station grouping), so the per-indent columns are aggregated: INDENT_CODE /
+			// Indent Type / Sub Assembly list every contributing value; INDENT_ID is the lowest one
+			// as a representative for the screens that still expect a single indent.
+			String retQry = "SELECT \n" +
 					"    hdr.IG_HDR_ID, \n" +
 					"    hdr.CREATED_BY, \n" +
 					"    mst.EMPLOYEE_FIRSTNAME,\n" +
-					"    inh.INDENT_ID, \n" +
-					"    inh.INDENT_CODE, \n" +
+					"    MIN(inh.INDENT_ID) AS INDENT_ID, \n" +
+					"    COUNT(DISTINCT inh.INDENT_ID) AS INDENT_COUNT, \n" +
+					"    GROUP_CONCAT(DISTINCT inh.INDENT_CODE ORDER BY inh.INDENT_CODE SEPARATOR ', ') AS INDENT_CODE, \n" +
 					"    hdr.GROUP_NAME, \n" +
-					"    inh.SBC_CODE, \n" +
-					"    sb.SBC_DESC, \n" +
-					"    inh.EXPECTED_DELIVERY_DATE, \n" +
-					"    inh.PKA_ID, \n" +
-					"    pkam.PK_DESC, \n" +
-					"    inh.PKSA_ID, \n" +
-					"    pksam.PSK_DESC, \n" +
-					"    inh.TARGET_VALUE, \n" +
+					"    MIN(inh.SBC_CODE) AS SBC_CODE, \n" +
+					"    GROUP_CONCAT(DISTINCT sb.SBC_DESC ORDER BY sb.SBC_DESC SEPARATOR ', ') AS SBC_DESC, \n" +
+					"    MIN(inh.EXPECTED_DELIVERY_DATE) AS EXPECTED_DELIVERY_DATE, \n" +
+					"    MAX(inh.PKA_ID) AS PKA_ID, \n" +
+					"    MAX(pkam.PK_DESC) AS PK_DESC, \n" +
+					"    MIN(inh.PKSA_ID) AS PKSA_ID, \n" +
+					"    GROUP_CONCAT(DISTINCT pksam.PSK_DESC ORDER BY pksam.PSK_DESC SEPARATOR ', ') AS PSK_DESC, \n" +
+					"    MAX(inh.TARGET_VALUE) AS TARGET_VALUE, \n" +
 					"    hdr.IS_INVENTORY\n" +
 					"FROM \n" +
 					"    indent_grp_hdr hdr\n" +
@@ -122,7 +129,8 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 					"            WHERE ind.INDENT_DTL_ID = iat.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\n" +
 					"        ))\n" +
 					"    )\n" +
-					"    " + byIndentId + ";";
+					"    " + byIndentId + "\n" +
+					"GROUP BY hdr.IG_HDR_ID, hdr.CREATED_BY, mst.EMPLOYEE_FIRSTNAME, hdr.GROUP_NAME, hdr.IS_INVENTORY;";
 
 //			String retQry = "SELECT DISTINCT \n" +
 //					"    hdr.IG_HDR_ID, \n" +
@@ -182,6 +190,32 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	}
 
 	@Override
+	public List<PjsIndentBreakdownEntity> getPjsIndentBreakdown(String igHdrId, String tenantId) {
+		List<PjsIndentBreakdownEntity> list = new ArrayList<PjsIndentBreakdownEntity>();
+		try {
+			String qry = "SELECT \n" +
+					"    inh.INDENT_ID AS INDENT_ID,\n" +
+					"    inh.INDENT_CODE AS INDENT_CODE,\n" +
+					"    sb.SBC_DESC AS INDENT_TYPE,\n" +
+					"    pksam.PSK_DESC AS SUB_ASSEMBLY,\n" +
+					"    COUNT(dtl.IG_DTL_ID) AS PART_COUNT\n" +
+					"FROM indent_grp_dtl dtl\n" +
+					"INNER JOIN indent_dtl ind ON ind.INDENT_DTL_ID = dtl.INDENT_DTL_ID\n" +
+					"INNER JOIN indent_hdr inh ON inh.INDENT_ID = ind.INDENT_ID\n" +
+					"INNER JOIN sales_budget_category sb ON sb.SBC_CODE = inh.SBC_CODE\n" +
+					"INNER JOIN project_key_sub_area pksa ON pksa.PKSA_ID = inh.PKSA_ID\n" +
+					"INNER JOIN project_key_sub_area_mst pksam ON pksam.PSK_ID = pksa.PSK_ID\n" +
+					"WHERE dtl.IG_HDR_ID = ? AND dtl.TENANT_ID = ?\n" +
+					"GROUP BY inh.INDENT_ID, inh.INDENT_CODE, sb.SBC_DESC, pksam.PSK_DESC\n" +
+					"ORDER BY inh.INDENT_CODE";
+			list = this.jdbcTemplate.query(qry, new PjsIndentBreakdownRowMapper(), igHdrId, tenantId);
+		} catch (Exception ex) {
+			logger.error("getPjsIndentBreakdown error---> " + ex);
+		}
+		return list;
+	}
+
+	@Override
 	public int delIndentGrpDtl(IndentGrpDelRequest indentGrpDtlReq) {
 		int res = 0;
 		try {
@@ -214,27 +248,39 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	public List<IndentGroupHdrAndDtlEntity> getIndentGroupHdrAndDtl(IndentGrpDelRequest indentGrpDtlReq) {
 		List<IndentGroupHdrAndDtlEntity> returnList = new ArrayList<IndentGroupHdrAndDtlEntity>();
 		try {
-			String retQry = "SELECT \r\n" + 
-					"    idtl.PRODUCT_CODE,\r\n" + 
-					"    idtl.DESCRIPTION,\r\n" + 
-					"    idtl.SPECIFICATION,\r\n" + 
-					"    idtl.MAKE,\r\n" + 
-					"    idtl.WEIGHT,\r\n" + 
-					"    idtl.MATERIAL,\r\n" + 
-					"    idtl.REMARKS,\r\n" + 
-					"    dtl.QTY AS INDENT_GRP_QTY,\r\n" + 
-					"    idtl.QTY AS INDENT_QTY,\r\n" + 
-//					"    idtl.qty - dtl.QTY AS RESP_QTY,\r\n" + 
-					"    dtl.IG_DTL_ID,idtl.INDENT_DTL_ID,\r\n" + 
-					"    uom.UOM_SHORT_DESCRIPTION AS UOM\r\n" + 
-					"FROM\r\n" + 
-					"    indent_grp_dtl dtl,\r\n" + 
-					"    indent_dtl idtl,\r\n" + 
-					"    uom_mst uom\r\n" + 
-					"WHERE\r\n" + 
-					"    dtl.INDENT_DTL_ID = idtl.INDENT_DTL_ID\r\n" + 
-					"        AND idtl.UNIT = uom.UOM_CODE\r\n" + 
-					"        AND dtl.IG_HDR_ID = ?\r\n" + 
+			String retQry = "SELECT \r\n" +
+					"    idtl.PRODUCT_CODE,\r\n" +
+					"    idtl.DESCRIPTION,\r\n" +
+					"    idtl.SPECIFICATION,\r\n" +
+					"    idtl.MAKE,\r\n" +
+					"    idtl.WEIGHT,\r\n" +
+					"    idtl.MATERIAL,\r\n" +
+					"    idtl.REMARKS,\r\n" +
+					"    dtl.QTY AS INDENT_GRP_QTY,\r\n" +
+					"    idtl.QTY AS INDENT_QTY,\r\n" +
+//					"    idtl.qty - dtl.QTY AS RESP_QTY,\r\n" +
+					"    dtl.IG_DTL_ID,idtl.INDENT_DTL_ID,\r\n" +
+					"    idtl.INDENT_ID AS INDENT_ID,\r\n" +
+					"    ih.INDENT_CODE AS INDENT_CODE,\r\n" +
+					"    sb.SBC_DESC AS INDENT_TYPE,\r\n" +
+					"    pksam.PSK_DESC AS SUB_ASSEMBLY,\r\n" +
+					"    uom.UOM_SHORT_DESCRIPTION AS UOM\r\n" +
+					"FROM\r\n" +
+					"    indent_grp_dtl dtl,\r\n" +
+					"    indent_dtl idtl,\r\n" +
+					"    uom_mst uom,\r\n" +
+					"    indent_hdr ih,\r\n" +
+					"    sales_budget_category sb,\r\n" +
+					"    project_key_sub_area pksa,\r\n" +
+					"    project_key_sub_area_mst pksam\r\n" +
+					"WHERE\r\n" +
+					"    dtl.INDENT_DTL_ID = idtl.INDENT_DTL_ID\r\n" +
+					"        AND idtl.UNIT = uom.UOM_CODE\r\n" +
+					"        AND ih.INDENT_ID = idtl.INDENT_ID\r\n" +
+					"        AND sb.SBC_CODE = ih.SBC_CODE\r\n" +
+					"        AND pksa.PKSA_ID = ih.PKSA_ID\r\n" +
+					"        AND pksam.PSK_ID = pksa.PSK_ID\r\n" +
+					"        AND dtl.IG_HDR_ID = ?\r\n" +
 					"        AND dtl.TENANT_ID = ?";
 			RowMapper<IndentGroupHdrAndDtlEntity> dtlrm = new IndentGroupHdrAndDtlRowMapper();
 

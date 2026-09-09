@@ -22,6 +22,8 @@ public class IndentGroupDetailsEntity implements Serializable {
 	private String igHdrId;
 	private String indentId;
 	private String indentCode;
+	// Number of distinct indents contributing to this group (>1 for station-based grouping).
+	private String indentCount;
 	private String pkId;
 	private String pkDesc;
 	private String pskId;
