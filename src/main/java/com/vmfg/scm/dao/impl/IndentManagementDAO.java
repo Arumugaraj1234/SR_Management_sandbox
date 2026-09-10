@@ -339,6 +339,8 @@ public class IndentManagementDAO implements IIndentManagementDAO {
 					"    dtl.*,\n" +
 					"    dtl.QTY AS INDENT_QTY,\n" +
 					"    ihdr.INDENT_CODE AS INDENT_CODE,\n" +
+					"    sb.SBC_DESC AS INDENT_TYPE,\n" +
+					"    pksam.PSK_DESC AS SUB_ASSEMBLY,\n" +
 					"    um.UOM_LONG_DESCRIPTION AS UOM,\n" +
 					"    COALESCE(SUM(gdtl.QTY), 0) AS INDENT_GRP_QTY,\n" +
 					"    (dtl.QTY - COALESCE(SUM(gdtl.QTY), 0)) AS DIFFERENCE_QTY\n" +
@@ -351,6 +353,12 @@ public class IndentManagementDAO implements IIndentManagementDAO {
 					"    ON ihdr.INDENT_ID = dtl.INDENT_ID\n" +
 					"INNER JOIN project_hdr iph\n" +
 					"    ON iph.PM_HDR_ID = ihdr.PROJECT_ID\n" +
+					"INNER JOIN sales_budget_category sb\n" +
+					"    ON sb.SBC_CODE = ihdr.SBC_CODE\n" +
+					"INNER JOIN project_key_sub_area pksa\n" +
+					"    ON pksa.PKSA_ID = ihdr.PKSA_ID\n" +
+					"INNER JOIN project_key_sub_area_mst pksam\n" +
+					"    ON pksam.PSK_ID = pksa.PSK_ID\n" +
 					// Same team-visibility rule as getIndentGrpNewProd, just scoped to every eligible
 					// indent under one station (PKA_ID) rather than a single indent id.
 					"WHERE\n" +
@@ -371,7 +379,7 @@ public class IndentManagementDAO implements IIndentManagementDAO {
 					"        ))\n" +
 					"    )\n" +
 					"GROUP BY\n" +
-					"    dtl.INDENT_DTL_ID, ihdr.INDENT_ID, ihdr.INDENT_CODE\n" +
+					"    dtl.INDENT_DTL_ID, ihdr.INDENT_ID, ihdr.INDENT_CODE, sb.SBC_DESC, pksam.PSK_DESC\n" +
 					"HAVING\n" +
 					"    SUM(gdtl.QTY) < dtl.QTY\n" +
 					"    OR SUM(gdtl.QTY) IS NULL;\n";
