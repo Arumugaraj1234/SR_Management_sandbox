@@ -171,7 +171,12 @@ public class AssemblyService implements IAssemblyService {
 				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
 				returnList.setResponseMessage(ResponseMessageMap.success);
 			} else {
-				returnList.setResponseData(list);
+				// Everything is already fully reserved by other open requests - return the empty,
+				// correctly-computed list, NOT the raw un-reduced on-hand list. The frontend
+				// (getInsertMaterialReqDetls) doesn't check responseCode, so returning stale data
+				// here let a fully "Request All"'d item look available again (root cause of the
+				// project 1096 duplicate MR) - see [[project_duplicate_material_request_bug]].
+				returnList.setResponseData(finalList);
 				returnList.setResponseCode(ResponseMessageMap.responseCodeNotOk);
 				returnList.setResponseMessage(ResponseMessageMap.noRecord);
 			}
