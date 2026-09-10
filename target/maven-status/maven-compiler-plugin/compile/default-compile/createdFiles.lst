@@ -82,6 +82,7 @@ com/vmfg/scm/dao/impl/PoDAO$3.class
 com/vmfg/assembly/RowMapper/MaterialReturnAcceptRowMapper.class
 com/vmfg/project/rowmapper/BudgetExcessAssSubAssRowMapper.class
 com/vmfg/task/rowmapper/GetTaskTemplateHdrRowMapper.class
+com/vmfg/scm/rowmapper/PjsIndentBreakdownRowMapper.class
 com/vmfg/task/entity/GetAllTaskTypeEntity.class
 com/vmfg/util/entity/EmailApprovalInfo.class
 com/vmfg/sales/services/interfaces/ILandingPageService.class
@@ -249,6 +250,7 @@ com/vmfg/project/request/BudgetExcessStatusDtlReq.class
 com/vmfg/util/entity/PPMDetailsRowMapper.class
 com/vmfg/general/request/DeptByPMRequest.class
 com/vmfg/util/entity/CmnProductRmMapRowMapper.class
+com/vmfg/scm/entity/StationDropDownEntity.class
 com/vmfg/scm/rowmapper/PoHdrRowMapper.class
 com/vmfg/export/entity/DocumentFilePathEntity.class
 com/vmfg/mis/entity/QualityWidgetDtlEntity.class
@@ -857,6 +859,7 @@ com/vmfg/task/request/GetTaskCategoryByPmHdrIdRequest.class
 com/vmfg/timesheet/rowmapper/TimeSheetRequestsRowMapper.class
 com/vmfg/util/dao/IGetPropertyValueDAO.class
 com/vmfg/tally/service/PaymentSyncService.class
+com/vmfg/scm/entity/PjsIndentBreakdownEntity.class
 com/vmfg/mis/services/interfaces/iReportSchedulerService.class
 com/vmfg/task/dao/impl/DesignTaskDAO.class
 com/vmfg/timesheet/response/GetTimeSheetCategoryEntity.class
@@ -1356,6 +1359,7 @@ com/vmfg/sales/request/getFileConfigDtlRequest.class
 com/vmfg/util/entity/PPMDailyRowmapper.class
 com/vmfg/general/dao/interfaces/IDocumentManagementDAO.class
 com/vmfg/project/request/ProjectHdrRequest.class
+com/vmfg/scm/rowmapper/StationDropDownRowMapper.class
 com/vmfg/master/controller/FileUploadConfigController.class
 com/vmfg/general/request/GetEmployeeByDepartmentRequest.class
 com/vmfg/assembly/request/MaterialIssueHdrRequest.class

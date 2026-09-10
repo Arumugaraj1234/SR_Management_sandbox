@@ -13,6 +13,7 @@ import com.vmfg.scm.entity.IndentGrpScpVenEntity;
 import com.vmfg.scm.entity.IndentGrpScpVenPtEntity;
 import com.vmfg.scm.entity.IndentGrpScsStatusEntity;
 import com.vmfg.scm.entity.IndentInsertGrpDtlRequest;
+import com.vmfg.scm.entity.PjsIndentBreakdownEntity;
 import com.vmfg.scm.entity.ScpDtlsEntity;
 import com.vmfg.scm.request.IndentGrpDelRequest;
 import com.vmfg.scm.request.IndentInsertGrpRequest;
@@ -153,6 +154,9 @@ public interface IIndentGroupDAO {
 
 	List<IndentGroupDetailsEntity> getIndentGroupRetrieve(String tenantId, String fromdate, String todate,
 			String indentId, String projectId, String empId);
+
+	// Per-indent breakdown for a group (the "ⓘ" popup on the PJS list): one row per contributing indent.
+	List<PjsIndentBreakdownEntity> getPjsIndentBreakdown(String igHdrId, String tenantId);
 
 	String getLastUpdatedDateTime(String indentDtlId, String tenantId, String type);
 

@@ -27,4 +27,11 @@ public class IndentGroupHdrAndDtlEntity implements Serializable {
 	private String indentGrpDtlId;
 	private String uom;
 	private String dmId;
+	// Populated only by the station-scoped grouping query (getIndentGrpNewProdByStation) so the
+	// UI can show which indent each groupable item belongs to; null for the single-indent query.
+	private String indentId;
+	private String indentCode;
+	// Also populated by getIndentGroupHdrAndDtl (PJS Details popup) for multi-indent groups.
+	private String indentType;
+	private String subAssembly;
 }

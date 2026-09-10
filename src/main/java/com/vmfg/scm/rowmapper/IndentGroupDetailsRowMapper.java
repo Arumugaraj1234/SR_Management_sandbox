@@ -29,6 +29,9 @@ public class IndentGroupDetailsRowMapper implements RowMapper<IndentGroupDetails
 			result.setIgHdrId(rs.getString("IG_HDR_ID"));
 			result.setIndentCode(rs.getString("INDENT_CODE"));
 			result.setIndentId(rs.getString("INDENT_ID"));
+			if (columnExists(rs, "INDENT_COUNT")) {
+				result.setIndentCount(rs.getString("INDENT_COUNT"));
+			}
 			result.setPskDesc(rs.getString("PSK_DESC"));
 			result.setPskId(rs.getString("PKSA_ID"));
 			result.setPkId(rs.getString("PKA_ID"));

@@ -20,6 +20,7 @@ import com.vmfg.scm.entity.IndentGroupHdrAndDtlEntity;
 import com.vmfg.scm.entity.IndentHdrDropDownEntity;
 import com.vmfg.scm.entity.ProjectDtlsEntity;
 import com.vmfg.scm.entity.ScmHdrBasedDtlEntity;
+import com.vmfg.scm.entity.StationDropDownEntity;
 import com.vmfg.scm.request.IndentGrpRetRequest;
 import com.vmfg.scm.request.ProjectAssignEmpReq;
 import com.vmfg.scm.request.ProjectDtlRequest;
@@ -175,6 +176,50 @@ public class IndentManagementService implements IIndentManagementService {
 		}
 		return returnList;
 	}
+
+	@Override
+	public ResponseAsList getStationsForGrouping(getIndentHdrRequest projectIdRequest) {
+		ResponseAsList returnList = new ResponseAsList();
+		List<StationDropDownEntity> list = new ArrayList<StationDropDownEntity>();
+		try {
+			list = iIndentManagementDAO.getStationsForGrouping(projectIdRequest.getProjectId(),
+					projectIdRequest.getEmpId(), projectIdRequest.getTenantId(), projectIdRequest.getGetIndent());
+			if (list.size() > 0) {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
+				returnList.setResponseMessage(ResponseMessageMap.success);
+			} else {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				returnList.setResponseMessage(ResponseMessageMap.noRecord);
+			}
+		} catch (Exception ex) {
+			logger.error("getStationsForGrouping service error " + ex);
+		}
+		return returnList;
+	}
+
+	@Override
+	public ResponseAsList getIndentGrpNewProdByStation(IndentGrpRetRequest indentGrpReq) {
+		ResponseAsList returnList = new ResponseAsList();
+		List<IndentGroupHdrAndDtlEntity> list = new ArrayList<IndentGroupHdrAndDtlEntity>();
+		try {
+			list = iIndentManagementDAO.getIndentGrpNewProdByStation(indentGrpReq);
+			if (list != null && list.size() > 0) {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
+				returnList.setResponseMessage(ResponseMessageMap.success);
+			} else {
+				returnList.setResponseData(list);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				returnList.setResponseMessage(ResponseMessageMap.noRecord);
+			}
+		} catch (Exception ex) {
+			logger.error("getIndentGrpNewProdByStation service error " + ex);
+		}
+		return returnList;
+	}
+
 	@Override
 	public ResponseAsList getScmHdrBasedDtl(ScmHdrBasedDtlRequest scmHdrBasedDtl) {
 		ResponseAsList returnList = new ResponseAsList();

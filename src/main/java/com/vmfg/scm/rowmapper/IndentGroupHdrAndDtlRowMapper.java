@@ -46,6 +46,19 @@ public class IndentGroupHdrAndDtlRowMapper implements RowMapper<IndentGroupHdrAn
 				result.setIndentGrpDtlId(rs.getString("IG_DTL_ID"));
 			}
 
+			if (columnExists(rs, "INDENT_ID")) {
+				result.setIndentId(rs.getString("INDENT_ID"));
+			}
+			if (columnExists(rs, "INDENT_CODE")) {
+				result.setIndentCode(rs.getString("INDENT_CODE"));
+			}
+			if (columnExists(rs, "INDENT_TYPE")) {
+				result.setIndentType(rs.getString("INDENT_TYPE"));
+			}
+			if (columnExists(rs, "SUB_ASSEMBLY")) {
+				result.setSubAssembly(rs.getString("SUB_ASSEMBLY"));
+			}
+
 		} catch (Exception ex) {
 			logger.error("IndentGroupHdrAndDtlRowMapper error " + ex);
 		}

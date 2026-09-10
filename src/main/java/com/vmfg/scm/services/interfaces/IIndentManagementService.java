@@ -20,6 +20,11 @@ public interface IIndentManagementService {
 
 	ResponseAsList getIndentGrpNewProd(IndentGrpRetRequest indentGrpReq);
 
+	// Station-based PJS grouping (NEW-flow) - see IndentManagementDAO for details.
+	ResponseAsList getStationsForGrouping(getIndentHdrRequest projectIdRequest);
+
+	ResponseAsList getIndentGrpNewProdByStation(IndentGrpRetRequest indentGrpReq);
+
 	ResponseAsList getIndentProjectDtlsByDateAndIndent(ProjectDtlRequest projectDtlReq);
 
 	ResponseAsList getIndentProjectDtlsByEmployee(ProjectAssignEmpReq projectDtlReq);
