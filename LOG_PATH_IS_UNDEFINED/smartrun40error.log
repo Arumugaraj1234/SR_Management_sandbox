@@ -1,476 +1,128 @@
-2026-09-10 10:03:46 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+2026-09-11 10:16:12 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
-2026-09-10 10:04:41 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-09-11 10:16:36 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 10:04:41 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-09-11 10:16:36 [http-nio-8495-exec-8] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 10:04:41 [http-nio-8495-exec-1] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+2026-09-11 10:16:36 [http-nio-8495-exec-8] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-09-10 10:04:41 [http-nio-8495-exec-1] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+2026-09-11 10:16:36 [http-nio-8495-exec-8] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-09-10 11:28:34 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
+2026-09-11 10:17:29 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:32:08 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-09-11 10:17:30 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:32:08 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-09-11 10:22:51 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:32:08 [http-nio-8495-exec-9] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
+2026-09-11 10:22:51 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:32:08 [http-nio-8495-exec-9] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
+2026-09-11 10:28:28 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 10:29:10 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 10:29:10 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 10:29:18 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 10:29:18 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:02:41 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:03:28 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:03:28 [http-nio-8495-exec-4] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:08:01 [http-nio-8495-exec-5] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:08:01 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:08:01 [http-nio-8495-exec-5] ERROR c.v.design.dao.impl.IndentUploadDAO -getStatusCodebySeqAndDocTypeByDocGrp Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:08:45 [http-nio-8495-exec-1] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:09:01 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:09:09 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:09:09 [http-nio-8495-exec-6] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:09:09 [http-nio-8495-exec-6] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:09:09 [http-nio-8495-exec-6] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:21:59 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 11:23:08 [http-nio-8495-exec-6] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:20:08 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:21:24 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:23:21 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:23:21 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:23:21 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:23:21 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:43:05 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:43:05 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:43:05 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:43:05 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:43:42 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:43:42 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:43:42 [http-nio-8495-exec-1] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:43:42 [http-nio-8495-exec-1] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:44:54 [http-nio-8495-exec-5] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:44:54 [http-nio-8495-exec-5] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:44:54 [http-nio-8495-exec-5] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 12:44:54 [http-nio-8495-exec-5] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:22:34 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:22:34 [http-nio-8495-exec-10] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:22:34 [http-nio-8495-exec-10] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:22:34 [http-nio-8495-exec-10] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:23:01 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:23:17 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:23:20 [http-nio-8495-exec-7] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:23:36 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:23:36 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:23:36 [http-nio-8495-exec-2] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:23:36 [http-nio-8495-exec-2] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:24:20 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:26:56 [http-nio-8495-exec-6] ERROR com.vmfg.util.DocumentApprovalInsert -DocumentApprovalInsert error org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:27:01 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.GrnDAO -getPoCodeByPoId method Errororg.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:27:18 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:23 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:27:18 [http-nio-8495-exec-7] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
 				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
+2026-09-11 14:27:18 [http-nio-8495-exec-7] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
 				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:24 [http-nio-8495-exec-6] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:34 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:35 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:35 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:35 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:35 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:35 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:35 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:35 [http-nio-8495-exec-1] ERROR c.v.d.rowmapper.DesignHdrRowMapper -DesignHdrRowMapper  Method Exceptionjava.sql.SQLSyntaxErrorException: Column 'IS_INTERNAL' not found.
-				
-2026-09-10 11:33:54 [ForkJoinPool.commonPool-worker-3] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 7, Size: 7
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 8, Size: 8
-				
-2026-09-10 11:34:50 [http-nio-8495-exec-7] ERROR c.v.design.dao.impl.IndentUploadDAO -Exception in reading cellsjava.lang.IndexOutOfBoundsException: Index: 9, Size: 9
-				
-2026-09-10 11:46:06 [ForkJoinPool.commonPool-worker-6] ERROR c.v.scm.dao.impl.IndentManagementDAO -indentVerCheck Method Exception ---> org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 11:46:08 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 11:46:08 [http-nio-8495-exec-9] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 11:46:08 [http-nio-8495-exec-9] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
-				
-2026-09-10 11:46:08 [http-nio-8495-exec-9] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
-				
-2026-09-10 11:49:24 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 11:49:24 [http-nio-8495-exec-10] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 12:19:34 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
-				
-2026-09-10 12:20:49 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 12:20:49 [http-nio-8495-exec-3] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 12:27:20 [http-nio-8495-exec-9] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 12:27:20 [http-nio-8495-exec-9] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 12:30:08 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 12:30:08 [http-nio-8495-exec-2] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 12:30:08 [http-nio-8495-exec-2] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
-				
-2026-09-10 12:30:08 [http-nio-8495-exec-2] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
-				
-2026-09-10 12:30:58 [http-nio-8495-exec-10] ERROR c.v.g.s.impl.StageManagementService -getprocessEnbleStatus Errorjava.lang.IndexOutOfBoundsException: Index: 0, Size: 0
-				
-2026-09-10 13:32:14 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
-				
-2026-09-10 13:33:28 [http-nio-8495-exec-5] ERROR c.v.g.s.impl.StageManagementService -getprocessEnbleStatus Errorjava.lang.IndexOutOfBoundsException: Index: 0, Size: 0
-				
-2026-09-10 15:14:01 [main] ERROR com.vmfg.VMFGApplication -SmartRun Application Start Exception--->org.springframework.boot.devtools.restart.SilentExitExceptionHandler$SilentExitException
-				
-2026-09-10 15:14:23 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyVal Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 15:14:23 [http-nio-8495-exec-1] ERROR com.vmfg.util.GetPropertyValue -getTenantPropertyValByTenantId Method Exception|||org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 15:14:23 [http-nio-8495-exec-1] ERROR com.vmfg.util.CommonBase64Class -CommonBase64Class getBasesBinary Method FileNotFoundException---->java.io.FileNotFoundException:  (No such file or directory)
-				
-2026-09-10 15:14:23 [http-nio-8495-exec-1] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
-				
-2026-09-10 15:15:03 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
-				
-2026-09-10 15:15:03 [http-nio-8495-exec-2] ERROR com.vmfg.scm.dao.impl.IndentGroupDAO -getScsIdByIndentId Method Exception --->org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: expected 1, actual 0
+2026-09-11 14:27:18 [http-nio-8495-exec-7] ERROR c.v.authentication.UserLoginService -getImageUrl DAO Method Exceptionjava.lang.NullPointerException
 				

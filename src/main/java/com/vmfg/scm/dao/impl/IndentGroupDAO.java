@@ -401,12 +401,17 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 		List<IndentGrpScpDtlEntity> list = new ArrayList<IndentGrpScpDtlEntity>();
 		try {
 			String qry = "SELECT       @a:=@a + 1 AS S_NO,      igs.*,      dtl.PRODUCT_CODE,\r\n" +
-					"					     dtl.DESCRIPTION,      igd.QTY,      uom.UOM_SHORT_DESCRIPTION as UOM,dtl.SPECIFICATION AS SPECIFICATION, dtl.WEIGHT, dtl.MATERIAL\r\n" +
+					"					     dtl.DESCRIPTION,      igd.QTY,      uom.UOM_SHORT_DESCRIPTION as UOM,dtl.SPECIFICATION AS SPECIFICATION, dtl.WEIGHT, dtl.MATERIAL, ih.INDENT_CODE,\r\n" +
+					"					     sb.SBC_DESC AS INDENT_TYPE, pksam.PSK_DESC AS SUB_ASSEMBLY, dtl.QTY AS INDENT_QTY\r\n" +
 					"                         FROM\r\n" +
 					"					     (SELECT @a:=0) AS a,      indent_grp_scs_dtl igs          INNER JOIN\r\n" +
 					"					     indent_grp_dtl igd ON igs.IG_DTL_ID = igd.IG_DTL_ID          INNER JOIN\r\n" +
 					"					     indent_dtl dtl ON igd.INDENT_DTL_ID = dtl.INDENT_DTL_ID          INNER JOIN\r\n" +
-					"					     uom_mst uom ON dtl.UNIT = uom.UOM_CODE\r\n" +
+					"					     uom_mst uom ON dtl.UNIT = uom.UOM_CODE          INNER JOIN\r\n" +
+					"					     indent_hdr ih ON dtl.INDENT_ID = ih.INDENT_ID          INNER JOIN\r\n" +
+					"					     sales_budget_category sb ON ih.SBC_CODE = sb.SBC_CODE          INNER JOIN\r\n" +
+					"					     project_key_sub_area pksa ON ih.PKSA_ID = pksa.PKSA_ID          INNER JOIN\r\n" +
+					"					     project_key_sub_area_mst pksam ON pksam.PSK_ID = pksa.PSK_ID\r\n" +
 					"                         WHERE      IG_SCS_ID = ?;";
 			list = this.jdbcTemplate.query(qry, new IndentGrpScpDtlRowMapper(), igScpId);
 
@@ -1758,19 +1763,25 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	public List<IndentGroupDetailsEntity> getIndentGroupDtlsForSCS(String pmHdrId, String tenantId) {
 		List<IndentGroupDetailsEntity> returnList = new ArrayList<IndentGroupDetailsEntity>();
 		try {
-			String retQry = "SELECT \r\n" + 
-					"    hdr.IG_HDR_ID,\r\n" + 
-					"    inh.INDENT_ID,\r\n" + 
-					"    inh.INDENT_CODE,\r\n" + 
-					"    hdr.GROUP_NAME,\r\n" + 
-					"    inh.SBC_CODE,\r\n" + 
-					"    sb.SBC_DESC,\r\n" + 
-					"    EXPECTED_DELIVERY_DATE,\r\n" + 
-					"    inh.PKA_ID,\r\n" + 
-					"    pkam.PK_DESC,\r\n" + 
-					"    inh.PKSA_ID,\r\n" + 
-					"    pksam.PSK_DESC,\r\n" + 
-					"    inh.TARGET_VALUE,\r\n" + 
+			// One row per group (IG_HDR_ID). A group can span several indents in the same station
+			// (NEW-flow station grouping), so the per-indent columns are aggregated the same way as
+			// getIndentGroupRetrieve (the SCM list's equivalent query): INDENT_CODE / Indent Type /
+			// Sub Assembly list every contributing value; INDENT_ID is the lowest one as a
+			// representative; INDENT_COUNT drives the "N indents" UI treatment.
+			String retQry = "SELECT \r\n" +
+					"    hdr.IG_HDR_ID,\r\n" +
+					"    MIN(inh.INDENT_ID) AS INDENT_ID,\r\n" +
+					"    COUNT(DISTINCT inh.INDENT_ID) AS INDENT_COUNT,\r\n" +
+					"    GROUP_CONCAT(DISTINCT inh.INDENT_CODE ORDER BY inh.INDENT_CODE SEPARATOR ', ') AS INDENT_CODE,\r\n" +
+					"    hdr.GROUP_NAME,\r\n" +
+					"    MIN(inh.SBC_CODE) AS SBC_CODE,\r\n" +
+					"    GROUP_CONCAT(DISTINCT sb.SBC_DESC ORDER BY sb.SBC_DESC SEPARATOR ', ') AS SBC_DESC,\r\n" +
+					"    MIN(inh.EXPECTED_DELIVERY_DATE) AS EXPECTED_DELIVERY_DATE,\r\n" +
+					"    MAX(inh.PKA_ID) AS PKA_ID,\r\n" +
+					"    MAX(pkam.PK_DESC) AS PK_DESC,\r\n" +
+					"    MIN(inh.PKSA_ID) AS PKSA_ID,\r\n" +
+					"    GROUP_CONCAT(DISTINCT pksam.PSK_DESC ORDER BY pksam.PSK_DESC SEPARATOR ', ') AS PSK_DESC,\r\n" +
+					"    MAX(inh.TARGET_VALUE) AS TARGET_VALUE,\r\n" +
 					"    hdr.IS_INVENTORY,\r\n" +
 					"    scs.IG_SCS_ID,\r\n" +
 					"    scs.PJS_REF_NO\r\n" +
@@ -1799,8 +1810,9 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 					"WHERE\r\n" + 
 					"    inh.PROJECT_ID = ?\r\n" + 
 					"        AND hdr.TENANT_ID = ?\r\n" + 
-					"        AND inh.SEQUENCE_STATUS IN ('DS020' , 'DS070', 'DS077', 'DS076')\r\n" + 
-					"        AND hdr.IS_INVENTORY = '0' group by hdr.IG_HDR_ID; ";
+					"        AND inh.SEQUENCE_STATUS IN ('DS020' , 'DS070', 'DS077', 'DS076')\r\n" +
+					"        AND hdr.IS_INVENTORY = '0'\r\n" +
+					"GROUP BY hdr.IG_HDR_ID, hdr.GROUP_NAME, hdr.IS_INVENTORY, scs.IG_SCS_ID, scs.PJS_REF_NO;";
 
 			returnList = this.jdbcTemplate.query(retQry,new IndentGroupDetailsRowMapper(), pmHdrId,tenantId);
 
