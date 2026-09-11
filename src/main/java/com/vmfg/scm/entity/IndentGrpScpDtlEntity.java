@@ -57,5 +57,12 @@ public class IndentGrpScpDtlEntity implements Serializable {
 	private String material;
 	private String fileNameExtn;
 	private String isPdf;
+	// Which indent this line item belongs to (always populated; same value for every row on a
+	// single-indent PJS, differs per row for a multi-indent/station-grouped PJS).
+	private String indentCode;
+	private String indentType;
+	private String subAssembly;
+	// Original per-indent qty (indent_dtl.QTY), as distinct from the group-allocated `qty` above.
+	private String indentQty;
 
 }
