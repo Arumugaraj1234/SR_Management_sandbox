@@ -807,40 +807,53 @@ public class IndentGroupService implements IIndentGroupService {
 				}
 
 			}
-             if(scpDtlsEntity.get(0).getType().equalsIgnoreCase("Cash Voucher")) {
-            	 iIndentGroupDAO.updateInvStockYesOrNo("1",scpDtlsEntity.get(0).getIgHdrId()); 
-				 indentId=projectDAO.getindentHdrId(scpDtlsEntity.get(0).getScpDtlList().get(0).getIndentDtlId());
-            	 int isInventoryCount = iPoDAO.getIsInventoryCount(indentId,
-            			 scpDtlsEntity.get(0).getTenantId());
- 				int indentCloseCount = iPoDAO.getIndentCloseStatus(indentId,
- 						scpDtlsEntity.get(0).getTenantId());
- 				int checkCount = isInventoryCount - indentCloseCount;
- 				if (checkCount == 0) {
- 					String currSeq = iPoDAO.getTenantPropertyVal(scpDtlsEntity.get(0).getTenantId(), "INDENT_CLOSE_SEQ");
- 					currSeqDocLifeCycleMstLists = stageManagementDAO.getDocDtlcurrentSeq("DC018", currSeq,
- 							scpDtlsEntity.get(0).getTenantId());
-
- 					intentDetailsUpdate(indentId, currSeqDocLifeCycleMstLists.get(0).getCurrSequence(),
- 							currSeqDocLifeCycleMstLists.get(0).getDocStatus(), scpDtlsEntity.get(0).getTenantId(),
- 							scpDtlsEntity.get(0).getPmId(), scpDtlsEntity.get(0).getMstId(), "1");
-
- 					iPoDAO.updateindentClose(indentId);
- 				}
-             }else {
-            	 iIndentGroupDAO.updateInvStockYesOrNo("0",scpDtlsEntity.get(0).getIgHdrId());
-				 indentId=projectDAO.getindentHdrId(scpDtlsEntity.get(0).getScpDtlList().get(0).getIndentDtlId());
-
-				 int pendingCount = iIndentGroupDAO.getPendingUngroupedItemCount(indentId, scpDtlsEntity.get(0).getTenantId());
-				 if (pendingCount == 0) {
-	            	 String currSeq = iPoDAO.getTenantPropertyVal(scpDtlsEntity.get(0).getTenantId(), "INDENT_PERV_SEQ");
-					currSeqDocLifeCycleMstLists = stageManagementDAO.getDocDtlcurrentSeq("DC018", currSeq,
-							scpDtlsEntity.get(0).getTenantId());
-
-					intentDetailsUpdate(indentId, currSeqDocLifeCycleMstLists.get(0).getCurrSequence(),
-							currSeqDocLifeCycleMstLists.get(0).getDocStatus(), scpDtlsEntity.get(0).getTenantId(),
-							scpDtlsEntity.get(0).getPmId(), scpDtlsEntity.get(0).getMstId(), "0");
-				 }
-             }
+			// A submission can span multiple indents (station grouping) - run this close/advance
+			// check independently for every distinct indent represented here, not just the first
+			// item's indent (same fix shape as insertTempGrup's auto-close, see
+			// project_multi_indent_pjs_grouping memory, Problem 1). Degrades to today's exact
+			// behavior for a single-indent (LEGACY, or single-indent NEW-flow) submission.
+			Set<String> distinctIndentIdsForClose = new LinkedHashSet<String>(indentGroupDAO.getDistinctIndentIdsByScsId(scpID));
+			if (distinctIndentIdsForClose.isEmpty()) {
+				distinctIndentIdsForClose.add(projectDAO.getindentHdrId(scpDtlsEntity.get(0).getScpDtlList().get(0).getIndentDtlId()));
+			}
+			if(scpDtlsEntity.get(0).getType().equalsIgnoreCase("Cash Voucher")) {
+				iIndentGroupDAO.updateInvStockYesOrNo("1",scpDtlsEntity.get(0).getIgHdrId());
+				boolean closeSeqLookedUp = false;
+				for (String eachIndentId : distinctIndentIdsForClose) {
+					int isInventoryCount = iPoDAO.getIsInventoryCount(eachIndentId, scpDtlsEntity.get(0).getTenantId());
+					int indentCloseCount = iPoDAO.getIndentCloseStatus(eachIndentId, scpDtlsEntity.get(0).getTenantId());
+					int checkCount = isInventoryCount - indentCloseCount;
+					if (checkCount == 0) {
+						if (!closeSeqLookedUp) {
+							String currSeq = iPoDAO.getTenantPropertyVal(scpDtlsEntity.get(0).getTenantId(), "INDENT_CLOSE_SEQ");
+							currSeqDocLifeCycleMstLists = stageManagementDAO.getDocDtlcurrentSeq("DC018", currSeq,
+									scpDtlsEntity.get(0).getTenantId());
+							closeSeqLookedUp = true;
+						}
+						intentDetailsUpdate(eachIndentId, currSeqDocLifeCycleMstLists.get(0).getCurrSequence(),
+								currSeqDocLifeCycleMstLists.get(0).getDocStatus(), scpDtlsEntity.get(0).getTenantId(),
+								scpDtlsEntity.get(0).getPmId(), scpDtlsEntity.get(0).getMstId(), "1");
+						iPoDAO.updateindentClose(eachIndentId);
+					}
+				}
+			}else {
+				iIndentGroupDAO.updateInvStockYesOrNo("0",scpDtlsEntity.get(0).getIgHdrId());
+				boolean advanceSeqLookedUp = false;
+				for (String eachIndentId : distinctIndentIdsForClose) {
+					int pendingCount = iIndentGroupDAO.getPendingUngroupedItemCount(eachIndentId, scpDtlsEntity.get(0).getTenantId());
+					if (pendingCount == 0) {
+						if (!advanceSeqLookedUp) {
+							String currSeq = iPoDAO.getTenantPropertyVal(scpDtlsEntity.get(0).getTenantId(), "INDENT_PERV_SEQ");
+							currSeqDocLifeCycleMstLists = stageManagementDAO.getDocDtlcurrentSeq("DC018", currSeq,
+									scpDtlsEntity.get(0).getTenantId());
+							advanceSeqLookedUp = true;
+						}
+						intentDetailsUpdate(eachIndentId, currSeqDocLifeCycleMstLists.get(0).getCurrSequence(),
+								currSeqDocLifeCycleMstLists.get(0).getDocStatus(), scpDtlsEntity.get(0).getTenantId(),
+								scpDtlsEntity.get(0).getPmId(), scpDtlsEntity.get(0).getMstId(), "0");
+					}
+				}
+			}
 			if (insertInScpDtl == 1 && insertInVen == 1 && insertInVenDtl == 1 && insertInVenPt == 1) {
 				returnMessage.setResponseCode(ResponseMessageMap.responseCodeOk);
 				returnMessage.setResponseMessage(ResponseMessageMap.successUpdated);
