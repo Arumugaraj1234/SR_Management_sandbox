@@ -207,4 +207,41 @@ public interface IIndentGroupDAO {
 	Map<String, BigDecimal> getCommittedScsTotalGroupedBySbcCode(String projectId, String minSeqNo);
 
 	Map<String, BigDecimal> getCommittedScsTotalGroupedByProjectIds(List<String> projectIds, String minSeqNo);
+
+	// --- indent_grp_scs_indent_budget: per-(PJS,indent) wallet ledger, NEW-flow multi-indent PJS support ---
+
+	/** Distinct indent IDs actually contributing line items to this PJS right now (indent_grp_scs_dtl -> indent_dtl). */
+	List<String> getDistinctIndentIdsByScsId(String igScsId);
+
+	/** Distinct indent IDs with items grouped into this station group right now (indent_grp_dtl -> indent_dtl). */
+	List<String> getDistinctIndentIdsByIgHdrId(String igHdrId);
+
+	/** Each contributing indent's own parts total for this PJS (indent_grp_scs_dtl, keyed by the winning vendor level's FINAL extended price column). */
+	Map<String, BigDecimal> getPartsValueByIndentForScsId(String igScsId, String finalExtPriceCol);
+
+	/** This PJS's own Transport+P&F total (indent_grp_scs_ven_dtl, PJS-level, winning vendor level). */
+	BigDecimal getSharedChargesTotalByScsId(String igScsId, String transportCol, String pfCol);
+
+	/** Indent IDs that already have a indent_grp_scs_indent_budget row for this PJS (the ledger's current/"old" state, before a re-save). */
+	List<String> getIndentIdsWithBudgetRowByScsId(String igScsId);
+
+	void upsertIndentGrpScsIndentBudget(String igScsId, String indentId, String shareValue, String tenantId, String updatedBy);
+
+	void deleteIndentGrpScsIndentBudgetRow(String igScsId, String indentId);
+
+	void deleteIndentGrpScsIndentBudgetByScsId(String igScsId);
+
+	/** Recomputes indent_hdr.SCM_BUDGET_ALLOCATED for one indent as SUM(SHARE_VALUE) across all its indent_grp_scs_indent_budget rows. */
+	void recalculateScmBudgetAllocated(String indentId);
+
+	// --- multi-indent-aware Budget Excess gate helpers (updateScpSeqAndStatus / raiseBudgetExcess) ---
+
+	/** Sum of SCM_BUDGET_ALLOCATED across every indent in the list - the PJS's own true total committed value, for a multi-indent PJS. */
+	String getScmBudgetValueForIndents(List<String> indentIds);
+
+	/** Same as getOtherCommittedScsTotalByPkaId, but excludes every indent in excludeIndentIds (a multi-indent PJS's own indents), not just one. */
+	String getOtherCommittedScsTotalByPkaIdExcludingIndents(String pkaId, List<String> excludeIndentIds, String minSeqNo);
+
+	/** Same as getPendingBudgetExcessReservedTotalByPkaId, but excludes every indent in excludeIndentIds, not just one. */
+	String getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents(String pkaId, List<String> excludeIndentIds, String minSeqNo);
 }
