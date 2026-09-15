@@ -244,4 +244,7 @@ public interface IIndentGroupDAO {
 
 	/** Same as getPendingBudgetExcessReservedTotalByPkaId, but excludes every indent in excludeIndentIds, not just one. */
 	String getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents(String pkaId, List<String> excludeIndentIds, String minSeqNo);
+
+	/** Each contributing indent's own SHARE_VALUE for this specific PJS (indent_grp_scs_indent_budget), for splitting a Budget Excess proportionally. */
+	Map<String, BigDecimal> getShareValueByIndentForScsId(String igScsId);
 }

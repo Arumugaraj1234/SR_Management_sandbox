@@ -91,6 +91,17 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 				BigDecimal spentSoFar = new BigDecimal(actualSpentSoFar);
 				BigDecimal remaining = allocated.subtract(spentSoFar);
 				scsActualCost = actualCost.subtract(remaining.max(BigDecimal.ZERO));
+				// Multi-indent PJS: the caller (IndentGroupService.raiseBudgetExcess) has already
+				// split the PJS's TOTAL shortfall (summed across every contributing indent's own
+				// wallet, against the same station remaining figure) proportionally across its
+				// distinct indents by each one's own share of this specific PJS, and is calling this
+				// method once per indent. Recomputing scsActualCost per-indent from actualCost/
+				// remaining above would double-subtract the station remaining figure once per indent
+				// instead of once for the whole PJS, so use the pre-split value directly instead. See
+				// project_multi_indent_pjs_grouping memory, Problem 4.
+				if (budgetExcessSheetRequest.getExplicitScsActualCost() != null) {
+					scsActualCost = new BigDecimal(budgetExcessSheetRequest.getExplicitScsActualCost());
+				}
 
 				// PJS Ref No., e.g. "1096/E/PJS/1" - {PROJECT_CODE}/{discipline}/PJS/{seq}. No longer
 				// minted here - every PJS now gets this number once, at creation time (see

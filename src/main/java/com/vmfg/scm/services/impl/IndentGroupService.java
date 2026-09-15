@@ -1055,12 +1055,15 @@ public class IndentGroupService implements IIndentGroupService {
 					// THIS indent, its real shortfall amount (ACTUAL_EXCESS, not the legacy EXCESS
 					// column which is always the full quote here) is added to this one comparison
 					// only, so it doesn't inflate budget for other indents sharing the same station.
-					// Stays keyed on the single representative indentId, not distinctIndentIds - a
-					// Budget Excess Sheet entry is still only ever raised against the one
-					// representative indent (Problem 4, not yet fixed), so a sibling indent could
-					// never have its own row here anyway.
-					BigDecimal approvedExcessForThisIndent = new BigDecimal(
-							iIndentGroupDAO.getApprovedActualExcessByIndentId(indentId));
+					// Sums every distinct indent behind this PJS - a Budget Excess Sheet entry is now
+					// raised as one row per contributing indent (see raiseBudgetExcess and
+					// project_multi_indent_pjs_grouping memory, Problem 4), so a sibling indent can have
+					// its own approved excess here too, not just the representative indent.
+					BigDecimal approvedExcessForThisIndent = BigDecimal.ZERO;
+					for (String eachIndentId : distinctIndentIds) {
+						approvedExcessForThisIndent = approvedExcessForThisIndent.add(
+								new BigDecimal(iIndentGroupDAO.getApprovedActualExcessByIndentId(eachIndentId)));
+					}
 					// Also reserve the full value of any OTHER indent at this station that has a
 					// Budget Excess raised but still pending approval - it hasn't reached the
 					// "committed" sequence yet (so computeStationBudgetSnapshot's own
@@ -1284,26 +1287,50 @@ public class IndentGroupService implements IIndentGroupService {
 				vendorCode = "L3_VENDOR_CODE";
 			}
 
-			BudgetExcessSheetRequest budgetExcessSheetReq = new BudgetExcessSheetRequest();
-			budgetExcessSheetReq.setIndentId(indentId);
-			budgetExcessSheetReq.setTenantID(updateHdrReq.getTenantId());
-			budgetExcessSheetReq.setUpdatedBy(updateHdrReq.getEmpId());
-			budgetExcessSheetReq.setVendor(iIndentGroupDAO.getVendorCodeByScsId(scsId, vendorCode));
-			budgetExcessSheetReq.setIgScsId(updateHdrReq.getHdrId());
-			budgetExcessSheetReq.setMasterId(updateHdrReq.getMstId());
-			budgetExcessSheetReq.setPmId(updateHdrReq.getPmId());
-			budgetExcessSheetReq.setProjectId(updateHdrReq.getPmHdrId());
-			budgetExcessSheetReq.setScsFinalCost(updateHdrReq.getScsFinalCost());
-			budgetExcessSheetReq.setProcessDoc(processDoc.equalsIgnoreCase("5") ? "3" : "8");
-			budgetExcessSheetReq.setAllocatedValue(stationBudgetSnapshot.stationAllocated.toString());
+			// A PJS can span multiple indents - raise one Budget Excess Sheet row per distinct
+			// indent instead of one row for the representative indent, each carrying its own
+			// proportional share of the PJS's TOTAL shortfall. The total is computed ONCE here from
+			// the already-summed scmBudgetValue/effectiveRemaining above, then split by each
+			// indent's own share of THIS PJS (indent_grp_scs_indent_budget.SHARE_VALUE) - NOT
+			// recomputed per indent from that indent's own full historical wallet, which would
+			// double-subtract the station remaining figure once per indent instead of once for the
+			// whole PJS. See project_multi_indent_pjs_grouping memory, Problem 4.
+			BigDecimal totalScsActualCost = scmBudgetValue.subtract(effectiveRemaining.max(BigDecimal.ZERO));
+			Map<String, BigDecimal> shareByIndent = indentGroupDAO.getShareValueByIndentForScsId(scsId);
+			BigDecimal totalShare = BigDecimal.ZERO;
+			for (BigDecimal share : shareByIndent.values()) {
+				totalShare = totalShare.add(share);
+			}
+			String allocatedValueStr = stationBudgetSnapshot.stationAllocated.toString();
 			// Fold otherPendingExcessReserved into the frozen actualSpentSoFar (not just the
 			// isBudgetExceeded gate above) - insertBudgetExcessSheetDtl re-derives scsActualCost
-			// (the amount actually raised) from allocatedValue/actualSpentSoFar independently, so
-			// leaving this unreserved would let the raised amount understate the true shortage even
-			// though the gate above correctly saw it.
-			budgetExcessSheetReq.setActualSpentSoFar(
-					stationBudgetSnapshot.actualSpentSoFar.add(otherPendingExcessReserved).toString());
-			iBudgetExcessSheetService.insertBudgetExcessSheetDtl(budgetExcessSheetReq);
+			// (the amount actually raised) from allocatedValue/actualSpentSoFar independently for a
+			// LEGACY caller, so leaving this unreserved would let the raised amount understate the
+			// true shortage even though the gate above correctly saw it.
+			String actualSpentSoFarStr = stationBudgetSnapshot.actualSpentSoFar.add(otherPendingExcessReserved).toString();
+			for (String eachIndentId : distinctIndentIds) {
+				BigDecimal share = shareByIndent.get(eachIndentId);
+				BigDecimal ratio = (share != null && totalShare.compareTo(BigDecimal.ZERO) > 0)
+						? share.divide(totalShare, 6, RoundingMode.HALF_UP)
+						: BigDecimal.ONE.divide(new BigDecimal(distinctIndentIds.size()), 6, RoundingMode.HALF_UP);
+				BigDecimal indentScsActualCost = totalScsActualCost.multiply(ratio).setScale(2, RoundingMode.HALF_UP);
+
+				BudgetExcessSheetRequest budgetExcessSheetReq = new BudgetExcessSheetRequest();
+				budgetExcessSheetReq.setIndentId(eachIndentId);
+				budgetExcessSheetReq.setTenantID(updateHdrReq.getTenantId());
+				budgetExcessSheetReq.setUpdatedBy(updateHdrReq.getEmpId());
+				budgetExcessSheetReq.setVendor(iIndentGroupDAO.getVendorCodeByScsId(scsId, vendorCode));
+				budgetExcessSheetReq.setIgScsId(updateHdrReq.getHdrId());
+				budgetExcessSheetReq.setMasterId(updateHdrReq.getMstId());
+				budgetExcessSheetReq.setPmId(updateHdrReq.getPmId());
+				budgetExcessSheetReq.setProjectId(updateHdrReq.getPmHdrId());
+				budgetExcessSheetReq.setScsFinalCost(updateHdrReq.getScsFinalCost());
+				budgetExcessSheetReq.setProcessDoc(processDoc.equalsIgnoreCase("5") ? "3" : "8");
+				budgetExcessSheetReq.setAllocatedValue(allocatedValueStr);
+				budgetExcessSheetReq.setActualSpentSoFar(actualSpentSoFarStr);
+				budgetExcessSheetReq.setExplicitScsActualCost(indentScsActualCost.toString());
+				iBudgetExcessSheetService.insertBudgetExcessSheetDtl(budgetExcessSheetReq);
+			}
 
 			returnMessage.setResponseCode(ResponseMessageMap.responseCodeOk);
 			returnMessage.setResponseMessage(ResponseMessageMap.successCreated);
