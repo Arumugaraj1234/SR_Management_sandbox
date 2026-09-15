@@ -1,6 +1,7 @@
 package com.vmfg.scm.services.impl;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
@@ -248,6 +249,7 @@ public class IndentGroupService implements IIndentGroupService {
 		int del = 0;
 		int lastCountCheck = 0;
 		String indentId="";
+		List<String> reopenIndentIdsForDelAll = new ArrayList<String>();
 		// logic to check on the comparative statement pending.
 		ResponseAsMessage rm = new ResponseAsMessage();
 
@@ -262,26 +264,19 @@ public class IndentGroupService implements IIndentGroupService {
 		} else {
 			int checkCount = iIndentGroupDAO.getIndentgrpScsCountByIgHdrId(indentGrpDtlReq.getIgDtlId());
 			if (checkCount == 0) {
-				indentId = iIndentGroupDAO.getIndentIdByIgHdrId(indentGrpDtlReq.getIgDtlId());
-//					indentCode =  iIndentGroupDAO.getIndentIdByIgHdrId(indentGrpDtlReq.getIgDtlId(),"2");
-				lastCountCheck =1;
+				// A station group can span multiple indents - capture every distinct one BEFORE
+				// the whole group's rows are deleted, so each one gets reopened, not just a single
+				// representative indent. See project_multi_indent_pjs_grouping memory, Problem 3.
+				reopenIndentIdsForDelAll = iIndentGroupDAO.getDistinctIndentIdsByIgHdrId(indentGrpDtlReq.getIgDtlId());
 				del = iIndentGroupDAO.delIndentGrp(indentGrpDtlReq);
 			}
 		}
 		if (del > 0) {
 			if(lastCountCheck==1 && !indentId.equalsIgnoreCase("")) {
-				String indentGrpType = indentGroupDAO.getindentTypeCode(indentId);
-				// Look up the CURR_SEQUENCE that document_lifecycle_mst itself maps to "SCM Accepted"
-				// (DS070) for this doc group, instead of a separately-maintained tenant property -
-				// keeps the reset in sync with the lifecycle master for every doc group (IT001/IT002/IT003/...)
-				String seqStr = designTaskDAO.getSeqByDocStatus("DC018", indentGrpType, "DS070", indentGrpDtlReq.getTenantId());
-				if(seqStr == null || seqStr.equalsIgnoreCase("")) {
-					seqStr = "8";
-				}
-				indentUploadDAO.updateIndentHdrStatusAndSeq(indentId, seqStr, "DS070", indentGrpDtlReq.getEmpId(), indentGrpDtlReq.getTenantId());
-//				if(!indentCode.equalsIgnoreCase("")) {
-//					indentUploadDAO.updatenotification(indentCode, "DC038", indentGrpDtlReq.getTenantId());
-//				}
+				reopenIndentAfterGroupDelete(indentId, indentGrpDtlReq);
+			}
+			for (String reopenIndentId : reopenIndentIdsForDelAll) {
+				reopenIndentAfterGroupDelete(reopenIndentId, indentGrpDtlReq);
 			}
 			rm.setResponseCode(ResponseMessageMap.responseCodeOk);
 			rm.setResponseMessage(ResponseMessageMap.successfulDeleted);
@@ -292,6 +287,21 @@ public class IndentGroupService implements IIndentGroupService {
 		}
 
 		return rm;
+	}
+
+	private void reopenIndentAfterGroupDelete(String indentId, IndentGrpDelRequest indentGrpDtlReq) {
+		String indentGrpType = indentGroupDAO.getindentTypeCode(indentId);
+		// Look up the CURR_SEQUENCE that document_lifecycle_mst itself maps to "SCM Accepted"
+		// (DS070) for this doc group, instead of a separately-maintained tenant property -
+		// keeps the reset in sync with the lifecycle master for every doc group (IT001/IT002/IT003/...)
+		String seqStr = designTaskDAO.getSeqByDocStatus("DC018", indentGrpType, "DS070", indentGrpDtlReq.getTenantId());
+		if(seqStr == null || seqStr.equalsIgnoreCase("")) {
+			seqStr = "8";
+		}
+		indentUploadDAO.updateIndentHdrStatusAndSeq(indentId, seqStr, "DS070", indentGrpDtlReq.getEmpId(), indentGrpDtlReq.getTenantId());
+//				if(!indentCode.equalsIgnoreCase("")) {
+//					indentUploadDAO.updatenotification(indentCode, "DC038", indentGrpDtlReq.getTenantId());
+//				}
 	}
 
 	@Override
@@ -766,10 +776,21 @@ public class IndentGroupService implements IIndentGroupService {
 						budgetCol="L3_FINAL_SUB_TOTAL";
 					}
 
-					indentUploadDAO.updateScmBudgetvalByoperation(oldFinalBasicTotal, scpIndentId, "-");
+					if ("NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(scpIndentId))) {
+						// NEW-flow: a PJS can span multiple indents (station grouping). Give each
+						// contributing indent its OWN share - its own parts, exact, plus its
+						// proportional share of this PJS's own Transport/P&F - via a per-(PJS,indent)
+						// ledger row, instead of dumping the whole PJS total onto one representative
+						// indent. See project_multi_indent_pjs_grouping memory, Problem 2. LEGACY
+						// (always exactly one indent per PJS) keeps the original code below untouched.
+						syncIndentGrpScsIndentBudget(scpID, vendorQualified, scpDtlsEntity.get(0).getTenantId(),
+								scpDtlsEntity.get(0).getCreatedBy());
+					} else {
+						indentUploadDAO.updateScmBudgetvalByoperation(oldFinalBasicTotal, scpIndentId, "-");
 //						}
-					String val =	indentGroupDAO.getScmBudgetValueByigscsId(scpID, budgetCol);
-					indentUploadDAO.updateScmBudgetvalByoperation(val, scpIndentId, "+");
+						String val =	indentGroupDAO.getScmBudgetValueByigscsId(scpID, budgetCol);
+						indentUploadDAO.updateScmBudgetvalByoperation(val, scpIndentId, "+");
+					}
 
 					// Scp vendor pt table insert
 					List<IndentGrpScpVenPtEntity>vendorPtlist=new ArrayList<IndentGrpScpVenPtEntity>(scpDtlsEntity.get(0).getScpvendorPtList());
@@ -830,6 +851,13 @@ public class IndentGroupService implements IIndentGroupService {
 				iIndentGroupDAO.deleteScpId(scpID, "indent_grp_scs_ven_pt");
 				iIndentGroupDAO.deleteScpId(scpID, "indent_grp_scs_ven_dtl");
 				iIndentGroupDAO.deleteScpId(scpID, "indent_grp_scs_ven");
+				// Undo any indent_grp_scs_indent_budget rows the NEW-flow sync above may already
+				// have written for this now-failed PJS, and re-settle each affected indent's wallet.
+				List<String> orphanedIndentIds = iIndentGroupDAO.getIndentIdsWithBudgetRowByScsId(scpID);
+				iIndentGroupDAO.deleteIndentGrpScsIndentBudgetByScsId(scpID);
+				for (String orphanedIndentId : orphanedIndentIds) {
+					iIndentGroupDAO.recalculateScmBudgetAllocated(orphanedIndentId);
+				}
 				iIndentGroupDAO.deleteScpId(scpID, "indent_grp_scs");
 				returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
 				returnMessage.setResponseMessage(ResponseMessageMap.failToupdateMsg);
@@ -842,6 +870,63 @@ public class IndentGroupService implements IIndentGroupService {
 		return returnMessage;
 	}
 
+	// Recomputes every contributing indent's own share of this PJS - its own parts (exact,
+	// indent_grp_scs_dtl) plus its proportional share of this PJS's own Transport/P&F
+	// (indent_grp_scs_ven_dtl, PJS-level - 100% to a single-indent PJS, same as today) - and
+	// writes it into indent_grp_scs_indent_budget, one row per (PJS, indent). Then recomputes
+	// indent_hdr.SCM_BUDGET_ALLOCATED for every affected indent as SUM(SHARE_VALUE) across all
+	// of that indent's own PJS's. Self-contained per PJS: re-saving this PJS never touches
+	// another PJS's own row for the same indent. See project_multi_indent_pjs_grouping memory,
+	// Problem 2.
+	private void syncIndentGrpScsIndentBudget(String igScsId, String vendorQualified, String tenantId, String updatedBy) {
+		String finalExtPriceCol, transportCol, pfCol;
+		if (vendorQualified.equalsIgnoreCase("L1")) {
+			finalExtPriceCol = "FINAL_L1_EXTENDED_PRICE";
+			transportCol = "L1_FINAL_TRANSPORT_CHARGES";
+			pfCol = "L1_FINAL_P_F";
+		} else if (vendorQualified.equalsIgnoreCase("L2")) {
+			finalExtPriceCol = "FINAL_L2_EXTENDED_PRICE";
+			transportCol = "L2_FINAL_TRANSPORT_CHARGES";
+			pfCol = "L2_FINAL_P_F";
+		} else {
+			finalExtPriceCol = "FINAL_L3_EXTENDED_PRICE";
+			transportCol = "L3_FINAL_TRANSPORT_CHARGES";
+			pfCol = "L3_FINAL_P_F";
+		}
+
+		Map<String, BigDecimal> partsValueByIndent = iIndentGroupDAO.getPartsValueByIndentForScsId(igScsId, finalExtPriceCol);
+		BigDecimal sharedCharges = iIndentGroupDAO.getSharedChargesTotalByScsId(igScsId, transportCol, pfCol);
+		BigDecimal totalParts = BigDecimal.ZERO;
+		for (BigDecimal partsValue : partsValueByIndent.values()) {
+			totalParts = totalParts.add(partsValue);
+		}
+
+		Set<String> oldIndentIds = new LinkedHashSet<String>(iIndentGroupDAO.getIndentIdsWithBudgetRowByScsId(igScsId));
+		Set<String> affectedIndentIds = new LinkedHashSet<String>(oldIndentIds);
+		affectedIndentIds.addAll(partsValueByIndent.keySet());
+
+		for (Map.Entry<String, BigDecimal> entry : partsValueByIndent.entrySet()) {
+			String indentId = entry.getKey();
+			BigDecimal partsValue = entry.getValue();
+			BigDecimal shareOfSharedCharges = totalParts.compareTo(BigDecimal.ZERO) > 0
+					? partsValue.multiply(sharedCharges).divide(totalParts, 2, RoundingMode.HALF_UP)
+					: BigDecimal.ZERO;
+			BigDecimal shareValue = partsValue.add(shareOfSharedCharges);
+			iIndentGroupDAO.upsertIndentGrpScsIndentBudget(igScsId, indentId, shareValue.toString(), tenantId, updatedBy);
+		}
+
+		// An indent that had a row before but no longer contributes any priced item to this PJS
+		// (e.g. its last item was removed from the vendor pricing) loses its row entirely.
+		for (String indentId : oldIndentIds) {
+			if (!partsValueByIndent.containsKey(indentId)) {
+				iIndentGroupDAO.deleteIndentGrpScsIndentBudgetRow(igScsId, indentId);
+			}
+		}
+
+		for (String indentId : affectedIndentIds) {
+			iIndentGroupDAO.recalculateScmBudgetAllocated(indentId);
+		}
+	}
 
 	private int intentDetailsUpdate(String indentId, String seq, String status, String tenantId, String pmId,
 			String masterId, String isCompleted) {
@@ -945,17 +1030,35 @@ public class IndentGroupService implements IIndentGroupService {
 				String costFlowType = indentUploadDAO.getCostFlowTypeByIndentId(indentId);
 				boolean isBudgetExceeded;
 				if ("NEW".equalsIgnoreCase(costFlowType)) {
+					// A PJS can span multiple indents (station grouping) - checking only the
+					// representative indent's own wallet would silently miss the other indents'
+					// share of THIS SAME PJS, understating its true cost. Use every distinct
+					// indent behind this PJS both for the value being checked (scmBudgetValue,
+					// overridden below) and for what gets excluded from "other committed at this
+					// station" (computeStationBudgetSnapshot), so nothing is double-counted or
+					// silently dropped. See project_multi_indent_pjs_grouping memory, Problem 2/4.
+					List<String> distinctIndentIds = indentGroupDAO.getDistinctIndentIdsByScsId(scsId);
+					if (distinctIndentIds.isEmpty()) {
+						distinctIndentIds = new ArrayList<String>();
+						distinctIndentIds.add(indentId);
+					}
+					scmBudgetValue = new BigDecimal(indentGroupDAO.getScmBudgetValueForIndents(distinctIndentIds));
+
 					// NEW-flow: TARGET_VALUE is always 0 (see project_budget_target_cost_removal),
 					// so check the real remaining budget at the station instead: what's allocated
 					// to the station minus what's already committed there (approved POs, plus other
 					// SCS's that already crossed this same "Project Approved" step but have no PO yet).
-					BigDecimal remainingStationBudget = computeStationBudgetSnapshot(indentId, scsBudgetExcessSeq).remaining;
+					BigDecimal remainingStationBudget = computeStationBudgetSnapshot(distinctIndentIds, scsBudgetExcessSeq).remaining;
 					// Mirror the legacy formula's own resolution mechanism (indentTargetValue =
 					// TARGET_VALUE + getBudgetExcessValue, below) but scoped per-indent, not into the
 					// station's shared Allocated Value pool - once a Budget Excess is approved for
 					// THIS indent, its real shortfall amount (ACTUAL_EXCESS, not the legacy EXCESS
 					// column which is always the full quote here) is added to this one comparison
 					// only, so it doesn't inflate budget for other indents sharing the same station.
+					// Stays keyed on the single representative indentId, not distinctIndentIds - a
+					// Budget Excess Sheet entry is still only ever raised against the one
+					// representative indent (Problem 4, not yet fixed), so a sibling indent could
+					// never have its own row here anyway.
 					BigDecimal approvedExcessForThisIndent = new BigDecimal(
 							iIndentGroupDAO.getApprovedActualExcessByIndentId(indentId));
 					// Also reserve the full value of any OTHER indent at this station that has a
@@ -965,7 +1068,8 @@ public class IndentGroupService implements IIndentGroupService {
 					// remaining balance is real. Without this, a second PJS could pass this same
 					// check using the exact balance the first one is already waiting on.
 					BigDecimal otherPendingExcessReserved = new BigDecimal(iIndentGroupDAO
-							.getPendingBudgetExcessReservedTotalByPkaId(indentUploadDAO.getPkaIdByIndentId(indentId), indentId, scsBudgetExcessSeq));
+							.getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents(
+									indentUploadDAO.getPkaIdByIndentId(indentId), distinctIndentIds, scsBudgetExcessSeq));
 					BigDecimal effectiveRemaining = remainingStationBudget.add(approvedExcessForThisIndent)
 							.subtract(otherPendingExcessReserved);
 					isBudgetExceeded = effectiveRemaining.compareTo(scmBudgetValue) < 0;
@@ -1095,12 +1199,19 @@ public class IndentGroupService implements IIndentGroupService {
 		}
 	}
 
-	private StationBudgetSnapshot computeStationBudgetSnapshot(String indentId, String scsBudgetExcessSeq) {
-		String pkaId = indentUploadDAO.getPkaIdByIndentId(indentId);
+	// indentIds: every distinct indent behind the PJS being evaluated (just one, for a LEGACY or
+	// single-indent NEW-flow PJS - all callers already guarantee at least one). All indents in a
+	// station group share the same PKA_ID by construction, so any one of them resolves the right
+	// station. Excludes ALL of them (not just one) from "other committed at this station", since
+	// the caller separately adds each one's own full wallet back in via scmBudgetValue - excluding
+	// only one while summing every indent's full wallet would double-count the others' unrelated
+	// commitments. See project_multi_indent_pjs_grouping memory, Problem 2/4.
+	private StationBudgetSnapshot computeStationBudgetSnapshot(List<String> indentIds, String scsBudgetExcessSeq) {
+		String pkaId = indentUploadDAO.getPkaIdByIndentId(indentIds.get(0));
 		BigDecimal stationAllocated = new BigDecimal(projectDAO.getAllocatedValSum(pkaId));
 		BigDecimal approvedPoTotal = new BigDecimal(poDAO.getApprovedPoTotalByPkaId(pkaId));
 		BigDecimal otherCommittedPjs = new BigDecimal(
-				indentGroupDAO.getOtherCommittedScsTotalByPkaId(pkaId, indentId, scsBudgetExcessSeq));
+				indentGroupDAO.getOtherCommittedScsTotalByPkaIdExcludingIndents(pkaId, indentIds, scsBudgetExcessSeq));
 		BigDecimal actualSpentSoFar = approvedPoTotal.add(otherCommittedPjs);
 		return new StationBudgetSnapshot(stationAllocated, actualSpentSoFar);
 	}
@@ -1121,11 +1232,20 @@ public class IndentGroupService implements IIndentGroupService {
 				return returnMessage;
 			}
 
-			BigDecimal scmBudgetValue = new BigDecimal(indentGroupDAO.getindentScmVal(indentId));
+			// A PJS can span multiple indents (station grouping) - this whole method is already
+			// NEW-flow only (see the guard above), so use every distinct indent behind this PJS
+			// throughout, same as the approval gate in updateScpSeqAndStatus. See
+			// project_multi_indent_pjs_grouping memory, Problem 2/4.
+			List<String> distinctIndentIds = indentGroupDAO.getDistinctIndentIdsByScsId(scsId);
+			if (distinctIndentIds.isEmpty()) {
+				distinctIndentIds = new ArrayList<String>();
+				distinctIndentIds.add(indentId);
+			}
+			BigDecimal scmBudgetValue = new BigDecimal(indentGroupDAO.getScmBudgetValueForIndents(distinctIndentIds));
 			String scsBudgetExcessSeq = processDoc.equalsIgnoreCase("5")
 					? iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", updateHdrReq.getTenantId())
 					: iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", updateHdrReq.getTenantId());
-			StationBudgetSnapshot stationBudgetSnapshot = computeStationBudgetSnapshot(indentId, scsBudgetExcessSeq);
+			StationBudgetSnapshot stationBudgetSnapshot = computeStationBudgetSnapshot(distinctIndentIds, scsBudgetExcessSeq);
 			// Same reservation the approval gate (updateScpSeqAndStatus, line ~916) already applies
 			// on top of computeStationBudgetSnapshot - an OTHER indent at this station with a Budget
 			// Excess raised but still pending approval hasn't reached the "committed" sequence yet,
@@ -1136,7 +1256,8 @@ public class IndentGroupService implements IIndentGroupService {
 			// whatever another pending excess at the same station has already claimed - see
 			// project_budget_target_cost_removal memory for the two-PJS race this mirrors.
 			BigDecimal otherPendingExcessReserved = new BigDecimal(iIndentGroupDAO
-					.getPendingBudgetExcessReservedTotalByPkaId(indentUploadDAO.getPkaIdByIndentId(indentId), indentId, scsBudgetExcessSeq));
+					.getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents(
+							indentUploadDAO.getPkaIdByIndentId(indentId), distinctIndentIds, scsBudgetExcessSeq));
 			BigDecimal effectiveRemaining = stationBudgetSnapshot.remaining.subtract(otherPendingExcessReserved);
 			boolean isBudgetExceeded = effectiveRemaining.compareTo(scmBudgetValue) < 0;
 			if (!isBudgetExceeded) {
@@ -1484,7 +1605,17 @@ public class IndentGroupService implements IIndentGroupService {
 					}
 				}
 				//	String scpIndentId	 = iIndentGroupDAO.getindentIdBygrpScd(deleteIndScpDtlIdreq.getIndScpId());
-				if(!oldbudgetCol.equalsIgnoreCase("")) {
+				if ("NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(deleteIndScpDtlIdreq.getIndentId()))) {
+					// NEW-flow: this PJS may span multiple indents (station grouping) - remove its
+					// own row from indent_grp_scs_indent_budget for every indent it touched, and
+					// resettle each affected indent's wallet. Mirrors insertScpDtlsByIgHdrId's
+					// save-path sync. See project_multi_indent_pjs_grouping memory, Problem 2.
+					List<String> indentIdsToRecalc = iIndentGroupDAO.getIndentIdsWithBudgetRowByScsId(deleteIndScpDtlIdreq.getIndScpId());
+					iIndentGroupDAO.deleteIndentGrpScsIndentBudgetByScsId(deleteIndScpDtlIdreq.getIndScpId());
+					for (String indentIdToRecalc : indentIdsToRecalc) {
+						iIndentGroupDAO.recalculateScmBudgetAllocated(indentIdToRecalc);
+					}
+				} else if(!oldbudgetCol.equalsIgnoreCase("")) {
 
 					//	String scpIndentId	 = iIndentGroupDAO.getindentIdBygrpScd(deleteIndScpDtlIdreq.getIndScpId());
 					String	oldFinalBasicTotal=indentGroupDAO.getScmBudgetValueByigscsId(deleteIndScpDtlIdreq.getIndScpId(), oldbudgetCol);

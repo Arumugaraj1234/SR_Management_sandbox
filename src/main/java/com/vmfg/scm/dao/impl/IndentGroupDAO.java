@@ -2297,18 +2297,32 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	public int lastIndentGrpDtlCheck(String indentDtlId) {
 		int value = 0;
 		try {
+			// Counts how many rows remain in THIS SAME INDENT's own share of the group (not the
+			// whole station group across every contributing indent) - a multi-indent group where a
+			// sibling indent still has rows left must not block this indent's own last row from
+			// reopening it. See project_multi_indent_pjs_grouping memory, Problem 3.
 			String qry = "SELECT \n"
 					+ "    COUNT(*) AS COUNT \n"
 					+ "FROM\n"
 					+ "    indent_grp_dtl grpDtl\n"
+					+ "        INNER JOIN\n"
+					+ "    indent_dtl dtl ON grpDtl.INDENT_DTL_ID = dtl.INDENT_DTL_ID\n"
 					+ "WHERE\n"
-					+ "    grpDtl.IG_HDR_ID IN (SELECT \n"
-					+ "            dtl.IG_HDR_ID\n"
+					+ "    grpDtl.IG_HDR_ID = (SELECT \n"
+					+ "            d.IG_HDR_ID\n"
 					+ "        FROM\n"
-					+ "            indent_grp_dtl dtl\n"
+					+ "            indent_grp_dtl d\n"
 					+ "        WHERE\n"
-					+ "            dtl.IG_DTL_ID = ? )";
-			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry,indentDtlId);
+					+ "            d.IG_DTL_ID = ? )\n"
+					+ "    AND dtl.INDENT_ID = (SELECT \n"
+					+ "            d2.INDENT_ID\n"
+					+ "        FROM\n"
+					+ "            indent_grp_dtl g2\n"
+					+ "                INNER JOIN\n"
+					+ "            indent_dtl d2 ON g2.INDENT_DTL_ID = d2.INDENT_DTL_ID\n"
+					+ "        WHERE\n"
+					+ "            g2.IG_DTL_ID = ? )";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry,indentDtlId,indentDtlId);
 			value =Integer.parseInt(resultMap.get("COUNT").toString()) ;
 
 		} catch (Exception ex) {
@@ -2604,6 +2618,202 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 			totalVal = resultMap.get("VAL").toString();
 		} catch (Exception ex) {
 			logger.error("getCommittedScsTotalByProjectIdAndSbcCode method Error" + ex);
+		}
+		return totalVal;
+	}
+
+	// --- indent_grp_scs_indent_budget: per-(PJS,indent) wallet ledger, NEW-flow multi-indent PJS support ---
+
+	@Override
+	public List<String> getDistinctIndentIdsByScsId(String igScsId) {
+		List<String> indentIds = new ArrayList<String>();
+		try {
+			String qry = "SELECT DISTINCT dtl.INDENT_ID AS INDENT_ID " +
+					"FROM indent_grp_scs_dtl scpd " +
+					"INNER JOIN indent_dtl dtl ON scpd.INDENT_DTL_ID = dtl.INDENT_DTL_ID " +
+					"WHERE scpd.IG_SCS_ID = ?";
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, igScsId);
+			for (Map<String, Object> row : rows) {
+				indentIds.add(row.get("INDENT_ID").toString());
+			}
+		} catch (Exception ex) {
+			logger.error("getDistinctIndentIdsByScsId method Error" + ex);
+		}
+		return indentIds;
+	}
+
+	@Override
+	public List<String> getDistinctIndentIdsByIgHdrId(String igHdrId) {
+		List<String> indentIds = new ArrayList<String>();
+		try {
+			String qry = "SELECT DISTINCT dtl.INDENT_ID AS INDENT_ID " +
+					"FROM indent_grp_dtl gdtl " +
+					"INNER JOIN indent_dtl dtl ON gdtl.INDENT_DTL_ID = dtl.INDENT_DTL_ID " +
+					"WHERE gdtl.IG_HDR_ID = ?";
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, igHdrId);
+			for (Map<String, Object> row : rows) {
+				indentIds.add(row.get("INDENT_ID").toString());
+			}
+		} catch (Exception ex) {
+			logger.error("getDistinctIndentIdsByIgHdrId method Error" + ex);
+		}
+		return indentIds;
+	}
+
+	@Override
+	public Map<String, BigDecimal> getPartsValueByIndentForScsId(String igScsId, String finalExtPriceCol) {
+		Map<String, BigDecimal> valueByIndent = new HashMap<String, BigDecimal>();
+		try {
+			String qry = "SELECT dtl.INDENT_ID AS INDENT_ID, COALESCE(SUM(scpd." + finalExtPriceCol + "),0) AS VAL " +
+					"FROM indent_grp_scs_dtl scpd " +
+					"INNER JOIN indent_dtl dtl ON scpd.INDENT_DTL_ID = dtl.INDENT_DTL_ID " +
+					"WHERE scpd.IG_SCS_ID = ? " +
+					"GROUP BY dtl.INDENT_ID";
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, igScsId);
+			for (Map<String, Object> row : rows) {
+				valueByIndent.put(row.get("INDENT_ID").toString(), new BigDecimal(row.get("VAL").toString()));
+			}
+		} catch (Exception ex) {
+			logger.error("getPartsValueByIndentForScsId method Error" + ex);
+		}
+		return valueByIndent;
+	}
+
+	@Override
+	public BigDecimal getSharedChargesTotalByScsId(String igScsId, String transportCol, String pfCol) {
+		BigDecimal sharedTotal = BigDecimal.ZERO;
+		try {
+			String qry = "SELECT COALESCE(SUM(COALESCE(" + transportCol + ",0) + COALESCE(" + pfCol + ",0)),0) AS VAL " +
+					"FROM indent_grp_scs_ven_dtl WHERE IG_SCS_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, igScsId);
+			sharedTotal = new BigDecimal(resultMap.get("VAL").toString());
+		} catch (Exception ex) {
+			logger.error("getSharedChargesTotalByScsId method Error" + ex);
+		}
+		return sharedTotal;
+	}
+
+	@Override
+	public List<String> getIndentIdsWithBudgetRowByScsId(String igScsId) {
+		List<String> indentIds = new ArrayList<String>();
+		try {
+			String qry = "SELECT DISTINCT INDENT_ID FROM indent_grp_scs_indent_budget WHERE IG_SCS_ID = ?";
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, igScsId);
+			for (Map<String, Object> row : rows) {
+				indentIds.add(row.get("INDENT_ID").toString());
+			}
+		} catch (Exception ex) {
+			logger.error("getIndentIdsWithBudgetRowByScsId method Error" + ex);
+		}
+		return indentIds;
+	}
+
+	@Override
+	public void upsertIndentGrpScsIndentBudget(String igScsId, String indentId, String shareValue, String tenantId, String updatedBy) {
+		try {
+			String qry = "INSERT INTO indent_grp_scs_indent_budget (IG_SCS_ID, INDENT_ID, SHARE_VALUE, TENANT_ID, LAST_UPDATED_DATETIME, LAST_UPDATED_BY) " +
+					"VALUES (?, ?, ?, ?, NOW(), ?) " +
+					"ON DUPLICATE KEY UPDATE SHARE_VALUE = VALUES(SHARE_VALUE), LAST_UPDATED_DATETIME = NOW(), LAST_UPDATED_BY = VALUES(LAST_UPDATED_BY)";
+			jdbcTemplate.update(qry, igScsId, indentId, shareValue, tenantId, updatedBy);
+		} catch (Exception ex) {
+			logger.error("upsertIndentGrpScsIndentBudget method Error" + ex);
+		}
+	}
+
+	@Override
+	public void deleteIndentGrpScsIndentBudgetRow(String igScsId, String indentId) {
+		try {
+			jdbcTemplate.update("DELETE FROM indent_grp_scs_indent_budget WHERE IG_SCS_ID = ? AND INDENT_ID = ?", igScsId, indentId);
+		} catch (Exception ex) {
+			logger.error("deleteIndentGrpScsIndentBudgetRow method Error" + ex);
+		}
+	}
+
+	@Override
+	public void deleteIndentGrpScsIndentBudgetByScsId(String igScsId) {
+		try {
+			jdbcTemplate.update("DELETE FROM indent_grp_scs_indent_budget WHERE IG_SCS_ID = ?", igScsId);
+		} catch (Exception ex) {
+			logger.error("deleteIndentGrpScsIndentBudgetByScsId method Error" + ex);
+		}
+	}
+
+	@Override
+	public void recalculateScmBudgetAllocated(String indentId) {
+		try {
+			String qry = "UPDATE indent_hdr SET SCM_BUDGET_ALLOCATED = " +
+					"(SELECT COALESCE(SUM(SHARE_VALUE),0) FROM indent_grp_scs_indent_budget WHERE INDENT_ID = ?) " +
+					"WHERE INDENT_ID = ?";
+			jdbcTemplate.update(qry, indentId, indentId);
+		} catch (Exception ex) {
+			logger.error("recalculateScmBudgetAllocated method Error" + ex);
+		}
+	}
+
+	// --- multi-indent-aware Budget Excess gate helpers (updateScpSeqAndStatus / raiseBudgetExcess) ---
+
+	@Override
+	public String getScmBudgetValueForIndents(List<String> indentIds) {
+		String totalVal = "0";
+		if (indentIds == null || indentIds.isEmpty()) {
+			return totalVal;
+		}
+		try {
+			String placeholders = String.join(",", indentIds.stream().map(id -> "?").toArray(String[]::new));
+			String qry = "SELECT COALESCE(SUM(SCM_BUDGET_ALLOCATED),0) AS VAL FROM indent_hdr WHERE INDENT_ID IN (" + placeholders + ")";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, indentIds.toArray());
+			totalVal = resultMap.get("VAL").toString();
+		} catch (Exception ex) {
+			logger.error("getScmBudgetValueForIndents method Error" + ex);
+		}
+		return totalVal;
+	}
+
+	@Override
+	public String getOtherCommittedScsTotalByPkaIdExcludingIndents(String pkaId, List<String> excludeIndentIds, String minSeqNo) {
+		String totalVal = "0";
+		try {
+			String excludePlaceholders = String.join(",", excludeIndentIds.stream().map(id -> "?").toArray(String[]::new));
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ih.SCM_BUDGET_ALLOCATED) ELSE 0 END AS VAL " +
+					"FROM indent_grp_scs scs " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
+					"WHERE ih.PKA_ID = ? AND scs.INDENT_ID NOT IN (" + excludePlaceholders + ") AND scs.SEQUENCE_NO >= ? " +
+					"AND NOT EXISTS (" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					")";
+			List<Object> params = new ArrayList<Object>();
+			params.add(pkaId);
+			params.addAll(excludeIndentIds);
+			params.add(minSeqNo);
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, params.toArray());
+			totalVal = resultMap.get("VAL").toString();
+		} catch (Exception ex) {
+			logger.error("getOtherCommittedScsTotalByPkaIdExcludingIndents method Error" + ex);
+		}
+		return totalVal;
+	}
+
+	@Override
+	public String getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents(String pkaId, List<String> excludeIndentIds, String minSeqNo) {
+		String totalVal = "0";
+		try {
+			String excludePlaceholders = String.join(",", excludeIndentIds.stream().map(id -> "?").toArray(String[]::new));
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(GREATEST(ih.SCM_BUDGET_ALLOCATED - COALESCE(bed.ACTUAL_EXCESS, 0), 0)) ELSE 0 END AS VAL " +
+					"FROM budget_excess_dtl bed " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID " +
+					"INNER JOIN indent_grp_scs scs ON scs.IG_SCS_ID = bed.IG_SCS_ID " +
+					"WHERE ih.PKA_ID = ? AND bed.INDENT_ID NOT IN (" + excludePlaceholders + ") AND bed.SEQUENCE_NO != 6 AND scs.SEQUENCE_NO < ? " +
+					"AND NOT EXISTS (" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = bed.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					")";
+			List<Object> params = new ArrayList<Object>();
+			params.add(pkaId);
+			params.addAll(excludeIndentIds);
+			params.add(minSeqNo);
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, params.toArray());
+			totalVal = resultMap.get("VAL").toString();
+		} catch (Exception ex) {
+			logger.error("getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents method Error" + ex);
 		}
 		return totalVal;
 	}
