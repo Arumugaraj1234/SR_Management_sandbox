@@ -3,8 +3,11 @@ package com.vmfg.scm.services.impl;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -361,17 +364,28 @@ public class IndentGroupService implements IIndentGroupService {
 			});
 		}
 
-		String indentId = iIndentGroupDAO.getIndentIdByIndentDtlId(indentTempName.getInsrtGrpDtl().get(0).getIndentDtlId());
-		int isInventoryCount=iPoDAO.getIsInventoryCount(indentId,indentTempName.getTenantId());
-		int indentCloseCount = iPoDAO.getIndentCloseStatus(indentId,indentTempName.getTenantId());
-		int checkCount=isInventoryCount-indentCloseCount;
-		if(checkCount == 0) {
-			String currSeq = iPoDAO.getTenantPropertyVal(indentTempName.getTenantId(), "INDENT_CLOSE_SEQ");
-			currSeqDocLifeCycleMstLists = stageManagementDAO.getDocDtlcurrentSeq("DC018",
-					currSeq, indentTempName.getTenantId());
-
-			poDAO.updateIntentHdrSeqAndStatus("", currSeqDocLifeCycleMstLists.get(0).getCurrSequence(),
-					currSeqDocLifeCycleMstLists.get(0).getDocStatus(), Integer.valueOf(indentId), "1");
+		// A submission can span multiple indents (station grouping) - run the "fully grouped -> close"
+		// check independently for every distinct indent represented here, not just the first item's
+		// indent. The sequence/status lookup is the same for every indent (same tenant, same doc
+		// group) so it's only fetched once, the first time some indent actually needs closing.
+		Set<String> distinctIndentIds = indentTempName.getInsrtGrpDtl().stream()
+				.map(grpDtl -> iIndentGroupDAO.getIndentIdByIndentDtlId(grpDtl.getIndentDtlId()))
+				.collect(Collectors.toCollection(LinkedHashSet::new));
+		boolean closeSeqLookedUp = false;
+		for (String indentId : distinctIndentIds) {
+			int isInventoryCount = iPoDAO.getIsInventoryCount(indentId, indentTempName.getTenantId());
+			int indentCloseCount = iPoDAO.getIndentCloseStatus(indentId, indentTempName.getTenantId());
+			int checkCount = isInventoryCount - indentCloseCount;
+			if (checkCount == 0) {
+				if (!closeSeqLookedUp) {
+					String currSeq = iPoDAO.getTenantPropertyVal(indentTempName.getTenantId(), "INDENT_CLOSE_SEQ");
+					currSeqDocLifeCycleMstLists = stageManagementDAO.getDocDtlcurrentSeq("DC018",
+							currSeq, indentTempName.getTenantId());
+					closeSeqLookedUp = true;
+				}
+				poDAO.updateIntentHdrSeqAndStatus("", currSeqDocLifeCycleMstLists.get(0).getCurrSequence(),
+						currSeqDocLifeCycleMstLists.get(0).getDocStatus(), Integer.valueOf(indentId), "1");
+			}
 		}
 
 		if (resp > 0) {
