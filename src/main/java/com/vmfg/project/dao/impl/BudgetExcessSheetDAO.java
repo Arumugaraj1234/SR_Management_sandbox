@@ -364,17 +364,20 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 			// separate check-then-insert, to close the race window where two near-simultaneous
 			// "Raise Budget Excess" clicks (or the legacy auto-create path) could both pass a
 			// prior getBudgetExcessDtlCount() check before either commits, creating duplicate
-			// entries for the same IG_SCS_ID. Mirrors getBudgetExcessDtlCount's exact condition
-			// (SEQUENCE_NO != 6 doesn't count as "already raised") so existing behavior for
-			// re-raising after a resolved/superseded entry is unchanged. If the NOT EXISTS check
-			// fails, zero rows are inserted and holder.getKey() throws, which the existing
+			// entries for the same (IG_SCS_ID, INDENT_ID). Mirrors getBudgetExcessDtlCount's exact
+			// condition (SEQUENCE_NO != 6 doesn't count as "already raised") so existing behavior
+			// for re-raising after a resolved/superseded entry is unchanged. Scoped to INDENT_ID as
+			// well as IG_SCS_ID (not IG_SCS_ID alone) so a multi-indent PJS can insert one row per
+			// distinct indent - see project_multi_indent_pjs_grouping memory, Problem 4 - while still
+			// blocking a genuine duplicate click for the same indent. If the NOT EXISTS check fails,
+			// zero rows are inserted and holder.getKey() throws, which the existing
 			// catch-and-return-0 below already handles as a no-op failure.
 			// allocatedValue/actualSpentSoFar are the NEW-flow station-budget snapshot (null for
 			// legacy callers, which the nullable DECIMAL columns accept as-is).
 			String insertBudgetQ = "INSERT INTO budget_excess_dtl (INDENT_ID, PM_HDR_ID, BUDGET_COST, ACTUAL_COST,EXCESS,  VENDOR_CODE,REASON,"
 					+ " ROOT_CAUSE, ACTION, RESPONSIBLE, SEQUENCE_NO,SEQUENCE_STATUS, UPDATED_BY, UPDATED_ON, TENANT_ID,PKSA_ID,IG_SCS_ID, ACTUAL_EXCESS, ALLOCATED_VALUE, ACTUAL_SPENT_SO_FAR, PJS_REF_NO) "
 					+ "SELECT ?,?,?,?,?,?,?,?,?,?,?,?,?,NOW(),?,?,?,?,?,?,? FROM DUAL "
-					+ "WHERE NOT EXISTS (SELECT 1 FROM budget_excess_dtl WHERE IG_SCS_ID = ? AND SEQUENCE_NO != 6)";
+					+ "WHERE NOT EXISTS (SELECT 1 FROM budget_excess_dtl WHERE IG_SCS_ID = ? AND INDENT_ID = ? AND SEQUENCE_NO != 6)";
 
 			KeyHolder holder = new GeneratedKeyHolder();
 
@@ -404,6 +407,7 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 					ps.setString(19, actualSpentSoFar);
 					ps.setString(20, pjsRefNo);
 					ps.setString(21, igScsId);
+					ps.setString(22, indentId);
 
 					return ps;
 				}

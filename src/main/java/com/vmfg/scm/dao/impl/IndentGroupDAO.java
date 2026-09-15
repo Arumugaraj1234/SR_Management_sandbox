@@ -1614,9 +1614,16 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 
 	@Override
 	public int getBudgetExcessIsCompleted(String scpId) {
+		// A multi-indent PJS can have more than one row for the same IG_SCS_ID (one per
+		// contributing indent - see project_multi_indent_pjs_grouping memory, Problem 4). This
+		// must mean ALL of them are completed, not just at least one - otherwise approving only
+		// one indent's excess would wrongly unblock the whole PJS while a sibling indent's
+		// shortfall is still pending. Harmless for the single-row (LEGACY, or single-indent
+		// NEW-flow) case: COUNT=1 either way.
 		int isCompleted=0;
 		try {
-			String qry="select count(*) as COUNT from budget_excess_dtl where IG_SCS_ID=? and IS_COMPLETED='1' and SEQUENCE_NO !=6";
+			String qry="select case when count(*) > 0 and sum(case when IS_COMPLETED='1' then 0 else 1 end) = 0 then 1 else 0 end as COUNT "
+					+ "from budget_excess_dtl where IG_SCS_ID=? and SEQUENCE_NO !=6";
 			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry,scpId);
 			isCompleted = Integer.parseInt(resultMap.get("COUNT").toString());
 		}catch (Exception e) {
@@ -2773,13 +2780,24 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	public String getOtherCommittedScsTotalByPkaIdExcludingIndents(String pkaId, List<String> excludeIndentIds, String minSeqNo) {
 		String totalVal = "0";
 		try {
+			// Sums each OTHER committed PJS's own real value per contributing indent
+			// (indent_grp_scs_indent_budget.SHARE_VALUE), not each matched indent's whole
+			// cumulative wallet (ih.SCM_BUDGET_ALLOCATED) - summing the whole wallet would double
+			// count anything already reflected via the caller's own scmBudgetValue, and would
+			// silently miss a non-representative indent's share of some OTHER multi-indent PJS
+			// entirely (indent_grp_scs.INDENT_ID only ever points at one indent per PJS). Excludes
+			// a PJS via its own IG_SCS_ID (po_hdr.IG_SCS_ID is a direct FK back to the PJS) rather
+			// than by indent, so this correctly recognizes an approved PO regardless of which one
+			// indent got stamped on po_hdr.INDENT_ID. See project_multi_indent_pjs_grouping
+			// memory, Problem 2/4.
 			String excludePlaceholders = String.join(",", excludeIndentIds.stream().map(id -> "?").toArray(String[]::new));
-			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ih.SCM_BUDGET_ALLOCATED) ELSE 0 END AS VAL " +
-					"FROM indent_grp_scs scs " +
-					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
-					"WHERE ih.PKA_ID = ? AND scs.INDENT_ID NOT IN (" + excludePlaceholders + ") AND scs.SEQUENCE_NO >= ? " +
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(b.SHARE_VALUE) ELSE 0 END AS VAL " +
+					"FROM indent_grp_scs_indent_budget b " +
+					"INNER JOIN indent_grp_scs scs ON scs.IG_SCS_ID = b.IG_SCS_ID " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = b.INDENT_ID " +
+					"WHERE ih.PKA_ID = ? AND b.INDENT_ID NOT IN (" + excludePlaceholders + ") AND scs.SEQUENCE_NO >= ? " +
 					"AND NOT EXISTS (" +
-					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = b.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
 					")";
 			List<Object> params = new ArrayList<Object>();
 			params.add(pkaId);
@@ -2797,6 +2815,12 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	public String getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents(String pkaId, List<String> excludeIndentIds, String minSeqNo) {
 		String totalVal = "0";
 		try {
+			// bed.ACTUAL_EXCESS is now correctly per-indent (one budget_excess_dtl row per
+			// contributing indent for a multi-indent PJS - see project_multi_indent_pjs_grouping
+			// memory, Problem 4), so this SUM is already accurate per-row without further change.
+			// The PO-already-exists check is scoped by the PJS's own IG_SCS_ID (po_hdr.IG_SCS_ID),
+			// not by indent, so it correctly recognizes an approved PO regardless of which one
+			// indent got stamped on po_hdr.INDENT_ID.
 			String excludePlaceholders = String.join(",", excludeIndentIds.stream().map(id -> "?").toArray(String[]::new));
 			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(GREATEST(ih.SCM_BUDGET_ALLOCATED - COALESCE(bed.ACTUAL_EXCESS, 0), 0)) ELSE 0 END AS VAL " +
 					"FROM budget_excess_dtl bed " +
@@ -2804,7 +2828,7 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 					"INNER JOIN indent_grp_scs scs ON scs.IG_SCS_ID = bed.IG_SCS_ID " +
 					"WHERE ih.PKA_ID = ? AND bed.INDENT_ID NOT IN (" + excludePlaceholders + ") AND bed.SEQUENCE_NO != 6 AND scs.SEQUENCE_NO < ? " +
 					"AND NOT EXISTS (" +
-					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = bed.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = bed.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
 					")";
 			List<Object> params = new ArrayList<Object>();
 			params.add(pkaId);
@@ -2816,6 +2840,21 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 			logger.error("getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents method Error" + ex);
 		}
 		return totalVal;
+	}
+
+	@Override
+	public Map<String, BigDecimal> getShareValueByIndentForScsId(String igScsId) {
+		Map<String, BigDecimal> shareByIndent = new HashMap<String, BigDecimal>();
+		try {
+			String qry = "SELECT INDENT_ID, SHARE_VALUE FROM indent_grp_scs_indent_budget WHERE IG_SCS_ID = ?";
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, igScsId);
+			for (Map<String, Object> row : rows) {
+				shareByIndent.put(row.get("INDENT_ID").toString(), new BigDecimal(row.get("SHARE_VALUE").toString()));
+			}
+		} catch (Exception ex) {
+			logger.error("getShareValueByIndentForScsId method Error" + ex);
+		}
+		return shareByIndent;
 	}
 
 }
