@@ -113,6 +113,12 @@ public class GetPoDtlsEntity implements Serializable {
     private String igst;
     private String terminalTax;
     private String indentCode;
+    // Count of distinct indents actually behind this PO's PJS (indent_grp_scs_indent_budget) -
+    // INDENT_CODE/indentID above still resolve to one representative indent
+    // (po_hdr.INDENT_ID), same as ever; when this is >1 the frontend shows "N indents" plus a
+    // breakdown instead of the single misleading code. See project_multi_indent_pjs_grouping
+    // memory, Problem 4 follow-on.
+    private String indentCount;
     private String refNo;
     private	String transportCharges;
     private	String transportChargesFx;

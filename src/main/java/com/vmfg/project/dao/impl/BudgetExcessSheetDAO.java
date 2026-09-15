@@ -803,12 +803,18 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 			// reaches the committed threshold (>= minSeqNo) or it already has an approved PO, its full
 			// committed value (which the approved excess is only a portion of) is already counted via
 			// committedScsTotal/approvedPoTotal. Without these two exclusions, the excess amount gets
-			// added a second time on top of the total that already contains it.
+			// added a second time on top of the total that already contains it. Both exclusions are
+			// scoped via the PJS itself (indent_grp_scs_indent_budget for "committed", po_hdr.IG_SCS_ID
+			// for "has an approved PO") rather than by indent alone - a multi-indent PJS only ever
+			// stores ONE representative indent on indent_grp_scs.INDENT_ID/po_hdr.INDENT_ID, so a
+			// non-representative sibling indent's own committed/PO status would otherwise be invisible
+			// here even though bed.INDENT_ID (one row per contributing indent, see raiseBudgetExcess) is
+			// itself genuinely real. See project_multi_indent_pjs_grouping memory, Problem 4 follow-on.
 			String query = "SELECT COALESCE(SUM(bed.ACTUAL_EXCESS),0) AS OVERALL_EXCESS "
 					+ "FROM budget_excess_dtl bed "
 					+ "WHERE bed.PM_HDR_ID = ? AND bed.IS_COMPLETED = '1' "
-					+ "AND NOT EXISTS (SELECT 1 FROM indent_grp_scs scs WHERE scs.INDENT_ID = bed.INDENT_ID AND scs.SEQUENCE_NO >= ?) "
-					+ "AND NOT EXISTS (SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = bed.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1)";
+					+ "AND NOT EXISTS (SELECT 1 FROM indent_grp_scs_indent_budget b2 INNER JOIN indent_grp_scs scs2 ON scs2.IG_SCS_ID = b2.IG_SCS_ID WHERE b2.INDENT_ID = bed.INDENT_ID AND scs2.SEQUENCE_NO >= ?) "
+					+ "AND NOT EXISTS (SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = bed.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1)";
 			Map<String, Object> resultMap = jdbcTemplate.queryForMap(query, pmHdrId, minSeqNo);
 			overallExcess = resultMap.get("OVERALL_EXCESS").toString();
 		} catch (Exception ex) {
@@ -825,8 +831,8 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 					+ "FROM budget_excess_dtl bed "
 					+ "INNER JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID "
 					+ "WHERE bed.PM_HDR_ID = ? AND ih.SBC_CODE = ? AND bed.IS_COMPLETED = '1' "
-					+ "AND NOT EXISTS (SELECT 1 FROM indent_grp_scs scs WHERE scs.INDENT_ID = bed.INDENT_ID AND scs.SEQUENCE_NO >= ?) "
-					+ "AND NOT EXISTS (SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = bed.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1)";
+					+ "AND NOT EXISTS (SELECT 1 FROM indent_grp_scs_indent_budget b2 INNER JOIN indent_grp_scs scs2 ON scs2.IG_SCS_ID = b2.IG_SCS_ID WHERE b2.INDENT_ID = bed.INDENT_ID AND scs2.SEQUENCE_NO >= ?) "
+					+ "AND NOT EXISTS (SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = bed.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1)";
 			Map<String, Object> resultMap = jdbcTemplate.queryForMap(query, pmHdrId, sbcCode, minSeqNo);
 			overallExcess = resultMap.get("OVERALL_EXCESS").toString();
 		} catch (Exception ex) {
@@ -843,8 +849,8 @@ public class BudgetExcessSheetDAO implements IBudgetExcessSheetDAO {
 					+ "FROM budget_excess_dtl bed "
 					+ "INNER JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID "
 					+ "WHERE bed.PM_HDR_ID = ? AND bed.IS_COMPLETED = '1' "
-					+ "AND NOT EXISTS (SELECT 1 FROM indent_grp_scs scs WHERE scs.INDENT_ID = bed.INDENT_ID AND scs.SEQUENCE_NO >= ?) "
-					+ "AND NOT EXISTS (SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = bed.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1) "
+					+ "AND NOT EXISTS (SELECT 1 FROM indent_grp_scs_indent_budget b2 INNER JOIN indent_grp_scs scs2 ON scs2.IG_SCS_ID = b2.IG_SCS_ID WHERE b2.INDENT_ID = bed.INDENT_ID AND scs2.SEQUENCE_NO >= ?) "
+					+ "AND NOT EXISTS (SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = bed.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1) "
 					+ "GROUP BY ih.SBC_CODE";
 			List<Map<String, Object>> rows = jdbcTemplate.queryForList(query, pmHdrId, minSeqNo);
 			for (Map<String, Object> row : rows) {
