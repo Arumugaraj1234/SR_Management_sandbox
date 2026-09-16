@@ -1675,6 +1675,19 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	}
 
 	@Override
+	public boolean hasApprovedPoForScsId(String igScsId) {
+		boolean exists = false;
+		try {
+			String qry = "SELECT COUNT(*) AS CNT FROM po_hdr WHERE IG_SCS_ID = ? AND IS_LATEST = 1 AND IS_APPROVED = 1";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, igScsId);
+			exists = Integer.parseInt(resultMap.get("CNT").toString()) > 0;
+		} catch (Exception ex) {
+			logger.error("hasApprovedPoForScsId method Error" + ex);
+		}
+		return exists;
+	}
+
+	@Override
 	public int getScsPtCount(String scpID) {
 		int count=0;
 		try {
@@ -2421,21 +2434,12 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 
 	@Override
 	public String getOtherCommittedScsTotalByPkaId(String pkaId, String excludeIndentId, String minSeqNo) {
-		String totalVal = "0";
-		try {
-			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ih.SCM_BUDGET_ALLOCATED) ELSE 0 END AS VAL " +
-					"FROM indent_grp_scs scs " +
-					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
-					"WHERE ih.PKA_ID = ? AND scs.INDENT_ID <> ? AND scs.SEQUENCE_NO >= ? " +
-					"AND NOT EXISTS (" +
-					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
-					")";
-			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, pkaId, excludeIndentId, minSeqNo);
-			totalVal = resultMap.get("VAL").toString();
-		} catch (Exception ex) {
-			logger.error("getOtherCommittedScsTotalByPkaId method Error" + ex);
-		}
-		return totalVal;
+		// Delegates to the multi-indent-aware version (single-element exclude list) instead of
+		// keeping a separate near-duplicate query, so the two can never drift apart. See
+		// project_multi_indent_pjs_grouping memory, Problem 4 follow-on.
+		List<String> excludeIndentIds = new ArrayList<String>();
+		excludeIndentIds.add(excludeIndentId);
+		return getOtherCommittedScsTotalByPkaIdExcludingIndents(pkaId, excludeIndentIds, minSeqNo);
 	}
 
 	// Reserves the portion of any other indent at this station that's still competing for the
@@ -2523,12 +2527,17 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	public Map<String, BigDecimal> getOtherCommittedScsTotalGroupedByPmHdrId(String pmHdrId, String minSeqNo) {
 		Map<String, BigDecimal> totalsByPkaId = new HashMap<>();
 		try {
-			String qry = "SELECT ih.PKA_ID AS PKA_ID, SUM(ih.SCM_BUDGET_ALLOCATED) AS VAL " +
-					"FROM indent_grp_scs scs " +
-					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
+			// Sums each committed PJS's real per-indent value (indent_grp_scs_indent_budget) rather
+			// than each matched representative indent's whole wallet, and checks "has an approved PO"
+			// via the PJS's own IG_SCS_ID - same fix as getOtherCommittedScsTotalByPkaIdExcludingIndents,
+			// see project_multi_indent_pjs_grouping memory, Problem 4 follow-on.
+			String qry = "SELECT ih.PKA_ID AS PKA_ID, SUM(b.SHARE_VALUE) AS VAL " +
+					"FROM indent_grp_scs_indent_budget b " +
+					"INNER JOIN indent_grp_scs scs ON scs.IG_SCS_ID = b.IG_SCS_ID " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = b.INDENT_ID " +
 					"WHERE ih.PROJECT_ID = ? AND scs.SEQUENCE_NO >= ? " +
 					"AND NOT EXISTS (" +
-					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = b.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
 					") " +
 					"GROUP BY ih.PKA_ID";
 			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, pmHdrId, minSeqNo);
@@ -2545,12 +2554,15 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	public Map<String, BigDecimal> getCommittedScsTotalGroupedBySbcCode(String projectId, String minSeqNo) {
 		Map<String, BigDecimal> totalsBySbcCode = new HashMap<>();
 		try {
-			String qry = "SELECT ih.SBC_CODE AS SBC_CODE, SUM(ih.SCM_BUDGET_ALLOCATED) AS VAL " +
-					"FROM indent_grp_scs scs " +
-					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
+			// Same multi-indent fix as getOtherCommittedScsTotalGroupedByPmHdrId above - see
+			// project_multi_indent_pjs_grouping memory, Problem 4 follow-on.
+			String qry = "SELECT ih.SBC_CODE AS SBC_CODE, SUM(b.SHARE_VALUE) AS VAL " +
+					"FROM indent_grp_scs_indent_budget b " +
+					"INNER JOIN indent_grp_scs scs ON scs.IG_SCS_ID = b.IG_SCS_ID " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = b.INDENT_ID " +
 					"WHERE ih.PROJECT_ID = ? AND scs.SEQUENCE_NO >= ? " +
 					"AND NOT EXISTS (" +
-					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = b.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
 					") " +
 					"GROUP BY ih.SBC_CODE";
 			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, projectId, minSeqNo);
@@ -2571,12 +2583,15 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 		}
 		try {
 			String placeholders = String.join(",", projectIds.stream().map(id -> "?").toArray(String[]::new));
-			String qry = "SELECT ih.PROJECT_ID AS PROJECT_ID, SUM(ih.SCM_BUDGET_ALLOCATED) AS VAL " +
-					"FROM indent_grp_scs scs " +
-					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
+			// Same multi-indent fix as getOtherCommittedScsTotalGroupedByPmHdrId above - see
+			// project_multi_indent_pjs_grouping memory, Problem 4 follow-on.
+			String qry = "SELECT ih.PROJECT_ID AS PROJECT_ID, SUM(b.SHARE_VALUE) AS VAL " +
+					"FROM indent_grp_scs_indent_budget b " +
+					"INNER JOIN indent_grp_scs scs ON scs.IG_SCS_ID = b.IG_SCS_ID " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = b.INDENT_ID " +
 					"WHERE ih.PROJECT_ID IN (" + placeholders + ") AND scs.SEQUENCE_NO >= ? " +
 					"AND NOT EXISTS (" +
-					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = b.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
 					") " +
 					"GROUP BY ih.PROJECT_ID";
 			List<Object> params = new ArrayList<>(projectIds);
@@ -2595,12 +2610,15 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	public String getCommittedScsTotalByProjectId(String projectId, String minSeqNo) {
 		String totalVal = "0";
 		try {
-			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ih.SCM_BUDGET_ALLOCATED) ELSE 0 END AS VAL " +
-					"FROM indent_grp_scs scs " +
-					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
+			// Same multi-indent fix as getOtherCommittedScsTotalGroupedByPmHdrId above - see
+			// project_multi_indent_pjs_grouping memory, Problem 4 follow-on.
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(b.SHARE_VALUE) ELSE 0 END AS VAL " +
+					"FROM indent_grp_scs_indent_budget b " +
+					"INNER JOIN indent_grp_scs scs ON scs.IG_SCS_ID = b.IG_SCS_ID " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = b.INDENT_ID " +
 					"WHERE ih.PROJECT_ID = ? AND scs.SEQUENCE_NO >= ? " +
 					"AND NOT EXISTS (" +
-					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = b.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
 					")";
 			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, projectId, minSeqNo);
 			totalVal = resultMap.get("VAL").toString();
@@ -2614,12 +2632,15 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	public String getCommittedScsTotalByProjectIdAndSbcCode(String projectId, String sbcCode, String minSeqNo) {
 		String totalVal = "0";
 		try {
-			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(ih.SCM_BUDGET_ALLOCATED) ELSE 0 END AS VAL " +
-					"FROM indent_grp_scs scs " +
-					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = scs.INDENT_ID " +
+			// Same multi-indent fix as getOtherCommittedScsTotalGroupedByPmHdrId above - see
+			// project_multi_indent_pjs_grouping memory, Problem 4 follow-on.
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(b.SHARE_VALUE) ELSE 0 END AS VAL " +
+					"FROM indent_grp_scs_indent_budget b " +
+					"INNER JOIN indent_grp_scs scs ON scs.IG_SCS_ID = b.IG_SCS_ID " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = b.INDENT_ID " +
 					"WHERE ih.PROJECT_ID = ? AND ih.SBC_CODE = ? AND scs.SEQUENCE_NO >= ? " +
 					"AND NOT EXISTS (" +
-					"    SELECT 1 FROM po_hdr ph WHERE ph.INDENT_ID = scs.INDENT_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = b.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
 					")";
 			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, projectId, sbcCode, minSeqNo);
 			totalVal = resultMap.get("VAL").toString();

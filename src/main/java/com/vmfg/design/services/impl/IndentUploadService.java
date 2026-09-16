@@ -945,16 +945,50 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 							: iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", indentReq.getTenantId());
 					BigDecimal allocatedValue = new BigDecimal(projectDAO.getAllocatedValSum(pkaId));
 					BigDecimal approvedPoTotal = new BigDecimal(iPoDAO.getApprovedPoTotalByPkaId(pkaId));
+					// A PJS can span multiple indents (station grouping, see
+					// project_multi_indent_pjs_grouping memory) - exclude every distinct indent behind
+					// THIS PJS, not just the representative one, from both queries below. Otherwise a
+					// sibling indent's own share of the SAME PJS - once its SCS reaches the "committed"
+					// sequence but before its PO is approved - gets counted as if it were a separate
+					// indent's competing claim on the station's remaining balance (real case: PJS
+					// 1110/M/PJS/2, PO created but not yet approved, sibling indent 3552's own
+					// SHARE_VALUE of 22,137.93 was wrongly showing up as "Actual Consumed Value" when
+					// viewing representative indent 3551's own Justification Sheet).
+					List<String> distinctIndentIdsForThisScs = new ArrayList<String>();
+					if (!scsIdForPjsRef.isEmpty()) {
+						distinctIndentIdsForThisScs.addAll(iIndentGroupDAO.getDistinctIndentIdsByScsId(scsIdForPjsRef));
+					}
+					if (distinctIndentIdsForThisScs.isEmpty()) {
+						distinctIndentIdsForThisScs.add(indentReq.getIndentId());
+					}
 					BigDecimal otherCommittedPjs = new BigDecimal(iIndentGroupDAO
-							.getOtherCommittedScsTotalByPkaId(pkaId, indentReq.getIndentId(), scsBudgetExcessSeq));
+							.getOtherCommittedScsTotalByPkaIdExcludingIndents(pkaId, distinctIndentIdsForThisScs,
+									scsBudgetExcessSeq));
 					// Reserves the full value of any other indent at this station with a Budget
 					// Excess raised but not yet approved - same reservation the "Project Approved"
 					// gate now checks (see IndentGroupService.updateScpSeqAndStatus) - folded in here
 					// too so this screen's Available Value/isShortfall can't show "fine" right before
 					// the gate blocks the same click for a reason this display doesn't know about.
 					BigDecimal reservedPendingExcess = new BigDecimal(iIndentGroupDAO
-							.getPendingBudgetExcessReservedTotalByPkaId(pkaId, indentReq.getIndentId(), scsBudgetExcessSeq));
-					BigDecimal actualConsumedValue = approvedPoTotal.add(otherCommittedPjs).add(reservedPendingExcess);
+							.getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents(pkaId,
+									distinctIndentIdsForThisScs, scsBudgetExcessSeq));
+					// This PJS's OWN committed value - the piece the three terms above deliberately
+					// exclude (they only ever count OTHER indents/PJS's). Once this PJS's own SCS has
+					// itself reached the station's commit threshold, its value is real consumption and
+					// belongs in the total, same as the Budget Excess gate's own scmBudgetValue term
+					// (IndentGroupService.updateScpSeqAndStatus/raiseBudgetExcess) already does. Skipped
+					// once an approved PO exists for it, since approvedPoTotal has already counted it by
+					// then via the PO's own BASIC_TOTAL - counting both would double it.
+					BigDecimal ownCommittedValue = BigDecimal.ZERO;
+					if (!scsIdForPjsRef.isEmpty() && !iIndentGroupDAO.hasApprovedPoForScsId(scsIdForPjsRef)) {
+						int scsCurrentSeq = iIndentGroupDAO.getScsCurrentSeq(scsIdForPjsRef);
+						if (scsCurrentSeq >= Integer.parseInt(scsBudgetExcessSeq)) {
+							ownCommittedValue = new BigDecimal(
+									iIndentGroupDAO.getScmBudgetValueForIndents(distinctIndentIdsForThisScs));
+						}
+					}
+					BigDecimal actualConsumedValue = approvedPoTotal.add(otherCommittedPjs).add(reservedPendingExcess)
+							.add(ownCommittedValue);
 					proj.get(0).setAllocatedValue(allocatedValue.toString());
 					proj.get(0).setActualConsumedValue(actualConsumedValue.toString());
 					proj.get(0).setApprovedPoAmount(approvedPoTotal.toString());

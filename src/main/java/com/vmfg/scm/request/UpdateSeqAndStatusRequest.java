@@ -1,5 +1,7 @@
 package com.vmfg.scm.request;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,7 +42,11 @@ public class UpdateSeqAndStatusRequest {
 	private String qiId;
 	private String scsFinalCost;
     private String processCode;
-	
+	// Sibling Budget Excess Sheet BE_HDR_IDs when a multi-indent PJS's rows are approved as one
+	// merged action from the UI (see project_multi_indent_pjs_grouping memory). Null/empty for
+	// every other existing caller of this shared DTO - hdrId alone is used in that case, unchanged.
+	private List<String> hdrIds;
+
 }
 
 //{

@@ -192,6 +192,8 @@ public interface IIndentGroupDAO {
 
 	int getScsCurrentSeq(String scsId);
 
+	boolean hasApprovedPoForScsId(String igScsId);
+
 	int getNextPjsRefSeqByProjectId(String projectId, String tenantId);
 
 	int updatePjsRefNoByIgScsId(String igScsId, String pjsRefNo, String tenantId);
