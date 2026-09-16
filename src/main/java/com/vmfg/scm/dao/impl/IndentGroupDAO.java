@@ -1675,6 +1675,19 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	}
 
 	@Override
+	public boolean hasApprovedPoForScsId(String igScsId) {
+		boolean exists = false;
+		try {
+			String qry = "SELECT COUNT(*) AS CNT FROM po_hdr WHERE IG_SCS_ID = ? AND IS_LATEST = 1 AND IS_APPROVED = 1";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, igScsId);
+			exists = Integer.parseInt(resultMap.get("CNT").toString()) > 0;
+		} catch (Exception ex) {
+			logger.error("hasApprovedPoForScsId method Error" + ex);
+		}
+		return exists;
+	}
+
+	@Override
 	public int getScsPtCount(String scpID) {
 		int count=0;
 		try {

@@ -160,7 +160,20 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 		logger.debug("updateBudgetExcessSheetDtl   method Start");
 		ResponseAsMessage rmsg = new ResponseAsMessage();
 		try {
-			int qResp = iBudgetExcessSheetDAO.updateBudgetExcessSheetDtl(updateudget);
+			// A multi-indent PJS's Budget Excess Sheet rows are saved as one merged action from the
+			// UI - apply the same reason/RCA/action/dept to every sibling BE_HDR_ID (see
+			// project_multi_indent_pjs_grouping memory). hdrIds is null/empty for every existing
+			// single-row caller, which keeps this byte-identical to before.
+			List<String> targetHdrIds = updateudget.getHdrIds();
+			if (targetHdrIds == null || targetHdrIds.isEmpty()) {
+				targetHdrIds = new ArrayList<String>();
+				targetHdrIds.add(updateudget.getBeHdrId());
+			}
+			int qResp = 0;
+			for (String eachHdrId : targetHdrIds) {
+				updateudget.setBeHdrId(eachHdrId);
+				qResp += iBudgetExcessSheetDAO.updateBudgetExcessSheetDtl(updateudget);
+			}
 
 			if (qResp > 0) {
 				rmsg.setResponseCode(ResponseMessageMap.responseCodeOk);
@@ -389,6 +402,27 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 
 	@Override
 	public ResponseAsMessage updateBudgetSheetExcessSeqAndStatus(UpdateSeqAndStatusRequest updateDtls) {
+		// A multi-indent PJS's Budget Excess Sheet rows are approved/rejected as one merged action
+		// from the UI - apply the same status transition to every sibling BE_HDR_ID in turn (see
+		// project_multi_indent_pjs_grouping memory). hdrIds is null/empty for every existing
+		// single-row caller, which falls through to exactly today's single-hdrId behavior.
+		List<String> targetHdrIds = updateDtls.getHdrIds();
+		if (targetHdrIds == null || targetHdrIds.isEmpty()) {
+			return updateBudgetSheetExcessSeqAndStatusSingle(updateDtls, updateDtls.getHdrId());
+		}
+		ResponseAsMessage returnMessage = new ResponseAsMessage();
+		for (String eachHdrId : targetHdrIds) {
+			returnMessage = updateBudgetSheetExcessSeqAndStatusSingle(updateDtls, eachHdrId);
+			if (!ResponseMessageMap.responseCodeOk.equals(returnMessage.getResponseCode())) {
+				// Stop on the first failure rather than leaving the group half-approved with no
+				// indication of which sibling failed.
+				return returnMessage;
+			}
+		}
+		return returnMessage;
+	}
+
+	private ResponseAsMessage updateBudgetSheetExcessSeqAndStatusSingle(UpdateSeqAndStatusRequest updateDtls, String budegtSheetDtlId) {
 		ResponseAsMessage returnMessage = new ResponseAsMessage();
 		List<DocumentStatusMstEntity> currSeqDocLifeCycleMstList = new ArrayList<DocumentStatusMstEntity>();
 		List<String> messageList = new ArrayList<>();
@@ -397,41 +431,40 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 			logger.debug("updateBudgetSheetExcessSeqAndStatus method Start");
 			int insertBudegtSheetDtlStatusDtl = 0;
 			String docType = "DC039";
-			String budegtSheetDtlId = updateDtls.getHdrId();
 			String excessValue = iBudgetExcessSheetDAO.getBudgetExcessValueByHdrId(budegtSheetDtlId);
 
 			String docGrp = getDocGroup(excessValue,updateDtls.getTenantId(),updateDtls.getProcessCode());
 			// Take Last Sequence from documentLifeCycle
 			currSeqDocLifeCycleMstList = stageManagementDAO.getDocDtlcurrentSeqByDocGrp(docType,
 					updateDtls.getCurrentseq(), updateDtls.getTenantId(), docGrp,updateDtls.getProcessCode());
-			
-				
-				iBudgetExcessSheetDAO.UpdateIndentAndScsStatus(updateDtls.getCurrentseq(), updateDtls.getHdrId(), updateDtls.getTenantId(), updateDtls.getEmpId(), docGrp,updateDtls.getProcessCode());	
-				
+
+
+				iBudgetExcessSheetDAO.UpdateIndentAndScsStatus(updateDtls.getCurrentseq(), budegtSheetDtlId, updateDtls.getTenantId(), updateDtls.getEmpId(), docGrp,updateDtls.getProcessCode());
+
 				// Update BudgetExcessDtl
 						iBudgetExcessSheetDAO.updateBudgetSheetExcessSeqAndStatus(budegtSheetDtlId,
 						updateDtls.getCurrentseq(), currSeqDocLifeCycleMstList.get(0).getDocStatus(),
 						updateDtls.getTenantId(),updateDtls.getEmpId());
-				
+
 				// BudgetExcessDtlStatus
 				insertBudegtSheetDtlStatusDtl = iBudgetExcessSheetDAO.insertBudgetSheetExcessStatusStatusDtl(
 						budegtSheetDtlId, updateDtls.getCurrentseq(), currSeqDocLifeCycleMstList.get(0).getDocStatus(),
 						updateDtls.getTenantId(), updateDtls.getRemarks(), updateDtls.getEmpId());
 
-				String indentId=iBudgetExcessSheetDAO.getIndentIdByBehdrID(updateDtls.getHdrId());
+				String indentId=iBudgetExcessSheetDAO.getIndentIdByBehdrID(budegtSheetDtlId);
 				messageList.add(indentUploadDAO.getIndentCodeByIndentId(indentId));
-				
+
 				String nextApprDesig = commonNotifyMethod.getNxtAppDescByDocGroup("DC039", updateDtls.getCurrentseq(), updateDtls.getDocGroup(),updateDtls.getTenantId(),updateDtls.getProcessCode());
 				if (nextApprDesig.equalsIgnoreCase("")) {
 					nextApprDesig=null;
 				}
 				commonNotifyMethod.InvokeNotificationMethod(1,44, "", updateDtls.getTenantId(), messageList, otherEmpId, "1", updateDtls.getPmId(), null, nextApprDesig);
-				
+
 				if (currSeqDocLifeCycleMstList.get(0).getLastSeq()!=null && currSeqDocLifeCycleMstList.get(0).getLastSeq().equalsIgnoreCase("1")) {
 					iBudgetExcessSheetDAO.updateBudgetSheetExcessApproved(budegtSheetDtlId);
 				}
-					commonNotifyMethod.InvokeApprovalDesigMethod(updateDtls.getPmId(), "DC039",updateDtls.getHdrId(),updateDtls.getPmHdrId(), updateDtls.getTenantId(),"" ,nextApprDesig, indentUploadDAO.getEnqIdByProjectId(updateDtls.getPmHdrId()),indentUploadDAO.getIndentCodeByIndentId(indentId));
-				
+					commonNotifyMethod.InvokeApprovalDesigMethod(updateDtls.getPmId(), "DC039",budegtSheetDtlId,updateDtls.getPmHdrId(), updateDtls.getTenantId(),"" ,nextApprDesig, indentUploadDAO.getEnqIdByProjectId(updateDtls.getPmHdrId()),indentUploadDAO.getIndentCodeByIndentId(indentId));
+
 
 				if (insertBudegtSheetDtlStatusDtl > 0) {
 					returnMessage.setResponseCode(ResponseMessageMap.responseCodeOk);
