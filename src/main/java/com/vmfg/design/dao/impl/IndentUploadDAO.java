@@ -1353,6 +1353,11 @@ public class IndentUploadDAO implements IIndentUploadDAO {
 				    "    hd.TARGET_VALUE,\n" +
 				    "    CASE\n" +
 				    "        WHEN (SELECT COUNT(*) FROM po_hdr WHERE po_hdr.INDENT_ID = hd.INDENT_ID) > 0\n" +
+				    "            OR EXISTS (\n" +
+				    "                SELECT 1 FROM indent_grp_scs_indent_budget igb\n" +
+				    "                INNER JOIN po_hdr ph2 ON ph2.IG_SCS_ID = igb.IG_SCS_ID\n" +
+				    "                WHERE igb.INDENT_ID = hd.INDENT_ID\n" +
+				    "            )\n" +
 				    "            THEN (hd.BUDGET_VALUE - hd.SCM_BUDGET_ALLOCATED)\n" +
 				    "        ELSE 0\n" +
 				    "    END AS Budget_Status,\n" +
