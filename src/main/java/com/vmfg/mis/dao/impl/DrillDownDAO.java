@@ -377,10 +377,9 @@ public class DrillDownDAO implements IDrillDownDAO {
 					"        INNER JOIN\r\n" + 
 					"    indent_dtl dtl ON hdr.INDENT_ID = dtl.INDENT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
-					"    po_hdr poh ON hdr.INDENT_ID = poh.INDENT_ID\r\n" + 
-					"        INNER JOIN\r\n" + 
 					"    po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID\r\n" +
-					"        AND poh.PO_ID = pod.PO_ID\r\n" + 
+					"        INNER JOIN\r\n" + 
+					"    po_hdr poh ON poh.PO_ID = pod.PO_ID\r\n" + 
 					"     left join vendor_mst mst on poh.VENDOR_CODE = mst.VENDOR_CODE \r\n" +
 					"        INNER JOIN\r\n" + 
 					"   scm_hdr AS sh ON sh.PM_HDR_ID = hdr.PROJECT_ID\r\n" + 

@@ -387,9 +387,9 @@ public class ScmMisDAO implements IScmMisDAO{
 					"        INNER JOIN\r\n" + 
 					"    project_hdr ph ON ph.PM_HDR_ID = hdr.PROJECT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
-					"    po_hdr poh ON hdr.INDENT_ID = poh.INDENT_ID\r\n" + 
+					"    po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
-					"    po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID  AND poh.PO_ID = pod.PO_ID\r\n" + 
+					"    po_hdr poh ON poh.PO_ID = pod.PO_ID\r\n" + 
 					"WHERE\r\n" + 
 					"        hdr.PROJECT_ID like ? \r\n" + 
 					"        AND hdr.TENANT_ID = ?\r\n" + 
@@ -421,9 +421,9 @@ public class ScmMisDAO implements IScmMisDAO{
 						"        INNER JOIN\r\n" + 
 						"    project_hdr ph ON ph.PM_HDR_ID = hdr.PROJECT_ID\r\n" + 
 						"        INNER JOIN\r\n" + 
-						"    po_hdr poh ON hdr.INDENT_ID = poh.INDENT_ID\r\n" + 
+						"    po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID\r\n" + 
 						"        INNER JOIN\r\n" + 
-						"    po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID  AND poh.PO_ID = pod.PO_ID\r\n" + 
+						"    po_hdr poh ON poh.PO_ID = pod.PO_ID\r\n" + 
 						"WHERE\r\n" + 
 						"        hdr.PROJECT_ID like ? \r\n" + 
 						"        AND hdr.TENANT_ID = ? #AND  hdr.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077') \r\n" + 
@@ -750,7 +750,7 @@ public class ScmMisDAO implements IScmMisDAO{
 					"        FROM\r\n" + 
 					"            po_hdr pohdr\r\n" + 
 					"                INNER JOIN\r\n" + 
-					"            po_dtl podtl ON podtl.PO_ID = pohdr.PO_ID INNER JOIN indent_hdr hdr  on hdr.INDENT_ID = pohdr.INDENT_ID \r\n" + 
+					"            po_dtl podtl ON podtl.PO_ID = pohdr.PO_ID INNER JOIN indent_dtl podidtl ON podidtl.INDENT_DTL_ID = podtl.INDENT_DTL_ID INNER JOIN indent_hdr hdr  on hdr.INDENT_ID = podidtl.INDENT_ID \r\n" + 
 					"        WHERE\r\n" + 
 					"            pohdr.IS_APPROVED = 1\r\n" + 
 					"                AND pohdr.IS_LATEST = 1 and pohdr.TENANT_ID='"+tenantId+"' and hdr.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077'))\r\n" + 
@@ -796,7 +796,7 @@ public class ScmMisDAO implements IScmMisDAO{
 						"        FROM\r\n" + 
 						"            po_hdr pohdr\r\n" + 
 						"                INNER JOIN\r\n" + 
-						"            po_dtl podtl ON podtl.PO_ID = pohdr.PO_ID  INNER JOIN indent_hdr hdr  on hdr.INDENT_ID = pohdr.INDENT_ID  \r\n" + 
+						"            po_dtl podtl ON podtl.PO_ID = pohdr.PO_ID  INNER JOIN indent_dtl podidtl ON podidtl.INDENT_DTL_ID = podtl.INDENT_DTL_ID INNER JOIN indent_hdr hdr  on hdr.INDENT_ID = podidtl.INDENT_ID  \r\n" + 
 						"        WHERE\r\n" + 
 						"            pohdr.IS_APPROVED = 1\r\n" + 
 						"                AND pohdr.IS_LATEST = 1  and pohdr.TENANT_ID='"+tenantId+"' and hdr.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077') )\r\n" + 
@@ -1062,10 +1062,9 @@ public class ScmMisDAO implements IScmMisDAO{
 					"        INNER JOIN\r\n" + 
 					"    project_hdr ph ON ph.PM_HDR_ID = ih.PROJECT_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
-					"    po_hdr poh ON ih.INDENT_ID = poh.INDENT_ID\r\n" + 
+					"    po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
-					"    po_dtl pod ON poh.PO_ID = pod.PO_ID\r\n" + 
-					"        AND dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID\r\n" + 
+					"    po_hdr poh ON poh.PO_ID = pod.PO_ID\r\n" + 
 					"WHERE\r\n" + 
 					"    ih.PROJECT_ID = ?\r\n" + 
 					"        AND poh.IS_APPROVED = 1\r\n" + 
