@@ -119,6 +119,9 @@ public class GetPoDtlsEntity implements Serializable {
     // breakdown instead of the single misleading code. See project_multi_indent_pjs_grouping
     // memory, Problem 4 follow-on.
     private String indentCount;
+    // PJS ref no. behind this PO (indent_grp_scs.PJS_REF_NO, joined via po_hdr.IG_SCS_ID) - for the
+    // PO list's "PJS No." column.
+    private String pjsRefNo;
     private String refNo;
     private	String transportCharges;
     private	String transportChargesFx;
