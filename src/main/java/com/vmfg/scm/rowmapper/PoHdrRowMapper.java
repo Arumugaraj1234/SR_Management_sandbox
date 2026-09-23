@@ -122,6 +122,9 @@ public class PoHdrRowMapper implements RowMapper<GetPoDtlsEntity> {
             if (columnExists(row, "INDENT_COUNT")) {
                 po.setIndentCount(row.getString("INDENT_COUNT")!=null ? row.getString("INDENT_COUNT") : "1");
             }
+            if (columnExists(row, "PJS_REF_NO")) {
+                po.setPjsRefNo(row.getString("PJS_REF_NO"));
+            }
             po.setRefNo(row.getString("REF_NO"));
             po.setTransportCharges(row.getString("TRANSPORT_CHARGES"));
             po.setTransportChargesFx(row.getString("TRANSPORT_CHARGES_FX"));

@@ -152,7 +152,7 @@ public class PoDAO implements IPoDAO {
 //			}
 //
 //			else {
-			String retQry = "SELECT \r\n" + "    *,ih.INDENT_CODE, igs.IG_HDR_ID AS IG_HDR_ID,\r\n"
+			String retQry = "SELECT \r\n" + "    *,ih.INDENT_CODE, igs.IG_HDR_ID AS IG_HDR_ID, igs.PJS_REF_NO AS PJS_REF_NO,\r\n"
 					+ "    (SELECT COUNT(DISTINCT b.INDENT_ID) FROM indent_grp_scs_indent_budget b WHERE b.IG_SCS_ID = po.IG_SCS_ID) AS INDENT_COUNT\r\n" + "FROM\r\n" + "    po_hdr po\r\n"
 					+ "        INNER JOIN\r\n" + "    indent_grp_scs igs ON po.IG_SCS_ID = igs.IG_SCS_ID\r\n"
 					+ "        INNER JOIN\r\n"
