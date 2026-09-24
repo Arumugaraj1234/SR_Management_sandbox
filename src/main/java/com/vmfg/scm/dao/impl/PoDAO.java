@@ -1711,6 +1711,28 @@ String poDate= CommonMethod.getCurrentDate();
 		return reduceIntPrdDtl;
 	}
 
+	// PO screens + PDF show same Part Number + Unit Rate lines as one row for NEW-flow POs created
+	// from tenant property PO_MERGE_SAME_PART_FROM_PO_ID onwards (revisions follow their original PO_ID).
+	// Property missing / inactive = off for every PO. Existing POs before the cutoff never change.
+	@Override
+	public String getMergeSamePartRowsFlag(String poId) {
+		String flag = "0";
+		try {
+			// COALESCE: a PO with no indent/project link returns no row -> '0' without an exception
+			String qry = "SELECT COALESCE((SELECT CASE WHEN prj.COST_FLOW_TYPE = 'NEW' "
+					+ "AND (SELECT MIN(o.PO_ID) FROM po_hdr o WHERE o.PO_CODE = p.PO_CODE AND o.TENANT_ID = p.TENANT_ID) >= "
+					+ "CAST((SELECT t.PROPERTY_VALUE FROM tenant_property_mst t WHERE t.TENANT_ID = p.TENANT_ID "
+					+ "AND t.PROPERTY_NAME = 'PO_MERGE_SAME_PART_FROM_PO_ID' AND t.IS_ACTIVE = 1 LIMIT 1) AS UNSIGNED) "
+					+ "THEN '1' ELSE '0' END AS MERGE_FLAG FROM po_hdr p "
+					+ "INNER JOIN indent_hdr ih ON ih.INDENT_ID = p.INDENT_ID "
+					+ "INNER JOIN project_hdr prj ON prj.PM_HDR_ID = ih.PROJECT_ID WHERE p.PO_ID = ?), '0') AS MERGE_FLAG";
+			flag = this.jdbcTemplate.queryForObject(qry, String.class, poId);
+		} catch (Exception ex) {
+			logger.error("getMergeSamePartRowsFlag error---> " + ex);
+		}
+		return flag;
+	}
+
 	@Override
 	public String getTenantPropertyVal(String tenantId, String propertyName) {
 		String getTenantPropertyVal = "";

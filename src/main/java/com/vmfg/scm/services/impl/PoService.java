@@ -182,6 +182,7 @@ public class PoService implements IPoServices {
 					mainList.get(i).setGstType(gstType);
 					String partCount = poDAO.getPartCount(mainList.get(i).getPoId());
 					mainList.get(i).setPartCount(partCount);
+					mainList.get(i).setMergeSamePartRows(iPoDAO.getMergeSamePartRowsFlag(mainList.get(i).getPoId()));
 					List<PoDescMstEntity> inspectionScopeDesc = poDAO.getInspectScopeDescById(
 							idAndTenantIdReq.getTenantId(), mainList.get(i).getInspectionScope());
 					if (divisionDesc.size() > 0) {

@@ -361,6 +361,14 @@ public class IndentGroupService implements IIndentGroupService {
 		List<DocumentStatusMstEntity> currSeqDocLifeCycleMstLists = new ArrayList<DocumentStatusMstEntity>();
 
 		ResponseAsMessage rm = new ResponseAsMessage();
+		// Items can only be added to an existing group until its PJS is first saved - once a PJS
+		// exists (any status, Prepared included) the group's item list is frozen, same as delIndentGrpDtl.
+		if (indentTempName.getIgHdrId() != null && !indentTempName.getIgHdrId().isEmpty()
+				&& iIndentGroupDAO.getIndentgrpScsCountByIgHdrId(indentTempName.getIgHdrId()) > 0) {
+			rm.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+			rm.setResponseMessage("PJS already raised for this group - items can't be added");
+			return rm;
+		}
         if(indentTempName.getIgHdrId() == null || indentTempName.getIgHdrId().isEmpty()) {
         	 hdrId = iIndentGroupDAO.insertTempGrup(indentTempName);
         }else {
@@ -1086,7 +1094,11 @@ public class IndentGroupService implements IIndentGroupService {
 					BigDecimal otherPendingExcessReserved = new BigDecimal(iIndentGroupDAO
 							.getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents(
 									indentUploadDAO.getPkaIdByIndentId(indentId), distinctIndentIds, scsBudgetExcessSeq));
-					BigDecimal effectiveRemaining = remainingStationBudget.add(approvedExcessForThisIndent)
+					// A negative station balance counts as 0 here, same rule the Budget Excess amount itself is
+					// raised with (BudgetExcessSheetService: excess = PJS value - max(remaining, 0)). The station
+					// can only be below 0 because an earlier PJS's Budget Excess was already approved for that
+					// overspend - charging it to this PJS again meant its approved excess could never pass.
+					BigDecimal effectiveRemaining = remainingStationBudget.max(BigDecimal.ZERO).add(approvedExcessForThisIndent)
 							.subtract(otherPendingExcessReserved);
 					isBudgetExceeded = effectiveRemaining.compareTo(scmBudgetValue) < 0;
 				} else {

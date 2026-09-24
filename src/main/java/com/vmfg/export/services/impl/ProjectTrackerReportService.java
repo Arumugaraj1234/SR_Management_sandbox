@@ -31,6 +31,7 @@ import com.vmfg.export.response.ResponseAsList;
 import com.vmfg.export.services.interfaces.IProjectTrackerReportService;
 import com.vmfg.finance.request.getPraDtlRequest;
 import com.vmfg.general.response.ResponseMessageMap;
+import com.vmfg.scm.dao.interfaces.IPoDAO;
 import com.vmfg.util.CommonBase64Class;
 
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -43,6 +44,9 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
 @Service
 public class ProjectTrackerReportService implements IProjectTrackerReportService {
+
+	@Autowired
+	IPoDAO iPoDAO;
 	private static final Logger logger = LoggerFactory.getLogger(ProjectTrackerReportService.class);
 	
 	@Autowired
@@ -228,6 +232,14 @@ public class ProjectTrackerReportService implements IProjectTrackerReportService
      			 subReportPath = iProjectReportTrackerDAO.getProjectTrackerPath(idAndTenantIdReq.getTenantId(),
      					idAndTenantIdReq.getKey(), "0");
              }
+			// NEW-flow POs from the PO_MERGE_SAME_PART_FROM_PO_ID cutoff print same part + rate lines as one
+			// row via "<template>_merged.jrxml" next to the original; every other PO uses the original as-is.
+			if ("1".equals(iPoDAO.getMergeSamePartRowsFlag(idAndTenantIdReq.getPoId()))) {
+				File mergedReportFile = new File(mainReportPath.replaceAll("(?i)\\.jrxml$", "_merged.jrxml"));
+				if (mergedReportFile.exists()) {
+					mainReportPath = mergedReportFile.getPath();
+				}
+			}
 			
 			File reportFile = new File(mainReportPath);
 			if (reportFile.exists()) {
