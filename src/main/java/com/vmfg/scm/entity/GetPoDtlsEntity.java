@@ -129,6 +129,8 @@ public class GetPoDtlsEntity implements Serializable {
     private String intialExtendedPrice;
     private String gstType;
     private String partCount;
+    // "1" = show same Part Number + Unit Rate lines as one row (NEW-flow POs, see PoDAO.getMergeSamePartRowsFlag)
+    private String mergeSamePartRows;
     private String venCode;
 	private String inspectionStatus;
 	private String isGstChanged;

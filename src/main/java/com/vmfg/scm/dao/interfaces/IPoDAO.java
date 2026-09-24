@@ -115,6 +115,8 @@ public interface IPoDAO {
 	int increaseIntPrdDtl(String productId,String qty,String pmHdrId,String dcCode,String productCode,String updateBy,String tenantId);
 
 	String getTenantPropertyVal(String tenantId,String propertyName);
+
+	String getMergeSamePartRowsFlag(String poId);
 	
 	int getIndentCloseStatus(String indentId,String tenantId);
 	
