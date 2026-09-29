@@ -34,4 +34,6 @@ public class IndentGroupHdrAndDtlEntity implements Serializable {
 	// Also populated by getIndentGroupHdrAndDtl (PJS Details popup) for multi-indent groups.
 	private String indentType;
 	private String subAssembly;
+	// Indent's EXPECTED_DELIVERY_DATE - only from getIndentGrpNewProdByStation (split order).
+	private String indentDueDate;
 }
