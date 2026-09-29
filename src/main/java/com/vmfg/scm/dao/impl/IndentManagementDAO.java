@@ -339,6 +339,9 @@ public class IndentManagementDAO implements IIndentManagementDAO {
 					"    dtl.*,\n" +
 					"    dtl.QTY AS INDENT_QTY,\n" +
 					"    ihdr.INDENT_CODE AS INDENT_CODE,\n" +
+					// Due date drives the Create Indent Group auto-split order for a part shared by several
+					// indents (earliest due first).
+					"    ihdr.EXPECTED_DELIVERY_DATE AS INDENT_DUE_DATE,\n" +
 					"    sb.SBC_DESC AS INDENT_TYPE,\n" +
 					"    pksam.PSK_DESC AS SUB_ASSEMBLY,\n" +
 					"    um.UOM_LONG_DESCRIPTION AS UOM,\n" +

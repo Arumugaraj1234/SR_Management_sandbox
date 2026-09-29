@@ -58,6 +58,9 @@ public class IndentGroupHdrAndDtlRowMapper implements RowMapper<IndentGroupHdrAn
 			if (columnExists(rs, "SUB_ASSEMBLY")) {
 				result.setSubAssembly(rs.getString("SUB_ASSEMBLY"));
 			}
+			if (columnExists(rs, "INDENT_DUE_DATE")) {
+				result.setIndentDueDate(rs.getString("INDENT_DUE_DATE"));
+			}
 
 		} catch (Exception ex) {
 			logger.error("IndentGroupHdrAndDtlRowMapper error " + ex);
