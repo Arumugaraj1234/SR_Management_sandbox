@@ -646,7 +646,7 @@ public class IndentUploadDAO implements IIndentUploadDAO {
 					"	  FROM \r\n" + 
 					"		  document_management \r\n" + 
 					"	  WHERE \r\n" + 
-					"		  REFERENCE_ID = dtl.INDENT_DTL_ID \r\n" + 
+					"		  REFERENCE_ID = CAST(dtl.INDENT_DTL_ID AS CHAR CHARACTER SET utf8mb3) \r\n" + 
 					"	       AND UPLOAD_DOC_TYPE = 'FC015' \r\n" + 
 					"	       AND TENANT_ID = dtl.TENANT_ID \r\n" + 
 					"	  ORDER BY VERSION DESC \r\n" + 
@@ -661,7 +661,7 @@ public class IndentUploadDAO implements IIndentUploadDAO {
 					"        INNER JOIN\r\n" + 
 					"    file_manager fm ON dm.DM_ID = fm.REFERNCE_ID\r\n" + 
 					"WHERE\r\n" + 
-					"    dm.REFERENCE_ID = dtl.INDENT_DTL_ID\r\n" + 
+					"    dm.REFERENCE_ID = CAST(dtl.INDENT_DTL_ID AS CHAR CHARACTER SET utf8mb3)\r\n" + 
 					"        AND UPLOAD_DOC_TYPE = 'FC015'\r\n" + 
 					"        AND dm.TENANT_ID = dtl.TENANT_ID\r\n" + 
 					"ORDER BY dm.VERSION DESC\r\n" + 

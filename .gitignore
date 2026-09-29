@@ -1,0 +1,6 @@
+# Runtime logs (logback writes here when LOG_PATH is not set)
+LOG_PATH_IS_UNDEFINED/
+*.log
+
+# Maven build output
+target/
