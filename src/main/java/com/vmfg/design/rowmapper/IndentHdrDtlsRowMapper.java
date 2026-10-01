@@ -38,6 +38,9 @@ public class IndentHdrDtlsRowMapper implements RowMapper<IndentHdrDtlsEntity> {
 			if (columnExists(rs, "TARGET_VALUE")) {
 				res.setTargetCost(rs.getString("TARGET_VALUE"));
 			}
+			if (columnExists(rs, "PJS_GRP_DELETED")) {
+				res.setPjsGrpDeleted(rs.getString("PJS_GRP_DELETED"));
+			}
 			if (columnExists(rs, "SEQUENCE_N0")) {
 				res.setStatusSeq(rs.getString("SEQUENCE_N0"));
 			}

@@ -29,6 +29,12 @@ public class ScpDtlsEntity implements Serializable {
 	private String isApproved;
 	private String tenantId;
 	private String indentId;
+	// NEW / LEGACY - lets the PJS sheet skip NEW-flow-only work without another header call.
+	private String costFlowType;
+	// NEW-flow Prepared PJS only: group items were added/removed after the PJS was last saved, so the
+	// sheet must load the group's items to show the new (unpriced) ones. Lets the sheet skip that
+	// fetch when nothing changed.
+	private boolean grpChangedAfterSave;
 	private String isEditable;
 	private String type;
     private String mstId;

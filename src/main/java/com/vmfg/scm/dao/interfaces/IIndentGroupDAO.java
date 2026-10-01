@@ -66,6 +66,26 @@ public interface IIndentGroupDAO {
 
 	String getIndentIdByIndentDtlId(String indentDtlId);
 
+	Map<String, java.math.BigDecimal> getIndentDtlRemainingGrpQty(List<String> indentDtlIds);
+
+	int getScsSeqNoByIgHdrId(String igHdrId);
+
+	String getIgHdrIdByIgDtlId(String igDtlId);
+
+	int getGrpDtlCountByIgHdrId(String igHdrId);
+
+	List<String> getGrpDtlIdsByIgHdrId(String igHdrId);
+
+	void setIndentPjsGrpDeleted(String indentId, boolean deleted);
+
+	int deleteScsDtlByIgDtlId(String igScsId, String igDtlId);
+
+	void touchIndentGrpHdr(String igHdrId, String updatedBy);
+
+	int getUnpricedGrpItemCountByScsId(String igScsId);
+
+	boolean isGrpChangedAfterScsSave(String igScsId);
+
 	String getIndentDtlIdByIgDtlId(String igDtlId);
 
 	int getIndentgrpDtlCount(String igDtlId);
