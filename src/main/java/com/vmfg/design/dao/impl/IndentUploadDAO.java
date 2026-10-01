@@ -727,7 +727,7 @@ public class IndentUploadDAO implements IIndentUploadDAO {
 					+ "    EMPLOYEE_FIRSTNAME AS CREATED_BY,EMPLOYEE_ID,\r\n" + "    proj.PROJECT_NAME,\r\n"
 					+ "    doc.DOCUMENT_STATUS_TYPE_DESCRIPTION,\r\n" + "    sbc.SBC_DESC,\r\n" + "    pk.PK_DESC,\r\n"
 					+ "    pksa.PKSA_ID,\r\n" + "    hdr.EXPECTED_DELIVERY_DATE,\r\n" + "    psk.PSK_DESC,\r\n"
-					+ "    itm.INDENT_TYPE_DESC,hdr.CLOSED_DATE AS CLOSED_DATE ,hdr.TARGET_VALUE,hdr.REVISION_NO,hdr.REVISION_DATE\r\n" + "FROM\r\n"
+					+ "    itm.INDENT_TYPE_DESC,hdr.CLOSED_DATE AS CLOSED_DATE ,hdr.TARGET_VALUE,hdr.REVISION_NO,hdr.REVISION_DATE,hdr.PJS_GRP_DELETED\r\n" + "FROM\r\n"
 					+ "    indent_hdr hdr\r\n" + "        INNER JOIN\r\n"
 					+ "    employee_mst emp ON hdr.CREATED_BY = emp.EMPLOYEE_ID\r\n" + "        INNER JOIN\r\n"
 					+ "    project_hdr proj ON hdr.PROJECT_ID = proj.PM_HDR_ID\r\n" + "        INNER JOIN\r\n"

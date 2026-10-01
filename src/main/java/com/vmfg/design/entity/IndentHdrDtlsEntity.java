@@ -35,6 +35,8 @@ public class IndentHdrDtlsEntity implements Serializable {
 	private String createdUserId;
 	private String nextstatusDesc;
 	private int verCheck;
+	// NEW-flow: "1" = indent was sent back by a PJS group delete and not re-grouped yet (SCM/PM list highlight).
+	private String pjsGrpDeleted;
 	private boolean isAssigned;
 	private List<IndentRemarksEntity> remarksval;
 	List<GetindentDtlcycEntity> dtl;

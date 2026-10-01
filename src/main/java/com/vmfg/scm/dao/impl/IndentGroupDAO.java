@@ -1128,6 +1128,137 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 		}
 		return id;
 	}
+
+	// Qty of each indent line not yet taken by any group (indent_dtl.QTY - SUM(indent_grp_dtl.QTY)),
+	// same formula as DIFFERENCE_QTY in the grouping queries, keyed by INDENT_DTL_ID - one query for
+	// the whole list. A line that doesn't exist is simply absent from the map.
+	@Override
+	public Map<String, java.math.BigDecimal> getIndentDtlRemainingGrpQty(List<String> indentDtlIds) {
+		Map<String, java.math.BigDecimal> remaining = new HashMap<String, java.math.BigDecimal>();
+		try {
+			String placeholders = String.join(",", java.util.Collections.nCopies(indentDtlIds.size(), "?"));
+			String qry = "SELECT d.INDENT_DTL_ID, d.QTY - COALESCE((SELECT SUM(g.QTY) FROM indent_grp_dtl g WHERE g.INDENT_DTL_ID = d.INDENT_DTL_ID), 0) AS REMAINING"
+					+ " FROM indent_dtl d WHERE d.INDENT_DTL_ID IN (" + placeholders + ")";
+			for (Map<String, Object> row : jdbcTemplate.queryForList(qry, indentDtlIds.toArray())) {
+				remaining.put(row.get("INDENT_DTL_ID").toString(), new java.math.BigDecimal(row.get("REMAINING").toString()));
+			}
+		} catch (Exception ex) {
+			logger.error("getIndentDtlRemainingGrpQty Method Exception --->" + ex);
+		}
+		return remaining;
+	}
+
+	// --- NEW-flow: group items editable while the group's PJS is still Prepared (seq 1) ---
+
+	// SEQUENCE_NO of the group's PJS; 0 = no PJS yet, -1 = lookup failed (callers treat as locked).
+	@Override
+	public int getScsSeqNoByIgHdrId(String igHdrId) {
+		try {
+			List<Integer> rows = jdbcTemplate.queryForList(
+					"SELECT COALESCE(SEQUENCE_NO, -1) FROM indent_grp_scs WHERE IG_HDR_ID = ?", Integer.class, igHdrId);
+			return rows.isEmpty() ? 0 : rows.get(0);
+		} catch (Exception ex) {
+			logger.error("getScsSeqNoByIgHdrId Method Exception --->" + ex);
+		}
+		return -1;
+	}
+
+	@Override
+	public String getIgHdrIdByIgDtlId(String igDtlId) {
+		try {
+			List<String> rows = jdbcTemplate.queryForList(
+					"SELECT IG_HDR_ID FROM indent_grp_dtl WHERE IG_DTL_ID = ?", String.class, igDtlId);
+			return rows.isEmpty() ? "" : rows.get(0);
+		} catch (Exception ex) {
+			logger.error("getIgHdrIdByIgDtlId Method Exception --->" + ex);
+		}
+		return "";
+	}
+
+	@Override
+	public int getGrpDtlCountByIgHdrId(String igHdrId) {
+		try {
+			return jdbcTemplate.queryForObject("SELECT COUNT(*) FROM indent_grp_dtl WHERE IG_HDR_ID = ?", Integer.class, igHdrId);
+		} catch (Exception ex) {
+			logger.error("getGrpDtlCountByIgHdrId Method Exception --->" + ex);
+		}
+		return 0;
+	}
+
+	// indent_hdr.PJS_GRP_DELETED - NEW-flow marker for an indent sent back by a PJS group delete,
+	// shown highlighted in the SCM/PM indent lists until the indent is grouped again.
+	@Override
+	public void setIndentPjsGrpDeleted(String indentId, boolean deleted) {
+		try {
+			jdbcTemplate.update("UPDATE indent_hdr SET PJS_GRP_DELETED = ? WHERE INDENT_ID = ? AND PJS_GRP_DELETED <> ?",
+					deleted ? 1 : 0, indentId, deleted ? 1 : 0);
+		} catch (Exception ex) {
+			logger.error("setIndentPjsGrpDeleted Method Exception --->" + ex);
+		}
+	}
+
+	// null = lookup failed (caller skips its check rather than blocking on a DB hiccup).
+	@Override
+	public List<String> getGrpDtlIdsByIgHdrId(String igHdrId) {
+		try {
+			return jdbcTemplate.queryForList("SELECT IG_DTL_ID FROM indent_grp_dtl WHERE IG_HDR_ID = ?", String.class, igHdrId);
+		} catch (Exception ex) {
+			logger.error("getGrpDtlIdsByIgHdrId Method Exception --->" + ex);
+		}
+		return null;
+	}
+
+	// Price lines only - indent_grp_scs_ven_dtl is one PJS-level row (IG_DTL_ID = 0) and must stay.
+	// Scoped by IG_SCS_ID so it uses that index (IG_DTL_ID alone has none -> full scan + row locks).
+	@Override
+	public int deleteScsDtlByIgDtlId(String igScsId, String igDtlId) {
+		try {
+			return jdbcTemplate.update("DELETE FROM indent_grp_scs_dtl WHERE IG_SCS_ID = ? AND IG_DTL_ID = ?", igScsId, igDtlId);
+		} catch (Exception ex) {
+			logger.error("deleteScsDtlByIgDtlId Method Exception --->" + ex);
+		}
+		return 0;
+	}
+
+	// Marks the group's item list as changed; compared against the PJS's own last save
+	// (isGrpChangedAfterScsSave) so a Prepared PJS can't be verified on stale totals.
+	@Override
+	public void touchIndentGrpHdr(String igHdrId, String updatedBy) {
+		try {
+			jdbcTemplate.update("UPDATE indent_grp_hdr SET LAST_UPDATED_DATETIME = ?, LAST_UPDATED_BY = ? WHERE IG_HDR_ID = ?",
+					CommonMethod.getCurrentDateTime(), updatedBy, igHdrId);
+		} catch (Exception ex) {
+			logger.error("touchIndentGrpHdr Method Exception --->" + ex);
+		}
+	}
+
+	@Override
+	public int getUnpricedGrpItemCountByScsId(String igScsId) {
+		try {
+			String qry = "SELECT COUNT(*) FROM indent_grp_scs s"
+					+ " INNER JOIN indent_grp_dtl g ON g.IG_HDR_ID = s.IG_HDR_ID"
+					+ " WHERE s.IG_SCS_ID = ?"
+					+ " AND NOT EXISTS (SELECT 1 FROM indent_grp_scs_dtl d WHERE d.IG_SCS_ID = s.IG_SCS_ID AND d.IG_DTL_ID = g.IG_DTL_ID)";
+			return jdbcTemplate.queryForObject(qry, Integer.class, igScsId);
+		} catch (Exception ex) {
+			logger.error("getUnpricedGrpItemCountByScsId Method Exception --->" + ex);
+		}
+		return 0;
+	}
+
+	@Override
+	public boolean isGrpChangedAfterScsSave(String igScsId) {
+		try {
+			String qry = "SELECT COUNT(*) FROM indent_grp_scs s"
+					+ " INNER JOIN indent_grp_hdr h ON h.IG_HDR_ID = s.IG_HDR_ID"
+					+ " WHERE s.IG_SCS_ID = ?"
+					+ " AND h.LAST_UPDATED_DATETIME > COALESCE(s.LAST_UPDATED_DATETIME, s.CREATED_DATETIME)";
+			return jdbcTemplate.queryForObject(qry, Integer.class, igScsId) > 0;
+		} catch (Exception ex) {
+			logger.error("isGrpChangedAfterScsSave Method Exception --->" + ex);
+		}
+		return false;
+	}
 	
 	@Override
 	public String getVendorQualified(String scsId) {

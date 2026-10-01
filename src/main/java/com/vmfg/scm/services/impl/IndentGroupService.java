@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,7 @@ import com.vmfg.scm.dao.interfaces.IPoDAO;
 import com.vmfg.scm.entity.GetPoDtlsEntity;
 import com.vmfg.scm.entity.IndentGroupDetailsEntity;
 import com.vmfg.scm.entity.IndentGroupHdrAndDtlEntity;
+import com.vmfg.scm.entity.IndentInsertGrpDtlRequest;
 import com.vmfg.scm.entity.IndentGrpScpDtlEntity;
 import com.vmfg.scm.entity.IndentGrpScpVenDtlEntity;
 import com.vmfg.scm.entity.IndentGrpScpVenEntity;
@@ -254,12 +256,36 @@ public class IndentGroupService implements IIndentGroupService {
 		ResponseAsMessage rm = new ResponseAsMessage();
 
 		if (indentGrpDtlReq.getDelAll() == 0) {
-			int checkCount = iIndentGroupDAO.getIndentgrpDtlCount(indentGrpDtlReq.getIgDtlId());
-			if (checkCount == 0) {
-				indentId = iIndentGroupDAO.getIndentIdByIgDtlId(indentGrpDtlReq.getIgDtlId());
-//				indentCode =  iIndentGroupDAO.getIndentIdByIgDtlId(indentGrpDtlReq.getIgDtlId(), "2");
-				lastCountCheck = iIndentGroupDAO.lastIndentGrpDtlCheck(indentGrpDtlReq.getIgDtlId());
-				del = iIndentGroupDAO.delIndentGrpDtl(indentGrpDtlReq);
+			String igHdrId = iIndentGroupDAO.getIgHdrIdByIgDtlId(indentGrpDtlReq.getIgDtlId());
+			int scsSeq = igHdrId.isEmpty() ? 0 : iIndentGroupDAO.getScsSeqNoByIgHdrId(igHdrId);
+			if (scsSeq != 0 && isGrpItemsLocked(igHdrId)) {
+				rm.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				rm.setResponseMessage(grpItemsLockedMessage(igHdrId, "removed"));
+				rm.setResponseDataMessage(ResponseMessageMap.deleteUnSuccessful);
+				return rm;
+			}
+			// NEW-flow, PJS still Prepared: an empty PJS makes no sense - the PJS itself must go.
+			if (scsSeq == 1 && iIndentGroupDAO.getGrpDtlCountByIgHdrId(igHdrId) <= 1) {
+				rm.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				rm.setResponseMessage("This is the last item of the group - delete the PJS instead");
+				rm.setResponseDataMessage(ResponseMessageMap.deleteUnSuccessful);
+				return rm;
+			}
+			indentId = iIndentGroupDAO.getIndentIdByIgDtlId(indentGrpDtlReq.getIgDtlId());
+//			indentCode =  iIndentGroupDAO.getIndentIdByIgDtlId(indentGrpDtlReq.getIgDtlId(), "2");
+			lastCountCheck = iIndentGroupDAO.lastIndentGrpDtlCheck(indentGrpDtlReq.getIgDtlId());
+			if (scsSeq == 1) {
+				// Drop the item's own PJS price line too (the PJS-level vendor row stays).
+				iIndentGroupDAO.deleteScsDtlByIgDtlId(iIndentGroupDAO.getScsIdByIgHdrId(igHdrId), indentGrpDtlReq.getIgDtlId());
+			}
+			del = iIndentGroupDAO.delIndentGrpDtl(indentGrpDtlReq);
+			if (del > 0 && scsSeq == 1) {
+				// Re-settle each contributing indent's budget share without the removed line, and
+				// flag the group as changed so the PJS must be re-saved (fresh totals) before verify.
+				String scsId = iIndentGroupDAO.getScsIdByIgHdrId(igHdrId);
+				syncIndentGrpScsIndentBudget(scsId, iIndentGroupDAO.getVendorQualified(scsId),
+						indentGrpDtlReq.getTenantId(), indentGrpDtlReq.getEmpId());
+				iIndentGroupDAO.touchIndentGrpHdr(igHdrId, indentGrpDtlReq.getEmpId());
 			}
 		} else {
 			int checkCount = iIndentGroupDAO.getIndentgrpScsCountByIgHdrId(indentGrpDtlReq.getIgDtlId());
@@ -289,6 +315,33 @@ public class IndentGroupService implements IIndentGroupService {
 		return rm;
 	}
 
+	// Whether a group's item list is frozen. NEW-flow: editable while no PJS exists or the PJS is
+	// still Prepared (seq 1), frozen from SCM Verified on. LEGACY: frozen as soon as any PJS exists
+	// (only enforced for LEGACY deletes, matching the main project).
+	private boolean isGrpItemsLocked(String igHdrId) {
+		int scsSeq = iIndentGroupDAO.getScsSeqNoByIgHdrId(igHdrId);
+		if (scsSeq == 0) {
+			return false;
+		}
+		if (scsSeq != 1) {
+			return true;
+		}
+		return !isGrpNewFlow(igHdrId);
+	}
+
+	private boolean isGrpNewFlow(String igHdrId) {
+		List<String> indentIds = iIndentGroupDAO.getDistinctIndentIdsByIgHdrId(igHdrId);
+		return !indentIds.isEmpty() && "NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(indentIds.get(0)));
+	}
+
+	// LEGACY (delete only - LEGACY add is never locked) keeps its original message.
+	private String grpItemsLockedMessage(String igHdrId, String action) {
+		if (!isGrpNewFlow(igHdrId)) {
+			return "PJS raised for this group";
+		}
+		return "PJS for this group is already SCM Verified - items can't be " + action;
+	}
+
 	private void reopenIndentAfterGroupDelete(String indentId, IndentGrpDelRequest indentGrpDtlReq) {
 		String indentGrpType = indentGroupDAO.getindentTypeCode(indentId);
 		// Look up the CURR_SEQUENCE that document_lifecycle_mst itself maps to "SCM Accepted"
@@ -299,6 +352,13 @@ public class IndentGroupService implements IIndentGroupService {
 			seqStr = "8";
 		}
 		indentUploadDAO.updateIndentHdrStatusAndSeq(indentId, seqStr, "DS070", indentGrpDtlReq.getEmpId(), indentGrpDtlReq.getTenantId());
+		// NEW-flow: mark the indent so SCM/PM can spot it in their indent lists until it's grouped
+		// again, and log the step back in its status history (who / when).
+		if ("NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(indentId))) {
+			iIndentGroupDAO.setIndentPjsGrpDeleted(indentId, true);
+			indentUploadDAO.insertIndentStatusDtl(indentId, seqStr, "DS070", "PJS group deleted",
+					indentGrpDtlReq.getTenantId(), indentGrpDtlReq.getEmpId(), "DC018");
+		}
 //				if(!indentCode.equalsIgnoreCase("")) {
 //					indentUploadDAO.updatenotification(indentCode, "DC038", indentGrpDtlReq.getTenantId());
 //				}
@@ -361,13 +421,48 @@ public class IndentGroupService implements IIndentGroupService {
 		List<DocumentStatusMstEntity> currSeqDocLifeCycleMstLists = new ArrayList<DocumentStatusMstEntity>();
 
 		ResponseAsMessage rm = new ResponseAsMessage();
-		// Items can only be added to an existing group until its PJS is first saved - once a PJS
-		// exists (any status, Prepared included) the group's item list is frozen, same as delIndentGrpDtl.
-		if (indentTempName.getIgHdrId() != null && !indentTempName.getIgHdrId().isEmpty()
-				&& iIndentGroupDAO.getIndentgrpScsCountByIgHdrId(indentTempName.getIgHdrId()) > 0) {
+		// NEW-flow only: items can be added to an existing group until its PJS leaves Prepared (see
+		// isGrpItemsLocked), plus the over-allocation guard below. LEGACY keeps the original
+		// main-project behavior - no stage lock on add, no qty guard.
+		boolean addingToExistingGrp = indentTempName.getIgHdrId() != null && !indentTempName.getIgHdrId().isEmpty();
+		boolean newFlowReq = indentTempName.getInsrtGrpDtl() != null && !indentTempName.getInsrtGrpDtl().isEmpty()
+				&& "NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(
+						iIndentGroupDAO.getIndentIdByIndentDtlId(indentTempName.getInsrtGrpDtl().get(0).getIndentDtlId())));
+		if (newFlowReq && addingToExistingGrp && isGrpItemsLocked(indentTempName.getIgHdrId())) {
 			rm.setResponseCode(ResponseMessageMap.responseCodeNotOk);
-			rm.setResponseMessage("PJS already raised for this group - items can't be added");
+			rm.setResponseMessage(grpItemsLockedMessage(indentTempName.getIgHdrId(), "added"));
 			return rm;
+		}
+		// Over-allocation guard, NEW-flow (Create Indent Group submit + Details popup add-item): each line's qty
+		// must be > 0 and, summed per indent line across this request, must not exceed what is still
+		// ungrouped. Checked before the header insert so a rejected new group leaves nothing behind.
+		Map<String, java.math.BigDecimal> requestedByDtl = new LinkedHashMap<String, java.math.BigDecimal>();
+		for (IndentInsertGrpDtlRequest grpDtl : newFlowReq ? indentTempName.getInsrtGrpDtl() : new ArrayList<IndentInsertGrpDtlRequest>()) {
+			java.math.BigDecimal qty;
+			try {
+				qty = new java.math.BigDecimal(grpDtl.getQty().trim());
+			} catch (Exception ex) {
+				qty = java.math.BigDecimal.ZERO;
+			}
+			if (qty.signum() <= 0) {
+				rm.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				rm.setResponseMessage("Qty must be greater than 0 for every item");
+				return rm;
+			}
+			requestedByDtl.merge(grpDtl.getIndentDtlId(), qty, java.math.BigDecimal::add);
+		}
+		// One query for all lines (a Create Indent Group submit can carry hundreds).
+		Map<String, java.math.BigDecimal> remainingByDtl = requestedByDtl.isEmpty()
+				? new HashMap<String, java.math.BigDecimal>()
+				: iIndentGroupDAO.getIndentDtlRemainingGrpQty(new ArrayList<String>(requestedByDtl.keySet()));
+		for (Map.Entry<String, java.math.BigDecimal> e : requestedByDtl.entrySet()) {
+			java.math.BigDecimal remaining = remainingByDtl.get(e.getKey());
+			if (remaining == null || e.getValue().compareTo(remaining) > 0) {
+				rm.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				rm.setResponseMessage("Qty exceeds available qty (" + (remaining == null ? "0" : remaining.stripTrailingZeros().toPlainString())
+						+ ") for indent line " + e.getKey() + " - please refresh and try again");
+				return rm;
+			}
 		}
         if(indentTempName.getIgHdrId() == null || indentTempName.getIgHdrId().isEmpty()) {
         	 hdrId = iIndentGroupDAO.insertTempGrup(indentTempName);
@@ -380,6 +475,11 @@ public class IndentGroupService implements IIndentGroupService {
 			indentTempName.getInsrtGrpDtl().forEach(grpDtl -> {
 				iIndentGroupDAO.insertTempGrpDtl(finalHdrId, grpDtl);
 			});
+			// Added to a group whose (Prepared) PJS already exists - the new items are unpriced, so
+			// flag the group as changed; SCM must re-save the PJS before it can be verified.
+			if (newFlowReq && addingToExistingGrp && iIndentGroupDAO.getScsSeqNoByIgHdrId(String.valueOf(finalHdrId)) == 1) {
+				iIndentGroupDAO.touchIndentGrpHdr(String.valueOf(finalHdrId), indentTempName.getCreatedBy());
+			}
 		}
 
 		// A submission can span multiple indents (station grouping) - run the "fully grouped -> close"
@@ -391,6 +491,10 @@ public class IndentGroupService implements IIndentGroupService {
 				.collect(Collectors.toCollection(LinkedHashSet::new));
 		boolean closeSeqLookedUp = false;
 		for (String indentId : distinctIndentIds) {
+			if (newFlowReq) {
+				// Grouped again - no longer "sent back by a PJS group delete" (SCM/PM list highlight).
+				iIndentGroupDAO.setIndentPjsGrpDeleted(indentId, false);
+			}
 			int isInventoryCount = iPoDAO.getIsInventoryCount(indentId, indentTempName.getTenantId());
 			int indentCloseCount = iPoDAO.getIndentCloseStatus(indentId, indentTempName.getTenantId());
 			int checkCount = isInventoryCount - indentCloseCount;
@@ -471,6 +575,10 @@ public class IndentGroupService implements IIndentGroupService {
 			if(mainList.size()>0) {
 				for(int i=0;i<mainList.size();i++) {
 
+					mainList.get(i).setCostFlowType(indentUploadDAO.getCostFlowTypeByIndentId(mainList.get(i).getIndentId()));
+					if ("NEW".equalsIgnoreCase(mainList.get(i).getCostFlowType()) && "1".equals(mainList.get(i).getSeqNo())) {
+						mainList.get(i).setGrpChangedAfterSave(iIndentGroupDAO.isGrpChangedAfterScsSave(mainList.get(i).getIgScpId()));
+					}
 					scpDtlList=iIndentGroupDAO.getScpDtlList(mainList.get(i).getIgScpId());
 					if (l1ExchangeRate.equalsIgnoreCase("") && l1CurrencyType.equalsIgnoreCase("") && scpDtlList != null && !scpDtlList.isEmpty() && scpDtlList.get(0).getL1CurrencyType() != null) {
 						mainList.get(i).setL1CurrencyType(scpDtlList.get(0).getL1CurrencyType());
@@ -698,6 +806,25 @@ public class IndentGroupService implements IIndentGroupService {
 			String oldVendorQualified="";
 			logger.info("insertScpDtlsByIgHdrId service start");
 			if (scpDtlsEntity.size() > 0) {
+				// NEW-flow, existing PJS: group items can be added/removed in the Details popup while
+				// the PJS is Prepared - possibly by someone else while this sheet was already open.
+				// The sheet must carry exactly the group's current items, otherwise saving (or SCM
+				// Verify, which saves first) would store totals for a stale item list.
+				ScpDtlsEntity scsReq = scpDtlsEntity.get(0);
+				if (!scsReq.getIgScpId().equalsIgnoreCase("") && isGrpNewFlow(scsReq.getIgHdrId())) {
+					List<String> currentIds = iIndentGroupDAO.getGrpDtlIdsByIgHdrId(scsReq.getIgHdrId());
+					if (currentIds != null) {
+						Set<String> sentIds = new LinkedHashSet<String>();
+						for (IndentGrpScpDtlEntity line : scsReq.getScpDtlList()) {
+							sentIds.add(String.valueOf(line.getIgDtlId()));
+						}
+						if (!sentIds.equals(new LinkedHashSet<String>(currentIds))) {
+							returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+							returnMessage.setResponseMessage("Group items were changed - close and reopen the PJS before saving");
+							return returnMessage;
+						}
+					}
+				}
 
 				if(scpDtlsEntity.get(0).getIgScpId().equalsIgnoreCase("")) {
 					indentId=projectDAO.getindentHdrId(scpDtlsEntity.get(0).getScpDtlList().get(0).getIndentDtlId());
@@ -1030,6 +1157,22 @@ public class IndentGroupService implements IIndentGroupService {
 					returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
 					returnMessage.setResponseMessage(ResponseMessageMap.reverseNotAllowedBudgetExcess);
 					return returnMessage;
+				}
+				// Group items can still be added/removed while the PJS is Prepared - before it moves
+				// on (SCM Verified), every group item must be priced and the PJS re-saved after the
+				// last item change (its stored totals are only refreshed by a sheet save).
+				if (currentPersistedSeq == 1 && requestedSeq > currentPersistedSeq) {
+					int unpriced = iIndentGroupDAO.getUnpricedGrpItemCountByScsId(scsId);
+					if (unpriced > 0) {
+						returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+						returnMessage.setResponseMessage(unpriced + " item(s) added to the group are not priced yet - open the PJS, price them and Save first");
+						return returnMessage;
+					}
+					if (iIndentGroupDAO.isGrpChangedAfterScsSave(scsId)) {
+						returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+						returnMessage.setResponseMessage("Group items changed after the PJS was last saved - open the PJS, review and Save first");
+						return returnMessage;
+					}
 				}
 			}
 
