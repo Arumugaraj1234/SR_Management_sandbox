@@ -51,6 +51,8 @@ import com.vmfg.scm.request.DeleteIndScpDtlIdRequest;
 import com.vmfg.scm.request.HdrIdandTenantIdRequest;
 import com.vmfg.scm.request.IndentGrpDelRequest;
 import com.vmfg.scm.request.IndentGrpDtlRequest;
+import com.vmfg.scm.request.IndentGrpQtyUpdDtlRequest;
+import com.vmfg.scm.request.IndentGrpQtyUpdRequest;
 import com.vmfg.scm.request.IndentInsertGrpRequest;
 import com.vmfg.scm.request.IndentTemplateNameRequest;
 import com.vmfg.scm.request.UpdateSeqAndStatusRequest;
@@ -327,6 +329,114 @@ public class IndentGroupService implements IIndentGroupService {
 			return true;
 		}
 		return !isGrpNewFlow(igHdrId);
+	}
+
+	private BigDecimal parseQtyOrNull(String qty) {
+		if (qty == null || qty.trim().isEmpty()) {
+			return null;
+		}
+		try {
+			return new BigDecimal(qty.replace(",", "").trim());
+		} catch (Exception ex) {
+			return null;
+		}
+	}
+
+	// Details popup, NEW flow: change the qty of lines already in the group (same lock rule as
+	// add/remove). Each new qty must be > 0 and can grow only by what is still ungrouped on its indent
+	// line. With a Prepared PJS, a priced line's extended prices are rescaled to the new qty, the
+	// indent budget re-synced, and the group flagged as changed so the PJS must be re-saved before
+	// SCM Verified.
+	@Override
+	public ResponseAsMessage updateIndentGrpDtlQty(IndentGrpQtyUpdRequest req) {
+		ResponseAsMessage rm = new ResponseAsMessage();
+		rm.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+		String igHdrId = req.getIgHdrId();
+		if (igHdrId == null || igHdrId.isEmpty() || req.getUpdGrpDtl() == null || req.getUpdGrpDtl().isEmpty()) {
+			rm.setResponseMessage("No qty changes to save");
+			return rm;
+		}
+		if (!isGrpNewFlow(igHdrId)) {
+			rm.setResponseMessage("Qty can't be changed for this group");
+			return rm;
+		}
+		if (isGrpItemsLocked(igHdrId)) {
+			rm.setResponseMessage(grpItemsLockedMessage(igHdrId, "changed"));
+			return rm;
+		}
+		List<Map<String, Object>> lines = iIndentGroupDAO.getGrpDtlLinesByIgHdrId(igHdrId);
+		if (lines == null) {
+			rm.setResponseMessage("Unable to read the group items - please try again");
+			return rm;
+		}
+		Map<String, Map<String, Object>> lineById = new HashMap<String, Map<String, Object>>();
+		for (Map<String, Object> line : lines) {
+			lineById.put(line.get("IG_DTL_ID").toString(), line);
+		}
+
+		Map<String, BigDecimal> oldQtyById = new LinkedHashMap<String, BigDecimal>();
+		Map<String, BigDecimal> newQtyById = new LinkedHashMap<String, BigDecimal>();
+		Map<String, BigDecimal> increaseByIndentDtl = new LinkedHashMap<String, BigDecimal>();
+		Map<String, Map<String, Object>> lineByIndentDtl = new HashMap<String, Map<String, Object>>();
+		for (IndentGrpQtyUpdDtlRequest upd : req.getUpdGrpDtl()) {
+			Map<String, Object> line = lineById.get(upd.getIgDtlId());
+			if (line == null) {
+				rm.setResponseMessage("Group items were changed - close and reopen the group before saving");
+				return rm;
+			}
+			BigDecimal newQty = parseQtyOrNull(upd.getQty());
+			if (newQty == null || newQty.signum() <= 0) {
+				rm.setResponseMessage("Qty must be greater than 0 - use Remove to take an item out of the group");
+				return rm;
+			}
+			BigDecimal oldQty = new BigDecimal(line.get("QTY").toString());
+			if (newQty.compareTo(oldQty) == 0) {
+				continue;
+			}
+			oldQtyById.put(upd.getIgDtlId(), oldQty);
+			newQtyById.put(upd.getIgDtlId(), newQty);
+			String indentDtlId = line.get("INDENT_DTL_ID").toString();
+			increaseByIndentDtl.merge(indentDtlId, newQty.subtract(oldQty), BigDecimal::add);
+			lineByIndentDtl.put(indentDtlId, line);
+		}
+		if (newQtyById.isEmpty()) {
+			rm.setResponseCode(ResponseMessageMap.responseCodeOk);
+			rm.setResponseMessage("No qty changes to save");
+			return rm;
+		}
+		// Only increases need checking against what is still ungrouped (across every group).
+		Map<String, BigDecimal> remainingByDtl = iIndentGroupDAO.getIndentDtlRemainingGrpQty(
+				new ArrayList<String>(increaseByIndentDtl.keySet()));
+		for (Map.Entry<String, BigDecimal> e : increaseByIndentDtl.entrySet()) {
+			if (e.getValue().signum() <= 0) {
+				continue;
+			}
+			BigDecimal remaining = remainingByDtl.get(e.getKey());
+			if (remaining == null || e.getValue().compareTo(remaining) > 0) {
+				Map<String, Object> line = lineByIndentDtl.get(e.getKey());
+				BigDecimal max = new BigDecimal(line.get("QTY").toString()).add(remaining == null ? BigDecimal.ZERO : remaining);
+				rm.setResponseMessage("Qty for " + line.get("PRODUCT_CODE") + " on " + line.get("INDENT_CODE")
+						+ " can't be more than " + max.stripTrailingZeros().toPlainString() + " - please refresh and try again");
+				return rm;
+			}
+		}
+
+		int scsSeq = iIndentGroupDAO.getScsSeqNoByIgHdrId(igHdrId);
+		String scsId = scsSeq == 1 ? iIndentGroupDAO.getScsIdByIgHdrId(igHdrId) : null;
+		for (Map.Entry<String, BigDecimal> e : newQtyById.entrySet()) {
+			iIndentGroupDAO.updateGrpDtlQty(e.getKey(), e.getValue());
+			if (scsId != null) {
+				iIndentGroupDAO.rescaleScsDtlExtPrices(scsId, e.getKey(), oldQtyById.get(e.getKey()), e.getValue());
+			}
+		}
+		if (scsId != null) {
+			syncIndentGrpScsIndentBudget(scsId, iIndentGroupDAO.getVendorQualified(scsId), req.getTenantId(), req.getEmpId());
+		}
+		iIndentGroupDAO.touchIndentGrpHdr(igHdrId, req.getEmpId());
+
+		rm.setResponseCode(ResponseMessageMap.responseCodeOk);
+		rm.setResponseMessage("Qty updated successfully");
+		return rm;
 	}
 
 	private boolean isGrpNewFlow(String igHdrId) {
@@ -812,13 +922,25 @@ public class IndentGroupService implements IIndentGroupService {
 				// Verify, which saves first) would store totals for a stale item list.
 				ScpDtlsEntity scsReq = scpDtlsEntity.get(0);
 				if (!scsReq.getIgScpId().equalsIgnoreCase("") && isGrpNewFlow(scsReq.getIgHdrId())) {
-					List<String> currentIds = iIndentGroupDAO.getGrpDtlIdsByIgHdrId(scsReq.getIgHdrId());
-					if (currentIds != null) {
-						Set<String> sentIds = new LinkedHashSet<String>();
-						for (IndentGrpScpDtlEntity line : scsReq.getScpDtlList()) {
-							sentIds.add(String.valueOf(line.getIgDtlId()));
+					List<Map<String, Object>> currentLines = iIndentGroupDAO.getGrpDtlLinesByIgHdrId(scsReq.getIgHdrId());
+					if (currentLines != null) {
+						Map<String, BigDecimal> currentQty = new HashMap<String, BigDecimal>();
+						for (Map<String, Object> line : currentLines) {
+							currentQty.put(line.get("IG_DTL_ID").toString(), new BigDecimal(line.get("QTY").toString()));
 						}
-						if (!sentIds.equals(new LinkedHashSet<String>(currentIds))) {
+						Set<String> sentIds = new LinkedHashSet<String>();
+						// A line's qty can also be changed in the Details popup while Prepared - a sheet
+						// still showing the old qty would save extended prices for the wrong qty.
+						boolean qtyChanged = false;
+						for (IndentGrpScpDtlEntity line : scsReq.getScpDtlList()) {
+							String id = String.valueOf(line.getIgDtlId());
+							sentIds.add(id);
+							BigDecimal sentQty = parseQtyOrNull(line.getQty());
+							if (sentQty != null && currentQty.containsKey(id) && sentQty.compareTo(currentQty.get(id)) != 0) {
+								qtyChanged = true;
+							}
+						}
+						if (qtyChanged || !sentIds.equals(currentQty.keySet())) {
 							returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
 							returnMessage.setResponseMessage("Group items were changed - close and reopen the PJS before saving");
 							return returnMessage;
