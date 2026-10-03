@@ -74,7 +74,11 @@ public interface IIndentGroupDAO {
 
 	int getGrpDtlCountByIgHdrId(String igHdrId);
 
-	List<String> getGrpDtlIdsByIgHdrId(String igHdrId);
+	List<Map<String, Object>> getGrpDtlLinesByIgHdrId(String igHdrId);
+
+	int updateGrpDtlQty(String igDtlId, BigDecimal qty);
+
+	int rescaleScsDtlExtPrices(String igScsId, String igDtlId, BigDecimal oldQty, BigDecimal newQty);
 
 	void setIndentPjsGrpDeleted(String indentId, boolean deleted);
 

@@ -21,6 +21,7 @@ import com.vmfg.scm.request.DeleteIndScpDtlIdRequest;
 import com.vmfg.scm.request.HdrIdandTenantIdRequest;
 import com.vmfg.scm.request.IndentGrpDelRequest;
 import com.vmfg.scm.request.IndentGrpDtlRequest;
+import com.vmfg.scm.request.IndentGrpQtyUpdRequest;
 import com.vmfg.scm.request.IndentInsertGrpRequest;
 import com.vmfg.scm.request.IndentTemplateNameRequest;
 import com.vmfg.scm.request.UpdateSeqAndStatusRequest;
@@ -128,6 +129,22 @@ public class IndentGroupController {
 			logger.error("insertTempGrup  method  exception" + ex);
 		}
 		logger.debug("insertTempGrup   method end");
+		return new ResponseEntity<ResponseAsMessage>(respMsg, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
+	@PostMapping("updateIndentGrpDtlQty")
+	public ResponseEntity<ResponseAsMessage> updateIndentGrpDtlQty(@RequestBody IndentGrpQtyUpdRequest indentGrpQtyUpdReq) {
+		logger.debug("updateIndentGrpDtlQty   method Start");
+		ResponseAsMessage respMsg=null;
+		try {
+
+			respMsg = iIndentGroupService.updateIndentGrpDtlQty(indentGrpQtyUpdReq);
+
+		} catch (Exception ex) {
+			logger.error("updateIndentGrpDtlQty  method  exception" + ex);
+		}
+		logger.debug("updateIndentGrpDtlQty   method end");
 		return new ResponseEntity<ResponseAsMessage>(respMsg, HttpStatus.OK);
 	}
 	@CrossOrigin(maxAge = 3600)

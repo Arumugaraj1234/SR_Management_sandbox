@@ -1199,13 +1199,62 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 
 	// null = lookup failed (caller skips its check rather than blocking on a DB hiccup).
 	@Override
-	public List<String> getGrpDtlIdsByIgHdrId(String igHdrId) {
+	public List<Map<String, Object>> getGrpDtlLinesByIgHdrId(String igHdrId) {
 		try {
-			return jdbcTemplate.queryForList("SELECT IG_DTL_ID FROM indent_grp_dtl WHERE IG_HDR_ID = ?", String.class, igHdrId);
+			String qry = "SELECT g.IG_DTL_ID, g.INDENT_DTL_ID, g.QTY, d.PRODUCT_CODE, ih.INDENT_CODE"
+					+ " FROM indent_grp_dtl g"
+					+ " INNER JOIN indent_dtl d ON d.INDENT_DTL_ID = g.INDENT_DTL_ID"
+					+ " INNER JOIN indent_hdr ih ON ih.INDENT_ID = d.INDENT_ID"
+					+ " WHERE g.IG_HDR_ID = ?";
+			return jdbcTemplate.queryForList(qry, igHdrId);
 		} catch (Exception ex) {
-			logger.error("getGrpDtlIdsByIgHdrId Method Exception --->" + ex);
+			logger.error("getGrpDtlLinesByIgHdrId Method Exception --->" + ex);
 		}
 		return null;
+	}
+
+	// INVENTORY is written with the same value as QTY on insert (insertTempGrpDtl), so keep them equal.
+	@Override
+	public int updateGrpDtlQty(String igDtlId, BigDecimal qty) {
+		try {
+			return jdbcTemplate.update("UPDATE indent_grp_dtl SET QTY = ?, INVENTORY = ? WHERE IG_DTL_ID = ?",
+					qty, qty, igDtlId);
+		} catch (Exception ex) {
+			logger.error("updateGrpDtlQty Method Exception --->" + ex);
+		}
+		return 0;
+	}
+
+	// A priced line's extended prices are qty x unit price (all L1/L2/L3 and Final columns, FX and Rs),
+	// so scaling each one by newQty/oldQty gives what the PJS sheet would compute for the new qty
+	// without re-deriving its currency formulas. Unit prices stay as they are.
+	@Override
+	public int rescaleScsDtlExtPrices(String igScsId, String igDtlId, BigDecimal oldQty, BigDecimal newQty) {
+		if (oldQty == null || oldQty.signum() <= 0) {
+			return 0;
+		}
+		try {
+			String[] cols = { "L1_EXTENDED_PRICE", "L1_FX_EXTENDED_PRICE", "L2_EXTENDED_PRICE", "L2_FX_EXTENDED_PRICE",
+					"L3_EXTENDED_PRICE", "L3_FX_EXTENDED_PRICE", "FINAL_L1_EXTENDED_PRICE", "FINAL_L1_FX_EXTENDED_PRICE",
+					"FINAL_L2_EXTENDED_PRICE", "FINAL_L2_FX_EXTENDED_PRICE", "FINAL_L3_EXTENDED_PRICE",
+					"FINAL_L3_FX_EXTENDED_PRICE" };
+			StringBuilder set = new StringBuilder();
+			for (String c : cols) {
+				set.append(set.length() == 0 ? "" : ", ").append(c).append(" = ROUND(").append(c).append(" * ? / ?, 2)");
+			}
+			List<Object> args = new ArrayList<Object>();
+			for (int i = 0; i < cols.length; i++) {
+				args.add(newQty);
+				args.add(oldQty);
+			}
+			args.add(igScsId);
+			args.add(igDtlId);
+			return jdbcTemplate.update("UPDATE indent_grp_scs_dtl SET " + set + " WHERE IG_SCS_ID = ? AND IG_DTL_ID = ?",
+					args.toArray());
+		} catch (Exception ex) {
+			logger.error("rescaleScsDtlExtPrices Method Exception --->" + ex);
+		}
+		return 0;
 	}
 
 	// Price lines only - indent_grp_scs_ven_dtl is one PJS-level row (IG_DTL_ID = 0) and must stay.

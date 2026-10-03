@@ -11,6 +11,7 @@ import com.vmfg.scm.request.DeleteIndScpDtlIdRequest;
 import com.vmfg.scm.request.HdrIdandTenantIdRequest;
 import com.vmfg.scm.request.IndentGrpDelRequest;
 import com.vmfg.scm.request.IndentGrpDtlRequest;
+import com.vmfg.scm.request.IndentGrpQtyUpdRequest;
 import com.vmfg.scm.request.IndentInsertGrpRequest;
 import com.vmfg.scm.request.IndentTemplateNameRequest;
 import com.vmfg.scm.request.UpdateSeqAndStatusRequest;
@@ -29,6 +30,8 @@ public interface IIndentGroupService {
 	ResponseAsMessage checkTemplateName(IndentTemplateNameRequest indentTempName);
 
 	ResponseAsMessage insertTempGrup(IndentInsertGrpRequest indentTempName);
+
+	ResponseAsMessage updateIndentGrpDtlQty(IndentGrpQtyUpdRequest indentGrpQtyUpdReq);
 	
 	ResponseAsList getIndentQtyDtl(getIndentQtyDtlRequest getIndentQtyDtlReq);
 
