@@ -402,9 +402,11 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 		try {
 			String qry = "SELECT       @a:=@a + 1 AS S_NO,      igs.*,      dtl.PRODUCT_CODE,\r\n" +
 					"					     dtl.DESCRIPTION,      igd.QTY,      uom.UOM_SHORT_DESCRIPTION as UOM,dtl.SPECIFICATION AS SPECIFICATION, dtl.WEIGHT, dtl.MATERIAL, ih.INDENT_CODE,\r\n" +
-					"					     sb.SBC_DESC AS INDENT_TYPE, pksam.PSK_DESC AS SUB_ASSEMBLY, dtl.QTY AS INDENT_QTY\r\n" +
+					"					     sb.SBC_DESC AS INDENT_TYPE, pksam.PSK_DESC AS SUB_ASSEMBLY, dtl.QTY AS INDENT_QTY,\r\n" +
+					"					     (igd.QTY_UPDATED_DATETIME IS NOT NULL AND igd.QTY_UPDATED_DATETIME > COALESCE(sc.LAST_UPDATED_DATETIME, sc.CREATED_DATETIME)) AS QTY_CHANGED_AFTER_PJS\r\n" +
 					"                         FROM\r\n" +
 					"					     (SELECT @a:=0) AS a,      indent_grp_scs_dtl igs          INNER JOIN\r\n" +
+					"					     indent_grp_scs sc ON sc.IG_SCS_ID = igs.IG_SCS_ID          INNER JOIN\r\n" +
 					"					     indent_grp_dtl igd ON igs.IG_DTL_ID = igd.IG_DTL_ID          INNER JOIN\r\n" +
 					"					     indent_dtl dtl ON igd.INDENT_DTL_ID = dtl.INDENT_DTL_ID          INNER JOIN\r\n" +
 					"					     uom_mst uom ON dtl.UNIT = uom.UOM_CODE          INNER JOIN\r\n" +
@@ -412,7 +414,7 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 					"					     sales_budget_category sb ON ih.SBC_CODE = sb.SBC_CODE          INNER JOIN\r\n" +
 					"					     project_key_sub_area pksa ON ih.PKSA_ID = pksa.PKSA_ID          INNER JOIN\r\n" +
 					"					     project_key_sub_area_mst pksam ON pksam.PSK_ID = pksa.PSK_ID\r\n" +
-					"                         WHERE      IG_SCS_ID = ?;";
+					"                         WHERE      igs.IG_SCS_ID = ?;";
 			list = this.jdbcTemplate.query(qry, new IndentGrpScpDtlRowMapper(), igScpId);
 
 		} catch (Exception ex) {
@@ -1214,11 +1216,12 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 	}
 
 	// INVENTORY is written with the same value as QTY on insert (insertTempGrpDtl), so keep them equal.
+	// QTY_UPDATED_DATETIME lets the PJS sheet highlight lines whose qty changed after its last save.
 	@Override
 	public int updateGrpDtlQty(String igDtlId, BigDecimal qty) {
 		try {
-			return jdbcTemplate.update("UPDATE indent_grp_dtl SET QTY = ?, INVENTORY = ? WHERE IG_DTL_ID = ?",
-					qty, qty, igDtlId);
+			return jdbcTemplate.update("UPDATE indent_grp_dtl SET QTY = ?, INVENTORY = ?, QTY_UPDATED_DATETIME = ? WHERE IG_DTL_ID = ?",
+					qty, qty, CommonMethod.getCurrentDateTime(), igDtlId);
 		} catch (Exception ex) {
 			logger.error("updateGrpDtlQty Method Exception --->" + ex);
 		}

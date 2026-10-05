@@ -64,5 +64,7 @@ public class IndentGrpScpDtlEntity implements Serializable {
 	private String subAssembly;
 	// Original per-indent qty (indent_dtl.QTY), as distinct from the group-allocated `qty` above.
 	private String indentQty;
+	// Group line qty edited (Details popup) after this PJS was last saved - highlighted on the sheet.
+	private boolean qtyChangedAfterPjs;
 
 }

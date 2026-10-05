@@ -63,6 +63,7 @@ public class IndentGrpScpDtlRowMapper implements RowMapper<IndentGrpScpDtlEntity
 			igs.setIndentType(rs.getString("INDENT_TYPE"));
 			igs.setSubAssembly(rs.getString("SUB_ASSEMBLY"));
 			igs.setIndentQty(rs.getString("INDENT_QTY"));
+			igs.setQtyChangedAfterPjs(rs.getBoolean("QTY_CHANGED_AFTER_PJS"));
 //			igs.setFileNameExtn(rs.getString("FILE_NAME_EXTN"));
 //			igs.setIsPdf(rs.getString("IS_PDF"));
 		} catch (Exception ex) {
