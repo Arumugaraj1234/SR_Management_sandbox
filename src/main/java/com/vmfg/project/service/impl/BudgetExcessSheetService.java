@@ -73,6 +73,7 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 			BigDecimal targetCost = new BigDecimal(hdrDtl.getTargetValue());
 			BigDecimal excessValue = actualCost.subtract(targetCost);
 			String excess = String.valueOf(excessValue);
+			String actualCostVal = hdrDtl.getScmBudAllocatedValue();
 			String reason = null;
 			String rootCase = null;
 			String action = null;
@@ -87,6 +88,17 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 				// so the legacy checkIndentExcessCount/scsActualCost formula below is meaningless here.
 				// Compute Actual Excess Cost against the real remaining station budget instead - see
 				// project_budget_target_cost_removal memory for the worked-example formula this mirrors.
+				// ACTUAL_COST/EXCESS = THIS PJS's own share on this indent (per-PJS ledger), not the
+				// indent's SCM_BUDGET_ALLOCATED, which also includes any earlier PJS on the same indent.
+				// EXCESS also picks the approval group (getDocGroup), so it follows this PJS's size.
+				// Falls back to the indent total only if the ledger has no row for this PJS/indent.
+				BigDecimal ownShare = iIndentGroupDAO.getShareValueByIndentForScsId(budgetExcessSheetRequest.getIgScsId())
+						.get(hdrDtl.getIndentId());
+				if (ownShare != null) {
+					actualCost = ownShare;
+					actualCostVal = ownShare.toString();
+					excess = String.valueOf(ownShare.subtract(targetCost));
+				}
 				BigDecimal allocated = new BigDecimal(allocatedValue);
 				BigDecimal spentSoFar = new BigDecimal(actualSpentSoFar);
 				BigDecimal remaining = allocated.subtract(spentSoFar);
@@ -119,7 +131,7 @@ public class BudgetExcessSheetService implements IBudgetExcessSheetService {
 				}
 			}
 			int beHdrId = iBudgetExcessSheetDAO.insertBudgetExcessSheetDtl(hdrDtl.getIndentId(), hdrDtl.getPmHdrId(),
-					hdrDtl.getTargetValue(), hdrDtl.getScmBudAllocatedValue(), excess,
+					hdrDtl.getTargetValue(), actualCostVal, excess,
 					budgetExcessSheetRequest.getVendor(), reason, rootCase, action, responsible, seqNo,
 					listObj.getDocStatus(), budgetExcessSheetRequest.getUpdatedBy(),
 					budgetExcessSheetRequest.getTenantID(), hdrDtl.getDskId(), budgetExcessSheetRequest.getIgScsId(),String.valueOf(scsActualCost),

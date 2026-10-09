@@ -929,7 +929,16 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 				// PJS No. applies regardless of cost flow type (every PJS gets one at creation,
 				// see IndentGroupService.insertScpDtlsByIgHdrId) - resolved here, not inside the
 				// NEW-flow branch below, so it shows for legacy indents too.
-				String scsIdForPjsRef = iIndentGroupDAO.getScsIdByIndentId(indentReq.getIndentId());
+				// The sheet's own PJS when the screen sends its group (igHdrId) - an indent can have
+				// more than one PJS, and its latest one is not necessarily the sheet being viewed. A
+				// group with no PJS saved yet means "no PJS", not the indent's older PJS. Screens that
+				// don't send igHdrId keep the old behaviour (indent's latest PJS).
+				String scsIdForPjsRef;
+				if (indentReq.getIgHdrId() != null && !indentReq.getIgHdrId().trim().isEmpty()) {
+					scsIdForPjsRef = iIndentGroupDAO.getScsIdByIgHdrId(indentReq.getIgHdrId());
+				} else {
+					scsIdForPjsRef = iIndentGroupDAO.getScsIdByIndentId(indentReq.getIndentId());
+				}
 				if (!scsIdForPjsRef.isEmpty()) {
 					proj.get(0).setPjsRefNo(
 							iIndentGroupDAO.getPjsRefNoByIgScsId(scsIdForPjsRef, indentReq.getTenantId()));
@@ -961,17 +970,29 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 					if (distinctIndentIdsForThisScs.isEmpty()) {
 						distinctIndentIdsForThisScs.add(indentReq.getIndentId());
 					}
+					// Excludes only THIS PJS, not every PJS on the same indent - an indent can have
+					// more than one PJS (e.g. 1111/M/PJS/1 and /2 on indent 3569), and the earlier
+					// one's committed value is real consumption for this one.
 					BigDecimal otherCommittedPjs = new BigDecimal(iIndentGroupDAO
-							.getOtherCommittedScsTotalByPkaIdExcludingIndents(pkaId, distinctIndentIdsForThisScs,
-									scsBudgetExcessSeq));
+							.getOtherCommittedScsTotalByPkaIdExcludingScs(pkaId, scsIdForPjsRef, scsBudgetExcessSeq));
 					// Reserves the full value of any other indent at this station with a Budget
 					// Excess raised but not yet approved - same reservation the "Project Approved"
 					// gate now checks (see IndentGroupService.updateScpSeqAndStatus) - folded in here
 					// too so this screen's Available Value/isShortfall can't show "fine" right before
 					// the gate blocks the same click for a reason this display doesn't know about.
 					BigDecimal reservedPendingExcess = new BigDecimal(iIndentGroupDAO
-							.getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents(pkaId,
-									distinctIndentIdsForThisScs, scsBudgetExcessSeq));
+							.getPendingBudgetExcessReservedTotalByPkaIdExcludingScs(pkaId, scsIdForPjsRef,
+									scsBudgetExcessSeq));
+					// This PJS's own value from the per-PJS ledger. SCM_BUDGET_ALLOCATED is the
+					// indent's total across all its PJS, so it would also include an earlier PJS that
+					// is already counted in otherCommittedPjs/approvedPoTotal.
+					// No PJS saved yet -> nothing of its own (the indent total would be an older PJS's).
+					BigDecimal ownScsValue = BigDecimal.ZERO;
+					if (!scsIdForPjsRef.isEmpty()) {
+						String ownShare = iIndentGroupDAO.getScsShareTotal(scsIdForPjsRef);
+						ownScsValue = !ownShare.isEmpty() ? new BigDecimal(ownShare)
+								: new BigDecimal(iIndentGroupDAO.getScmBudgetValueForIndents(distinctIndentIdsForThisScs));
+					}
 					// This PJS's OWN committed value - the piece the three terms above deliberately
 					// exclude (they only ever count OTHER indents/PJS's). Once this PJS's own SCS has
 					// itself reached the station's commit threshold, its value is real consumption and
@@ -983,8 +1004,7 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 					if (!scsIdForPjsRef.isEmpty() && !iIndentGroupDAO.hasApprovedPoForScsId(scsIdForPjsRef)) {
 						int scsCurrentSeq = iIndentGroupDAO.getScsCurrentSeq(scsIdForPjsRef);
 						if (scsCurrentSeq >= Integer.parseInt(scsBudgetExcessSeq)) {
-							ownCommittedValue = new BigDecimal(
-									iIndentGroupDAO.getScmBudgetValueForIndents(distinctIndentIdsForThisScs));
+							ownCommittedValue = ownScsValue;
 						}
 					}
 					BigDecimal actualConsumedValue = approvedPoTotal.add(otherCommittedPjs).add(reservedPendingExcess)
@@ -999,8 +1019,7 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 					// unallocated Sales Budget left anywhere in the project for the PM to pull
 					// from? Drives the "Allocate to Station" button on the PM's PJS screen.
 					BigDecimal remainingStationBudget = allocatedValue.subtract(actualConsumedValue);
-					BigDecimal currentQuoteValue = new BigDecimal(
-							indentGroupDAO.getindentScmVal(indentReq.getIndentId()));
+					BigDecimal currentQuoteValue = ownScsValue;
 					boolean isShortfall = remainingStationBudget.compareTo(currentQuoteValue) < 0;
 					boolean canAllocate = false;
 					if (isShortfall) {
@@ -1013,8 +1032,8 @@ if(budgetValueUpdateReq.getTargetValue() == null) {
 					proj.get(0).setCanAllocateFromSalesBudget(String.valueOf(canAllocate));
 					proj.get(0).setIsShortfall(String.valueOf(isShortfall));
 
-					String scsId = iIndentGroupDAO.getScsIdByIndentId(indentReq.getIndentId());
-					boolean hasBudgetExcess = !scsId.isEmpty() && iIndentGroupDAO.getBudgetExcessDtlCount(scsId) > 0;
+					boolean hasBudgetExcess = !scsIdForPjsRef.isEmpty()
+							&& iIndentGroupDAO.getBudgetExcessDtlCount(scsIdForPjsRef) > 0;
 					proj.get(0).setHasBudgetExcess(String.valueOf(hasBudgetExcess));
 				}
 				returnList.setResponseData(proj);

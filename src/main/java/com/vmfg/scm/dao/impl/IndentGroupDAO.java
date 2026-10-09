@@ -3046,6 +3046,86 @@ public class IndentGroupDAO implements IIndentGroupDAO {
 		return totalVal;
 	}
 
+	// --- per-PJS (IG_SCS_ID) versions of the station budget helpers ---
+	// One indent can have more than one PJS (e.g. 1111/M/PJS/1 and /2 both on indent 3569), so
+	// excluding "this PJS" by indent also dropped every OTHER PJS on the same indent, and reading
+	// "this PJS's value" from indent_hdr.SCM_BUDGET_ALLOCATED picked up the earlier PJS's share too
+	// (that column is the indent's cumulative total across all its PJS). These scope by IG_SCS_ID.
+
+	@Override
+	public String getScsShareTotal(String igScsId) {
+		String totalVal = "";
+		try {
+			String qry = "SELECT COUNT(*) AS CNT, COALESCE(SUM(SHARE_VALUE),0) AS VAL FROM indent_grp_scs_indent_budget WHERE IG_SCS_ID = ?";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, igScsId);
+			if (Integer.parseInt(resultMap.get("CNT").toString()) > 0) {
+				totalVal = resultMap.get("VAL").toString();
+			}
+		} catch (Exception ex) {
+			logger.error("getScsShareTotal method Error" + ex);
+		}
+		return totalVal;
+	}
+
+	@Override
+	public String getOtherCommittedScsTotalByPkaIdExcludingScs(String pkaId, String excludeScsId, String minSeqNo) {
+		String totalVal = "0";
+		try {
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(b.SHARE_VALUE) ELSE 0 END AS VAL " +
+					"FROM indent_grp_scs_indent_budget b " +
+					"INNER JOIN indent_grp_scs scs ON scs.IG_SCS_ID = b.IG_SCS_ID " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = b.INDENT_ID " +
+					"WHERE ih.PKA_ID = ? AND b.IG_SCS_ID <> ? AND scs.SEQUENCE_NO >= ? " +
+					"AND NOT EXISTS (" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = b.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					")";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, pkaId, excludeScsId, minSeqNo);
+			totalVal = resultMap.get("VAL").toString();
+		} catch (Exception ex) {
+			logger.error("getOtherCommittedScsTotalByPkaIdExcludingScs method Error" + ex);
+		}
+		return totalVal;
+	}
+
+	@Override
+	public String getPendingBudgetExcessReservedTotalByPkaIdExcludingScs(String pkaId, String excludeScsId, String minSeqNo) {
+		String totalVal = "0";
+		try {
+			// Reserved amount per excess row = that PJS's own share on that indent (ledger), minus
+			// its excess. Falls back to the indent's total only when the ledger has no row for it.
+			String qry = "SELECT CASE WHEN COUNT(*) > 0 THEN SUM(GREATEST(COALESCE(b.SHARE_VALUE, ih.SCM_BUDGET_ALLOCATED) - COALESCE(bed.ACTUAL_EXCESS, 0), 0)) ELSE 0 END AS VAL " +
+					"FROM budget_excess_dtl bed " +
+					"INNER JOIN indent_hdr ih ON ih.INDENT_ID = bed.INDENT_ID " +
+					"INNER JOIN indent_grp_scs scs ON scs.IG_SCS_ID = bed.IG_SCS_ID " +
+					"LEFT JOIN indent_grp_scs_indent_budget b ON b.IG_SCS_ID = bed.IG_SCS_ID AND b.INDENT_ID = bed.INDENT_ID " +
+					"WHERE ih.PKA_ID = ? AND bed.IG_SCS_ID <> ? AND bed.SEQUENCE_NO != 6 AND scs.SEQUENCE_NO < ? " +
+					"AND NOT EXISTS (" +
+					"    SELECT 1 FROM po_hdr ph WHERE ph.IG_SCS_ID = bed.IG_SCS_ID AND ph.IS_LATEST = 1 AND ph.IS_APPROVED = 1" +
+					")";
+			Map<String, Object> resultMap = jdbcTemplate.queryForMap(qry, pkaId, excludeScsId, minSeqNo);
+			totalVal = resultMap.get("VAL").toString();
+		} catch (Exception ex) {
+			logger.error("getPendingBudgetExcessReservedTotalByPkaIdExcludingScs method Error" + ex);
+		}
+		return totalVal;
+	}
+
+	@Override
+	public String getApprovedActualExcessByScsAndIndentId(String igScsId, String indentId) {
+		String excessVal = "0";
+		try {
+			String qry = "SELECT CASE WHEN ACTUAL_EXCESS > 0 THEN ACTUAL_EXCESS ELSE 0 END AS ACTUAL_EXCESS FROM budget_excess_dtl " +
+					"WHERE IG_SCS_ID = ? AND INDENT_ID = ? AND IS_COMPLETED = 1 ORDER BY BE_HDR_ID DESC LIMIT 1";
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, igScsId, indentId);
+			if (!rows.isEmpty()) {
+				excessVal = rows.get(0).get("ACTUAL_EXCESS").toString();
+			}
+		} catch (Exception ex) {
+			logger.error("getApprovedActualExcessByScsAndIndentId error " + ex.getMessage());
+		}
+		return excessVal;
+	}
+
 	@Override
 	public Map<String, BigDecimal> getShareValueByIndentForScsId(String igScsId) {
 		Map<String, BigDecimal> shareByIndent = new HashMap<String, BigDecimal>();

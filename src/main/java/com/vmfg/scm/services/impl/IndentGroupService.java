@@ -1328,13 +1328,13 @@ public class IndentGroupService implements IIndentGroupService {
 						distinctIndentIds = new ArrayList<String>();
 						distinctIndentIds.add(indentId);
 					}
-					scmBudgetValue = new BigDecimal(indentGroupDAO.getScmBudgetValueForIndents(distinctIndentIds));
+					scmBudgetValue = getOwnScsValue(scsId, distinctIndentIds);
 
 					// NEW-flow: TARGET_VALUE is always 0 (see project_budget_target_cost_removal),
 					// so check the real remaining budget at the station instead: what's allocated
 					// to the station minus what's already committed there (approved POs, plus other
 					// SCS's that already crossed this same "Project Approved" step but have no PO yet).
-					BigDecimal remainingStationBudget = computeStationBudgetSnapshot(distinctIndentIds, scsBudgetExcessSeq).remaining;
+					BigDecimal remainingStationBudget = computeStationBudgetSnapshot(scsId, distinctIndentIds, scsBudgetExcessSeq).remaining;
 					// Mirror the legacy formula's own resolution mechanism (indentTargetValue =
 					// TARGET_VALUE + getBudgetExcessValue, below) but scoped per-indent, not into the
 					// station's shared Allocated Value pool - once a Budget Excess is approved for
@@ -1348,7 +1348,7 @@ public class IndentGroupService implements IIndentGroupService {
 					BigDecimal approvedExcessForThisIndent = BigDecimal.ZERO;
 					for (String eachIndentId : distinctIndentIds) {
 						approvedExcessForThisIndent = approvedExcessForThisIndent.add(
-								new BigDecimal(iIndentGroupDAO.getApprovedActualExcessByIndentId(eachIndentId)));
+								new BigDecimal(iIndentGroupDAO.getApprovedActualExcessByScsAndIndentId(scsId, eachIndentId)));
 					}
 					// Also reserve the full value of any OTHER indent at this station that has a
 					// Budget Excess raised but still pending approval - it hasn't reached the
@@ -1357,8 +1357,8 @@ public class IndentGroupService implements IIndentGroupService {
 					// remaining balance is real. Without this, a second PJS could pass this same
 					// check using the exact balance the first one is already waiting on.
 					BigDecimal otherPendingExcessReserved = new BigDecimal(iIndentGroupDAO
-							.getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents(
-									indentUploadDAO.getPkaIdByIndentId(indentId), distinctIndentIds, scsBudgetExcessSeq));
+							.getPendingBudgetExcessReservedTotalByPkaIdExcludingScs(
+									indentUploadDAO.getPkaIdByIndentId(indentId), scsId, scsBudgetExcessSeq));
 					// A negative station balance counts as 0 here, same rule the Budget Excess amount itself is
 					// raised with (BudgetExcessSheetService: excess = PJS value - max(remaining, 0)). The station
 					// can only be below 0 because an earlier PJS's Budget Excess was already approved for that
@@ -1434,11 +1434,12 @@ public class IndentGroupService implements IIndentGroupService {
 					// signed off via the excess's own approval chain. Skip straight to PO creation
 					// instead of making them approve the same spend again: force LAST_SEQ="1" for
 					// this one transition regardless of the bucket's natural (always "0" here) value.
-					// Applies to both regular ("Project Approved", seq 6) and CAPEX ("Finance
-					// Approved", seq 4) - same gate, same budgetExcessSeq check, both flows confirmed
-					// to have their own genuine excess-approval chain including Finance sign-off.
+					// Regular projects ("Project Approved", seq 6) only - CAPEX/OPEX (processDoc "8")
+					// keeps the current flow and still goes on to ED Approved -> Management after its
+					// Budget Excess is approved.
 					String effectiveLastSeq = currSeqDocLifeCycleMstList.get(0).getLastSeq();
 					boolean bypassRemainingApprovals = isCompletedCount > 0
+							&& "5".equalsIgnoreCase(processDoc)
 							&& "NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(indentId));
 					if (bypassRemainingApprovals) {
 						effectiveLastSeq = "1";
@@ -1499,14 +1500,27 @@ public class IndentGroupService implements IIndentGroupService {
 	// the caller separately adds each one's own full wallet back in via scmBudgetValue - excluding
 	// only one while summing every indent's full wallet would double-count the others' unrelated
 	// commitments. See project_multi_indent_pjs_grouping memory, Problem 2/4.
-	private StationBudgetSnapshot computeStationBudgetSnapshot(List<String> indentIds, String scsBudgetExcessSeq) {
+	// "Other committed" now excludes only this PJS (scsId), not every PJS on its indents - an
+	// indent can have more than one PJS, and the earlier ones are real consumption.
+	private StationBudgetSnapshot computeStationBudgetSnapshot(String scsId, List<String> indentIds, String scsBudgetExcessSeq) {
 		String pkaId = indentUploadDAO.getPkaIdByIndentId(indentIds.get(0));
 		BigDecimal stationAllocated = new BigDecimal(projectDAO.getAllocatedValSum(pkaId));
 		BigDecimal approvedPoTotal = new BigDecimal(poDAO.getApprovedPoTotalByPkaId(pkaId));
 		BigDecimal otherCommittedPjs = new BigDecimal(
-				indentGroupDAO.getOtherCommittedScsTotalByPkaIdExcludingIndents(pkaId, indentIds, scsBudgetExcessSeq));
+				indentGroupDAO.getOtherCommittedScsTotalByPkaIdExcludingScs(pkaId, scsId, scsBudgetExcessSeq));
 		BigDecimal actualSpentSoFar = approvedPoTotal.add(otherCommittedPjs);
 		return new StationBudgetSnapshot(stationAllocated, actualSpentSoFar);
+	}
+
+	// This PJS's own value: its own rows in the per-PJS ledger. indent_hdr.SCM_BUDGET_ALLOCATED is
+	// the indent's total across ALL its PJS, so using it here counted an earlier PJS on the same
+	// indent a second time. Falls back to that total only if the ledger has no row for this PJS.
+	private BigDecimal getOwnScsValue(String scsId, List<String> indentIds) {
+		String ownShare = indentGroupDAO.getScsShareTotal(scsId);
+		if (!ownShare.isEmpty()) {
+			return new BigDecimal(ownShare);
+		}
+		return new BigDecimal(indentGroupDAO.getScmBudgetValueForIndents(indentIds));
 	}
 
 	@Override
@@ -1534,11 +1548,11 @@ public class IndentGroupService implements IIndentGroupService {
 				distinctIndentIds = new ArrayList<String>();
 				distinctIndentIds.add(indentId);
 			}
-			BigDecimal scmBudgetValue = new BigDecimal(indentGroupDAO.getScmBudgetValueForIndents(distinctIndentIds));
+			BigDecimal scmBudgetValue = getOwnScsValue(scsId, distinctIndentIds);
 			String scsBudgetExcessSeq = processDoc.equalsIgnoreCase("5")
 					? iIndentGroupDAO.getTenantPropertyVal("SCS_BUDGET_EXCESS", updateHdrReq.getTenantId())
 					: iIndentGroupDAO.getTenantPropertyVal("CAPEX_SCS_BUDGET_EXCESS", updateHdrReq.getTenantId());
-			StationBudgetSnapshot stationBudgetSnapshot = computeStationBudgetSnapshot(distinctIndentIds, scsBudgetExcessSeq);
+			StationBudgetSnapshot stationBudgetSnapshot = computeStationBudgetSnapshot(scsId, distinctIndentIds, scsBudgetExcessSeq);
 			// Same reservation the approval gate (updateScpSeqAndStatus, line ~916) already applies
 			// on top of computeStationBudgetSnapshot - an OTHER indent at this station with a Budget
 			// Excess raised but still pending approval hasn't reached the "committed" sequence yet,
@@ -1549,8 +1563,8 @@ public class IndentGroupService implements IIndentGroupService {
 			// whatever another pending excess at the same station has already claimed - see
 			// project_budget_target_cost_removal memory for the two-PJS race this mirrors.
 			BigDecimal otherPendingExcessReserved = new BigDecimal(iIndentGroupDAO
-					.getPendingBudgetExcessReservedTotalByPkaIdExcludingIndents(
-							indentUploadDAO.getPkaIdByIndentId(indentId), distinctIndentIds, scsBudgetExcessSeq));
+					.getPendingBudgetExcessReservedTotalByPkaIdExcludingScs(
+							indentUploadDAO.getPkaIdByIndentId(indentId), scsId, scsBudgetExcessSeq));
 			BigDecimal effectiveRemaining = stationBudgetSnapshot.remaining.subtract(otherPendingExcessReserved);
 			boolean isBudgetExceeded = effectiveRemaining.compareTo(scmBudgetValue) < 0;
 			if (!isBudgetExceeded) {
