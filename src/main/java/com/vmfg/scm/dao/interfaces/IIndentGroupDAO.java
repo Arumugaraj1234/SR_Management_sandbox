@@ -273,4 +273,18 @@ public interface IIndentGroupDAO {
 
 	/** Each contributing indent's own SHARE_VALUE for this specific PJS (indent_grp_scs_indent_budget), for splitting a Budget Excess proportionally. */
 	Map<String, BigDecimal> getShareValueByIndentForScsId(String igScsId);
+
+	// --- per-PJS (IG_SCS_ID) versions - one indent can have more than one PJS ---
+
+	/** This PJS's own total from the ledger (SUM of SHARE_VALUE); "" when the ledger has no row for it. */
+	String getScsShareTotal(String igScsId);
+
+	/** Other committed PJS at the station, excluding only this PJS (not every PJS on its indents). */
+	String getOtherCommittedScsTotalByPkaIdExcludingScs(String pkaId, String excludeScsId, String minSeqNo);
+
+	/** Pending Budget Excess reservations at the station, excluding only this PJS. */
+	String getPendingBudgetExcessReservedTotalByPkaIdExcludingScs(String pkaId, String excludeScsId, String minSeqNo);
+
+	/** Latest approved ACTUAL_EXCESS raised for this PJS on this indent, "0" if none. */
+	String getApprovedActualExcessByScsAndIndentId(String igScsId, String indentId);
 }
