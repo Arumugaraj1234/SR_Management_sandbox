@@ -1,6 +1,7 @@
 package com.vmfg.scm.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -22,4 +23,5 @@ public class PoPaymentTermEntity implements Serializable {
 	private String praCode;
 	private String documentStatus;
 	private String isLast;
+	private List<PoTermPraEntity> praList;
 }
