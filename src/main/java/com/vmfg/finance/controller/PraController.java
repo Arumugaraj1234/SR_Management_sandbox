@@ -1,6 +1,7 @@
 package com.vmfg.finance.controller;
 
 import com.vmfg.finance.request.*;
+import com.vmfg.scm.request.GetGrnHdrRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,5 +91,32 @@ public class PraController {
 		}
 		logger.info("udpatePraHdrSeq   method end");
 		return new ResponseEntity<ResponseAsMessage>(resp, HttpStatus.OK);
+	}
+	@CrossOrigin(maxAge = 3600)
+	@PostMapping("getGrnLinesByPoId")
+	public ResponseEntity<ResponseAsList> getGrnLinesByPoId(@RequestBody GetGrnHdrRequest getGrnHdrRequest) {
+		logger.info("getGrnLinesByPoId   method Start");
+		ResponseAsList resp = null;
+		try {
+			resp = iPraService.getGrnLinesByPoId(getGrnHdrRequest);
+		} catch (Exception ex) {
+			logger.error("getGrnLinesByPoId  method  exception" + ex);
+		}
+		logger.info("getGrnLinesByPoId   method end");
+		return new ResponseEntity<ResponseAsList>(resp, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
+	@PostMapping("getPraHistoryByPoId")
+	public ResponseEntity<ResponseAsList> getPraHistoryByPoId(@RequestBody GetGrnHdrRequest getGrnHdrRequest) {
+		logger.info("getPraHistoryByPoId   method Start");
+		ResponseAsList resp = null;
+		try {
+			resp = iPraService.getPraHistoryByPoId(getGrnHdrRequest);
+		} catch (Exception ex) {
+			logger.error("getPraHistoryByPoId  method  exception" + ex);
+		}
+		logger.info("getPraHistoryByPoId   method end");
+		return new ResponseEntity<ResponseAsList>(resp, HttpStatus.OK);
 	}
 }

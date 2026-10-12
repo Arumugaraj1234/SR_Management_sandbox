@@ -682,4 +682,39 @@ public class PraDAO implements IPraDAO {
 	    return verCheck;
 	}
 
+	// Create-PRA popup: every GRN line on this PO (current GRN version). Invoice No/Date are the
+	// GRN's DC No/Date - the same values that pre-fill the PRA's invoice fields.
+	@Override
+	public List<GrnDtlsEntity> getGrnLinesByPoId(String poId, String tenantId) {
+		List<GrnDtlsEntity> response = new ArrayList<GrnDtlsEntity>();
+		try {
+			String qry = "SELECT gh.GRN_CODE, gh.GRN_DATE, gd.RECEIVED_QTY, mih.DC_NO AS INVOICE_NO, mih.DC_DATE AS INVOICE_DATE "
+					+ "FROM grn_hdr gh INNER JOIN grn_dtl gd ON gd.GRN_HDR_ID = gh.GRN_HDR_ID "
+					+ "LEFT JOIN material_inward_hdr mih ON mih.MI_ID = gh.MI_ID "
+					+ "WHERE gh.PO_ID = ? AND gh.TENANT_ID = ? AND gh.IS_LATEST = 1 "
+					+ "ORDER BY gh.GRN_HDR_ID, gd.GRN_DTL_ID";
+			response = this.jdbcTemplate.query(qry, new GrnDtlsRowMapper(), poId, tenantId);
+		} catch (Exception ex) {
+			logger.error("getGrnLinesByPoId Method Exception " + ex);
+		}
+		return response;
+	}
+
+	// Create-PRA popup: every PRA on this PO. Cancelled PRAs (IS_LATEST=0) show as "PRA Cancelled",
+	// same as the PRA list, instead of the status they had when cancelled.
+	@Override
+	public List<PraDtlsHistoryEntity> getPraHistoryByPoId(String poId, String tenantId) {
+		List<PraDtlsHistoryEntity> result = new ArrayList<>();
+		try {
+			String qry = "SELECT phr.PRA_CODE, phr.INVOICE_VALUE, phr.STATUS, "
+					+ "CASE WHEN phr.IS_LATEST = 0 THEN 'PRA Cancelled' ELSE ds.DOCUMENT_STATUS_TYPE_DESCRIPTION END AS DOCUMENT_STATUS_TYPE_DESCRIPTION "
+					+ "FROM pra_hdr phr LEFT JOIN document_status_type_code ds ON ds.DOCUMENT_STATUS_TYPE_CODE = phr.STATUS_CODE "
+					+ "AND ds.TENANT_ID = phr.TENANT_ID "
+					+ "WHERE phr.PO_ID = ? AND phr.TENANT_ID = ? ORDER BY phr.PRA_ID";
+			result = this.jdbcTemplate.query(qry, new PraDtlsHistoryRowMapper(), poId, tenantId);
+		} catch (Exception ex) {
+			logger.error("getPraHistoryByPoId exception " + ex);
+		}
+		return result;
+	}
 }

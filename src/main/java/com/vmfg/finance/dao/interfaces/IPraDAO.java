@@ -63,4 +63,7 @@ public interface IPraDAO {
 
 	String getVerCheckByPraId(String praId, String tenantId);
 
+	List<GrnDtlsEntity> getGrnLinesByPoId(String poId, String tenantId);
+
+	List<PraDtlsHistoryEntity> getPraHistoryByPoId(String poId, String tenantId);
 }

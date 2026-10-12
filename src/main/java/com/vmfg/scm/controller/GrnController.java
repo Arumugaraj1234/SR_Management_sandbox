@@ -39,6 +39,20 @@ public class GrnController {
 	}
 
 	@CrossOrigin(maxAge = 3600)
+	@PostMapping("getAvailableGrnForPra")
+	public ResponseEntity<ResponseAsList> getAvailableGrnForPra(@RequestBody GetGrnHdrRequest getGrnHdrRequest) {
+		logger.info("getAvailableGrnForPra Controller  method Start");
+		ResponseAsList list = null;
+		try {
+			list = iGrnService.getAvailableGrnForPra(getGrnHdrRequest);
+		} catch (Exception ex) {
+			logger.error("getAvailableGrnForPra  method  exception:" + ex);
+		}
+		logger.info("getAvailableGrnForPra  method end");
+		return new ResponseEntity<ResponseAsList>(list, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
 	@PostMapping("getPoCostType")
 	public ResponseEntity<ResponseAsList> getPoCostType(@RequestBody GetPoCostTypeReq getPoCostTypeReq) {
 		logger.info("getPoCostType Controller  method Start");
