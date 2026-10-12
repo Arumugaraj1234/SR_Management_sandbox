@@ -170,6 +170,27 @@ public class GrnDAO implements IGrnDAO {
 		return returnList;
 	}
 
+	// PRA GRN dropdown: one row per GRN of this PO (current GRN version only), leaving out any GRN
+	// already on a live PRA - each GRN is billed on one PRA only, whatever the payment term.
+	// Cancelled PRAs are IS_LATEST=0, so their GRNs come back. pra_hdr.GRN_HDR_ID holds a
+	// comma-separated list when a PRA was raised against several GRNs.
+	@Override
+	public List<GrnHdrEntity> getAvailableGrnForPra(String poId, String tenantId) {
+		List<GrnHdrEntity> returnList = new ArrayList<GrnHdrEntity>();
+		try {
+			String qry = "SELECT gh.GRN_HDR_ID, gh.GRN_CODE, gh.GRN_DATE, mih.DC_NO, mih.DC_DATE "
+					+ "FROM grn_hdr gh LEFT JOIN material_inward_hdr mih ON mih.MI_ID = gh.MI_ID "
+					+ "WHERE gh.PO_ID = ? AND gh.TENANT_ID = ? AND gh.IS_LATEST = 1 "
+					+ "AND NOT EXISTS (SELECT 1 FROM pra_hdr ph WHERE ph.IS_LATEST = 1 "
+					+ "AND FIND_IN_SET(gh.GRN_HDR_ID, REPLACE(ph.GRN_HDR_ID, ' ', '')) > 0) "
+					+ "ORDER BY gh.GRN_HDR_ID";
+			returnList = this.jdbcTemplate.query(qry, new GrnHdrRowMapper(), poId, tenantId);
+		} catch (Exception ex) {
+			logger.error("getAvailableGrnForPra error---> " + ex);
+		}
+		return returnList;
+	}
+
 	@Override
 	public List<GrnDtlEntity> getGrnDtlwithMaterialInwardDtl(String grnHdrId, String tenantId) {
 		List<GrnDtlEntity> returnList = new ArrayList<>();

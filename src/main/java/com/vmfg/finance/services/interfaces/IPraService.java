@@ -1,6 +1,7 @@
 package com.vmfg.finance.services.interfaces;
 
 import com.vmfg.finance.request.*;
+import com.vmfg.scm.request.GetGrnHdrRequest;
 import com.vmfg.general.response.ResponseAsList;
 import com.vmfg.general.response.ResponseAsMessage;
 
@@ -15,4 +16,7 @@ public interface IPraService {
 	ResponseAsList retrievePRA(RetrievePraRequest retrievePraReq);
 	
 	ResponseAsMessage udpatePraHdrSeq(UdpatePraHdrSeqRequest udpatePraHdrSeqReq);
+	ResponseAsList getGrnLinesByPoId(GetGrnHdrRequest getGrnHdrRequest);
+
+	ResponseAsList getPraHistoryByPoId(GetGrnHdrRequest getGrnHdrRequest);
 }

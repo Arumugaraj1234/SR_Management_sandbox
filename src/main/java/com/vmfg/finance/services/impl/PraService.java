@@ -24,6 +24,7 @@ import com.vmfg.finance.request.PraInsertRequest;
 import com.vmfg.finance.request.RetrievePraRequest;
 import com.vmfg.finance.request.UdpatePraHdrSeqRequest;
 import com.vmfg.finance.request.getPraDtlRequest;
+import com.vmfg.scm.request.GetGrnHdrRequest;
 import com.vmfg.finance.services.interfaces.IPraService;
 import com.vmfg.general.dao.impl.StageManagementDAO;
 import com.vmfg.general.entity.DocumentStatusMstEntity;
@@ -595,4 +596,31 @@ public class PraService implements IPraService {
 		return returnList;
 	}
 
+	@Override
+	public ResponseAsList getGrnLinesByPoId(GetGrnHdrRequest getGrnHdrRequest) {
+		ResponseAsList returnList = new ResponseAsList();
+		try {
+			List<GrnDtlsEntity> grnList = iPraDAO.getGrnLinesByPoId(getGrnHdrRequest.getPoId(), getGrnHdrRequest.getTenantId());
+			returnList.setResponseData(grnList);
+			returnList.setResponseCode(grnList.isEmpty() ? ResponseMessageMap.responseCodeNotOk : ResponseMessageMap.responseCodeOk);
+			returnList.setResponseMessage(grnList.isEmpty() ? ResponseMessageMap.noRecord : ResponseMessageMap.success);
+		} catch (Exception ex) {
+			logger.error("getGrnLinesByPoId service error " + ex);
+		}
+		return returnList;
+	}
+
+	@Override
+	public ResponseAsList getPraHistoryByPoId(GetGrnHdrRequest getGrnHdrRequest) {
+		ResponseAsList returnList = new ResponseAsList();
+		try {
+			List<PraDtlsHistoryEntity> praList = iPraDAO.getPraHistoryByPoId(getGrnHdrRequest.getPoId(), getGrnHdrRequest.getTenantId());
+			returnList.setResponseData(praList);
+			returnList.setResponseCode(praList.isEmpty() ? ResponseMessageMap.responseCodeNotOk : ResponseMessageMap.responseCodeOk);
+			returnList.setResponseMessage(praList.isEmpty() ? ResponseMessageMap.noRecord : ResponseMessageMap.success);
+		} catch (Exception ex) {
+			logger.error("getPraHistoryByPoId service error " + ex);
+		}
+		return returnList;
+	}
 }

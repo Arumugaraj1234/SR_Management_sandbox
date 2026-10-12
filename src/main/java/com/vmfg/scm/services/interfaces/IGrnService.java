@@ -8,6 +8,8 @@ public interface IGrnService {
 
 	ResponseAsList getGrnHdrDetails(GetGrnHdrRequest getGrnHdrRequest);
 
+	ResponseAsList getAvailableGrnForPra(GetGrnHdrRequest getGrnHdrRequest);
+
 	ResponseAsList getPoCostType(GetPoCostTypeReq getPoCostTypeReq);
 
 	ResponseAsList getGrnDtlwithMaterialInwardDtl(GrnDtlRequest grnDtlRequest);

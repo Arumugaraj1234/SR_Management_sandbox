@@ -10,6 +10,8 @@ public interface IGrnDAO {
 
 	List<GrnHdrEntity> getGrnHdrDetails(String projectId, String tenantId, String poId, String fromDate, String toDate);
 
+	List<GrnHdrEntity> getAvailableGrnForPra(String poId, String tenantId);
+
 	List<PoCostTypeEntity> getPoCostType(String isActive, String tenantId);
 
 	List<GrnDtlEntity> getGrnDtlwithMaterialInwardDtl(String grnHdrId, String tenantId);

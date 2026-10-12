@@ -80,6 +80,26 @@ public class GrnService implements IGrnService {
 	}
 
 	@Override
+	public ResponseAsList getAvailableGrnForPra(GetGrnHdrRequest getGrnHdrRequest) {
+		ResponseAsList returnList = new ResponseAsList();
+		List<GrnHdrEntity> mainList = new ArrayList<>();
+		try {
+			mainList = iGrnDAO.getAvailableGrnForPra(getGrnHdrRequest.getPoId(), getGrnHdrRequest.getTenantId());
+			returnList.setResponseData(mainList);
+			if (mainList.size() > 0) {
+				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
+				returnList.setResponseMessage(ResponseMessageMap.success);
+			} else {
+				returnList.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				returnList.setResponseMessage(ResponseMessageMap.noRecord);
+			}
+		} catch (Exception ex) {
+			logger.error("getAvailableGrnForPra service error " + ex);
+		}
+		return returnList;
+	}
+
+	@Override
 	public ResponseAsList getPoCostType(GetPoCostTypeReq getPoCostTypeReq){
 		ResponseAsList returnList = new ResponseAsList();
 		List<PoCostTypeEntity> poCostTypeEntityList = new ArrayList<>();
