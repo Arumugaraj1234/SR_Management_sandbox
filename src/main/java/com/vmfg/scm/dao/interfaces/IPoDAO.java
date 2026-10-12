@@ -188,6 +188,8 @@ public interface IPoDAO {
 
 	String getPaymentTermStatus(String potId);
 
+	List<PoTermPraEntity> getPraListByPoId(String poId);
+
 	List<GetPoDtlsEntity> getPreRevisionPoDtls(String igScpId, String revision, String tenantId);
 	
 	String getGstType(String vendorCode,String tenantId);

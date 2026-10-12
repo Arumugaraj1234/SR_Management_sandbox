@@ -40,6 +40,7 @@ import com.vmfg.scm.entity.BillingDetailEntity;
 import com.vmfg.scm.entity.DcDtlEntity;
 import com.vmfg.scm.entity.DcHdrEntity;
 import com.vmfg.scm.entity.DebitNoteEntity;
+import com.vmfg.scm.entity.PoTermPraEntity;
 import com.vmfg.scm.entity.GetDCTypeDtlEntity;
 import com.vmfg.scm.entity.GetPoDtlsByDate;
 import com.vmfg.scm.entity.GetPoDtlsEntity;
@@ -2763,4 +2764,32 @@ String poDate= CommonMethod.getCurrentDate();
 	    return totalsByProjectId;
 	}
 
+	// Every live PRA on this PO (one query for all its payment terms); cancelled PRAs (IS_LATEST=0)
+	// are left out. PRA value = AMOUNT_PAYABLE (incl. GST and charges) - the same amount PraService
+	// deducts from the term's PENDING_AMOUNT when a PRA is created.
+	@Override
+	public List<PoTermPraEntity> getPraListByPoId(String poId) {
+		List<PoTermPraEntity> returnList = new ArrayList<>();
+		try {
+			String retQry = "SELECT pra.POT_ID, pra.PRA_ID, pra.PRA_CODE, pra.PRA_DATE, "
+					+ "IFNULL(pra.AMOUNT_PAYABLE, 0) AS PRA_VALUE, "
+					+ "typ.DOCUMENT_STATUS_TYPE_DESCRIPTION AS STATUS_DESC "
+					+ "FROM pra_hdr pra LEFT JOIN document_status_type_code typ "
+					+ "ON typ.DOCUMENT_STATUS_TYPE_CODE = pra.STATUS_CODE AND typ.TENANT_ID = pra.TENANT_ID "
+					+ "WHERE pra.PO_ID = ? AND pra.IS_LATEST = 1 ORDER BY pra.PRA_ID";
+			returnList = this.jdbcTemplate.query(retQry, (rs, rowNum) -> {
+				PoTermPraEntity pra = new PoTermPraEntity();
+				pra.setPotId(rs.getString("POT_ID"));
+				pra.setPraId(rs.getString("PRA_ID"));
+				pra.setPraCode(rs.getString("PRA_CODE"));
+				pra.setPraDate(rs.getString("PRA_DATE"));
+				pra.setPraValue(rs.getString("PRA_VALUE"));
+				pra.setStatusDesc(rs.getString("STATUS_DESC"));
+				return pra;
+			}, poId);
+		} catch (Exception ex) {
+			logger.error("getPraListByPoId error---> " + ex);
+		}
+		return returnList;
+	}
 }

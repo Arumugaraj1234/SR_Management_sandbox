@@ -3,6 +3,7 @@ package com.vmfg.scm.services.impl;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -49,6 +50,7 @@ import com.vmfg.scm.entity.PoDtlEntity;
 import com.vmfg.scm.entity.PoHsnEntity;
 import com.vmfg.scm.entity.PoInstoreDtlEntity;
 import com.vmfg.scm.entity.PoPaymentTermEntity;
+import com.vmfg.scm.entity.PoTermPraEntity;
 import com.vmfg.scm.entity.PoStatusEntity;
 import com.vmfg.scm.request.GetDcDtlByDcIdRequest;
 import com.vmfg.scm.request.GetpoInstoreDtlByPmIdRequest;
@@ -300,6 +302,13 @@ public class PoService implements IPoServices {
 							payment.setPraDate(cnt[1]);
 							payment.setPraCode(cnt[2]);
 							payment.setDocumentStatus(cnt[3]);
+						}
+						// Every live PRA per term - users raise several PRAs on one term, so the single latest
+						// PRA above isn't enough for the PO screen.
+						Map<String, List<PoTermPraEntity>> praByPotId = iPoDAO.getPraListByPoId(mainList.get(i).getPoId())
+								.stream().collect(Collectors.groupingBy(PoTermPraEntity::getPotId));
+						for (PoPaymentTermEntity payment : poPaymentTerm) {
+							payment.setPraList(praByPotId.getOrDefault(payment.getPotId(), new ArrayList<>()));
 						}
 					}
 					poDispatchDoc = iPoDAO.getPoDispatchDocList(mainList.get(i).getPoId());
