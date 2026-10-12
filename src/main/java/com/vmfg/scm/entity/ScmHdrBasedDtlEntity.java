@@ -28,4 +28,5 @@ public class ScmHdrBasedDtlEntity implements Serializable {
 	private String grnCount;
 	private String enquiryId;
 	private String isInternal;
+	private String costFlowType;
 }
