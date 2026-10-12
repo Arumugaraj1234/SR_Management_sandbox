@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -300,6 +301,11 @@ respList.add(resp);
 		if(statusDesc.size()>0) {
 		for(int i =0;i<statusDesc.size();i++) {
 			List<ScmHdrBasedDtlEntity> scmEnqDtlList =iTitleViewDAO.scmTitleViewList(scmHdrBasedDtl,statusDesc.get(i));
+			// NEW-flow projects get a different ribbon colour on the card - same lookup the PM tiles use.
+			Map<String, String> costFlowTypeByPmHdrId = iProjectDAO.getCostFlowTypeGroupedByPmHdrIds(
+					scmEnqDtlList.stream().map(ScmHdrBasedDtlEntity::getPmHdrId).filter(Objects::nonNull).collect(Collectors.toList()));
+			scmEnqDtlList.forEach(scmHdr -> scmHdr.setCostFlowType(
+					scmHdr.getPmHdrId() == null ? "LEGACY" : costFlowTypeByPmHdrId.getOrDefault(scmHdr.getPmHdrId(), "LEGACY")));
 			GetTileViewResponse resp =new GetTileViewResponse();
 			resp.setEnqList(scmEnqDtlList);
 			resp.setStatusDesc(ChangeRequestDAO.getStatusDescByStatusCode(statusDesc.get(i), scmHdrBasedDtl.getTenantId()));
