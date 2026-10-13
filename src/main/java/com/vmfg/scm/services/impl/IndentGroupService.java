@@ -1434,12 +1434,11 @@ public class IndentGroupService implements IIndentGroupService {
 					// signed off via the excess's own approval chain. Skip straight to PO creation
 					// instead of making them approve the same spend again: force LAST_SEQ="1" for
 					// this one transition regardless of the bucket's natural (always "0" here) value.
-					// Regular projects ("Project Approved", seq 6) only - CAPEX/OPEX (processDoc "8")
-					// keeps the current flow and still goes on to ED Approved -> Management after its
-					// Budget Excess is approved.
+					// Applies to regular projects ("Project Approved") and CAPEX/OPEX ("Finance
+					// Approved") alike - the CAPEX/OPEX excess chain is itself Finance -> ED ->
+					// Management, so they have already signed off too.
 					String effectiveLastSeq = currSeqDocLifeCycleMstList.get(0).getLastSeq();
 					boolean bypassRemainingApprovals = isCompletedCount > 0
-							&& "5".equalsIgnoreCase(processDoc)
 							&& "NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(indentId));
 					if (bypassRemainingApprovals) {
 						effectiveLastSeq = "1";
@@ -1612,12 +1611,20 @@ public class IndentGroupService implements IIndentGroupService {
 			// LEGACY caller, so leaving this unreserved would let the raised amount understate the
 			// true shortage even though the gate above correctly saw it.
 			String actualSpentSoFarStr = stationBudgetSnapshot.actualSpentSoFar.add(otherPendingExcessReserved).toString();
-			for (String eachIndentId : distinctIndentIds) {
+			// Last indent takes whatever is left so the rounded parts always add up to the exact
+			// total - otherwise the approved excess can come out 0.01 short and the approval gate
+			// keeps saying the Budget Excess isn't approved yet.
+			BigDecimal splitSoFar = BigDecimal.ZERO;
+			for (int i = 0; i < distinctIndentIds.size(); i++) {
+				String eachIndentId = distinctIndentIds.get(i);
 				BigDecimal share = shareByIndent.get(eachIndentId);
 				BigDecimal ratio = (share != null && totalShare.compareTo(BigDecimal.ZERO) > 0)
 						? share.divide(totalShare, 6, RoundingMode.HALF_UP)
 						: BigDecimal.ONE.divide(new BigDecimal(distinctIndentIds.size()), 6, RoundingMode.HALF_UP);
-				BigDecimal indentScsActualCost = totalScsActualCost.multiply(ratio).setScale(2, RoundingMode.HALF_UP);
+				BigDecimal indentScsActualCost = (i == distinctIndentIds.size() - 1)
+						? totalScsActualCost.setScale(2, RoundingMode.HALF_UP).subtract(splitSoFar)
+						: totalScsActualCost.multiply(ratio).setScale(2, RoundingMode.HALF_UP);
+				splitSoFar = splitSoFar.add(indentScsActualCost);
 
 				BudgetExcessSheetRequest budgetExcessSheetReq = new BudgetExcessSheetRequest();
 				budgetExcessSheetReq.setIndentId(eachIndentId);
