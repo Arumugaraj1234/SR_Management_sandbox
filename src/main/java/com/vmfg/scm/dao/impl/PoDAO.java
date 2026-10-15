@@ -42,6 +42,7 @@ import com.vmfg.scm.entity.DcHdrEntity;
 import com.vmfg.scm.entity.DebitNoteEntity;
 import com.vmfg.scm.entity.PoTermPraEntity;
 import com.vmfg.scm.entity.GetDCTypeDtlEntity;
+import com.vmfg.scm.entity.PaymentTermMstEntity;
 import com.vmfg.scm.entity.GetPoDtlsByDate;
 import com.vmfg.scm.entity.GetPoDtlsEntity;
 import com.vmfg.scm.entity.GetProductUnitCostEntity;
@@ -62,6 +63,7 @@ import com.vmfg.scm.rowmapper.DcDtlRowMapper;
 import com.vmfg.scm.rowmapper.DcHdrRowMapper;
 import com.vmfg.scm.rowmapper.DebitNoteReasonRowMapper;
 import com.vmfg.scm.rowmapper.GetDCTypeDtlRowmapper;
+import com.vmfg.scm.rowmapper.PaymentTermMstRowmapper;
 import com.vmfg.scm.rowmapper.GetPoDtlsByDateRowMapper;
 import com.vmfg.scm.rowmapper.GetProductUnitCostRowMapper;
 import com.vmfg.scm.rowmapper.IndentGrpHdrIdRowMapper;
@@ -1153,6 +1155,19 @@ String poDate= CommonMethod.getCurrentDate();
 			list = this.jdbcTemplate.query(dcTypeList, new GetDCTypeDtlRowmapper());
 		} catch (Exception e) {
 			logger.error("getDctypeCode method Error" + e);
+		}
+		return list;
+	}
+
+	public List<PaymentTermMstEntity> getPaymentTermMst() {
+		List<PaymentTermMstEntity> list = new ArrayList<PaymentTermMstEntity>();
+		try {
+
+			String paymentTermList = "select PAYMENT_TERM_ID, TERM_DESC, SEQ_NO from payment_term_mst where IS_ACTIVE = 1 order by SEQ_NO, PAYMENT_TERM_ID";
+
+			list = this.jdbcTemplate.query(paymentTermList, new PaymentTermMstRowmapper());
+		} catch (Exception e) {
+			logger.error("getPaymentTermMst method Error" + e);
 		}
 		return list;
 	}

@@ -89,6 +89,8 @@ public interface IPoDAO {
 	int retriveIndentId(String poId);
 	
 	List<GetDCTypeDtlEntity>getDctypeCode();
+
+	List<PaymentTermMstEntity> getPaymentTermMst();
 	
 	List<AddressDtlByDcTypeEntity>getCustomerCode(String custCode,String tenantId);
 	
