@@ -29,6 +29,8 @@ public interface IPoServices {
 	ResponseAsList getPoDtlsByDateAndPoId(IndentGrpDtlRequest indentGrpDtlReq);
 
 	ResponseAsList getDCTypeDtl();
+
+	ResponseAsList getPaymentTermMst();
 	
 	ResponseAsList getpoInstoreDtlByPmId(GetpoInstoreDtlByPmIdRequest getpoInstoreDtlByPmIdReq);
 

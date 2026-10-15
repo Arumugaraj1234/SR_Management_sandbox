@@ -149,6 +149,22 @@ public class PoController {
 	}
 
 	@CrossOrigin(maxAge = 3600)
+	@GetMapping("getPaymentTermMst")
+	public ResponseEntity<ResponseAsList> getPaymentTermMst() {
+		logger.debug("getPaymentTermMst   method Start");
+		ResponseAsList list=null;
+		try {
+
+			list = iPoServices.getPaymentTermMst();
+
+		} catch (Exception ex) {
+			logger.error("getPaymentTermMst  method  exception" + ex);
+		}
+		logger.debug("getPaymentTermMst   method end");
+		return new ResponseEntity<ResponseAsList>(list, HttpStatus.OK);
+	}
+
+	@CrossOrigin(maxAge = 3600)
 	@PostMapping("getDCProductDropDown")
 	public ResponseEntity<ResponseAsList> getDCProductDropDown(@RequestBody getDCProductDropDownRequest getDCProductDropDownReq) {
 		logger.debug("getDCTypeDtl   method Start");

@@ -39,6 +39,7 @@ import com.vmfg.scm.entity.DcDtlEntity;
 import com.vmfg.scm.entity.DcHdrEntity;
 import com.vmfg.scm.entity.DebitNoteEntity;
 import com.vmfg.scm.entity.GetDCTypeDtlEntity;
+import com.vmfg.scm.entity.PaymentTermMstEntity;
 import com.vmfg.scm.entity.GetPoDtlsByDate;
 import com.vmfg.scm.entity.GetPoDtlsEntity;
 import com.vmfg.scm.entity.GetProductUnitCostEntity;
@@ -1139,6 +1140,29 @@ public class PoService implements IPoServices {
 			logger.info("getDCTypeDtl Service end ");
 		} catch (Exception ex) {
 			logger.error("getDCTypeDtl error " + ex);
+		}
+		return returnList;
+	}
+
+	@Override
+	public ResponseAsList getPaymentTermMst() {
+		ResponseAsList returnList = new ResponseAsList();
+		List<PaymentTermMstEntity> paymentTermList = new ArrayList<PaymentTermMstEntity>();
+		logger.info("getPaymentTermMst Service start ");
+		try {
+			paymentTermList = iPoDAO.getPaymentTermMst();
+			if (paymentTermList.size() > 0) {
+				returnList.setResponseData(paymentTermList);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeOk);
+				returnList.setResponseMessage(ResponseMessageMap.success);
+			} else {
+				returnList.setResponseData(paymentTermList);
+				returnList.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				returnList.setResponseMessage(ResponseMessageMap.noRecord);
+			}
+			logger.info("getPaymentTermMst Service end ");
+		} catch (Exception ex) {
+			logger.error("getPaymentTermMst error " + ex);
 		}
 		return returnList;
 	}
