@@ -517,6 +517,25 @@ public class PraService implements IPraService {
 			if(updatePraHdrSeq.getIslast() != null && !updatePraHdrSeq.getIslast().equalsIgnoreCase("")) {
 					isLast = updatePraHdrSeq.getIslast();
 			}
+			// Previous Stage: the target must still be the CANCEL_SEQ of the PRA's current stage, so a stale
+			// screen or a double click can't send the PRA back twice or move one that was already approved/cancelled.
+			if ("1".equals(updatePraHdrSeq.getIsPrevStage())) {
+				Map<String, Object> praStatus = iPraDAO.getPraCurrentStatus(updatePraHdrSeq.getPraId());
+				String expectedSeq = null;
+				if (praStatus != null && !"1".equals(String.valueOf(praStatus.get("IS_COMPLETED")))
+						&& !"0".equals(String.valueOf(praStatus.get("IS_LATEST")))) {
+					List<DocumentStatusMstEntity> praCurrRow = stageManagementDAO.getDocDtlcurrentSeqByDocGrp("DC077",
+							String.valueOf(praStatus.get("STATUS")), updatePraHdrSeq.getTenantId(), "default");
+					if (praCurrRow != null && praCurrRow.size() > 0) {
+						expectedSeq = praCurrRow.get(0).getCancelSeq();
+					}
+				}
+				if (expectedSeq == null || expectedSeq.trim().isEmpty() || !expectedSeq.equals(updatePraHdrSeq.getSeq())) {
+					returnList.setResponseCode(ResponseMessageMap.failToupdateCode);
+					returnList.setResponseMessage("This PRA has already moved to another stage. Please refresh and try again.");
+					return returnList;
+				}
+			}
 			currSeqDocLifeCycleMstList = stageManagementDAO.getDocDtlcurrentSeqByDocGrp("DC077",
 					updatePraHdrSeq.getSeq(), updatePraHdrSeq.getTenantId(), "default");
 				int updatePraHdr = iPraDAO.updatePraHdrSeq(updatePraHdrSeq.getSeq(),updatePraHdrSeq.getSeqDesc(),currSeqDocLifeCycleMstList.get(0).getLastSeq(),CommonMethod.getCurrentDateTime(),updatePraHdrSeq.getPraId());
