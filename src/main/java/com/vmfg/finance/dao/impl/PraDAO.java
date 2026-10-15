@@ -415,6 +415,19 @@ public class PraDAO implements IPraDAO {
 		}
 		return res;
 	}
+
+	@Override
+	public Map<String, Object> getPraCurrentStatus(String praId) {
+		try {
+			// tinyint(1) columns come back as Boolean from queryForMap (STATUS 2 -> true), so cast to text
+			String qry = "SELECT CAST(STATUS AS CHAR) AS STATUS, CAST(IS_COMPLETED AS CHAR) AS IS_COMPLETED, "
+					+ "CAST(IS_LATEST AS CHAR) AS IS_LATEST FROM pra_hdr WHERE PRA_ID = ?";
+			return this.jdbcTemplate.queryForMap(qry, praId);
+		} catch (Exception ex) {
+			logger.error("getPraCurrentStatus Method Exception " + ex);
+		}
+		return null;
+	}
 	
 	@Override
 	public int getMstId(String ProjectId) {

@@ -43,6 +43,8 @@ public interface IPraDAO {
 	
 	int updatePraHdrSeq(String seq,String seqCode,String islast,String lastCurr,String praId);
 
+	Map<String, Object> getPraCurrentStatus(String praId);
+
 	int getMstId(String string);
 
 	int getProjId(String ProjectId);
