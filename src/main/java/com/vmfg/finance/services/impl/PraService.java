@@ -291,6 +291,12 @@ public class PraService implements IPraService {
 
 		try{
 			String praId = praCancelRequest.getPraId();
+			String desiCode = iDesignTaskDAO.getEmpDesinationCode(praCancelRequest.getEmpId(), tenantid);
+			if (!isPraCancelAllowed(praId, isPraCancelDesignation(desiCode, tenantid))) {
+				returnList.setResponseMessage("You are not allowed to cancel this PRA, or it has already moved past SCM. Please refresh and try again.");
+				returnList.setResponseCode(ResponseMessageMap.failToupdateCode);
+				return returnList;
+			}
 //			List<String> praIds = iPraDAO.getPraIdsByPoId(praCancelRequest.getPoId(), tenantid);
 //			for(String praId : praIds){
 			iPraDAO.praCancel(praId, tenantid, praCancelRequest.getEmpId());
@@ -303,6 +309,26 @@ public class PraService implements IPraService {
 			throw new RuntimeException(e);
 		}
 		return returnList;
+	}
+
+	// PRA Cancel is only for designations on the DC077 "PRA Cancel" row (CURR_SEQUENCE 3, DS168),
+	// and only while the PRA is still with SCM (Created / Purchase approved), live and not completed
+	private boolean isPraCancelDesignation(String desiCode, String tenantId) {
+		return indentUploadDAO.getApprovebtnEnableByCurr(desiCode, tenantId, "DC077", "3") > 0;
+	}
+
+	private boolean isPraCancelAllowed(String praId, boolean cancelDesignation) {
+		if (!cancelDesignation) {
+			return false;
+		}
+		Map<String, Object> praStatus = iPraDAO.getPraCurrentStatus(praId);
+		if (praStatus == null) {
+			return false;
+		}
+		String status = String.valueOf(praStatus.get("STATUS"));
+		return ("1".equals(status) || "2".equals(status))
+				&& !"1".equals(String.valueOf(praStatus.get("IS_COMPLETED")))
+				&& !"0".equals(String.valueOf(praStatus.get("IS_LATEST")));
 	}
 
 	@Override
@@ -436,11 +462,13 @@ public class PraService implements IPraService {
 			}
 			String desiCode = iDesignTaskDAO.getEmpDesinationCode(retrievePraReq.getEmpId(), retrievePraReq.getTenantId());
 			returnList = iPraDAO.getPraHdrListByPmHdrId(pmHdrId, poId, retrievePraReq.getTenantId());
+			boolean praCancelDesignation = isPraCancelDesignation(desiCode, retrievePraReq.getTenantId());
 
 				for(int i =0;i<returnList.size();i++) {
 				List<PraDtlListEntity> praDtl = iPraDAO.getpraSubList(returnList.get(i).getPraId(), returnList.get(i).getTenantId());	
 				returnList.get(i).setDtl(praDtl);
 				returnList.get(i).setVerCheck(iPraDAO.getVerCheckByPraId(returnList.get(i).getPraId(),returnList.get(i).getTenantId()));
+				returnList.get(i).setPraCancelEnable(isPraCancelAllowed(returnList.get(i).getPraId(), praCancelDesignation) ? "1" : "0");
 				
 				List<DocumentStatusMstEntity> currSeqDocLifeCycleMstList = stageManagementDAO.getDocDtlcurrentSeq(retrievePraReq.getDocTypeCode(),returnList.get(i).getStatus(), returnList.get(i).getTenantId());
 				List<DocumentStatusMstEntity> docLifeCycleMstList = iDesignTaskDAO.getNextSeqandStatus(
@@ -464,6 +492,13 @@ public class PraService implements IPraService {
 									.getStatusCodebySeqAndDocType(docLifeCycleMstList.get(0).getCurrSequence(),
 											returnList.get(i).getTenantId(), retrievePraReq.getDocTypeCode()),
 									returnList.get(i).getTenantId()));
+					// Next Status column: next lifecycle stage for every row, blank once the PRA is
+					// cancelled, completed or already at the last stage
+					if (!"0".equals(returnList.get(i).getIsLatest())
+							&& !"1".equals(returnList.get(i).getIsCompleted())
+							&& !"1".equals(currSeqDocLifeCycleMstList.get(0).getLastSeq())) {
+						returnList.get(i).setNextStatusDesc(docLifeCycleMstList.get(0).getNextSeqStatusDesc());
+					}
 					// cancel seq
 					if (currSeqDocLifeCycleMstList.get(0).getCancelSeq() != null) {
 						docLifeCycleMstList.get(0).setCancelSeq(currSeqDocLifeCycleMstList.get(0).getCancelSeq());
