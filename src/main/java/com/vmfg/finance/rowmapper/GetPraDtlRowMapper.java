@@ -64,6 +64,12 @@ public class GetPraDtlRowMapper implements RowMapper<GetPraDtlEntity> {
 			if (columnExists(rs, "GST_VALUE")) {
 				row.setPraGst(rs.getString("GST_VALUE"));
 			}
+			if (columnExists(rs, "IGST_VALUE")) {
+				row.setPraIgst(rs.getString("IGST_VALUE"));
+			}
+			if (columnExists(rs, "PO_IGST")) {
+				row.setPoIgst(rs.getString("PO_IGST"));
+			}
 			if (columnExists(rs, "PO_QTY")) {
 				row.setPoQty(rs.getString("PO_QTY"));
 			}
