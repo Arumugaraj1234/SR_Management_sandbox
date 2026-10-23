@@ -249,6 +249,7 @@ public class PraDAO implements IPraDAO {
 			        + "    SUM(pod.QTY) AS PO_QTY, \n"
 			        + "    pohdr.BASIC_TOTAL, \n"
 			        + "    pohdr.GST, \n"
+			        + "    pohdr.IGST AS PO_IGST, \n"
 			        + "    hdr.DUE_DATE \n"
 			        + "FROM \n"
 			        + "    pra_hdr hdr \n"

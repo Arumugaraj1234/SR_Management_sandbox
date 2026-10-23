@@ -67,6 +67,8 @@ public class GetPraDtlEntity implements Serializable{
 	private String pfValue;
 	private String otherValue;
 	private String praGst;
+	private String praIgst;
+	private String poIgst;
 	List<PraDtlListEntity> dtl =new ArrayList<PraDtlListEntity>();
 	List<GrnDtlsEntity> grnDtl=new ArrayList<GrnDtlsEntity>();
 	List<PraDtlsHistoryEntity> getPraDtl=new ArrayList<PraDtlsHistoryEntity>();
