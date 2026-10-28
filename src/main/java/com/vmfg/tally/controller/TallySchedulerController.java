@@ -31,6 +31,15 @@ public class TallySchedulerController {
     @Autowired
     private ReceiptSyncService receiptSyncService;
 
+    @Autowired
+    private TransactionSyncService transactionSyncService;
+
+    // Tally Transactions.json -> tally_voucher_hdr/dtl, then PRA amount due/status (PraUpdateService)
+    @Scheduled(cron = "0 30 8 * * *") // Daily at 8:30 AM
+    public void triggerTransactionSync() {
+        transactionSyncService.syncTransactionsFromJson();
+    }
+
 //    @Scheduled(cron = "0 30 8 * * *") // Daily at 8:30 AM
     public void triggerReceivableSync() {
         receivableSyncService.syncReceivablesFromJson();
@@ -40,8 +49,8 @@ public class TallySchedulerController {
         payableSyncService.syncPayablesFromJson();
     }
 
-    // Scheduler will run daily at 9 AM
-    @Scheduled(cron = "0 0 9 * * ?")
+    // Replaced by triggerTransactionSync, which updates the PRAs right after the Tally sync
+//    @Scheduled(cron = "0 0 9 * * ?")
     public void updatePraAfterScheduler(){
         praUpdateService.updatePraCompletionStatus();
     }
@@ -83,6 +92,12 @@ public class TallySchedulerController {
     public ResponseEntity<String> triggerPaymentExport(){
         paymentSyncService.syncPaymentsFromJson();
         return ResponseEntity.ok("Manual sync for Payment export completed");
+    }
+
+    @GetMapping("/triggerTransactionSync")
+    public ResponseEntity<String> triggerTransactionSyncNow(){
+        transactionSyncService.syncTransactionsFromJson();
+        return ResponseEntity.ok("Manual sync for Tally transactions completed");
     }
 
     @GetMapping("/triggerReceiptExport")
