@@ -1101,7 +1101,7 @@ public class ScmMisDAO implements IScmMisDAO{
 			 date = "AND hdr.CREATED_DATE BETWEEN '"+fromDate+"' and '"+toDate+"' ";
 		}
 		cust = "getall".equalsIgnoreCase(custCode) ? "AND mst.CUST_CODE like '%%'" : " AND mst.CUST_CODE = '" + custCode + "'";
-		vendor = "getall".equalsIgnoreCase(vendorId) ? "AND vmst.VENDOR_CODE like '%%'" : " AND vmst.VENDOR_CODE = '" + custCode + "'";
+		vendor = "getall".equalsIgnoreCase(vendorId) ? "AND vmst.VENDOR_CODE like '%%'" : " AND vmst.VENDOR_CODE = '" + vendorId + "'";
 		stage = "getall".equalsIgnoreCase(stageCode) ? "AND hdr.TRANSACTION_STATUS like '%%'" : "AND hdr.TRANSACTION_STATUS = '"+stageCode+"'";
 		pmHdr = "getall".equalsIgnoreCase(pmHdrId) ? "AND hdr.PM_HDR_ID like '%%'" : "AND hdr.PM_HDR_ID = '"+pmHdrId+"'";
 	    try {
@@ -1135,7 +1135,7 @@ public class ScmMisDAO implements IScmMisDAO{
 	    	list = this.jdbcTemplate.query(Qry, new GetVendorDetailDrillDownRowMapper());
 	    	if(list.size()>0) {
 	    		String qry = "SELECT  \r\n" + 
-		    			"				  SUM(AMOUNT_PAYABLE) as DONE_SO_FAR\r\n" + 
+		    			"				  SUM(pra.AMOUNT_PAYABLE - pra.AMOUNT_DUE) as DONE_SO_FAR\r\n" + 
 		    			"	    			FROM \r\n" + 
 		    			"	    			    project_hdr hdr \r\n" + 
 		    			"                           INNER JOIN\r\n" + 
@@ -1154,7 +1154,7 @@ public class ScmMisDAO implements IScmMisDAO{
 		    			"	    			    vendor_mst vmst ON vmst.VENDOR_CODE = phdr.VENDOR_CODE \r\n" + 
 		    			"	    			        LEFT JOIN \r\n" + 
 		    			"	    				document_status_type_code dsc ON dsc.DOCUMENT_STATUS_TYPE_CODE = hdr.TRANSACTION_STATUS \r\n" +  
-		    			"WHERE hdr.TENANT_ID = '"+tenantId+"' and pra.STATUS = '9' \r\n" + 
+		    			"WHERE hdr.TENANT_ID = '"+tenantId+"' \r\n" + 
 		    			" AND team.ASSIGNED_EMP_ID = '"+empId+"' AND team.IS_ACTIVE = '1'  AND team.PM_ID ='"+pmId+"' \r\n" +
 		    			"		"+pmHdr+"\r\n" + 
 		    			"       "+stage+"\r\n" + 
@@ -1180,7 +1180,7 @@ public class ScmMisDAO implements IScmMisDAO{
 			 date = "AND hdr.CREATED_DATE BETWEEN '"+fromDate+"' and '"+toDate+"' ";
 		}
 		cust = "getall".equalsIgnoreCase(custCode) ? "AND mst.CUST_CODE like '%%'" : " AND mst.CUST_CODE = '" + custCode + "'";
-		vendor = "getall".equalsIgnoreCase(vendorId) ? "AND vmst.VENDOR_CODE like '%%'" : " AND vmst.VENDOR_CODE = '" + custCode + "'";
+		vendor = "getall".equalsIgnoreCase(vendorId) ? "AND vmst.VENDOR_CODE like '%%'" : " AND vmst.VENDOR_CODE = '" + vendorId + "'";
 		stage = "getall".equalsIgnoreCase(stageCode) ? "AND hdr.TRANSACTION_STATUS like '%%'" : "AND hdr.TRANSACTION_STATUS = '"+stageCode+"'";
 		pmHdr = "getall".equalsIgnoreCase(pmHdrId) ? "AND hdr.PM_HDR_ID like '%%'" : "AND hdr.PM_HDR_ID = '"+pmHdrId+"'";
 	    try {
@@ -1213,7 +1213,7 @@ public class ScmMisDAO implements IScmMisDAO{
 	    			"       "+cust+"\r\n" + 
 	    			"       "+vendor+"\r\n" + 
 	    			"       "+date+"\r\n" +
-	    			"group by vmst.VENDOR_NAME ";
+	    			"group by hdr.PM_HDR_ID, vmst.VENDOR_CODE order by PROJECT_CODE, vmst.VENDOR_NAME ";
 	    	list = this.jdbcTemplate.query(Qry, new GetVendorDetailDrillDownRowMapper());
 	    }catch(Exception ex) {
 	    	logger.error("getVendorDetailView DAO Error" + ex);	
@@ -1230,7 +1230,7 @@ public class ScmMisDAO implements IScmMisDAO{
 			 date = "AND hdr.CREATED_DATE BETWEEN '"+fromDate+"' and '"+toDate+"' ";
 		}
 		cust = "getall".equalsIgnoreCase(custCode) ? "AND mst.CUST_CODE like '%%'" : " AND mst.CUST_CODE = '" + custCode + "'";
-		vendor = "getall".equalsIgnoreCase(vendorId) ? "AND vmst.VENDOR_CODE like '%%'" : " AND vmst.VENDOR_CODE = '" + custCode + "'";
+		vendor = "getall".equalsIgnoreCase(vendorId) ? "AND vmst.VENDOR_CODE like '%%'" : " AND vmst.VENDOR_CODE = '" + vendorId + "'";
 		stage = "getall".equalsIgnoreCase(stageCode) ? "AND hdr.TRANSACTION_STATUS like '%%'" : "AND hdr.TRANSACTION_STATUS = '"+stageCode+"'";
 		pmHdr = "getall".equalsIgnoreCase(pmHdrId) ? "AND hdr.PM_HDR_ID like '%%'" : "AND hdr.PM_HDR_ID = '"+pmHdrId+"'";
 	    try {
