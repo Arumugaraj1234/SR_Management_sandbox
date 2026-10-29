@@ -15,6 +15,7 @@ public class VendorDetailDrillDownEntity {
 	private String poDate;
 	private String praCode;
 	private String praDate;
+	private String paymentTerms;
 	private String amountPayable;
 	private String amountDue;
 	private String paidSoFar;

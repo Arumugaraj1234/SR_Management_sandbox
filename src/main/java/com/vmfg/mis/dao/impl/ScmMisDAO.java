@@ -1240,7 +1240,7 @@ public class ScmMisDAO implements IScmMisDAO{
 	    			"    vmst.VENDOR_NAME,\r\n" +
 	    			"    phdr.PO_CODE,\r\n" +
 	    			"    pra.PO_DATE, pra.PRA_CODE, pra.PRA_DATE,\r\n" +
-	    			"    pra.AMOUNT_PAYABLE, pra.AMOUNT_DUE,\r\n" +
+	    			"    pra.AMOUNT_PAYABLE, pra.AMOUNT_DUE, pra.PAYMENT_TERMS,\r\n" +
 	    			"    COALESCE(mi.DC_NO, (SELECT DC_NO FROM material_inward_hdr WHERE PO_ID = pra.PO_ID AND TENANT_ID = '"+tenantId+"' ORDER BY MI_ID DESC LIMIT 1)) AS INVOICE_NO,\r\n" +
 	    			"    COALESCE(mi.DC_DATE, (SELECT DC_DATE FROM material_inward_hdr WHERE PO_ID = pra.PO_ID AND TENANT_ID = '"+tenantId+"' ORDER BY MI_ID DESC LIMIT 1)) AS INVOICE_DATE,\r\n" +
 	    			"    pra.DUE_DATE, (SELECT DOCUMENT_STATUS_TYPE_DESCRIPTION FROM pra_hdr hdr inner join document_status_type_code mst\r\n" +
