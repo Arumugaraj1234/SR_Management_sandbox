@@ -41,6 +41,9 @@ public class GetVendorDetailDrillDownRowMapper implements RowMapper<VendorDetail
 		        if(columnExists(rs, "PRA_DATE")) {
 		        	lst.setPraDate(rs.getString("PRA_DATE"));
 		        }
+		        if(columnExists(rs, "PAYMENT_TERMS")) {
+		        	lst.setPaymentTerms(rs.getString("PAYMENT_TERMS"));
+		        }
 		        if(columnExists(rs, "AMOUNT_PAYABLE")) {
 		        	lst.setAmountPayable(rs.getString("AMOUNT_PAYABLE"));
 		        }
