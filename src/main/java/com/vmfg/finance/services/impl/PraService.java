@@ -521,7 +521,8 @@ public class PraService implements IPraService {
 						returnList.get(i).setIsApproval("False");
 			//			taskEntryDtlEntity.get(j).setDocStatusMst(docLifeCycleMstList);
 					}
-					if(approveNextBtnEnable>0) {
+					// Closed PRA (completed) has no next stage to approve, so no next-stage button
+					if(approveNextBtnEnable>0 && !"1".equals(returnList.get(i).getIsCompleted())) {
 						returnList.get(i).setDocStatusMst(docLifeCycleMstList);
 					}
 				}
@@ -566,6 +567,14 @@ public class PraService implements IPraService {
 					}
 				}
 				if (expectedSeq == null || expectedSeq.trim().isEmpty() || !expectedSeq.equals(updatePraHdrSeq.getSeq())) {
+					returnList.setResponseCode(ResponseMessageMap.failToupdateCode);
+					returnList.setResponseMessage("This PRA has already moved to another stage. Please refresh and try again.");
+					return returnList;
+				}
+			} else {
+				// Approve/next stage: a stale screen or a second approver can't move a PRA that is already closed
+				Map<String, Object> praStatus = iPraDAO.getPraCurrentStatus(updatePraHdrSeq.getPraId());
+				if (praStatus != null && "1".equals(String.valueOf(praStatus.get("IS_COMPLETED")))) {
 					returnList.setResponseCode(ResponseMessageMap.failToupdateCode);
 					returnList.setResponseMessage("This PRA has already moved to another stage. Please refresh and try again.");
 					return returnList;
