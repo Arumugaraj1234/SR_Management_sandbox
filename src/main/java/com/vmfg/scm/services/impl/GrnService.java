@@ -179,27 +179,28 @@ public class GrnService implements IGrnService {
 								}else {
 					            	indentGroupDAO.reUpdatedDateTimeIndentDtl(indentDtlId, "QI_REQUESTED_DATETIME", insertQtyInspReq.getTenantId());
 					            }
+								// notify only when the request was actually raised (blocked lines insert nothing)
+							
+							
+								List<String> messageList = new ArrayList<>();
+								List<String> otherEmp = new ArrayList<>();
+								String projCode = indentUploadDAO.getProjectCodeByProjId(insertQtyInspReq.getPmHdrId(), insertQtyInspReq.getTenantId());
+								String productCode = iPoDao.getProdDescByIndentDtlId(indentDtlId);
+								messageList.add(poCode);
+								messageList.add( projCode);
+								messageList.add(productCode);
+								String qHdrId = iGrnDAO.getQualityHdrId( insertQtyInspReq.getPmHdrId(),insertQtyInspReq.getTenantId());
+								List<DocumentStatusMstEntity> currSeqDocLifeCycleMstList = stageManagementDAO.getDocDtlcurrentSeq("DC068", "1",
+										insertQtyInspReq.getTenantId());
+								String approvingDesc= currSeqDocLifeCycleMstList.get(0).getApprDesi();
+								logger.info("approvingDesc "+approvingDesc);
+								commonNotifyMethod.InvokeNotificationMethod(1, 23, "", 
+										insertQtyInspReq.getTenantId(), messageList,
+										otherEmp, "1","6", qHdrId, null);
+								commonNotifyMethod.InvokeApprovalDesigMethod("6",
+										"DC068", Integer.toString(reqQtyInsertCount), insertQtyInspReq.getPmHdrId(), insertQtyInspReq.getTenantId(),
+										"", approvingDesc,insertQtyInspReq.getEnquiryId(),poCode +"-"+productCode );
 							}
-							
-							
-							List<String> messageList = new ArrayList<>();
-							List<String> otherEmp = new ArrayList<>();
-							String projCode = indentUploadDAO.getProjectCodeByProjId(insertQtyInspReq.getPmHdrId(), insertQtyInspReq.getTenantId());
-							String productCode = iPoDao.getProdDescByIndentDtlId(indentDtlId);
-							messageList.add(poCode);
-							messageList.add( projCode);
-							messageList.add(productCode);
-							String qHdrId = iGrnDAO.getQualityHdrId( insertQtyInspReq.getPmHdrId(),insertQtyInspReq.getTenantId());
-							List<DocumentStatusMstEntity> currSeqDocLifeCycleMstList = stageManagementDAO.getDocDtlcurrentSeq("DC068", "1",
-									insertQtyInspReq.getTenantId());
-							String approvingDesc= currSeqDocLifeCycleMstList.get(0).getApprDesi();
-							logger.info("approvingDesc "+approvingDesc);
-							commonNotifyMethod.InvokeNotificationMethod(1, 23, "", 
-									insertQtyInspReq.getTenantId(), messageList,
-									otherEmp, "1","6", qHdrId, null);
-							commonNotifyMethod.InvokeApprovalDesigMethod("6",
-									"DC068", Integer.toString(reqQtyInsertCount), insertQtyInspReq.getPmHdrId(), insertQtyInspReq.getTenantId(),
-									"", approvingDesc,insertQtyInspReq.getEnquiryId(),poCode +"-"+productCode );
 						}else {
 							totalReqinsert = totalReqinsert + 1;
 						}
