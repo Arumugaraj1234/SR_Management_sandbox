@@ -336,7 +336,47 @@ public class GrnDAO implements IGrnDAO {
 	public int insertQualityInspecRequest(String poId, String poCode, String poDtlId, String qtyToBeInspected,
 			String qtyInspected, String tenantId, String indentDtlId, String pmHdrId, String reqfrom, String miId,String isRework, String empId) {
 
+		if ("0".equals(isRework) && (miId == null || miId.isEmpty())) {
+			// PO-side request raised before any material inward (no MI line to check against).
+			// Block when the PO line qty is already fully covered by non-cancelled PO-side QI requests,
+			// so a resubmit of the same QC Request (e.g. icon re-clicked while the first one is still
+			// running) doesn't create a second set of requests. Rework / rejected qty from completed
+			// inspections is credited back, same as the MI check below.
+			// po_dtl row is locked (class is @Transactional) so two concurrent submissions for the
+			// same PO line can't both pass the check.
+			BigDecimal poQty = this.jdbcTemplate.queryForObject(
+					"SELECT COALESCE(QTY,0) FROM po_dtl WHERE PO_DTL_ID = ? FOR UPDATE", BigDecimal.class, poDtlId);
+			String poCoverageQry = "SELECT" +
+				" COALESCE(SUM(qir.QTY_TO_BE_INSPECTED),0)" +
+				"   - COALESCE((SELECT SUM(qh.REWORK_INTERNAL + qh.REWORK_VENDOR + qh.REJECTED_INTERNAL + qh.REJECTED_EXTERNAL)" +
+				"               FROM quality_inspection_hdr qh" +
+				"               WHERE qh.QI_ID IN (SELECT q2.QI_ID FROM quality_inspection_request q2" +
+				"                                  WHERE q2.PO_DTL_ID = ? AND q2.REQUEST_FROM = 'PO' AND q2.IS_REWORK = 0 AND q2.IS_LATEST = 1" +
+				"                                  AND (q2.MI_DTL_ID IS NULL OR q2.MI_DTL_ID = ''))" +
+				"                 AND qh.IS_LATEST = 1 AND qh.CANCEL_FLAG = 0 AND qh.IS_COMPLETED = 1),0) AS already_requested" +
+				" FROM quality_inspection_request qir" +
+				" WHERE qir.PO_DTL_ID = ? AND qir.REQUEST_FROM = 'PO' AND qir.IS_REWORK = 0 AND qir.IS_LATEST = 1" +
+				" AND (qir.MI_DTL_ID IS NULL OR qir.MI_DTL_ID = '')" +
+				" AND NOT EXISTS (SELECT 1 FROM quality_inspection_hdr qih" +
+				"   WHERE qih.QI_ID = qir.QI_ID AND qih.CANCEL_FLAG = 1 AND qih.IS_LATEST = 1)";
+			BigDecimal alreadyReq = this.jdbcTemplate.queryForObject(poCoverageQry, BigDecimal.class, poDtlId, poDtlId);
+			BigDecimal newQty;
+			try {
+				newQty = new BigDecimal(qtyToBeInspected);
+			} catch (Exception ex) {
+				newQty = BigDecimal.ZERO;
+			}
+			if (poQty == null || alreadyReq.add(newQty).compareTo(poQty) > 0) {
+				logger.warn("QI request blocked (qty exceeds PO qty) PO_DTL_ID: " + poDtlId
+					+ " already=" + alreadyReq + " new=" + newQty + " poQty=" + poQty);
+				return 0;
+			}
+		}
+
 		if ("0".equals(isRework) && miId != null && !miId.isEmpty()) {
+			// lock the MI line so two concurrent submissions for it can't both pass the check below
+			this.jdbcTemplate.queryForObject(
+					"SELECT MI_DTL_ID FROM material_inward_dtl WHERE MI_DTL_ID = ? FOR UPDATE", Integer.class, miId);
 			// Block only when the received qty is already fully covered by non-cancelled QI requests.
 			// A partial / staged inspection (received qty not yet fully requested) must still be allowed.
 			// Qty that a completed inspection sent back for rework / rejection is credited back into the
