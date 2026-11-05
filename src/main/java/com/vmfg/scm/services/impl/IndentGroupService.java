@@ -608,6 +608,13 @@ public class IndentGroupService implements IIndentGroupService {
 			int isInventoryCount = iPoDAO.getIsInventoryCount(indentId, indentTempName.getTenantId());
 			int indentCloseCount = iPoDAO.getIndentCloseStatus(indentId, indentTempName.getTenantId());
 			int checkCount = isInventoryCount - indentCloseCount;
+			// NEW-flow: getIndentCloseStatus only checks that each line is on an approved PO, not the
+			// qty - never close an indent that still has un-grouped qty (it would drop out of the
+			// Create Group station/indent dropdowns, which only list SCM Verified indents).
+			if (checkCount == 0 && newFlowReq
+					&& iIndentGroupDAO.getPendingUngroupedItemCount(indentId, indentTempName.getTenantId()) > 0) {
+				checkCount = -1;
+			}
 			if (checkCount == 0) {
 				if (!closeSeqLookedUp) {
 					String currSeq = iPoDAO.getTenantPropertyVal(indentTempName.getTenantId(), "INDENT_CLOSE_SEQ");
@@ -1080,6 +1087,11 @@ public class IndentGroupService implements IIndentGroupService {
 					int isInventoryCount = iPoDAO.getIsInventoryCount(eachIndentId, scpDtlsEntity.get(0).getTenantId());
 					int indentCloseCount = iPoDAO.getIndentCloseStatus(eachIndentId, scpDtlsEntity.get(0).getTenantId());
 					int checkCount = isInventoryCount - indentCloseCount;
+					// NEW-flow: don't close while the indent still has un-grouped qty (see insertTempGrup).
+					if (checkCount == 0 && "NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(eachIndentId))
+							&& iIndentGroupDAO.getPendingUngroupedItemCount(eachIndentId, scpDtlsEntity.get(0).getTenantId()) > 0) {
+						checkCount = -1;
+					}
 					if (checkCount == 0) {
 						if (!closeSeqLookedUp) {
 							String currSeq = iPoDAO.getTenantPropertyVal(scpDtlsEntity.get(0).getTenantId(), "INDENT_CLOSE_SEQ");

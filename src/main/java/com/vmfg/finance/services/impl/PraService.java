@@ -633,7 +633,11 @@ public class PraService implements IPraService {
 								if (indentId != null && !indentId.isEmpty()) {
 									int uncoveredItems = poDao.getUncoveredNonInventoryCount(indentId, updatePraHdrSeq.getTenantId());
 									int incompletePras = poDao.getUncompletedPraCountByIndentId(indentId, updatePraHdrSeq.getTenantId());
-									if (uncoveredItems == 0 && incompletePras == 0) {
+									// NEW-flow: getUncoveredNonInventoryCount only checks that each line is on an
+									// approved PO, not the qty - don't close while the indent still has un-grouped qty.
+									boolean newFlowPending = "NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(indentId))
+											&& indentGroupDAO.getPendingUngroupedItemCount(indentId, updatePraHdrSeq.getTenantId()) > 0;
+									if (uncoveredItems == 0 && incompletePras == 0 && !newFlowPending) {
 										String closeSeq = poDao.getTenantPropertyVal(updatePraHdrSeq.getTenantId(), "INDENT_CLOSE_SEQ");
 										List<DocumentStatusMstEntity> closeSeqList = stageManagementDAO.getDocDtlcurrentSeq("DC018", closeSeq, updatePraHdrSeq.getTenantId());
 										if (closeSeqList != null && closeSeqList.size() > 0) {
