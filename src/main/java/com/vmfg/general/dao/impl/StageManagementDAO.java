@@ -712,6 +712,23 @@ public class StageManagementDAO implements IStageManagementDAO {
 		} catch (Exception ex) {
 			logger.error("getStageCodeForPmId Error " + ex);
 		}
+		// Fallback: doc type owned by another module (e.g. PRA DC077 is PM_ID 7) but this
+		// module still has a tab for the same stage in process_config (PM PRA tab STG045).
+		if (stgCode == null || stgCode.isEmpty()) {
+			try {
+				String fallbackQry = "SELECT dtm.STG_CODE FROM document_type_mst dtm\r\n"
+						+ "  INNER JOIN process_config pc ON pc.STG_CODE = dtm.STG_CODE\r\n"
+						+ "   AND pc.PM_ID = ? AND pc.TENANT_ID = dtm.TENANT_ID\r\n"
+						+ " WHERE dtm.TENANT_ID = ? AND dtm.DOCUMENT_TYPE_DESCRIPTION LIKE ?\r\n"
+						+ " LIMIT 1";
+				List<String> codes = this.jdbcTemplate.queryForList(fallbackQry, String.class, pmId, tenantId,
+						docDesc + "%");
+				stgCode = codes.isEmpty() || codes.get(0) == null ? "" : codes.get(0);
+			} catch (Exception ex) {
+				logger.error("getStageCodeForPmId fallback Error " + ex);
+				stgCode = "";
+			}
+		}
 		return stgCode;
 	}
 
