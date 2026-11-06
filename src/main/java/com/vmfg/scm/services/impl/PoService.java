@@ -1014,6 +1014,14 @@ public class PoService implements IPoServices {
 				int indentCloseCount = iPoDAO.getIndentCloseStatus(Integer.toString(getIntentId),
 						updatePoDtls.getTenantId());
 				int checkCount = isInventoryCount - indentCloseCount;
+				// NEW-flow: getIndentCloseStatus only checks that each line is on an approved PO, not the
+				// qty - a partial-qty PO approval must not close an indent that still has un-grouped qty
+				// (e.g. 1111-M-40-R-20: PO for 1 of 2 closed it, station vanished from Create Group).
+				if (checkCount == 0
+						&& "NEW".equalsIgnoreCase(indentUploadDAO.getCostFlowTypeByIndentId(Integer.toString(getIntentId)))
+						&& indentGroupDAO.getPendingUngroupedItemCount(Integer.toString(getIntentId), updatePoDtls.getTenantId()) > 0) {
+					checkCount = -1;
+				}
 				if (checkCount == 0) {
 					String currSeq = iPoDAO.getTenantPropertyVal(updatePoDtls.getTenantId(), "INDENT_CLOSE_SEQ");
 					currSeqDocLifeCycleMstLists = stageManagementDAO.getDocDtlcurrentSeq("DC018", currSeq,
