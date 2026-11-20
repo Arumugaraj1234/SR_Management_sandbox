@@ -352,14 +352,20 @@ public class ProjectTrackerReportService implements IProjectTrackerReportService
 //				
 //				connection1.close();
 //			}
-			if (!idAndTenantIdReq.getPoType().equalsIgnoreCase("local") && listEnt.size() > 0) {
+			// Local, Import and Service POs all download as a zip of the PO PDF + each line's design file (FC015).
+			String poTypeReq = idAndTenantIdReq.getPoType() == null ? "" : idAndTenantIdReq.getPoType();
+			boolean withDesignZip = poTypeReq.equalsIgnoreCase("local") || poTypeReq.equalsIgnoreCase("import")
+					|| poTypeReq.equalsIgnoreCase("service");
+			if (!withDesignZip && listEnt.size() > 0) {
 				list.setResponseData(listEnt);
 				list.setResponseCode(ResponseMessageMap.responseCodeOk);
 				list.setResponseMessage(ResponseMessageMap.success);
 			    list.setFileName(fileName1);
+				// PDF content is already base64-encoded into the response; remove the temp file from the download folder
+				new File(downloadPath).delete();
 			}
 				
-				if(idAndTenantIdReq.getPoType().equalsIgnoreCase("local")) {
+				if (withDesignZip) {
 					
                    List<DocumentFilePathEntity> IndentDtlId = iProjectReportTrackerDAO.getFileDocumentPath(idAndTenantIdReq.getTenantId(),
 							idAndTenantIdReq.getPoId());

@@ -39,6 +39,7 @@ import com.vmfg.sales.rowmapper.SalesBudgetRowMapper;
 import com.vmfg.sales.rowmapper.SalesBudgetSheetDtlRowMapper;
 import com.vmfg.sales.rowmapper.SalesBudgetSheetExntDtlRowMapper;
 import com.vmfg.sales.rowmapper.SalesBudgetSheetRowMapper;
+import com.vmfg.sales.exception.BudgetSheetRowException;
 import com.vmfg.util.CommonMethod;
 import com.vmfg.util.CommonNotifyMethod;
 
@@ -284,6 +285,8 @@ public class SalesBudgetSheetDAO implements ISalesBudgetSheetDAO {
 	@Override
 	public int uploadBudgetSheetTemplate(BudgetListEntity budgetSheetFileEntity) {
 		int hdrMstCnt = 0;
+		String currentBudgetRow = null; // Excel row being saved; non-null only inside the row loop
+		int budgetRowIdx = 0;
 		try {
 			String newCode = "";
 			String masterId = budgetSheetFileEntity.getMasterId();
@@ -376,6 +379,9 @@ public class SalesBudgetSheetDAO implements ISalesBudgetSheetDAO {
 			}
 			BigDecimal totalSum=BigDecimal.ZERO;
 			for (BudgetSheetFileEntity lis : budgetSheetFileEntity.getList()) {
+				budgetRowIdx++;
+				currentBudgetRow = (lis.getRowNo() != null && !lis.getRowNo().isEmpty()) ? lis.getRowNo()
+						: (budgetRowIdx + 1) + "";
 
 				String mstInfo = "select count(*) as COUNT  from sales_budget_category where SBC_DESC= ? and TENANT_ID=?";
 				Map<String,Object> resultDataCount = jdbcTemplate.queryForMap(mstInfo, lis.getSalesDescription(),tenantId);
@@ -521,6 +527,7 @@ public class SalesBudgetSheetDAO implements ISalesBudgetSheetDAO {
 				}
 
 			}
+			currentBudgetRow = null;
 			String totalBud = "select TOTAL_BUDGET_COST from sales_budget_sheet_hdr where MASTER_ID= ?";
 			Map<String,Object> resultTotalVal = jdbcTemplate.queryForMap(totalBud,masterId);
 			BigDecimal totalBudDataDec = new BigDecimal( resultTotalVal.get("TOTAL_BUDGET_COST").toString());
@@ -653,6 +660,12 @@ public class SalesBudgetSheetDAO implements ISalesBudgetSheetDAO {
 					budgetSheetFileEntity.getDocumentTypeCode(), masterId, pmHdrId, tenantId, budgetSheetFileEntity.getEmpId(), nextApproveDesig,
 					curSeq, enqCode);
 		} catch (Exception e) {
+			if (currentBudgetRow != null) {
+				// A row failed: previously this was only logged and the rows before it were committed
+				// (rest silently lost, success shown). Now the whole upload is rolled back and the row is reported.
+				logger.error("uploadBudgetSheetTemplate failed at Excel row " + currentBudgetRow, e);
+				throw new BudgetSheetRowException("Row " + currentBudgetRow + ": " + BudgetSheetRowException.describe(e), e);
+			}
 			logger.error("uploadIndentTemplate DAO  Method Exception" + e);
 		}
 

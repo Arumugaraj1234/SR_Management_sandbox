@@ -18,6 +18,7 @@ public interface IScmMisDAO {
 	List<ScmEmployeeIndentDtlsEntity> getScmEmployeeIndentDtls(String empId, String pmHdrId, String tenantId, String month, String year, String lifeSpan);
 	String getCompletedIndentCount(String pmHdrId, String empId, String tenantId);
 	String getTotalAssignedIndents(String pmHdrId, String empId, String tenantId);
+	java.util.Map<String, String> getIndentCountsByProjectEmp(String pmHdrId, String tenantId, boolean completedOnly);
 	String noOfPoApproved(String pmHdrId, String tenantId, String assignedTo, String month, String year, String lifeSpan);
 	String getPendingIndentsCnt(String pmHdrId, String tenantId, String empId, String month, String year,
 			String lifeSpan, String pmId);

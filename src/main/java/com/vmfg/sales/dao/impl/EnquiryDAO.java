@@ -454,6 +454,10 @@ public class EnquiryDAO implements IEnquiryDAO {
 							logger.info("Skipping null row at index: " + i);
 							continue;
 						}
+						if (isBlankBudgetSheetRow(row, 16)) {
+							logger.info("Skipping blank row at index: " + i);
+							continue;
+						}
 
 						int colCount = 16;
 						ArrayList<String> cellVal = new ArrayList<>(colCount);
@@ -498,9 +502,6 @@ public class EnquiryDAO implements IEnquiryDAO {
 									list.setSalesDescription(cellValue);
 									break;
 								case 1:
-									if (cellValue.isEmpty()) {
-										errorMsgs.add("Element Header is empty at row " + (i + 1));
-									}
 									list.setElementHeader(cellValue);
 									break;
 								case 2:
@@ -519,18 +520,12 @@ public class EnquiryDAO implements IEnquiryDAO {
 									list.setMake(cellValue);
 									break;
 								case 7:
-									if (cellValue.isEmpty()) {
-										errorMsgs.add("Qty is empty at row " + (i + 1));
-									}
 									list.setQty(cellValue);
 									break;
 								case 8:
 									list.setUom(cellValue);
 									break;
 								case 9:
-									if (cellValue.isEmpty()) {
-										errorMsgs.add("Value is empty at row " + (i + 1));
-									}
 									list.setValue(cellValue);
 									break;
 								case 10:
@@ -540,9 +535,6 @@ public class EnquiryDAO implements IEnquiryDAO {
 									list.setValueSubAssy(cellValue);
 									break;
 								case 12:
-									if (cellValue.isEmpty()) {
-										errorMsgs.add("Contingency is empty at row " + (i + 1));
-									}
 									list.setContingency(cellValue);
 									break;
 								case 13:
@@ -573,11 +565,13 @@ public class EnquiryDAO implements IEnquiryDAO {
 									break;
 							}
 						}
+						list.setRowNo(String.valueOf(i + 1));
+						errorMsgs.addAll(validateBudgetSheetRow(list, i + 1));
 					}
 				}
 			}
 
-			logger.info("Parsed rows count: " + returnList.size());
+			logger.info("Parsed rows count: " + returnList.size() + ", row errors: " + errorMsgs.size());
 
 			mainObj.setErrorMsgs(errorMsgs);
 			mainObj.setList(returnList);
@@ -749,6 +743,82 @@ public class EnquiryDAO implements IEnquiryDAO {
 //
 //			return mainList;
 //		}
+
+	// Max lengths = sales_budget_sheet_extn column sizes; a longer value fails the insert ("Data too long")
+	private static final int BS_MAX_ELEMENT_HDR = 256;
+	private static final int BS_MAX_ELEMENT_DTL = 256;
+	private static final int BS_MAX_SPECIFICATION = 1024;
+	private static final int BS_MAX_MAKE = 256;
+	private static final int BS_MAX_STN_NO = 45;
+	private static final int BS_MAX_LEG = 45;
+	private static final int BS_MAX_UOM = 9;
+
+	private boolean isBlankBudgetSheetRow(Row row, int colCount) {
+		for (int k = 0; k < colCount; k++) {
+			Cell cell = row.getCell(k);
+			if (cell == null || cell.getCellType() == CellType.BLANK) {
+				continue;
+			}
+			if (cell.getCellType() == CellType.STRING && cell.getStringCellValue().trim().isEmpty()) {
+				continue;
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/** Returns one "Row N: reason" message per problem that would stop this row from being saved. */
+	private List<String> validateBudgetSheetRow(BudgetSheetFileEntity r, int excelRow) {
+		List<String> errs = new ArrayList<>();
+		String p = "Row " + excelRow + ": ";
+		bsRequired(errs, p, "Sale Description", r.getSalesDescription());
+		bsRequired(errs, p, "Element Header", r.getElementHeader());
+		bsRequired(errs, p, "Element Description", r.getElementDescription());
+		bsRequired(errs, p, "Qty", r.getQty());
+		bsRequired(errs, p, "Value", r.getValue());
+		bsRequired(errs, p, "Contigency", r.getContingency());
+		bsMaxLen(errs, p, "Element Header", r.getElementHeader(), BS_MAX_ELEMENT_HDR);
+		bsMaxLen(errs, p, "Element Description", r.getElementDescription(), BS_MAX_ELEMENT_DTL);
+		bsMaxLen(errs, p, "Specification", r.getSpecification(), BS_MAX_SPECIFICATION);
+		bsMaxLen(errs, p, "Make", r.getMake(), BS_MAX_MAKE);
+		bsMaxLen(errs, p, "Stn No", r.getStnNo(), BS_MAX_STN_NO);
+		bsMaxLen(errs, p, "Leg", r.getLeg(), BS_MAX_LEG);
+		bsMaxLen(errs, p, "UOM", r.getUom(), BS_MAX_UOM);
+		bsNumber(errs, p, "Qty", r.getQty());
+		bsNumber(errs, p, "Value", r.getValue());
+		bsNumber(errs, p, "Total Value (column K)", r.getSubTotalvalue());
+		bsNumber(errs, p, "Value /Sub Station", r.getValueSubAssy());
+		bsNumber(errs, p, "Contigency", r.getContingency());
+		bsNumber(errs, p, "Total Value (column N)", r.getTotalValue());
+		bsNumber(errs, p, "Timeline (In Weeks)", r.getTimelineInWeeks());
+		return errs;
+	}
+
+	private void bsRequired(List<String> errs, String p, String col, String val) {
+		if (val == null || val.trim().isEmpty()) {
+			errs.add(p + col + " is empty");
+		}
+	}
+
+	private void bsMaxLen(List<String> errs, String p, String col, String val, int max) {
+		if (val != null) {
+			int len = val.codePointCount(0, val.length());
+			if (len > max) {
+				errs.add(p + col + " is " + len + " characters (max " + max + ")");
+			}
+		}
+	}
+
+	private void bsNumber(List<String> errs, String p, String col, String val) {
+		if (val == null || val.trim().isEmpty()) {
+			return; // emptiness is reported by bsRequired where the column is mandatory
+		}
+		try {
+			new java.math.BigDecimal(val.trim());
+		} catch (NumberFormatException e) {
+			errs.add(p + col + " '" + val.trim() + "' is not a valid number");
+		}
+	}
 
 	// Checking white spaces in excel
 	public int validateEmptyRows(MultipartFile file) throws IOException, InvalidFormatException {

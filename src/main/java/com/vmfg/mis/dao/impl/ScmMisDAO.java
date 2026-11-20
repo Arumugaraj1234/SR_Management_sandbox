@@ -375,10 +375,12 @@ public class ScmMisDAO implements IScmMisDAO{
 			if(pmHdrId.equalsIgnoreCase("getall")) {
 				pmHdrId	="%%";
 			}
-			
-			if(lifeSpan.equalsIgnoreCase("0")) {
-		
-				String qry="SELECT \r\n" + 
+			// Perf (2026-11-20): the per-row EXISTS on scm_hdr/process_assigned_team was ~5s because
+			// pat.MASTER_ID and sch.SCM_HDR_ID have different column types (no index use -> full scan of
+			// process_assigned_team for every PO line). The employee's NEW-flow projects and LEGACY assigned
+			// indent lines are now resolved once in derived tables; the result is identical (verified per employee).
+			boolean monthOnly = lifeSpan.equalsIgnoreCase("0");
+			String qry="SELECT \r\n" + 
 					" count(DISTINCT PO_DTL_ID) as count\r\n" + 
 					"FROM\r\n" + 
 					"    indent_hdr hdr\r\n" + 
@@ -390,61 +392,28 @@ public class ScmMisDAO implements IScmMisDAO{
 					"    po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID\r\n" + 
 					"        INNER JOIN\r\n" + 
 					"    po_hdr poh ON poh.PO_ID = pod.PO_ID\r\n" + 
+					"        LEFT JOIN\r\n" +
+					"    (SELECT DISTINCT sch.PM_HDR_ID FROM scm_hdr sch\r\n" +
+					"        INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n" +
+					"        WHERE pat.PM_ID = '5' AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1) na ON na.PM_HDR_ID = ph.PM_HDR_ID\r\n" +
+					"        LEFT JOIN\r\n" +
+					"    (SELECT DISTINCT INDENT_DTL_ID FROM indent_assign_team WHERE EMPLOYEE_ID = ?) la ON la.INDENT_DTL_ID = dtl.INDENT_DTL_ID\r\n" +
 					"WHERE\r\n" + 
 					"        hdr.PROJECT_ID like ? \r\n" + 
 					"        AND hdr.TENANT_ID = ?\r\n" + 
 					"        AND poh.IS_LATEST = 1\r\n" + 
-					"        AND poh.IS_APPROVED = 1 and poh.SEQUENCE_STATUS !='DS100' #and hdr.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077') \r\n" +
+					"        AND poh.IS_APPROVED = 1 and poh.SEQUENCE_STATUS !='DS100'\r\n" +
 					"    AND (\r\n" +
-					"        (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\r\n" +
-					"            SELECT 1 FROM scm_hdr sch\r\n" +
-					"            INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n" +
-					"            WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\r\n" +
-					"                AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\r\n" +
-					"        ))\r\n" +
+					"        (ph.COST_FLOW_TYPE = 'NEW' AND na.PM_HDR_ID IS NOT NULL)\r\n" +
 					"        OR\r\n" +
-					"        (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\r\n" +
-					"            SELECT 1 FROM indent_assign_team iat\r\n" +
-					"            WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
-					"        ))\r\n" +
+					"        (ph.COST_FLOW_TYPE <> 'NEW' AND la.INDENT_DTL_ID IS NOT NULL)\r\n" +
 					"    )\r\n" +
-					" and month(hdr.CREATED_DATE)=? and year(hdr.CREATED_DATE)=?";
-				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,pmHdrId,tenantId,assignedTo,assignedTo,month,year);
-				count = resultMap.get("count").toString();
-			}else {
-				String qry="SELECT \r\n" + 
-						" count(DISTINCT PO_DTL_ID) as count\r\n" + 
-						"FROM\r\n" + 
-						"    indent_hdr hdr\r\n" + 
-						"        INNER JOIN\r\n" + 
-						"    indent_dtl dtl ON hdr.INDENT_ID = dtl.INDENT_ID\r\n" + 
-						"        INNER JOIN\r\n" + 
-						"    project_hdr ph ON ph.PM_HDR_ID = hdr.PROJECT_ID\r\n" + 
-						"        INNER JOIN\r\n" + 
-						"    po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID\r\n" + 
-						"        INNER JOIN\r\n" + 
-						"    po_hdr poh ON poh.PO_ID = pod.PO_ID\r\n" + 
-						"WHERE\r\n" + 
-						"        hdr.PROJECT_ID like ? \r\n" + 
-						"        AND hdr.TENANT_ID = ? #AND  hdr.SEQUENCE_STATUS IN ('DS020' , 'DS019', 'DS070', 'DS077') \r\n" + 
-						"        AND poh.IS_LATEST = 1\r\n" + 
-						"        AND poh.IS_APPROVED = 1  and poh.SEQUENCE_STATUS !='DS100'\r\n" +
-						"    AND (\r\n" +
-						"        (ph.COST_FLOW_TYPE = 'NEW' AND EXISTS (\r\n" +
-						"            SELECT 1 FROM scm_hdr sch\r\n" +
-						"            INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n" +
-						"            WHERE sch.PM_HDR_ID = ph.PM_HDR_ID AND pat.PM_ID = '5'\r\n" +
-						"                AND pat.ASSIGNED_EMP_ID = ? AND pat.IS_ACTIVE = 1\r\n" +
-						"        ))\r\n" +
-						"        OR\r\n" +
-						"        (ph.COST_FLOW_TYPE <> 'NEW' AND EXISTS (\r\n" +
-						"            SELECT 1 FROM indent_assign_team iat\r\n" +
-						"            WHERE iat.INDENT_DTL_ID = dtl.INDENT_DTL_ID AND iat.EMPLOYEE_ID = ?\r\n" +
-						"        ))\r\n" +
-						"    )\r\n";
-				Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry,pmHdrId,tenantId,assignedTo,assignedTo);
-				count = resultMap.get("count").toString();
-			}	
+					(monthOnly ? " and month(hdr.CREATED_DATE)=? and year(hdr.CREATED_DATE)=?" : "");
+			Object[] params = monthOnly
+					? new Object[] { assignedTo, assignedTo, pmHdrId, tenantId, month, year }
+					: new Object[] { assignedTo, assignedTo, pmHdrId, tenantId };
+			Map<String,Object> resultMap = jdbcTemplate.queryForMap(qry, params);
+			count = resultMap.get("count").toString();
 		} catch (Exception ex) {
 			logger.error("noOfPoApproved method exception-->" + ex);
 		}
@@ -1048,6 +1017,64 @@ public class ScmMisDAO implements IScmMisDAO{
 		return val;
 	}
 	
+	/**
+	 * Bulk version of getTotalAssignedIndents / getCompletedIndentCount: returns the same counts for
+	 * every project+employee pair in ONE query (key = PROJECT_ID + "|" + UPPER(EMPLOYEE_ID)), instead of
+	 * 2 queries per dashboard row. completedOnly=true applies the approved+latest PO join like
+	 * getCompletedIndentCount. pmHdrId = "getall" or a single project id.
+	 */
+	@Override
+	public Map<String, String> getIndentCountsByProjectEmp(String pmHdrId, String tenantId, boolean completedOnly) {
+		Map<String, String> result = new java.util.HashMap<String, String>();
+		try {
+			boolean allProjects = pmHdrId == null || pmHdrId.equalsIgnoreCase("getall");
+			String poJoin = completedOnly
+					? "    INNER JOIN po_dtl pod ON dtl.INDENT_DTL_ID = pod.INDENT_DTL_ID\r\n"
+					+ "    INNER JOIN po_hdr poh ON poh.PO_ID = pod.PO_ID AND poh.IS_APPROVED = 1 AND poh.IS_LATEST = 1\r\n"
+					: "";
+			String projFilter = allProjects ? "" : " AND ih.PROJECT_ID = ?";
+			String qry = "SELECT t.PID, t.EID, SUM(t.C) AS CNT FROM (\r\n"
+					// LEGACY: rows of indent_dtl the employee is assigned to (any IS_PRIMARY), same as the EXISTS branch
+					+ "  SELECT ih.PROJECT_ID AS PID, x.EMPLOYEE_ID AS EID, COUNT(*) AS C\r\n"
+					+ "  FROM indent_hdr ih\r\n"
+					+ "    INNER JOIN indent_dtl dtl ON ih.INDENT_ID = dtl.INDENT_ID\r\n"
+					+ "    INNER JOIN project_hdr ph ON ph.PM_HDR_ID = ih.PROJECT_ID\r\n"
+					+ poJoin
+					+ "    INNER JOIN (SELECT DISTINCT INDENT_DTL_ID, EMPLOYEE_ID FROM indent_assign_team) x ON x.INDENT_DTL_ID = dtl.INDENT_DTL_ID\r\n"
+					+ "  WHERE ph.COST_FLOW_TYPE <> 'NEW' AND ih.TENANT_ID = ?" + projFilter + "\r\n"
+					+ "  GROUP BY ih.PROJECT_ID, x.EMPLOYEE_ID\r\n"
+					+ "  UNION ALL\r\n"
+					// NEW-flow: every indent_dtl row of the project counts for each active SCM team member
+					+ "  SELECT ih.PROJECT_ID, pa.ASSIGNED_EMP_ID, COUNT(*)\r\n"
+					+ "  FROM indent_hdr ih\r\n"
+					+ "    INNER JOIN indent_dtl dtl ON ih.INDENT_ID = dtl.INDENT_ID\r\n"
+					+ "    INNER JOIN project_hdr ph ON ph.PM_HDR_ID = ih.PROJECT_ID\r\n"
+					+ poJoin
+					+ "    INNER JOIN (SELECT DISTINCT sch.PM_HDR_ID, pat.ASSIGNED_EMP_ID FROM scm_hdr sch\r\n"
+					+ "        INNER JOIN process_assigned_team pat ON pat.MASTER_ID = sch.SCM_HDR_ID\r\n"
+					+ "        WHERE pat.PM_ID = '5' AND pat.IS_ACTIVE = 1) pa ON pa.PM_HDR_ID = ph.PM_HDR_ID\r\n"
+					+ "  WHERE ph.COST_FLOW_TYPE = 'NEW' AND ih.TENANT_ID = ?" + projFilter + "\r\n"
+					+ "  GROUP BY ih.PROJECT_ID, pa.ASSIGNED_EMP_ID\r\n"
+					+ ") t GROUP BY t.PID, t.EID";
+			Object[] params = allProjects ? new Object[] { tenantId, tenantId }
+					: new Object[] { tenantId, pmHdrId, tenantId, pmHdrId };
+			List<Map<String, Object>> rows = jdbcTemplate.queryForList(qry, params);
+			for (Map<String, Object> r : rows) {
+				String key = indentCountKey(String.valueOf(r.get("PID")), String.valueOf(r.get("EID")));
+				// defensive: MySQL already groups case/trailing-space variants together, so keys should not repeat
+				long prev = result.containsKey(key) ? Long.parseLong(result.get(key)) : 0L;
+				result.put(key, String.valueOf(prev + ((Number) r.get("CNT")).longValue()));
+			}
+		} catch (Exception ex) {
+			logger.error("getIndentCountsByProjectEmp method exception-->" + ex);
+		}
+		return result;
+	}
+
+	public static String indentCountKey(String pmHdrId, String empId) {
+		return (pmHdrId == null ? "" : pmHdrId.trim()) + "|" + (empId == null ? "" : empId.trim().toUpperCase());
+	}
+
 	@Override
 	public String getCompletedIndentCount(String pmHdrId, String empId,String tenantId) {
 		String val="";

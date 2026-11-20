@@ -228,9 +228,16 @@ public class ScmMisService implements IScmMisService {
 				assignedTo = scmMisReq.getEmpId();
 			}
 			list=iScmMisDAO.getScmEmployeeIndentDtls(assignedTo,scmMisReq.getPmHdrId(),scmMisReq.getTenantId(),month,year,scmMisReq.getLifeSpan());
-			for(int i=0;i<list.size();i++) {
-				list.get(i).setTotalIndentsAssigned(iScmMisDAO.getTotalAssignedIndents(list.get(i).getPmHdrId(), list.get(i).getEmployeeId(),tenantId));
-				list.get(i).setCompletedIndents(iScmMisDAO.getCompletedIndentCount(list.get(i).getPmHdrId(), list.get(i).getEmployeeId(),tenantId));
+			// Perf: was 2 count queries per row (700+ queries, ~5 min on the SCM Dashboard). Now 2 grouped
+			// queries for all rows, same counts as getTotalAssignedIndents / getCompletedIndentCount.
+			if (!list.isEmpty()) {
+				java.util.Map<String, String> totalMap = iScmMisDAO.getIndentCountsByProjectEmp(scmMisReq.getPmHdrId(), tenantId, false);
+				java.util.Map<String, String> completedMap = iScmMisDAO.getIndentCountsByProjectEmp(scmMisReq.getPmHdrId(), tenantId, true);
+				for (ScmEmployeeIndentDtlsEntity row : list) {
+					String key = com.vmfg.mis.dao.impl.ScmMisDAO.indentCountKey(row.getPmHdrId(), row.getEmployeeId());
+					row.setTotalIndentsAssigned(totalMap.getOrDefault(key, "0"));
+					row.setCompletedIndents(completedMap.getOrDefault(key, "0"));
+				}
 			}
 			returnList.setResponseData(list);
 			returnList.setResponseCode(ResponseMessageMap.responseCodeOk);

@@ -95,8 +95,55 @@ public class PraService implements IPraService {
 		}
 	}
 
+	// One lock per payment term so two PRA submits on the same term can't both pass the claimable check.
+	private static final java.util.concurrent.ConcurrentHashMap<String, Object> POT_LOCKS = new java.util.concurrent.ConcurrentHashMap<>();
+
 	@Override
 	public ResponseAsMessage insertPRA(PraInsertRequest praInsertRequest) {
+		boolean isNewPra = praInsertRequest.getPraId() == null || praInsertRequest.getPraId().equalsIgnoreCase("");
+		String potId = praInsertRequest.getPotId();
+		if (!isNewPra || potId == null || potId.trim().isEmpty()) {
+			return insertPRAImpl(praInsertRequest);
+		}
+		synchronized (POT_LOCKS.computeIfAbsent(potId.trim(), k -> new Object())) {
+			// Server-side re-check of the PO screen's PRA-button rule on fresh DB data: blocks a second PRA
+			// on a term that is already fully claimed (stale popup/tab or near-simultaneous submit), which
+			// left terms with negative pending (e.g. BGRN/2026/1096/680 PRA5353 + PRA5354, 2026-11-05).
+			if (!isPotClaimable(potId.trim())) {
+				ResponseAsMessage blocked = new ResponseAsMessage();
+				blocked.setResponseCode(ResponseMessageMap.failToupdateCode);
+				blocked.setResponseMessage("A PRA has already been raised for the full value of this payment term. Please refresh the PO to see the latest PRAs.");
+				logger.error("insertPRA blocked: POT_ID " + potId + " already fully claimed");
+				return blocked;
+			}
+			return insertPRAImpl(praInsertRequest);
+		}
+	}
+
+	// Mirrors showPraButton in Polocal/Poimport/Poservice: claimable while the term's pending is >= 1 (after
+	// rounding), or - on the last term - while PO GST/IGST, transport, P&F, insurance or other charges are
+	// still unclaimed (GST-only PRA on a fully paid last term stays allowed). Fails open if the lookup errors.
+	private boolean isPotClaimable(String potId) {
+		Map<String, Object> info = iPraDAO.getPotClaimableInfo(potId);
+		if (info == null) {
+			return true;
+		}
+		BigDecimal half = new BigDecimal("0.5");
+		if (parseAmount(info.get("PENDING_AMOUNT")).compareTo(half) >= 0) {
+			return true;
+		}
+		if ("1".equals(String.valueOf(info.get("IS_LAST")))) {
+			String[] cols = { "PEND_GST", "PEND_TRANSPORT", "PEND_PF", "PEND_INSURANCE", "PEND_OTHER" };
+			for (String c : cols) {
+				if (parseAmount(info.get(c)).compareTo(half) >= 0) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private ResponseAsMessage insertPRAImpl(PraInsertRequest praInsertRequest) {
 		ResponseAsMessage returnList = new ResponseAsMessage();
 		String seq = "1";
 

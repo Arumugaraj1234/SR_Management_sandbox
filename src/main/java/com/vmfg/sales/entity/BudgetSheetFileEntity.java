@@ -22,5 +22,7 @@ public class BudgetSheetFileEntity {
 	private String totalValue;
 	private String critical;
 	private String timelineInWeeks;
+	// Excel row number (1-based, header = row 1); set by the file parser so save errors can name the row
+	private String rowNo;
 	
 }
