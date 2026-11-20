@@ -13,6 +13,7 @@ import com.vmfg.general.response.ResponseAsMessage;
 import com.vmfg.general.response.ResponseMessageMap;
 import com.vmfg.sales.dao.interfaces.ISalesBudgetSheetDAO;
 import com.vmfg.sales.entity.BudgetListEntity;
+import com.vmfg.sales.exception.BudgetSheetRowException;
 import com.vmfg.sales.request.DeleteBudgetSheetRequest;
 import com.vmfg.sales.request.DeleteBudgetValue;
 import com.vmfg.sales.request.SalesBudgetSheetDtlRequest;
@@ -64,6 +65,15 @@ public class SalesBudgetSheetService implements ISalesBudgetSheetService {
 				String transactionStatusSeq = salesBudgetSheetRequest.get(0).getTransactionStatusSeq();
 				String sbHdrId = salesBudgetSheetRequest.get(0).getSbHdrId();
 
+				// Same guard as uploadBudgetSheetTemplate: never write a budget sheet header with a blank tenant.
+				if (tenantId == null || tenantId.trim().isEmpty()) {
+					logger.error("insertOrUpdateSalesBudgetSheetHdrAndDtl rejected: blank tenantId, masterId=" + masterId);
+					responseMsg = new ResponseAsMessage();
+					responseMsg.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+					responseMsg.setResponseMessage("Session details missing. Please log out, log in again and save the budget sheet.");
+					return responseMsg;
+				}
+
 				sbHdrId = iSalesBudgetSheetDAO.insertOrUpdateSalesBudgetSheetHdr(masterId, tenantId, paymentTerms,
 						totalBudgetCost, transactionStatusSeq, transactionStatusSeq, sbHdrId);
 				for (int g = 0; g < salesBudgetSheetRequest.size(); g++) {
@@ -108,6 +118,17 @@ public class SalesBudgetSheetService implements ISalesBudgetSheetService {
 		int returnData = 0;
 
 		try {
+			// Blank tenant made the header lookup (MASTER_ID + TENANT_ID) miss the existing sheet and
+			// insert a second header for the same enquiry -> duplicate project cards (enq 11670 / project 1119).
+			String tenantId = budgetSheetFileEntity.getTenantId();
+			if (tenantId == null || tenantId.trim().isEmpty() || budgetSheetFileEntity.getMasterId() == null
+					|| budgetSheetFileEntity.getMasterId().trim().isEmpty()) {
+				logger.error("uploadBudgetSheetTemplate rejected: blank tenantId/masterId, masterId="
+						+ budgetSheetFileEntity.getMasterId() + ", tenantId=" + tenantId);
+				returnMsg.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+				returnMsg.setResponseMessage("Session details missing. Please log out, log in again and re-upload the budget sheet.");
+				return returnMsg;
+			}
 			returnData = iSalesBudgetSheetDAO.uploadBudgetSheetTemplate(budgetSheetFileEntity);
 
 			if (returnData > 0) {
@@ -118,6 +139,12 @@ public class SalesBudgetSheetService implements ISalesBudgetSheetService {
 				returnMsg.setResponseCode(ResponseMessageMap.responseCodeNotOk);
 				returnMsg.setResponseMessage(ResponseMessageMap.noRecord);
 			}
+		} catch (BudgetSheetRowException ex) {
+			// DAO rolled back the whole upload; tell the user which row and why
+			logger.error("uploadBudgetSheetTemplate rejected: " + ex.getMessage());
+			returnMsg.setResponseCode(ResponseMessageMap.responseCodeNotOk);
+			returnMsg.setResponseMessage("Budget sheet not saved. " + ex.getMessage()
+					+ ". Please correct the Excel and upload again.");
 		} catch (Exception ex) {
 			logger.error("uploadBudgetSheetTemplate service error " + ex);
 		}

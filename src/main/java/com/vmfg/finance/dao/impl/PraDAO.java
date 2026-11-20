@@ -571,6 +571,27 @@ public class PraDAO implements IPraDAO {
 		return pendingAmnt;
 	}
 
+	// Fresh, server-side version of the PO screen's "PRA button" inputs for one payment term:
+	// stored pending of the term + (for the last term) the PO's GST/IGST and charges still not claimed
+	// by PRAs. Same sums as PoService.getPoDtlsByPoId (gstSumByPotId / getPending*Chrg).
+	@Override
+	public Map<String, Object> getPotClaimableInfo(String potId) {
+		try {
+			String qry = "SELECT t.IS_LAST, IFNULL(t.PENDING_AMOUNT,0) AS PENDING_AMOUNT,\r\n"
+					+ "  (IFNULL(h.GST,0) + IFNULL(h.IGST,0)) - IFNULL((SELECT SUM(IFNULL(p.GST_VALUE,0) + IFNULL(p.IGST_VALUE,0)) FROM pra_hdr p WHERE p.POT_ID = t.POT_ID AND p.IS_LATEST = 1),0) AS PEND_GST,\r\n"
+					+ "  IFNULL(h.TRANSPORT_CHARGES,0) - IFNULL((SELECT SUM(p.TRANSPORT_CHARGE) FROM pra_hdr p WHERE p.PO_ID = t.PO_ID AND p.IS_LATEST = 1),0) AS PEND_TRANSPORT,\r\n"
+					+ "  IFNULL(h.P_F,0) - IFNULL((SELECT SUM(p.P_F_CHARGE) FROM pra_hdr p WHERE p.PO_ID = t.PO_ID AND p.IS_LATEST = 1),0) AS PEND_PF,\r\n"
+					+ "  IFNULL(h.INSURANCE_VALUE,0) - IFNULL((SELECT SUM(p.INSURANCE_CHARGE) FROM pra_hdr p WHERE p.PO_ID = t.PO_ID AND p.IS_LATEST = 1),0) AS PEND_INSURANCE,\r\n"
+					+ "  IFNULL(h.OTHERS,0) - IFNULL((SELECT SUM(p.OTHER_CHARGE) FROM pra_hdr p WHERE p.PO_ID = t.PO_ID AND p.IS_LATEST = 1),0) AS PEND_OTHER\r\n"
+					+ "FROM po_payment_term t INNER JOIN po_hdr h ON h.PO_ID = t.PO_ID\r\n"
+					+ "WHERE t.POT_ID = ?";
+			return this.jdbcTemplate.queryForMap(qry, potId);
+		} catch (Exception e) {
+			logger.error("getPotClaimableInfo exception " + e);
+			return null;
+		}
+	}
+
 	@Override
 	public int updatePotPendingAmnt(String potId,String pending) {
 		int update = 0;

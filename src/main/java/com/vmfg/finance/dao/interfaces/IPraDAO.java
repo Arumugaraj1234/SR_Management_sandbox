@@ -54,6 +54,7 @@ public interface IPraDAO {
 	List<PraDtlsHistoryEntity> getprahistory(String praId, String tenantId);
 
 	String getPotPendingAmnt(String potId);
+	Map<String, Object> getPotClaimableInfo(String potId);
 
 	int updatePotPendingAmnt(String potId, String pending);
 
