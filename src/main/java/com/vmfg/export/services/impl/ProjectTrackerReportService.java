@@ -29,7 +29,9 @@ import com.vmfg.export.request.IdAndTenantIdRequest;
 import com.vmfg.export.request.ProjectTrackerReportRequest;
 import com.vmfg.export.response.ResponseAsList;
 import com.vmfg.export.services.interfaces.IProjectTrackerReportService;
+import com.vmfg.finance.dao.interfaces.IPraDAO;
 import com.vmfg.finance.request.getPraDtlRequest;
+import com.vmfg.finance.services.impl.PraService;
 import com.vmfg.general.response.ResponseMessageMap;
 import com.vmfg.scm.dao.interfaces.IPoDAO;
 import com.vmfg.util.CommonBase64Class;
@@ -51,6 +53,9 @@ public class ProjectTrackerReportService implements IProjectTrackerReportService
 	
 	@Autowired
 	IProjectReportTrackerDAO iProjectReportTrackerDAO;
+
+	@Autowired
+	IPraDAO iPraDAO;
 
 	@Override
 	public ResponseAsList getProjectTrackerReportPDF(ProjectTrackerReportRequest projReq) {
@@ -446,6 +451,14 @@ ResponseAsList list = new ResponseAsList();
 		
 		try {
 			logger.info("getPraReportByPraIdService Started ");
+			// Same rule as the list's Download button: only from PM Approved onwards (or completed)
+			Map<String, Object> praStatus = iPraDAO.getPraCurrentStatus(praIdAndTenantIdReq.getPraId());
+			if (praStatus == null || !PraService.isPraDownloadAllowed(String.valueOf(praStatus.get("STATUS")),
+					String.valueOf(praStatus.get("IS_COMPLETED")), String.valueOf(praStatus.get("IS_LATEST")))) {
+				list.setResponseCode(ResponseMessageMap.failToupdateCode);
+				list.setResponseMessage("PRA can be downloaded only after PM approval.");
+				return list;
+			}
 			FileDownloadEntity fdEntity = new FileDownloadEntity();
 			List<FileDownloadEntity> listEnt = new ArrayList<FileDownloadEntity>();
 			InputStream inputStream = null;

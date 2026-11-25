@@ -195,6 +195,21 @@ public class QualityInspectionDAO implements IQualityInspectionDAO{
 					"SELECT QI_ID FROM quality_inspection_request WHERE QI_ID = ? FOR UPDATE",
 					Integer.class, qiHdrDtlReq.getQiId());
 
+			// "QC Not required" is only offered while the line has no inspection record yet; a
+			// second NR submit (double click / stale list) would otherwise push the finished or
+			// in-progress record out of IS_LATEST and leave the line half-done. Checked under the
+			// lock above so two simultaneous submits are serialized.
+			if ("1".equals(qiHdrDtlReq.getNrFlag())) {
+				Integer existing = jdbcTemplate.queryForObject(
+						"SELECT COUNT(*) FROM quality_inspection_hdr WHERE QI_ID = ? AND IS_LATEST = 1",
+						Integer.class, qiHdrDtlReq.getQiId());
+				if (existing != null && existing > 0) {
+					logger.error("resetAndInsertQiHdr: NR rejected, QI_ID " + qiHdrDtlReq.getQiId()
+							+ " already has an inspection record");
+					return -1;
+				}
+			}
+
 			// no TENANT_ID filter here - a row inserted with a bad/blank TENANT_ID must still
 			// be resettable, otherwise it stays IS_LATEST=1 forever
 			jdbcTemplate.update("UPDATE quality_inspection_hdr SET IS_LATEST = 0 WHERE QI_ID = ?",

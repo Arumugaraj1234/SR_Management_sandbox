@@ -61,6 +61,8 @@ public class GetPraDtlEntity implements Serializable{
 	private String isLatest;
 	private String verCheck;
 	private String praCancelEnable;
+	// '1' when the PRA PDF may be downloaded (see PraService.isPraDownloadAllowed)
+	private String praDownloadEnable;
 	private String nextStatusDesc;
 	private String insuranceValue;
 	private String transportValue;
