@@ -250,6 +250,13 @@ public class QualityInspectionService implements IQualityInspectionService {
 						qiHdrDtlReq.setCancelFlag("0");
 					}
 						newQiHdrId = iQualityInspectionDAO.resetAndInsertQiHdr(qiHdrDtlReq);
+						if (newQiHdrId == -1) {
+							// NR guard in DAO: line already has an inspection record
+							returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+							returnMessage.setResponseDataMessage("Failure");
+							returnMessage.setResponseMessage("QC is already updated for this line. Please refresh the list.");
+							return returnMessage;
+						}
 						qiHdrDtlReq.setQiHdrId(String.valueOf(newQiHdrId));
 					if(qiHdrDtlReq.getNrFlag().equalsIgnoreCase("1")) {
 						iQualityInspectionDAO.insertQiStatus(qiHdrDtlReq.getQiHdrId(),"INSPECTION","2",seqStatus,"Approved",qiHdrDtlReq.getEmpId(),qiHdrDtlReq.getTenantId());
@@ -314,6 +321,33 @@ public class QualityInspectionService implements IQualityInspectionService {
 				}else {
 					logger.error("Error in QI hdr insert");
 				}
+
+				// "QC Not required": complete the record (seq 2, NR flag, GRN, inspected qty) in this
+				// same request. It used to be a second call from the screen; when that call was lost
+				// the line stayed half-done (Approved status but no NR flag / GRN).
+				if (newQiHdrId > 0 && "1".equals(qiHdrDtlReq.getNrFlag())
+						&& ResponseMessageMap.responseCodeOk.equals(returnMessage.getResponseCode())) {
+					UpdateSeqAndStatusRequest nrReq = new UpdateSeqAndStatusRequest();
+					nrReq.setCurrentseq("2");
+					nrReq.setTenantId(qiHdrDtlReq.getTenantId());
+					nrReq.setEmpId(qiHdrDtlReq.getEmpId());
+					nrReq.setHdrId(String.valueOf(newQiHdrId));
+					nrReq.setRemarks("");
+					nrReq.setNrFlag("1");
+					nrReq.setCancelFlag("0");
+					nrReq.setPmId(qiHdrDtlReq.getPmId());
+					nrReq.setQHdrId(qiHdrDtlReq.getQHdrId());
+					nrReq.setQualityHdrId(qiHdrDtlReq.getQHdrId());
+					nrReq.setPoId(qiHdrDtlReq.getPoId());
+					nrReq.setPmHdrId(qiHdrDtlReq.getPmHdrId());
+					ResponseAsMessage nrRes = updateQISeqAndStatus(nrReq);
+					if (nrRes == null || !ResponseMessageMap.responseCodeOk.equals(nrRes.getResponseCode())) {
+						logger.error("insertInspHdrAndDtl: NR completion failed for QI_HDR_ID " + newQiHdrId);
+						returnMessage.setResponseCode(ResponseMessageMap.failToupdateCode);
+						returnMessage.setResponseDataMessage(String.valueOf(newQiHdrId));
+						returnMessage.setResponseMessage("QC Not required could not be completed. Please contact admin.");
+					}
+				}
 			}
 		} catch (Exception ex) {
 			logger.error("insertInspHdrAndDtl Method Exception --->" + ex);
@@ -337,6 +371,15 @@ public class QualityInspectionService implements IQualityInspectionService {
 			logger.info("updateQISeqAndStatus service start");
 			
 			qiHdrList=iQualityInspectionDAO.getQiHdrListtByQiHdrId(updateHdrReq.getHdrId(),updateHdrReq.getTenantId());
+			// NR is now completed by insertInspHdrAndDtl itself; a repeat NR call (old cached
+			// screen still sending its 2nd call) must not run the GRN / qty updates again
+			if ("1".equals(updateHdrReq.getNrFlag()) && qiHdrList.size() > 0
+					&& "1".equals(qiHdrList.get(0).getIsCompleted())) {
+				returnMessage.setResponseCode(ResponseMessageMap.responseCodeOk);
+				returnMessage.setResponseDataMessage(ResponseMessageMap.successMsg);
+				returnMessage.setResponseMessage(ResponseMessageMap.approved);
+				return returnMessage;
+			}
 			if((updateHdrReq.getNrFlag() != null && updateHdrReq.getNrFlag().equalsIgnoreCase("1")) && (updateHdrReq.getCancelFlag() != null && updateHdrReq.getCancelFlag().equalsIgnoreCase("0"))) {
 				String lastSeq=iQualityInspectionDAO.getLastSeq("DC068",updateHdrReq.getTenantId());
 				currSeq=lastSeq;

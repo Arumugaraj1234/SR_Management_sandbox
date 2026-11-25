@@ -364,6 +364,23 @@ public class PraService implements IPraService {
 		return indentUploadDAO.getApprovebtnEnableByCurr(desiCode, tenantId, "DC077", "3") > 0;
 	}
 
+	// PRA PDF download: only once the PRA reaches PM Approved (DC077 seq 4) or a later stage
+	// (Finance Approved 5, legacy Director 8, Tally Closed 9 / Partially Paid 10), or is completed
+	// (old PRAs closed at Purchase approved before the PM stage existed). Cancelled PRAs never.
+	public static boolean isPraDownloadAllowed(String status, String isCompleted, String isLatest) {
+		if ("0".equals(isLatest)) {
+			return false;
+		}
+		if ("1".equals(isCompleted)) {
+			return true;
+		}
+		try {
+			return status != null && Integer.parseInt(status.trim()) >= 4;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
 	private boolean isPraCancelAllowed(String praId, boolean cancelDesignation) {
 		if (!cancelDesignation) {
 			return false;
@@ -516,6 +533,8 @@ public class PraService implements IPraService {
 				returnList.get(i).setDtl(praDtl);
 				returnList.get(i).setVerCheck(iPraDAO.getVerCheckByPraId(returnList.get(i).getPraId(),returnList.get(i).getTenantId()));
 				returnList.get(i).setPraCancelEnable(isPraCancelAllowed(returnList.get(i).getPraId(), praCancelDesignation) ? "1" : "0");
+				returnList.get(i).setPraDownloadEnable(isPraDownloadAllowed(returnList.get(i).getStatus(),
+						returnList.get(i).getIsCompleted(), returnList.get(i).getIsLatest()) ? "1" : "0");
 				
 				List<DocumentStatusMstEntity> currSeqDocLifeCycleMstList = stageManagementDAO.getDocDtlcurrentSeq(retrievePraReq.getDocTypeCode(),returnList.get(i).getStatus(), returnList.get(i).getTenantId());
 				List<DocumentStatusMstEntity> docLifeCycleMstList = iDesignTaskDAO.getNextSeqandStatus(
